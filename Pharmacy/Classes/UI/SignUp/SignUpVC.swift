@@ -67,7 +67,7 @@ class SignUpVC: UIViewController {
                 }
                 
             } else {
-                print(error!)
+                self.present(self.showAlert(message: error!), animated: true, completion: nil)
             }
         }
     }

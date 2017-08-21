@@ -45,7 +45,7 @@ class SignUpService: NSObject {
                     
                     //if sign up not successfully
                     if errs.count > 0 || token.count == 0 {
-                        completionHandler(false, nil, "Sign Up Error")
+                        completionHandler(false, nil, errs[0])
                         return
                     }
                     
