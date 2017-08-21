@@ -17,7 +17,7 @@ class UserManager: NSObject {
     
     func isLoggedIn() -> Bool {
         if userDefault.bool(forKey: "isLoggedIn") {
-            return false
+            return true
         }
         return false
     }

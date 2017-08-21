@@ -23,31 +23,21 @@ class SignUpService: NSObject {
             "phonenumber" : user.phoneNumber
         ]
         
-        Alamofire.request("http://35.177.230.252:3000/signup", method: .post, parameters: parameters, encoding: URLEncoding.httpBody)
+        Alamofire.request(UserRouter.signUp(parameters))
             .validate()
-            .response { (response) in
-                if let error = response.error {
-                    let errorString = handleError(response: response.response, error: error as NSError)
-                    completionHandler(false, nil, errorString)
+            .response { (res) in
+                
+                if let err = res.error {
+                    completionHandler(false, nil, NetworkManager.shared.handleError(response: res.response, error: err as NSError))
                     return
                 }
                 
                 //parse data to json
-                if let json = (response.data! as NSData).toDictionary() {
-                    if let token = (json["token"] as? String) {
-                        if !token.isEmpty {
-                            completionHandler(true, json["token"] as? String, nil)
-                        } else {
-                            if let error = json["error"] as? String {
-                                completionHandler(false, nil, error)
-                            } else {
-                                completionHandler(false, nil, "Not found Error")
-                            }
-                            
-                        }
-                    }
+                if let json = (res.data! as NSData).toDictionary() {
+                    
                 } else {
-                    print("Response is not corrected formation")
+                    completionHandler(false, nil, "Invalid data format")
+                    return
                 }
         }
     }

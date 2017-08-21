@@ -71,7 +71,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func SignOut() {
         UserManager.shared.currentUser = nil
-        UserManager.shared
+        UserManager.shared.setIsLoggedOut()
+        UserManager.shared.delToken()
     }
 }
 

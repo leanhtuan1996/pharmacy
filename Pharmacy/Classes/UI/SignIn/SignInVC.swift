@@ -26,10 +26,16 @@ class SignInVC: UIViewController {
     }
     
     @IBAction func btnSignInClicked(_ sender: Any) {
-        SignInService.shared.signIn(email: txtEmail.text!, password: txtPassword.text!) { ( isSuccess, token, error) in
+        
+        SignInService.shared.signIn(email: txtEmail.text!, password: txtPassword.text!) { ( isSuccess, user, error) in
             if isSuccess {                
                 //Login successfully
-                self.appDelegate.signIn_Up(user: .init(email: self.txtEmail.text!, password: self.txtPassword.text!, fullName: "", address: "", phoneNumber: "", token: token!))
+                if let user = user {
+                    user.password = self.txtPassword.text!
+                    self.appDelegate.signIn_Up(user: user)
+                }
+                
+//                self.appDelegate.signIn_Up(user: .init(email: self.txtEmail.text!, password: self.txtPassword.text!, fullName: "", address: "", phoneNumber: "", token: token!))
             } else {
                 //Noti login failed
                 print(error!)

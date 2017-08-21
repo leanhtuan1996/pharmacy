@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		36E271DE1F4ADCD400EE3597 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E271DD1F4ADCD400EE3597 /* NetworkManager.swift */; };
+		36E271E11F4ADD3900EE3597 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E271E01F4ADD3900EE3597 /* Utilities.swift */; };
+		36E271E71F4AF94C00EE3597 /* UserNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E271E61F4AF94C00EE3597 /* UserNetworking.swift */; };
 		36E48DC91F49D3BF0085A097 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E48DC11F49D3BF0085A097 /* AppDelegate.swift */; };
 		36E48DCA1F49D3BF0085A097 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36E48DC31F49D3BF0085A097 /* Assets.xcassets */; };
 		36E48DCB1F49D3BF0085A097 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36E48DC51F49D3BF0085A097 /* LaunchScreen.storyboard */; };
@@ -29,6 +32,9 @@
 /* Begin PBXFileReference section */
 		053ABE32AC7E87B1E922A5B0 /* Pods-Pharmacy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pharmacy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pharmacy/Pods-Pharmacy.debug.xcconfig"; sourceTree = "<group>"; };
 		1E7969091787900FA307D817 /* Pods-Pharmacy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pharmacy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pharmacy/Pods-Pharmacy.release.xcconfig"; sourceTree = "<group>"; };
+		36E271DD1F4ADCD400EE3597 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		36E271E01F4ADD3900EE3597 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		36E271E61F4AF94C00EE3597 /* UserNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNetworking.swift; sourceTree = "<group>"; };
 		36E48DAA1F49D2DC0085A097 /* Pharmacy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pharmacy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36E48DC11F49D3BF0085A097 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		36E48DC31F49D3BF0085A097 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -71,6 +77,22 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		36E271DF1F4ADD2700EE3597 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				36E271E01F4ADD3900EE3597 /* Utilities.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		36E271E51F4AF93600EE3597 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				36E271E61F4AF94C00EE3597 /* UserNetworking.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		36E48DA11F49D2DC0085A097 = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +125,8 @@
 		36E48DBF1F49D3BF0085A097 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				36E271E51F4AF93600EE3597 /* Network */,
+				36E271DF1F4ADD2700EE3597 /* Utilities */,
 				36E48DE21F49EEEB0085A097 /* Services */,
 				36E48DE31F49EEEB0085A097 /* Managers */,
 				36E48DDF1F49EC200085A097 /* Models */,
@@ -203,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				36E48DE81F49F2960085A097 /* UserManager.swift */,
+				36E271DD1F4ADCD400EE3597 /* NetworkManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -351,12 +376,15 @@
 			files = (
 				36E48DDE1F49DC5B0085A097 /* SignUpVC.swift in Sources */,
 				36E48DD81F49D5B00085A097 /* ViewController.swift in Sources */,
+				36E271E11F4ADD3900EE3597 /* Utilities.swift in Sources */,
+				36E271DE1F4ADCD400EE3597 /* NetworkManager.swift in Sources */,
 				36E48DE91F49F2960085A097 /* UserManager.swift in Sources */,
 				36E48DDC1F49DC420085A097 /* SignInVC.swift in Sources */,
 				36E48DE11F49EC310085A097 /* UserObject.swift in Sources */,
 				36E48DE51F49EF170085A097 /* LauchVC.swift in Sources */,
 				36E48DC91F49D3BF0085A097 /* AppDelegate.swift in Sources */,
 				36E48DED1F4AB3E60085A097 /* SignUpService.swift in Sources */,
+				36E271E71F4AF94C00EE3597 /* UserNetworking.swift in Sources */,
 				36E48DEB1F49F5360085A097 /* SignInService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
