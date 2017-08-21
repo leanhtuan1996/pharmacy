@@ -62,16 +62,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //set token to NSUserDefault
         UserManager.shared.setToken(token: user.token)
         
-        //set isLoggedIn
-        UserManager.shared.setIsLoggedIn()
-        
         //show main view
         showMainView()
     }
     
     func SignOut() {
         UserManager.shared.currentUser = nil
-        UserManager.shared.setIsLoggedOut()
         UserManager.shared.delToken()
     }
 }

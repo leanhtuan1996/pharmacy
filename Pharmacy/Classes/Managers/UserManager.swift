@@ -15,17 +15,21 @@ class UserManager: NSObject {
     
     var currentUser: UserObject?
     
+    
+    //check token in NSUserDefaults
     func isLoggedIn() -> Bool {
-        if userDefault.bool(forKey: "isLoggedIn") {
+        if userDefault.object(forKey: "token") != nil {
             return true
         }
         return false
     }
     
+    //set token to NSUserDefaults
     func setToken(token: String) {
         userDefault.set(token, forKey: "token")
     }
     
+    //Get token in NSUserDefaults
     func getToken() -> String? {
         if let token = userDefault.object(forKey: "token") as? String {
             return token
@@ -33,18 +37,10 @@ class UserManager: NSObject {
         return nil
     }
     
+    //Sign out (Delete token in NSUserDefaults)
     func delToken() {
         if let _ = userDefault.object(forKey: "token") as? String {
             userDefault.removeObject(forKey: "token")
         }
     }
-    
-    func setIsLoggedIn() {
-        userDefault.set(true, forKey: "isLoggedIn")
-    }
-    
-    func setIsLoggedOut() {
-        userDefault.removeObject(forKey: "isLoggedIn")
-    }
-    
 }

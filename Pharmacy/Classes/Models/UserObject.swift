@@ -23,13 +23,13 @@ class UserObject: NSObject {
     var role: userRole
     var token: String
     
-    init(email: String, password: String, fullName: String, address: String, phoneNumber: String, token: String) {
+    init(email: String, password: String, fullName: String, address: String, phoneNumber: String) {
         self.email = email
         self.password = password
         self.fullName = fullName
         self.address = address
         self.phoneNumber = phoneNumber
-        self.token = token
+        self.token = ""
         self.role = userRole.customer
     }
     

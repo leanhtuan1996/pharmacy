@@ -17,6 +17,8 @@ class LauchVC: UIViewController {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         //print(UserDefaults.standard.object(forKey: "token") as! String)
+        //appDelegate.SignOut()
+        
         
         if UserManager.shared.isLoggedIn() {
             appDelegate.showMainView()

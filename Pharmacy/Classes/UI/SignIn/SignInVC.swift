@@ -26,6 +26,16 @@ class SignInVC: UIViewController {
     }
     
     @IBAction func btnSignInClicked(_ sender: Any) {
+        if !txtEmail.hasText {
+            present(showAlert(message: "Email can not empty"), animated: true, completion: nil)
+            return
+        } else if !txtPassword.hasText {
+            present(showAlert(message: "Password can not empty"), animated: true, completion: nil)
+            return
+        } else if !Utilities.validateEmail(candidate: txtEmail.text!) {
+            present(showAlert(message: "Email invalid format"), animated: true, completion: nil)
+            return
+        }
         
         SignInService.shared.signIn(email: txtEmail.text!, password: txtPassword.text!) { ( isSuccess, user, error) in
             if isSuccess {                
@@ -34,11 +44,9 @@ class SignInVC: UIViewController {
                     user.password = self.txtPassword.text!
                     self.appDelegate.signIn_Up(user: user)
                 }
-                
-//                self.appDelegate.signIn_Up(user: .init(email: self.txtEmail.text!, password: self.txtPassword.text!, fullName: "", address: "", phoneNumber: "", token: token!))
             } else {
                 //Noti login failed
-                print(error!)
+                self.present(self.showAlert(message: error!), animated: true, completion: nil)
             }
         }
     }
@@ -46,5 +54,12 @@ class SignInVC: UIViewController {
     @IBAction func btnSignUpClicked(_ sender: Any) {
         appDelegate.showSignUpView()
     }
+}
 
+extension SignInVC {
+    func showAlert(message:String) -> UIAlertController {
+        let alert:UIAlertController = UIAlertController(title: "Thông báo", message: message, preferredStyle: .alert)
+        alert.addAction(.init(title: "Ok", style: .default, handler: nil))
+        return alert
+    }
 }

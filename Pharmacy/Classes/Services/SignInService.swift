@@ -38,17 +38,23 @@ class SignInService: NSObject {
                     return
                 }
                 
-                
                 //if login not successfully
                 if errs.count > 0 || token.count == 0 {
-                    completionHandler(false, nil, "Login Error")
+                    completionHandler(false, nil, errs[0])
                     return
                 }
                 
                 //login successfully
                 if let userInfo = Utilities.convertObjectToJson(object: json["userInfo"]! as AnyObject) {
                     print(userInfo)
-                    let user = UserObject(email: userInfo["email"] as! String, password: "", fullName: userInfo["fullname"] as! String, address: userInfo["address"] as! String, phoneNumber: userInfo["phonenumber"] as! String, token: token[0])
+                    let user = UserObject(email: userInfo["email"] as! String, password: "", fullName: userInfo["fullname"] as! String, address: userInfo["address"] as! String, phoneNumber: userInfo["phonenumber"] as! String)
+                    
+                    if token.count != 0 {
+                        user.token = token[0]
+                    } else {
+                        completionHandler(false, nil, "Login Error")
+                    }
+                    
                     
                     completionHandler(true, user, nil)
                 } else {
