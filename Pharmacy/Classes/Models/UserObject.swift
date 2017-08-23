@@ -8,10 +8,10 @@
 
 import UIKit
 
-enum userRole {
-    case customer
-    case admin
-    case manager
+enum userRole: String {
+    case customer = "customer"
+    case admin = "admin"
+    case manager = "manager"
 }
 
 class UserObject: NSObject {

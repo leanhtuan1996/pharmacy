@@ -7,15 +7,33 @@
 //
 
 import UIKit
+import Alamofire
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    let manager = NetworkReachabilityManager(host: "www.google.com")
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        //check network
+        manager?.listener = { status in
+            
+            switch status {
+            case .notReachable:
+                print("Network not reachable")
+            case .reachable(NetworkReachabilityManager.ConnectionType.ethernetOrWiFi):
+                print("Network was reachable")
+            default:
+                print("Can't detect network")
+            }
+            
+        }
+        manager?.startListening()
+        
         return true
     }
 
@@ -42,7 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func showMainView() {
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mainVC") as? ViewController
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "navigationVC")
         self.window?.rootViewController = vc
     }
     
@@ -59,8 +77,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func signIn_Up(user: UserObject) {
         UserManager.shared.currentUser = user
         
-        //set token to NSUserDefault
+        //set token to NSUserDefault & UserNetwork
         UserManager.shared.setToken(token: user.token)
+        UserRouter.authToken = user.token
         
         //show main view
         showMainView()

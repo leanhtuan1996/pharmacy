@@ -51,8 +51,14 @@ class SignUpService: NSObject {
                     
                     //sign up successfully
                     if let userInfo = Utilities.convertObjectToJson(object: json["userInfo"]! as AnyObject) {
-                        print(userInfo)
-                        let user = UserObject(email: userInfo["email"] as! String, password: "", fullName: userInfo["fullname"] as! String, address: userInfo["address"] as! String, phoneNumber: userInfo["phonenumber"] as! String)
+                        //print(userInfo)
+                        
+                        guard let email = userInfo["email"] as? String, let fullName = userInfo["fullname"] as? String, let address = userInfo["address"] as? String, let phoneNumber = userInfo["phonenumber"] as? String else {
+                            completionHandler(false, nil, "Invalid data format")
+                            return
+                        }
+                        
+                        let user = UserObject(email: email, password: "", fullName: fullName, address: address, phoneNumber: phoneNumber)
                         
                         if token.count != 0 {
                             user.token = token[0]

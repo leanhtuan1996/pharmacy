@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class LauchVC: UIViewController {
 
@@ -16,11 +17,12 @@ class LauchVC: UIViewController {
         //check token in NSUserDefaults thì vào main
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
-        //print(UserDefaults.standard.object(forKey: "token") as! String)
         //appDelegate.SignOut()
-        
+        print(UserManager.shared.getToken())
         
         if UserManager.shared.isLoggedIn() {
+            UserRouter.authToken = UserManager.shared.getToken()
+            
             appDelegate.showMainView()
         } else {
             appDelegate.showSignInView()

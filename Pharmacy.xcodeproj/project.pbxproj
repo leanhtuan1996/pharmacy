@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		36AE94821F4D4D3C00DA6AAA /* ChangePwVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AE94811F4D4D3C00DA6AAA /* ChangePwVC.swift */; };
+		36AE94871F4D52CA00DA6AAA /* ChangeInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AE94861F4D52CA00DA6AAA /* ChangeInfoVC.swift */; };
+		36AE94891F4D719400DA6AAA /* UpdatePwService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AE94881F4D719400DA6AAA /* UpdatePwService.swift */; };
+		36AE948B1F4DBB3C00DA6AAA /* UpdateInfoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AE948A1F4DBB3C00DA6AAA /* UpdateInfoService.swift */; };
 		36E271DE1F4ADCD400EE3597 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E271DD1F4ADCD400EE3597 /* NetworkManager.swift */; };
 		36E271E11F4ADD3900EE3597 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E271E01F4ADD3900EE3597 /* Utilities.swift */; };
 		36E271E71F4AF94C00EE3597 /* UserNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E271E61F4AF94C00EE3597 /* UserNetworking.swift */; };
@@ -32,6 +36,10 @@
 /* Begin PBXFileReference section */
 		053ABE32AC7E87B1E922A5B0 /* Pods-Pharmacy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pharmacy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pharmacy/Pods-Pharmacy.debug.xcconfig"; sourceTree = "<group>"; };
 		1E7969091787900FA307D817 /* Pods-Pharmacy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pharmacy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pharmacy/Pods-Pharmacy.release.xcconfig"; sourceTree = "<group>"; };
+		36AE94811F4D4D3C00DA6AAA /* ChangePwVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePwVC.swift; sourceTree = "<group>"; };
+		36AE94861F4D52CA00DA6AAA /* ChangeInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeInfoVC.swift; sourceTree = "<group>"; };
+		36AE94881F4D719400DA6AAA /* UpdatePwService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatePwService.swift; sourceTree = "<group>"; };
+		36AE948A1F4DBB3C00DA6AAA /* UpdateInfoService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateInfoService.swift; sourceTree = "<group>"; };
 		36E271DD1F4ADCD400EE3597 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		36E271E01F4ADD3900EE3597 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		36E271E61F4AF94C00EE3597 /* UserNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNetworking.swift; sourceTree = "<group>"; };
@@ -75,6 +83,22 @@
 				1E7969091787900FA307D817 /* Pods-Pharmacy.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		36AE94801F4D4D2500DA6AAA /* ChangePassword */ = {
+			isa = PBXGroup;
+			children = (
+				36AE94811F4D4D3C00DA6AAA /* ChangePwVC.swift */,
+			);
+			path = ChangePassword;
+			sourceTree = "<group>";
+		};
+		36AE94831F4D52A300DA6AAA /* ChangeInfo */ = {
+			isa = PBXGroup;
+			children = (
+				36AE94861F4D52CA00DA6AAA /* ChangeInfoVC.swift */,
+			);
+			path = ChangeInfo;
 			sourceTree = "<group>";
 		};
 		36E271DF1F4ADD2700EE3597 /* Utilities */ = {
@@ -175,6 +199,8 @@
 		36E48DD31F49D59B0085A097 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				36AE94831F4D52A300DA6AAA /* ChangeInfo */,
+				36AE94801F4D4D2500DA6AAA /* ChangePassword */,
 				36E48DD41F49D59B0085A097 /* Main */,
 				36E48DD51F49D59B0085A097 /* SignIn */,
 				36E48DD61F49D59B0085A097 /* SignUp */,
@@ -219,6 +245,8 @@
 			children = (
 				36E48DEA1F49F5360085A097 /* SignInService.swift */,
 				36E48DEC1F4AB3E60085A097 /* SignUpService.swift */,
+				36AE94881F4D719400DA6AAA /* UpdatePwService.swift */,
+				36AE948A1F4DBB3C00DA6AAA /* UpdateInfoService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -375,6 +403,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				36E48DDE1F49DC5B0085A097 /* SignUpVC.swift in Sources */,
+				36AE94891F4D719400DA6AAA /* UpdatePwService.swift in Sources */,
+				36AE948B1F4DBB3C00DA6AAA /* UpdateInfoService.swift in Sources */,
 				36E48DD81F49D5B00085A097 /* ViewController.swift in Sources */,
 				36E271E11F4ADD3900EE3597 /* Utilities.swift in Sources */,
 				36E271DE1F4ADCD400EE3597 /* NetworkManager.swift in Sources */,
@@ -383,6 +413,8 @@
 				36E48DE11F49EC310085A097 /* UserObject.swift in Sources */,
 				36E48DE51F49EF170085A097 /* LauchVC.swift in Sources */,
 				36E48DC91F49D3BF0085A097 /* AppDelegate.swift in Sources */,
+				36AE94821F4D4D3C00DA6AAA /* ChangePwVC.swift in Sources */,
+				36AE94871F4D52CA00DA6AAA /* ChangeInfoVC.swift in Sources */,
 				36E48DED1F4AB3E60085A097 /* SignUpService.swift in Sources */,
 				36E271E71F4AF94C00EE3597 /* UserNetworking.swift in Sources */,
 				36E48DEB1F49F5360085A097 /* SignInService.swift in Sources */,

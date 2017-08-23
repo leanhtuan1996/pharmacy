@@ -21,6 +21,8 @@ class SignInService: NSObject {
             "email" : email,
             "password" : password
         ]
+        
+        
 
         Alamofire.request(UserRouter.signIn(parameters)).validate().response { (res) in
             //Error handle
@@ -38,25 +40,44 @@ class SignInService: NSObject {
                     return
                 }
                 
-                //if login not successfully
+                //login not successfully
                 if errs.count > 0 || token.count == 0 {
                     completionHandler(false, nil, errs[0])
                     return
                 }
                 
+                //Check cast "userinfo" to [String : String]
+                guard let userInfoObject = json["userInfo"] as? AnyObject else {
+                    completionHandler(false, nil, "Invalid data format")
+                    return
+                }
+                
                 //login successfully
-                if let userInfo = Utilities.convertObjectToJson(object: json["userInfo"]! as AnyObject) {
+                if let userInfo = Utilities.convertObjectToJson(object: userInfoObject) {
                     print(userInfo)
-                    let user = UserObject(email: userInfo["email"] as! String, password: "", fullName: userInfo["fullname"] as! String, address: userInfo["address"] as! String, phoneNumber: userInfo["phonenumber"] as! String)
+                    
+                    guard let email = userInfo["email"] as? String, let fullName = userInfo["fullname"] as? String, let address = userInfo["address"] as? String, let phoneNumber = userInfo["phonenumber"] as? String, let roleString = userInfo["role"] as? String else {
+                        completionHandler(false, nil, "Invalid data format")
+                        return
+                    }
+                    
+                    guard let role = userRole(rawValue: roleString) else {
+                        completionHandler(false, nil, "Role not found")
+                        return
+                    }
+                    
+                    let user = UserObject(email: email, password: "", fullName: fullName, address: address, phoneNumber: phoneNumber)
+                    
+                    user.role = role
                     
                     if token.count != 0 {
                         user.token = token[0]
+                        print(user.token)
+                        completionHandler(true, user, nil)
                     } else {
-                        completionHandler(false, nil, "Login Error")
+                        completionHandler(false, nil, "Received with no token")
+                        return
                     }
-                    
-                    
-                    completionHandler(true, user, nil)
                 } else {
                     completionHandler(false, nil, "Invalid data format")
                     return

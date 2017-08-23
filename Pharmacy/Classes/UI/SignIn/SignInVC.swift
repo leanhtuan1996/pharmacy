@@ -41,7 +41,6 @@ class SignInVC: UIViewController {
             if isSuccess {                
                 //Login successfully
                 if let user = user {
-                    user.password = self.txtPassword.text!
                     self.appDelegate.signIn_Up(user: user)
                 }
             } else {
@@ -56,7 +55,7 @@ class SignInVC: UIViewController {
     }
 }
 
-extension SignInVC {
+extension UIViewController {
     func showAlert(message:String) -> UIAlertController {
         let alert:UIAlertController = UIAlertController(title: "Thông báo", message: message, preferredStyle: .alert)
         alert.addAction(.init(title: "Ok", style: .default, handler: nil))

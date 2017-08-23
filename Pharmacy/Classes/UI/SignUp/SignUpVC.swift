@@ -54,13 +54,17 @@ class SignUpVC: UIViewController {
             return
         }
         
-        let userObject = UserObject(email: txtEmail.text!, password: txtPassword.text!, fullName: txtFullName.text!, address: txtAddress.text!, phoneNumber: txtPhoneNumber.text!)
+        guard let email = txtEmail.text, let password = txtPassword.text, let fullName = txtFullName.text, let address = txtAddress.text, let phoneNumber = txtPhoneNumber.text else {
+            present(showAlert(message: "Fields can not empty"), animated: true, completion: nil)
+            return
+        }
+        
+        let userObject = UserObject(email: email, password: password, fullName: fullName, address: address, phoneNumber: phoneNumber)
         
         SignUpService.shared.signUp(user: userObject) { (isSuccess, user, error) in
             if isSuccess {
                 
                 if let user = user {
-                    user.password = self.txtPassword.text!
                     self.appDelegate.signIn_Up(user: user)
                 } else {
                     print("Invalid User")
@@ -76,10 +80,10 @@ class SignUpVC: UIViewController {
         appDelegate.showSignInView()
     }
     
-    func showAlert(message:String) -> UIAlertController {
-        let alert:UIAlertController = UIAlertController(title: "Thông báo", message: message, preferredStyle: .alert)
-        alert.addAction(.init(title: "Ok", style: .default, handler: nil))
-        return alert
-    }
+//    func showAlert(message:String) -> UIAlertController {
+//        let alert:UIAlertController = UIAlertController(title: "Thông báo", message: message, preferredStyle: .alert)
+//        alert.addAction(.init(title: "Ok", style: .default, handler: nil))
+//        return alert
+//    }
     
 }

@@ -14,36 +14,48 @@ let baseURLString = "http://35.177.230.252:3000"
 
 enum UserRouter: URLRequestConvertible {
     
-    // Variables
+    //Variable token
     static var authToken: String?
     
     //Action
     case signIn([String: String])
     case signUp([String : String])
+    case updatePw([String : String])
+    case updateInfo([String : String])
     
-    //Method
+    //Variable Method
     var method: Alamofire.HTTPMethod {
         switch self {
         case .signIn:
             return .post
         case .signUp:
             return .post
+        case .updatePw:
+            return .post
+        case .updateInfo:
+            return .post
         }
     }
     
-    //Path
+    //Variable Path
     var path: String {
         switch self {
         case .signIn:
             return "/signin"
         case .signUp:
             return "/signup"
+        case .updatePw:
+            return "/change-password"
+        case . updateInfo:
+            return "/update-peronal-info"
         }
     }
     
     //Request
     func asURLRequest() throws -> URLRequest {
+        
         let url = URL(string: baseURLString)!
+        
         var urlRequest = URLRequest(url: url.appendingPathComponent(path))
         urlRequest.httpMethod = method.rawValue
         
@@ -53,9 +65,14 @@ enum UserRouter: URLRequestConvertible {
         
         switch self {
         case .signIn(let parameters):
-            return try Alamofire.JSONEncoding.default.encode(urlRequest, with: parameters)
+            return try Alamofire.URLEncoding.default.encode(urlRequest, with: parameters)
         case .signUp(let parameters):
             return try Alamofire.URLEncoding.default.encode(urlRequest, with: parameters)
+        case .updatePw(let parameters):
+            return try Alamofire.URLEncoding.default.encode(urlRequest, with: parameters)
+        case .updateInfo(let parameters):
+            return try Alamofire.URLEncoding.default.encode(urlRequest, with: parameters)
         }
+        
     }
 }
