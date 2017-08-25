@@ -34,9 +34,13 @@ class ViewController: UIViewController {
     }
 
     @IBAction func btnUpdateInfoClicked(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "changeInfoVC") as! ChangeInfoVC
+        let vc = storyboard?.instantiateViewController(withIdentifier: "changeInfoVC") as! ChangeInfoVC 
         navigationController?.pushViewController(vc, animated: true)
         
+    }
+    @IBAction func btnGetInfoClicked(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "GetInformationsVC") as! GetInformationsVC
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

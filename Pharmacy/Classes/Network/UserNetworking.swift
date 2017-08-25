@@ -22,6 +22,7 @@ enum UserRouter: URLRequestConvertible {
     case signUp([String : String])
     case updatePw([String : String])
     case updateInfo([String : String])
+    case getInfo()
     
     //Variable Method
     var method: Alamofire.HTTPMethod {
@@ -34,6 +35,8 @@ enum UserRouter: URLRequestConvertible {
             return .post
         case .updateInfo:
             return .post
+        case .getInfo:
+            return .get
         }
     }
     
@@ -48,6 +51,8 @@ enum UserRouter: URLRequestConvertible {
             return "/change-password"
         case . updateInfo:
             return "/update-peronal-info"
+        case .getInfo:
+            return "/get-information"
         }
     }
     
@@ -72,6 +77,8 @@ enum UserRouter: URLRequestConvertible {
             return try Alamofire.URLEncoding.default.encode(urlRequest, with: parameters)
         case .updateInfo(let parameters):
             return try Alamofire.URLEncoding.default.encode(urlRequest, with: parameters)
+        case .getInfo():
+            return try Alamofire.URLEncoding.default.encode(urlRequest, with: [:])
         }
         
     }

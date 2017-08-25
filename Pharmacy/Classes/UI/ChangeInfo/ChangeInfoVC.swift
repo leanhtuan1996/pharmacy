@@ -38,11 +38,26 @@ class ChangeInfoVC: UIViewController {
         
         let currentPw = txtCurrentPw.text!, fullName = txtFullname.text!, phoneNumber = txtPhonenumber.text!, address = txtAddress.text!
         
+        
+        let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        activityIndicatorView.color = UIColor.blue
+        self.view.addSubview(activityIndicatorView)
+        activityIndicatorView.frame = self.view.bounds
+        activityIndicatorView.center = self.view.center
+        activityIndicatorView.backgroundColor = UIColor.clear.withAlphaComponent(0.2)
+        
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        activityIndicatorView.startAnimating()
+        
         //print("CurrentPW: \(currentPw), fullName: \(fullName), phone: \(phoneNumber), address: \(address)")
         
         let userObject = UserObject(email: "", password: currentPw, fullName: fullName, address: address, phoneNumber: phoneNumber)
         
         UpdateInfoService.shared.updateInfo(user: userObject) { (isSuccess, error) in
+            activityIndicatorView.stopAnimating()
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
             if isSuccess {
                 
                 //show alert
@@ -53,8 +68,6 @@ class ChangeInfoVC: UIViewController {
                 }))
                 
                 self.present(alert, animated: true, completion: nil)
-                
-                //update currentUser
                 
             } else {
                 //Show error

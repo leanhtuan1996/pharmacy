@@ -17,8 +17,8 @@ class LauchVC: UIViewController {
         //check token in NSUserDefaults thì vào main
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
-        //appDelegate.SignOut()
-        print(UserManager.shared.getToken())
+        appDelegate.SignOut()
+        print(UserManager.shared.getToken() ?? "NIL")
         
         if UserManager.shared.isLoggedIn() {
             UserRouter.authToken = UserManager.shared.getToken()

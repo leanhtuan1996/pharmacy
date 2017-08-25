@@ -37,7 +37,17 @@ class SignInVC: UIViewController {
             return
         }
         
+        let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        activityIndicatorView.color = UIColor.white
+        self.view.addSubview(activityIndicatorView)
+        activityIndicatorView.frame = self.view.bounds
+        activityIndicatorView.center = self.view.center
+        activityIndicatorView.backgroundColor = UIColor.clear.withAlphaComponent(0.3)
+        activityIndicatorView.startAnimating()
+
+        
         SignInService.shared.signIn(email: txtEmail.text!, password: txtPassword.text!) { ( isSuccess, user, error) in
+            activityIndicatorView.stopAnimating()
             if isSuccess {                
                 //Login successfully
                 if let user = user {

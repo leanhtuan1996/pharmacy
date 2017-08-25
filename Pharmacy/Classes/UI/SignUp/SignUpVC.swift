@@ -59,9 +59,18 @@ class SignUpVC: UIViewController {
             return
         }
         
+        let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        activityIndicatorView.color = UIColor.blue
+        self.view.addSubview(activityIndicatorView)
+        activityIndicatorView.frame = self.view.bounds
+        activityIndicatorView.center = self.view.center
+        activityIndicatorView.backgroundColor = UIColor.clear.withAlphaComponent(0.2)
+        activityIndicatorView.startAnimating()
+        
         let userObject = UserObject(email: email, password: password, fullName: fullName, address: address, phoneNumber: phoneNumber)
         
         SignUpService.shared.signUp(user: userObject) { (isSuccess, user, error) in
+            activityIndicatorView.stopAnimating()
             if isSuccess {
                 
                 if let user = user {
