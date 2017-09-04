@@ -34,6 +34,8 @@ class GetInformationsVC: UIViewController {
                 self.txtPhoneNumber.text = user.phoneNumber
                 self.txtFullname.text = user.fullName
                 
+                UserManager.shared.currentUser = user
+                
             } else {
                 //Show error
                 guard let err = Error else {

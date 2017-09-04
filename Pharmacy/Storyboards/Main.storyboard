@@ -40,7 +40,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vat-a2-qOx">
-                                <rect key="frame" x="87" y="140" width="200" height="50"/>
+                                <rect key="frame" x="87" y="184" width="200" height="50"/>
                                 <color key="backgroundColor" red="0.099430569329999996" green="0.4406789774" blue="0.66360644040000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="VDu-fK-vmX"/>
@@ -55,7 +55,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PXN-D5-3Hj">
-                                <rect key="frame" x="87" y="240" width="200" height="50"/>
+                                <rect key="frame" x="87" y="284" width="200" height="50"/>
                                 <color key="backgroundColor" red="0.099430569329999996" green="0.4406789774" blue="0.66360644040000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="UPDATE INFORMATION">
@@ -66,7 +66,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f0Z-1E-waY">
-                                <rect key="frame" x="87" y="339" width="200" height="50"/>
+                                <rect key="frame" x="87" y="383" width="200" height="50"/>
                                 <color key="backgroundColor" red="0.099430569329999996" green="0.4406789774" blue="0.66360644040000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="GET INFORMATION">
@@ -76,20 +76,52 @@
                                     <action selector="btnGetInfoClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Q26-QX-LHV"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yus-8U-j6b">
+                                <rect key="frame" x="87" y="478" width="200" height="50"/>
+                                <color key="backgroundColor" red="0.099430569329999996" green="0.4406789774" blue="0.66360644040000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="ORDER DRUG">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnOrderDrugClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OFX-cx-hwG"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q9J-y3-Vob">
+                                <rect key="frame" x="87" y="573" width="200" height="50"/>
+                                <color key="backgroundColor" red="0.099430569329999996" green="0.4406789774" blue="0.66360644040000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="LOGOUT">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnLogoutClickedWith_sender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Vci-EH-VbT"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="PXN-D5-3Hj" firstAttribute="width" secondItem="Vat-a2-qOx" secondAttribute="width" id="6WM-Cv-GKC"/>
+                            <constraint firstItem="Q9J-y3-Vob" firstAttribute="top" secondItem="Yus-8U-j6b" secondAttribute="bottom" constant="45" id="A4d-0x-hjM"/>
                             <constraint firstItem="f0Z-1E-waY" firstAttribute="top" secondItem="PXN-D5-3Hj" secondAttribute="bottom" constant="49" id="A5O-e1-KfW"/>
                             <constraint firstItem="Vat-a2-qOx" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="AMn-U6-hjV"/>
+                            <constraint firstItem="Q9J-y3-Vob" firstAttribute="width" secondItem="Yus-8U-j6b" secondAttribute="width" id="AQO-lC-IgZ"/>
                             <constraint firstItem="PXN-D5-3Hj" firstAttribute="height" secondItem="Vat-a2-qOx" secondAttribute="height" id="AyW-uO-DJU"/>
+                            <constraint firstItem="Yus-8U-j6b" firstAttribute="height" secondItem="f0Z-1E-waY" secondAttribute="height" id="GGl-6Q-XeB"/>
+                            <constraint firstItem="Yus-8U-j6b" firstAttribute="trailing" secondItem="f0Z-1E-waY" secondAttribute="trailing" id="GLq-5x-SCg"/>
                             <constraint firstItem="PXN-D5-3Hj" firstAttribute="trailing" secondItem="Vat-a2-qOx" secondAttribute="trailing" id="Q8A-em-0de"/>
                             <constraint firstItem="PXN-D5-3Hj" firstAttribute="top" secondItem="Vat-a2-qOx" secondAttribute="bottom" constant="50" id="Stl-6W-x5H"/>
+                            <constraint firstItem="Q9J-y3-Vob" firstAttribute="height" secondItem="Yus-8U-j6b" secondAttribute="height" id="U1w-X3-VDU"/>
                             <constraint firstItem="f0Z-1E-waY" firstAttribute="width" secondItem="PXN-D5-3Hj" secondAttribute="width" id="Vyb-Ry-dAg"/>
+                            <constraint firstItem="Yus-8U-j6b" firstAttribute="width" secondItem="f0Z-1E-waY" secondAttribute="width" id="eCe-St-BAe"/>
                             <constraint firstItem="f0Z-1E-waY" firstAttribute="leading" secondItem="PXN-D5-3Hj" secondAttribute="leading" id="iyB-pS-ldh"/>
+                            <constraint firstItem="Q9J-y3-Vob" firstAttribute="leading" secondItem="Yus-8U-j6b" secondAttribute="leading" id="lAM-An-GSH"/>
                             <constraint firstItem="f0Z-1E-waY" firstAttribute="height" secondItem="PXN-D5-3Hj" secondAttribute="height" id="mnc-TZ-3Hd"/>
                             <constraint firstItem="PXN-D5-3Hj" firstAttribute="leading" secondItem="Vat-a2-qOx" secondAttribute="leading" id="tTA-gV-419"/>
                             <constraint firstItem="Vat-a2-qOx" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="120" id="tVS-DH-NZv"/>
+                            <constraint firstItem="Yus-8U-j6b" firstAttribute="top" secondItem="f0Z-1E-waY" secondAttribute="bottom" constant="45" id="w56-Qe-Brk"/>
+                            <constraint firstItem="Q9J-y3-Vob" firstAttribute="trailing" secondItem="Yus-8U-j6b" secondAttribute="trailing" id="xB4-Ho-SHI"/>
+                            <constraint firstItem="Yus-8U-j6b" firstAttribute="leading" secondItem="f0Z-1E-waY" secondAttribute="leading" id="z9i-dw-NUv"/>
                             <constraint firstItem="f0Z-1E-waY" firstAttribute="trailing" secondItem="PXN-D5-3Hj" secondAttribute="trailing" id="zCK-pT-0Wn"/>
                         </constraints>
                     </view>
@@ -219,7 +251,155 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="12S-WD-qRh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="981.60000000000002" y="974.6626686656673"/>
+            <point key="canvasLocation" x="1828" y="147"/>
+        </scene>
+        <!--Choose Prescriptions-->
+        <scene sceneID="WdF-YM-0Kj">
+            <objects>
+                <viewController storyboardIdentifier="OrderDrugVC" id="NAu-Sl-uqf" customClass="OrderDrugVC" customModule="Pharmacy" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0GM-JJ-aGM"/>
+                        <viewControllerLayoutGuide type="bottom" id="JIU-Gd-ShE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fT8-gn-FoC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Heu-TX-33w">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="617"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lsB-N5-4cA">
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <color key="backgroundColor" red="0.0" green="0.5200835466" blue="0.86986905339999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="qpO-oT-n5U"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="ORDER NOW">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="lsB-N5-4cA" firstAttribute="width" secondItem="fT8-gn-FoC" secondAttribute="width" id="Icy-3N-e17"/>
+                            <constraint firstAttribute="trailing" secondItem="Heu-TX-33w" secondAttribute="trailing" id="KAG-Ng-h2D"/>
+                            <constraint firstItem="Heu-TX-33w" firstAttribute="top" secondItem="fT8-gn-FoC" secondAttribute="top" id="KHW-JE-Uk7"/>
+                            <constraint firstItem="Heu-TX-33w" firstAttribute="leading" secondItem="fT8-gn-FoC" secondAttribute="leading" id="bnB-Yq-5Qm"/>
+                            <constraint firstItem="JIU-Gd-ShE" firstAttribute="top" secondItem="lsB-N5-4cA" secondAttribute="bottom" id="g0t-kD-L1w"/>
+                            <constraint firstItem="lsB-N5-4cA" firstAttribute="top" secondItem="Heu-TX-33w" secondAttribute="bottom" id="ohg-4o-yAi"/>
+                            <constraint firstItem="lsB-N5-4cA" firstAttribute="leading" secondItem="fT8-gn-FoC" secondAttribute="leading" id="ymZ-4F-bxK"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Choose Prescriptions" id="dsl-W3-dp3">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Vkb-ma-OS4">
+                            <connections>
+                                <action selector="btnCancelClicked:" destination="NAu-Sl-uqf" id="HeK-iZ-tiD"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="m2i-ld-EF9">
+                            <connections>
+                                <segue destination="Ua4-Ju-VWP" kind="show" id="NL8-5t-o6c"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tblPrescriptions" destination="Heu-TX-33w" id="CcZ-zE-EvJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cuH-Uc-WIg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1828" y="838.83058470764627"/>
+        </scene>
+        <!--Add New PrescriptionVC-->
+        <scene sceneID="YtF-yA-dCo">
+            <objects>
+                <viewController storyboardIdentifier="AddNewPrescriptionVC" id="Ua4-Ju-VWP" customClass="AddNewPrescriptionVC" customModule="Pharmacy" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TCG-QY-en6"/>
+                        <viewControllerLayoutGuide type="bottom" id="Kjk-TT-232"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="I1t-ou-VKH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Prescription" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wZO-va-wzR">
+                                <rect key="frame" x="50" y="40" width="275" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="btr-Uk-EhP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name of prescription" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G3f-Bt-qMC">
+                                <rect key="frame" x="10" y="100" width="355" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Z72-GT-xfS"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Utb-cC-BZy">
+                                <rect key="frame" x="0.0" y="190" width="375" height="427"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4nE-ad-M3f">
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <color key="backgroundColor" red="0.0" green="0.5200835466" blue="0.86986905339999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Zgg-cF-9wY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="ADD">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnAddPrescriptionClicked:" destination="Ua4-Ju-VWP" eventType="touchUpInside" id="Zcj-Cl-4u1"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="🔎Search drugs" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cCn-mP-2NT">
+                                <rect key="frame" x="0.0" y="150" width="375" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="nbx-Xy-jap"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Utb-cC-BZy" firstAttribute="top" secondItem="cCn-mP-2NT" secondAttribute="bottom" id="47A-I0-XHF"/>
+                            <constraint firstItem="Utb-cC-BZy" firstAttribute="leading" secondItem="I1t-ou-VKH" secondAttribute="leading" id="5uV-ty-IKt"/>
+                            <constraint firstAttribute="trailing" secondItem="Utb-cC-BZy" secondAttribute="trailing" id="AG7-M2-piq"/>
+                            <constraint firstItem="cCn-mP-2NT" firstAttribute="leading" secondItem="I1t-ou-VKH" secondAttribute="leading" id="BZT-5D-6J8"/>
+                            <constraint firstAttribute="trailing" secondItem="cCn-mP-2NT" secondAttribute="trailing" id="CSR-6y-1Oo"/>
+                            <constraint firstAttribute="trailing" secondItem="4nE-ad-M3f" secondAttribute="trailing" id="OXd-5B-ztQ"/>
+                            <constraint firstItem="G3f-Bt-qMC" firstAttribute="top" secondItem="wZO-va-wzR" secondAttribute="bottom" constant="20" id="OpA-zp-SPL"/>
+                            <constraint firstItem="wZO-va-wzR" firstAttribute="centerX" secondItem="I1t-ou-VKH" secondAttribute="centerX" id="QNx-Hz-FAU"/>
+                            <constraint firstItem="Kjk-TT-232" firstAttribute="top" secondItem="4nE-ad-M3f" secondAttribute="bottom" id="W5f-lQ-K5K"/>
+                            <constraint firstAttribute="trailing" secondItem="wZO-va-wzR" secondAttribute="trailing" constant="50" id="WbZ-ma-CH9"/>
+                            <constraint firstItem="wZO-va-wzR" firstAttribute="leading" secondItem="I1t-ou-VKH" secondAttribute="leading" constant="50" id="dWs-eJ-B1W"/>
+                            <constraint firstItem="4nE-ad-M3f" firstAttribute="top" secondItem="Utb-cC-BZy" secondAttribute="bottom" id="gxk-nH-RUr"/>
+                            <constraint firstItem="wZO-va-wzR" firstAttribute="top" secondItem="TCG-QY-en6" secondAttribute="bottom" constant="20" id="iFd-54-U9k"/>
+                            <constraint firstItem="4nE-ad-M3f" firstAttribute="leading" secondItem="I1t-ou-VKH" secondAttribute="leading" id="vAX-I5-sip"/>
+                            <constraint firstItem="G3f-Bt-qMC" firstAttribute="leading" secondItem="I1t-ou-VKH" secondAttribute="leading" constant="10" id="x8G-DV-gMK"/>
+                            <constraint firstItem="cCn-mP-2NT" firstAttribute="top" secondItem="G3f-Bt-qMC" secondAttribute="bottom" constant="10" id="xGl-4a-I43"/>
+                            <constraint firstAttribute="trailing" secondItem="G3f-Bt-qMC" secondAttribute="trailing" constant="10" id="zgm-f2-OVN"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tblDrugs" destination="Utb-cC-BZy" id="aLf-XK-4lb"/>
+                        <outlet property="txtName" destination="G3f-Bt-qMC" id="9YV-Sp-YcX"/>
+                        <outlet property="txtSearch" destination="cCn-mP-2NT" id="Mld-Kh-bN3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Szn-aE-EsF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2589.5999999999999" y="838.83058470764627"/>
         </scene>
         <!--Change InfoVC-->
         <scene sceneID="dhs-Tk-3ZO">
@@ -342,7 +522,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ush-YH-uco" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1831" y="396"/>
+            <point key="canvasLocation" x="1828" y="-553"/>
         </scene>
         <!--Change PwVC-->
         <scene sceneID="Paa-is-NPJ">
@@ -453,7 +633,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Y3-vy-aDl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1838" y="-326"/>
+            <point key="canvasLocation" x="1828" y="-1242"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="kWn-uF-cft">

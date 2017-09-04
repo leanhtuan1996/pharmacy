@@ -1,59 +1,53 @@
 //
-//  UserNetworking.swift
+//  DrugNetworking.swift
 //  Pharmacy
 //
-//  Created by Lê Anh Tuấn on 8/21/17.
+//  Created by Lê Anh Tuấn on 9/1/17.
 //  Copyright © 2017 Lê Anh Tuấn. All rights reserved.
 //
 
 import Foundation
-import Alamofire
 import UIKit
+import Alamofire
 
-let baseURLString = "http://35.177.230.252:3000"
-var authToken: String?
-
-enum UserRouter: URLRequestConvertible {
-    
-    //Variable token
-    
-    
+enum DrugRouter: URLRequestConvertible {
+        
     //Action
-    case signIn([String: String])
-    case signUp([String : String])
-    case updatePw([String : String])
-    case updateInfo([String : String])
-    case getInfo()
+    case getDrug([String: String])
+    case listOfDrug()
+    case addNewDrug([String : Any])
+    case updateDrug([String : String])
+    case deleteDrug([String : String])
     
     //Variable Method
     var method: Alamofire.HTTPMethod {
         switch self {
-        case .signIn:
+        case .getDrug:
             return .post
-        case .signUp:
-            return .post
-        case .updatePw:
-            return .post
-        case .updateInfo:
-            return .post
-        case .getInfo:
+        case .listOfDrug:
             return .get
+        case .addNewDrug:
+            return .post
+        case .updateDrug:
+            return .post
+        case .deleteDrug:
+            return .post
         }
     }
     
     //Variable Path
     var path: String {
         switch self {
-        case .signIn:
-            return "/signin"
-        case .signUp:
-            return "/signup"
-        case .updatePw:
-            return "/change-password"
-        case . updateInfo:
-            return "/update-peronal-info"
-        case .getInfo:
-            return "/get-information"
+        case .getDrug:
+            return "/get-drug"
+        case .listOfDrug:
+            return "/admin/list-of-drug"
+        case .addNewDrug:
+            return "/admin/add-new-drug"
+        case . updateDrug:
+            return "/admin/update-drug"
+        case .deleteDrug:
+            return "/admin/delete-drug"
         }
     }
     
@@ -70,17 +64,18 @@ enum UserRouter: URLRequestConvertible {
         }
         
         switch self {
-        case .signIn(let parameters):
+        case .getDrug(let parameters):
             return try Alamofire.URLEncoding.default.encode(urlRequest, with: parameters)
-        case .signUp(let parameters):
-            return try Alamofire.URLEncoding.default.encode(urlRequest, with: parameters)
-        case .updatePw(let parameters):
-            return try Alamofire.URLEncoding.default.encode(urlRequest, with: parameters)
-        case .updateInfo(let parameters):
-            return try Alamofire.URLEncoding.default.encode(urlRequest, with: parameters)
-        case .getInfo():
+        case .listOfDrug():
             return try Alamofire.URLEncoding.default.encode(urlRequest, with: [:])
+        case .addNewDrug(let parameters):
+            return try Alamofire.URLEncoding.default.encode(urlRequest, with: parameters)
+        case .updateDrug(let parameters):
+            return try Alamofire.URLEncoding.default.encode(urlRequest, with: parameters)
+        case .deleteDrug(let parameters):
+            return try Alamofire.URLEncoding.default.encode(urlRequest, with: parameters)
         }
         
     }
+
 }

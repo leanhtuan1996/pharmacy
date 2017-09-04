@@ -69,7 +69,7 @@ class SignUpVC: UIViewController {
         
         let userObject = UserObject(email: email, password: password, fullName: fullName, address: address, phoneNumber: phoneNumber)
         
-        SignUpService.shared.signUp(user: userObject) { (isSuccess, user, error) in
+        SignIn_UpService.shared.signUp(user: userObject) { (isSuccess, user, error) in
             activityIndicatorView.stopAnimating()
             if isSuccess {
                 

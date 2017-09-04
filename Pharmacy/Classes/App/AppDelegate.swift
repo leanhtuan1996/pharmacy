@@ -79,15 +79,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //set token to NSUserDefault & UserNetwork
         UserManager.shared.setToken(token: user.token)
-        UserRouter.authToken = user.token
+        authToken = user.token
         
         //show main view
         showMainView()
     }
     
     func SignOut() {
+        print("SIGNOUT")
         UserManager.shared.currentUser = nil
         UserManager.shared.delToken()
+        authToken = nil
+        showSignInView()
     }
 }
 

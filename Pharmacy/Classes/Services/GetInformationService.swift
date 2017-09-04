@@ -27,15 +27,12 @@ class GetInformationService: NSObject {
                 if let json = (res.data! as NSData).toDictionary() {
                     
                     //check format
-                    guard let errs = json["errors"] as? [String] else {
-                        completionHandler(false, nil, "Invalid data format")
-                        return
-                    }
-                    
-                    //check error
-                    if errs.count > 0 {
-                        completionHandler(false, nil, errs[0])
-                        return
+                    if let errs = json["errors"] as? [String] {
+                        print(errs)
+                        if errs.count > 0 {
+                            completionHandler(false, nil, errs[0])
+                            return
+                        }
                     }
                     
                     //sign up successfully

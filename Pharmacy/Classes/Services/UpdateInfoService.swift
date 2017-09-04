@@ -33,15 +33,12 @@ class UpdateInfoService: NSObject {
             //try parse data to json
             if let json = (res.data! as NSData).toDictionary() {
                 
-                guard let errs = json["errors"] as? [String] else {
-                    completionHandler(false, "Invalid data format")
-                    return
-                }
-                
-                //update info not successfully
-                if errs.count > 0 {
-                    completionHandler(false, errs[0])
-                    return
+                if let errs = json["errors"] as? [String] {
+                    print(errs)
+                    if errs.count > 0 {
+                        completionHandler(false, "Invalid data format")
+                        return
+                    }
                 }
                 
                 completionHandler(true, "Information has been updated successfully")

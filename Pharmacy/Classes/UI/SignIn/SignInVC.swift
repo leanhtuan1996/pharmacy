@@ -46,7 +46,7 @@ class SignInVC: UIViewController {
         activityIndicatorView.startAnimating()
 
         
-        SignInService.shared.signIn(email: txtEmail.text!, password: txtPassword.text!) { ( isSuccess, user, error) in
+        SignIn_UpService.shared.signIn(email: txtEmail.text!, password: txtPassword.text!) { ( isSuccess, user, error) in
             activityIndicatorView.stopAnimating()
             if isSuccess {                
                 //Login successfully
@@ -67,7 +67,7 @@ class SignInVC: UIViewController {
 
 extension UIViewController {
     func showAlert(message:String) -> UIAlertController {
-        let alert:UIAlertController = UIAlertController(title: "Thông báo", message: message, preferredStyle: .alert)
+        let alert:UIAlertController = UIAlertController(title: "ERROR", message: message, preferredStyle: .alert)
         alert.addAction(.init(title: "Ok", style: .default, handler: nil))
         return alert
     }
