@@ -9,10 +9,14 @@
 import UIKit
 
 class DrugCell: UITableViewCell {
-
-    @IBOutlet weak var txtSTT: UILabel!
+    
     @IBOutlet weak var txtName: UILabel!
     @IBOutlet weak var txtPrice: UILabel!
+    @IBOutlet weak var lblInstructions: UILabel!
+    @IBOutlet weak var lblFormula: UILabel!
+    @IBOutlet weak var lblContraindication: UILabel!
+    @IBOutlet weak var lblSideEffect: UILabel!
+    @IBOutlet weak var lblHowToUse: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

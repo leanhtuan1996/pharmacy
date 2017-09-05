@@ -35,6 +35,9 @@ enum OrderRouter: URLRequestConvertible {
         }
     }
     
+   
+    
+    
     //Variable Path
     var path: String {
         switch self {
@@ -59,6 +62,7 @@ enum OrderRouter: URLRequestConvertible {
         var urlRequest = URLRequest(url: url.appendingPathComponent(path))
         urlRequest.httpMethod = method.rawValue
         
+        
         if let token = authToken {
             urlRequest.setValue(token, forHTTPHeaderField: "x-access-token")
         }
@@ -69,7 +73,7 @@ enum OrderRouter: URLRequestConvertible {
         case .getAllOrders():
             return try Alamofire.URLEncoding.default.encode(urlRequest, with: [:])
         case .newOrder(let parameters):
-            return try Alamofire.URLEncoding.default.encode(urlRequest, with: parameters)
+            return try Alamofire.JSONEncoding.default.encode(urlRequest, with: parameters)
         case .getOrderHistory():
             return try Alamofire.URLEncoding.default.encode(urlRequest, with: [:])
         case .getDetailOrder(let parameters):

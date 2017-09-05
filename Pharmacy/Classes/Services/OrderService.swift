@@ -89,6 +89,7 @@ class OrderService: NSObject {
     }
     
     func newOrder(parameter: [String : AnyObject], completionHandler: @escaping (_ isSuccess: Bool, _ error: String?) -> Void) {
+        
         Alamofire.request(OrderRouter.newOrder(parameter))
         .validate()
         .response { (res) in

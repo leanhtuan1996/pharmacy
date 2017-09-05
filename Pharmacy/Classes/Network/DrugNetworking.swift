@@ -41,7 +41,7 @@ enum DrugRouter: URLRequestConvertible {
         case .getDrug:
             return "/get-drug"
         case .listOfDrug:
-            return "/admin/list-of-drug"
+            return "/list-of-drug"
         case .addNewDrug:
             return "/admin/add-new-drug"
         case . updateDrug:

@@ -180,34 +180,28 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Lê Anh Tuấn" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bx4-Q9-yJx">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bx4-Q9-yJx">
                                 <rect key="frame" x="127" y="174" width="248" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="leanhtuan110596@gmail.com" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xP2-vv-HgU">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xP2-vv-HgU">
                                 <rect key="frame" x="127" y="225" width="248" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Cs-DZ-j4c">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Cs-DZ-j4c">
                                 <rect key="frame" x="127" y="275" width="248" height="66"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="Vĩnh Long">
-                                        <attributes>
-                                            <font key="NSFont" metaFont="system" size="17"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="01629680825" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XPM-gf-JC0">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XPM-gf-JC0">
                                 <rect key="frame" x="127" y="355" width="248" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -253,69 +247,10 @@
             </objects>
             <point key="canvasLocation" x="1828" y="147"/>
         </scene>
-        <!--Choose Prescriptions-->
-        <scene sceneID="WdF-YM-0Kj">
-            <objects>
-                <viewController storyboardIdentifier="OrderDrugVC" id="NAu-Sl-uqf" customClass="OrderDrugVC" customModule="Pharmacy" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="0GM-JJ-aGM"/>
-                        <viewControllerLayoutGuide type="bottom" id="JIU-Gd-ShE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="fT8-gn-FoC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Heu-TX-33w">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="617"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lsB-N5-4cA">
-                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
-                                <color key="backgroundColor" red="0.0" green="0.5200835466" blue="0.86986905339999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="qpO-oT-n5U"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="ORDER NOW">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="lsB-N5-4cA" firstAttribute="width" secondItem="fT8-gn-FoC" secondAttribute="width" id="Icy-3N-e17"/>
-                            <constraint firstAttribute="trailing" secondItem="Heu-TX-33w" secondAttribute="trailing" id="KAG-Ng-h2D"/>
-                            <constraint firstItem="Heu-TX-33w" firstAttribute="top" secondItem="fT8-gn-FoC" secondAttribute="top" id="KHW-JE-Uk7"/>
-                            <constraint firstItem="Heu-TX-33w" firstAttribute="leading" secondItem="fT8-gn-FoC" secondAttribute="leading" id="bnB-Yq-5Qm"/>
-                            <constraint firstItem="JIU-Gd-ShE" firstAttribute="top" secondItem="lsB-N5-4cA" secondAttribute="bottom" id="g0t-kD-L1w"/>
-                            <constraint firstItem="lsB-N5-4cA" firstAttribute="top" secondItem="Heu-TX-33w" secondAttribute="bottom" id="ohg-4o-yAi"/>
-                            <constraint firstItem="lsB-N5-4cA" firstAttribute="leading" secondItem="fT8-gn-FoC" secondAttribute="leading" id="ymZ-4F-bxK"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Choose Prescriptions" id="dsl-W3-dp3">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Vkb-ma-OS4">
-                            <connections>
-                                <action selector="btnCancelClicked:" destination="NAu-Sl-uqf" id="HeK-iZ-tiD"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="m2i-ld-EF9">
-                            <connections>
-                                <segue destination="Ua4-Ju-VWP" kind="show" id="NL8-5t-o6c"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="tblPrescriptions" destination="Heu-TX-33w" id="CcZ-zE-EvJ"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cuH-Uc-WIg" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1828" y="838.83058470764627"/>
-        </scene>
-        <!--Add New PrescriptionVC-->
+        <!--Order DrugVC-->
         <scene sceneID="YtF-yA-dCo">
             <objects>
-                <viewController storyboardIdentifier="AddNewPrescriptionVC" id="Ua4-Ju-VWP" customClass="AddNewPrescriptionVC" customModule="Pharmacy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OrderDrugVC" id="Ua4-Ju-VWP" customClass="OrderDrugVC" customModule="Pharmacy" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TCG-QY-en6"/>
                         <viewControllerLayoutGuide type="bottom" id="Kjk-TT-232"/>
@@ -324,26 +259,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Prescription" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wZO-va-wzR">
-                                <rect key="frame" x="50" y="40" width="275" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="btr-Uk-EhP"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name of prescription" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G3f-Bt-qMC">
-                                <rect key="frame" x="10" y="100" width="355" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="Z72-GT-xfS"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Utb-cC-BZy">
-                                <rect key="frame" x="0.0" y="190" width="375" height="427"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="617"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4nE-ad-M3f">
@@ -353,53 +270,39 @@
                                     <constraint firstAttribute="height" constant="50" id="Zgg-cF-9wY"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="ADD">
+                                <state key="normal" title="ORDER">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="btnAddPrescriptionClicked:" destination="Ua4-Ju-VWP" eventType="touchUpInside" id="Zcj-Cl-4u1"/>
+                                    <action selector="btnOrderDrugsClicked:" destination="Ua4-Ju-VWP" eventType="touchUpInside" id="3hS-9D-EFO"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="🔎Search drugs" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cCn-mP-2NT">
-                                <rect key="frame" x="0.0" y="150" width="375" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="nbx-Xy-jap"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Utb-cC-BZy" firstAttribute="top" secondItem="cCn-mP-2NT" secondAttribute="bottom" id="47A-I0-XHF"/>
-                            <constraint firstItem="Utb-cC-BZy" firstAttribute="leading" secondItem="I1t-ou-VKH" secondAttribute="leading" id="5uV-ty-IKt"/>
-                            <constraint firstAttribute="trailing" secondItem="Utb-cC-BZy" secondAttribute="trailing" id="AG7-M2-piq"/>
-                            <constraint firstItem="cCn-mP-2NT" firstAttribute="leading" secondItem="I1t-ou-VKH" secondAttribute="leading" id="BZT-5D-6J8"/>
-                            <constraint firstAttribute="trailing" secondItem="cCn-mP-2NT" secondAttribute="trailing" id="CSR-6y-1Oo"/>
+                            <constraint firstAttribute="trailing" secondItem="Utb-cC-BZy" secondAttribute="trailing" id="BmC-kc-9RR"/>
+                            <constraint firstItem="Utb-cC-BZy" firstAttribute="leading" secondItem="I1t-ou-VKH" secondAttribute="leading" id="CDy-1X-p3L"/>
                             <constraint firstAttribute="trailing" secondItem="4nE-ad-M3f" secondAttribute="trailing" id="OXd-5B-ztQ"/>
-                            <constraint firstItem="G3f-Bt-qMC" firstAttribute="top" secondItem="wZO-va-wzR" secondAttribute="bottom" constant="20" id="OpA-zp-SPL"/>
-                            <constraint firstItem="wZO-va-wzR" firstAttribute="centerX" secondItem="I1t-ou-VKH" secondAttribute="centerX" id="QNx-Hz-FAU"/>
                             <constraint firstItem="Kjk-TT-232" firstAttribute="top" secondItem="4nE-ad-M3f" secondAttribute="bottom" id="W5f-lQ-K5K"/>
-                            <constraint firstAttribute="trailing" secondItem="wZO-va-wzR" secondAttribute="trailing" constant="50" id="WbZ-ma-CH9"/>
-                            <constraint firstItem="wZO-va-wzR" firstAttribute="leading" secondItem="I1t-ou-VKH" secondAttribute="leading" constant="50" id="dWs-eJ-B1W"/>
-                            <constraint firstItem="4nE-ad-M3f" firstAttribute="top" secondItem="Utb-cC-BZy" secondAttribute="bottom" id="gxk-nH-RUr"/>
-                            <constraint firstItem="wZO-va-wzR" firstAttribute="top" secondItem="TCG-QY-en6" secondAttribute="bottom" constant="20" id="iFd-54-U9k"/>
+                            <constraint firstItem="4nE-ad-M3f" firstAttribute="top" secondItem="Utb-cC-BZy" secondAttribute="bottom" id="b8v-Zp-jqP"/>
                             <constraint firstItem="4nE-ad-M3f" firstAttribute="leading" secondItem="I1t-ou-VKH" secondAttribute="leading" id="vAX-I5-sip"/>
-                            <constraint firstItem="G3f-Bt-qMC" firstAttribute="leading" secondItem="I1t-ou-VKH" secondAttribute="leading" constant="10" id="x8G-DV-gMK"/>
-                            <constraint firstItem="cCn-mP-2NT" firstAttribute="top" secondItem="G3f-Bt-qMC" secondAttribute="bottom" constant="10" id="xGl-4a-I43"/>
-                            <constraint firstAttribute="trailing" secondItem="G3f-Bt-qMC" secondAttribute="trailing" constant="10" id="zgm-f2-OVN"/>
+                            <constraint firstItem="Utb-cC-BZy" firstAttribute="top" secondItem="I1t-ou-VKH" secondAttribute="top" id="vEr-Tj-tuQ"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="JWI-fI-iqs">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="ksB-bp-X2S">
+                            <connections>
+                                <action selector="btnCancelClicked:" destination="Ua4-Ju-VWP" id="NUj-Vb-1KY"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tblDrugs" destination="Utb-cC-BZy" id="aLf-XK-4lb"/>
-                        <outlet property="txtName" destination="G3f-Bt-qMC" id="9YV-Sp-YcX"/>
-                        <outlet property="txtSearch" destination="cCn-mP-2NT" id="Mld-Kh-bN3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Szn-aE-EsF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2589.5999999999999" y="838.83058470764627"/>
+            <point key="canvasLocation" x="1828" y="842"/>
         </scene>
         <!--Change InfoVC-->
         <scene sceneID="dhs-Tk-3ZO">
@@ -618,13 +521,6 @@
                             <constraint firstAttribute="trailing" secondItem="zF6-AN-cSO" secondAttribute="trailing" id="oa2-N3-e4l"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="JWI-fI-iqs">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="ksB-bp-X2S">
-                            <connections>
-                                <action selector="btnCancelClicked:" destination="Os9-6E-NfM" id="swm-Wf-d21"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
                     <connections>
                         <outlet property="txtConfirmPw" destination="BKy-jI-BSs" id="ynk-Mv-pq2"/>
                         <outlet property="txtNewPw" destination="Tnr-3K-21q" id="0bW-Mv-sQP"/>
