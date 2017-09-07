@@ -15,8 +15,8 @@ class NetworkManager: NSObject {
     //Handled Error
     func handleError(response: HTTPURLResponse?, error: NSError) -> String {
         if error.isNoInternetConnectionError() {
-            print("No Internet Connection")
-            return "No Internet Connection"
+            print("Internet Connection Error")
+            return "Internet Connection Error"
         } else if error.isRequestTimeOutError() {
             print("Request TimeOut")
             return "Request TimeOut"

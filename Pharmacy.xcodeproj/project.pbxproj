@@ -40,6 +40,8 @@
 		36E48DE51F49EF170085A097 /* LauchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E48DE41F49EF170085A097 /* LauchVC.swift */; };
 		36E48DE91F49F2960085A097 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E48DE81F49F2960085A097 /* UserManager.swift */; };
 		36E48DEB1F49F5360085A097 /* SignIn_UpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E48DEA1F49F5360085A097 /* SignIn_UpService.swift */; };
+		36E5F2111F6108B700BDCC9D /* DrugDetailDialog.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36E5F2101F6108B700BDCC9D /* DrugDetailDialog.storyboard */; };
+		36E5F2141F61090400BDCC9D /* DrugDialogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E5F2131F61090400BDCC9D /* DrugDialogVC.swift */; };
 		5C34706F55A0C88B21ED4CB2 /* Pods_Pharmacy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9654EF3342A90AF53F0981E7 /* Pods_Pharmacy.framework */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +82,8 @@
 		36E48DE41F49EF170085A097 /* LauchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LauchVC.swift; sourceTree = "<group>"; };
 		36E48DE81F49F2960085A097 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		36E48DEA1F49F5360085A097 /* SignIn_UpService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignIn_UpService.swift; sourceTree = "<group>"; };
+		36E5F2101F6108B700BDCC9D /* DrugDetailDialog.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DrugDetailDialog.storyboard; sourceTree = "<group>"; };
+		36E5F2131F61090400BDCC9D /* DrugDialogVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrugDialogVC.swift; sourceTree = "<group>"; };
 		9654EF3342A90AF53F0981E7 /* Pods_Pharmacy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pharmacy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -141,6 +145,7 @@
 		36CACDD31F5ECA1500CE5283 /* DrugCells */ = {
 			isa = PBXGroup;
 			children = (
+				36E5F2121F6108F000BDCC9D /* DrugDialog */,
 				36CACDD41F5ECA1500CE5283 /* DrugCell.swift */,
 				36CACDD51F5ECA1500CE5283 /* DrugCell.xib */,
 			);
@@ -232,6 +237,7 @@
 				36E48DC61F49D3BF0085A097 /* Main.storyboard */,
 				36E48DD11F49D54C0085A097 /* SignUp.storyboard */,
 				36E48DD91F49DC1F0085A097 /* SignIn.storyboard */,
+				36E5F2101F6108B700BDCC9D /* DrugDetailDialog.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -314,6 +320,14 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
+		36E5F2121F6108F000BDCC9D /* DrugDialog */ = {
+			isa = PBXGroup;
+			children = (
+				36E5F2131F61090400BDCC9D /* DrugDialogVC.swift */,
+			);
+			path = DrugDialog;
+			sourceTree = "<group>";
+		};
 		E2A5A75C6776ED6BF33E4024 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -393,6 +407,7 @@
 				36E48DDA1F49DC1F0085A097 /* SignIn.storyboard in Resources */,
 				36E48DD21F49D54C0085A097 /* SignUp.storyboard in Resources */,
 				36CACDD71F5ECA1500CE5283 /* DrugCell.xib in Resources */,
+				36E5F2111F6108B700BDCC9D /* DrugDetailDialog.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,6 +472,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36E5F2141F61090400BDCC9D /* DrugDialogVC.swift in Sources */,
 				36E48DDE1F49DC5B0085A097 /* SignUpVC.swift in Sources */,
 				36AE94891F4D719400DA6AAA /* UpdatePwService.swift in Sources */,
 				36AE948B1F4DBB3C00DA6AAA /* UpdateInfoService.swift in Sources */,

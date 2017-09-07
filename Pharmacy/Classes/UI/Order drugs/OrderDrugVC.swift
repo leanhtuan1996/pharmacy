@@ -64,16 +64,38 @@ extension OrderDrugVC: UITableViewDelegate, UITableViewDataSource {
         
         cell.txtName.text = drugs[indexPath.row].name
         cell.txtPrice.text = String(drugs[indexPath.row].price)
-        cell.lblFormula.text = drugs[indexPath.row].formula
-        cell.lblHowToUse.text = drugs[indexPath.row].howToUse
-        cell.lblInstructions.text = drugs[indexPath.row].instructions
-        cell.lblSideEffect.text = drugs[indexPath.row].sideEffect
+
         
         return cell
         
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        return 60
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("ID: \(drugs[indexPath.row].id)"  )
+        
+        
+        if let sb = UIStoryboard(name: "DrugDetailDialog", bundle: nil).instantiateInitialViewController() as? DrugDialogVC {
+            self.addChildViewController(sb)
+            self.view.addSubview(sb.view)
+            sb.view.frame = view.bounds
+            sb.didMove(toParentViewController: self)
+            
+            sb.lblName.text = drugs[indexPath.row].name
+            sb.lblDonGia.text = String(drugs[indexPath.row].price)
+            sb.lblHDSD.text = drugs[indexPath.row].instructions
+            sb.lblCongThuc.text = drugs[indexPath.row].formula
+            sb.lblCachSuDung.text = drugs[indexPath.row].howToUse
+            sb.lblTacDungPhu.text = drugs[indexPath.row].sideEffect
+            sb.lblChongChiDinh.text = drugs[indexPath.row].contraindication
+            
+        }
+        
+        
+        
+        
     }
 }

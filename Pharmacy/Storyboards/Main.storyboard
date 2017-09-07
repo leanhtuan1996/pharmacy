@@ -270,7 +270,7 @@
                                     <constraint firstAttribute="height" constant="50" id="Zgg-cF-9wY"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="ORDER">
+                                <state key="normal" title="CHECKOUT NOW">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
