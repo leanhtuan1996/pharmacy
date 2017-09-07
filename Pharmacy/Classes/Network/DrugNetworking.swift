@@ -13,7 +13,7 @@ import Alamofire
 enum DrugRouter: URLRequestConvertible {
         
     //Action
-    case getDrug([String: String])
+    case getDrug([String: Int])
     case listOfDrug()
     case addNewDrug([String : Any])
     case updateDrug([String : String])

@@ -22,6 +22,11 @@ class OrderDrugVC: UIViewController {
         tblDrugs.dataSource = self
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         
+        getDrugs()
+        
+    }
+    
+    func getDrugs() {
         DrugsService.shared.getDrugs { (isSuccess, drugs, error) in
             if isSuccess {
                 if let data = drugs as? [DrugObject]{
@@ -39,7 +44,10 @@ class OrderDrugVC: UIViewController {
                 }
             }
         }
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        getDrugs()
     }
     
     // - MARK: ACTION
@@ -91,6 +99,7 @@ extension OrderDrugVC: UITableViewDelegate, UITableViewDataSource {
             sb.lblCachSuDung.text = drugs[indexPath.row].howToUse
             sb.lblTacDungPhu.text = drugs[indexPath.row].sideEffect
             sb.lblChongChiDinh.text = drugs[indexPath.row].contraindication
+            sb.idDrug = drugs[indexPath.row].id
             
         }
         

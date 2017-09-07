@@ -11,6 +11,7 @@ import UIKit
 
 class DrugDialogVC: UIViewController {
 
+    var idDrug: Int?
     @IBOutlet weak var viewDialog: UIView!
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblHDSD: UILabel!
@@ -25,8 +26,9 @@ class DrugDialogVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewDialog.layer.cornerRadius = 5
-        txtSoLuong.text = "0"
+        txtSoLuong.text = "1"
         self.view.backgroundColor = UIColor.clear.withAlphaComponent(0.8)
+        //UserDefaults.standard.removeObject(forKey: "Orders")
         // Do any additional setup after loading the view.
     }
 
@@ -39,15 +41,7 @@ class DrugDialogVC: UIViewController {
     @IBAction func btnCancelClicked(_ sender: Any) {
         self.view.removeFromSuperview()
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+   
     @IBAction func btnGiamSoLuongClicked(_ sender: Any) {
         if let soluong = txtSoLuong.text {
             
@@ -67,5 +61,49 @@ class DrugDialogVC: UIViewController {
                 txtSoLuong.text = String(Int(soluong)! + 1)
             }
         }
+    }
+    @IBAction func btnAddToCartClicked(_ sender: Any) {
+        
+        let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        activityIndicatorView.color = UIColor.white
+        self.view.addSubview(activityIndicatorView)
+        activityIndicatorView.frame = self.view.bounds
+        activityIndicatorView.center = self.view.center
+        activityIndicatorView.backgroundColor = UIColor.clear.withAlphaComponent(0.3)
+        activityIndicatorView.startAnimating()
+        
+        //Gồm thuốc + số lượng
+        guard let idDrug = idDrug, let quantity = Int(txtSoLuong.text!) else {
+            return
+        }
+        
+        
+        OrderManager.shared.addToCart(with: Order(idDrug: idDrug, quantity: quantity), completionHandled: { (isSuccess, error) in
+            //activityIndicatorView.stopAnimating()
+            
+            let alert = UIAlertController(title: "", message: "", preferredStyle: UIAlertControllerStyle.alert)
+            
+            if isSuccess {
+                alert.title = "Successfully"
+                alert.message = "Add to cart Successfully"
+                alert.addAction(UIAlertAction(title: "Continue to buy", style: .default, handler: { (btn) in
+                    self.view.removeFromSuperview()
+                }))
+            } else {
+                if let err = error {
+                    print(err)
+                } else {
+                    print("ERROR NOT FOUND")
+                }
+                
+                alert.title = "Error"
+                alert.message = "Can not add to cart"
+                alert.addAction(UIAlertAction(title: "Try again", style: .default, handler: { (btn) in
+                    self.view.removeFromSuperview()
+                }))
+            }
+            self.showStoryBoard(vc: alert)
+        })
+        
     }
 }

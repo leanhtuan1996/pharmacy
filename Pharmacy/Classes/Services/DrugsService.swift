@@ -13,7 +13,7 @@ import Alamofire
 class DrugsService: NSObject {
     static let shared = DrugsService()
     
-    func getDrug(drugId: String, completionHandler: @escaping (_ isSuccess: Bool, _ Data: DrugObject?, _ Error: String? ) -> Void) {
+    func getDrug(drugId: Int, completionHandler: @escaping (_ isSuccess: Bool, _ Data: DrugObject?, _ Error: String? ) -> Void) {
         Alamofire.request(DrugRouter.getDrug(["drugId": drugId]))
             .validate()
             .response { (res) in
@@ -131,6 +131,7 @@ class DrugsService: NSObject {
             "howToUse" : parameter.howToUse,
             "price" : parameter.price
         ]
+        
         
         Alamofire.request(DrugRouter.addNewDrug(newDrug))
         .validate()

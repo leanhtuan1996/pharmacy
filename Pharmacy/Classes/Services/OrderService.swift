@@ -8,6 +8,8 @@
 
 import UIKit
 import Alamofire
+
+
 class OrderService: NSObject {
     static let shared = OrderService()
     
@@ -15,11 +17,22 @@ class OrderService: NSObject {
     {
         
 //        {
-//            "orderNumber": 1,
-//            "customerId": "4",
-//            "date": "2016-08-30T00:00:00.000Z",
-//            "totalPrice": 0,
-//            "drugs": []
+//            "orderNumber": 4,
+//            "customerId": "5",
+//            "date": "2017-09-04T00:00:00.000Z",
+//            "totalPrice": 40,
+//            "drugs": [
+//            {
+//            "id_drug": 1,
+//            "quantity": 10,
+//            "unit_price": 3
+//            },
+//            {
+//            "id_drug": 2,
+//            "quantity": 10,
+//            "unit_price": 1
+//            }
+//            ]
 //        }
         
         Alamofire.request(OrderRouter.getOrder(parameter))
@@ -52,12 +65,15 @@ class OrderService: NSObject {
                     for drugData in drugs {
                         if let drugObject = Utilities.convertObjectToJson(object: drugData) {
                             
-                            guard let id = drugObject["id"] as? Int, let name = drugObject["name"] as? String, let instructions = drugObject["instructions"] as? String, let formula = drugObject["formula"] as? String, let contraindication = drugObject["contraindication"] as? String, let sideEffect = drugObject["side_effect"] as? String, let howToUse = drugObject["how_to_use"] as? String, let price = drugObject["price"] as? Int else {
+                            guard let id = drugObject["id"] as? Int, let unit_price = drugObject["unit_price"] as? Int, let quantity = drugObject["quantity"] as? Int else {
                                 completionHandler(false, nil, "Invalid data format")
                                 return
                             }
                             
-                            drugArray.append(DrugObject(id: id, name: name, instructions: instructions, formula: formula, contraindication: contraindication, sideEffect: sideEffect, howToUse: howToUse, price: price))
+                            let temp = DrugObject(id: id, name: "", instructions: "", formula: "", contraindication: "", sideEffect: "", howToUse: "", price: unit_price)
+                            temp.quantity = quantity
+                            
+                            drugArray.append(temp)
                             
                         } else {
                             completionHandler(false, nil, "Invalid data format")
@@ -79,7 +95,7 @@ class OrderService: NSObject {
         }
         
     }
-    
+    //ADMIN
     func getAllOrder(completionHandler: @escaping (_ isSuccess: Bool, _ order: [OrderObject?], _ error: String?) -> Void) {
         Alamofire.request(OrderRouter.getAllOrders())
         .validate()
@@ -88,7 +104,7 @@ class OrderService: NSObject {
         }
     }
     
-    func newOrder(parameter: [String : AnyObject], completionHandler: @escaping (_ isSuccess: Bool, _ error: String?) -> Void) {
+    func newOrder(parameter: [String : Any], completionHandler: @escaping (_ isSuccess: Bool, _ error: String?) -> Void) {
         
         Alamofire.request(OrderRouter.newOrder(parameter))
         .validate()
@@ -125,6 +141,7 @@ class OrderService: NSObject {
         }
         
     }
+    
     
     func getOrdersHistory(completionHandler: @escaping (_ isSuccess: Bool, _ order: [OrderObject]?, _ error: String?) -> Void) {
         
@@ -210,13 +227,24 @@ class OrderService: NSObject {
         Alamofire.request(OrderRouter.getDetailOrder(parameters))
         .validate()
         .response { (res) in
-//            res.json({
-//                orderNumber: order[0].id,
-//                customerId: order[0].customer_id,
-//                date: order[0].date.toString(),
-//                totalPrice: order[0].total_price,
-//                drugs: orderDetail
-//            })
+//            {
+//                "orderNumber": 4,
+//                "customerId": "5",
+//                "date": "2017-09-04T00:00:00.000Z",
+//                "totalPrice": 40,
+//                "drugs": [
+//                {
+//                "id_drug": 1,
+//                "quantity": 10,
+//                "unit_price": 3
+//                },
+//                {
+//                "id_drug": 2,
+//                "quantity": 10,
+//                "unit_price": 1
+//                }
+//                ]
+//            }
             
             if let err = res.error {
                 completionHandler(false, nil, NetworkManager.shared.handleError(response: res.response, error: err as NSError))
@@ -244,12 +272,15 @@ class OrderService: NSObject {
                     for drugData in drugs {
                         if let drugObject = Utilities.convertObjectToJson(object: drugData) {
                             
-                            guard let id = drugObject["id"] as? Int, let name = drugObject["name"] as? String, let instructions = drugObject["instructions"] as? String, let formula = drugObject["formula"] as? String, let contraindication = drugObject["contraindication"] as? String, let sideEffect = drugObject["side_effect"] as? String, let howToUse = drugObject["how_to_use"] as? String, let price = drugObject["price"] as? Int else {
+                            guard let id = drugObject["id_drug"] as? Int, let quantity = drugObject["quantity"] as? Int, let unit_price = drugObject["unit_price"] as? Int else {
                                 completionHandler(false, nil, "Invalid data format")
                                 return
                             }
                             
-                            drugArray.append(DrugObject(id: id, name: name, instructions: instructions, formula: formula, contraindication: contraindication, sideEffect: sideEffect, howToUse: howToUse, price: price))
+                            let drug = DrugObject(id: id, name: "", instructions: "", formula: "", contraindication: "", sideEffect: "", howToUse: "", price: unit_price)
+                            drug.quantity = quantity
+                            
+                            drugArray.append(drug)
                             
                         } else {
                             completionHandler(false, nil, "Invalid data format")

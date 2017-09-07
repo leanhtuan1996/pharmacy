@@ -24,8 +24,6 @@ class SignIn_UpService: NSObject {
             "password" : password
         ]
         
-        
-
         Alamofire.request(UserRouter.signIn(parameters)).validate().response { (res) in
             //Error handle
             if let err = res.error {

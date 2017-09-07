@@ -17,6 +17,7 @@ class DrugObject: NSObject {
     var sideEffect: String
     var howToUse: String
     var price: Int
+    var quantity: Int
     
     init(id: Int, name: String, instructions: String, formula: String, contraindication: String, sideEffect: String, howToUse: String, price: Int) {
         self.id = id
@@ -27,6 +28,7 @@ class DrugObject: NSObject {
         self.sideEffect = sideEffect
         self.howToUse = howToUse
         self.price = price
-    }    
-   
+        self.quantity = 0
+    }
+    
 }

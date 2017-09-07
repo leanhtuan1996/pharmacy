@@ -275,6 +275,7 @@
                                 </state>
                                 <connections>
                                     <action selector="btnOrderDrugsClicked:" destination="Ua4-Ju-VWP" eventType="touchUpInside" id="3hS-9D-EFO"/>
+                                    <segue destination="yfs-3S-RtN" kind="show" id="qVC-yJ-pcy"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -303,6 +304,55 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Szn-aE-EsF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1828" y="842"/>
+        </scene>
+        <!--Check OutVC-->
+        <scene sceneID="QIx-cn-p7O">
+            <objects>
+                <viewController storyboardIdentifier="CheckOutVC" id="yfs-3S-RtN" customClass="CheckOutVC" customModule="Pharmacy" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DlT-Pj-v37"/>
+                        <viewControllerLayoutGuide type="bottom" id="DoM-aT-MVi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" restorationIdentifier="CheckOutVC" id="UKs-Ry-g3l">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wKl-PP-x2k">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="617"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aXw-mJ-Dt7">
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <color key="backgroundColor" red="0.0" green="0.5200835466" blue="0.86986905339999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="9vS-OL-cXP"/>
+                                </constraints>
+                                <state key="normal" title="ORDER NOW">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnOrderClicked:" destination="yfs-3S-RtN" eventType="touchUpInside" id="w6z-DT-aF8"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="aXw-mJ-Dt7" firstAttribute="leading" secondItem="UKs-Ry-g3l" secondAttribute="leading" id="66A-Rp-Qh8"/>
+                            <constraint firstItem="wKl-PP-x2k" firstAttribute="leading" secondItem="UKs-Ry-g3l" secondAttribute="leading" id="6WG-xK-vPJ"/>
+                            <constraint firstItem="aXw-mJ-Dt7" firstAttribute="width" secondItem="UKs-Ry-g3l" secondAttribute="width" id="RgD-Qj-dmt"/>
+                            <constraint firstItem="wKl-PP-x2k" firstAttribute="top" secondItem="UKs-Ry-g3l" secondAttribute="top" id="W8m-hr-ym8"/>
+                            <constraint firstItem="aXw-mJ-Dt7" firstAttribute="top" secondItem="wKl-PP-x2k" secondAttribute="bottom" id="iQ3-rL-IOL"/>
+                            <constraint firstItem="DoM-aT-MVi" firstAttribute="top" secondItem="aXw-mJ-Dt7" secondAttribute="bottom" id="mqe-h0-YYV"/>
+                            <constraint firstAttribute="trailing" secondItem="wKl-PP-x2k" secondAttribute="trailing" id="uKH-F8-vU6"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tblDrugsToOrder" destination="wKl-PP-x2k" id="WIy-a4-bho"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oXg-uf-QvN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2557.5999999999999" y="841.52923538230891"/>
         </scene>
         <!--Change InfoVC-->
         <scene sceneID="dhs-Tk-3ZO">
