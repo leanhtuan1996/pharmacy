@@ -28,7 +28,7 @@ class OrderHistoryVC: UIViewController {
              if isSuccess {
                 if let orderArray = orderObject as? [OrderObject] {
                     self.ordersHistory = orderArray
-                    print(orderArray.count)
+                    //print(orderArray.count)
                     DispatchQueue.main.async {
                         self.tblOrderHistory.reloadData()
                     }

@@ -147,23 +147,7 @@ class OrderService: NSObject {
     
     
     func getOrdersHistory(completionHandler: @escaping (_ isSuccess: Bool, _ order: [OrderObject?], _ error: String?) -> Void) {
-        
-//        {
-//            "allOrder": [
-//            {
-//            "id": 1,
-//            "customer_id": "4",
-//            "date": "2016-08-30T00:00:00.000Z",
-//            "total_price": 0
-//            },
-//            {
-//            "id": 2,
-//            "customer_id": "4",
-//            "date": "2016-08-30T00:00:00.000Z",
-//            "total_price": 0
-//            }
-//            ]
-//        }
+
         
         Alamofire.request(OrderRouter.getOrderHistory())
         .validate()
@@ -194,12 +178,22 @@ class OrderService: NSObject {
                     
                     for orderData in allOrderJson {
                         if let order = Utilities.convertObjectToJson(object: orderData) {
-
                             
-                            guard let id = order["id"] as? Int, let date = order["date"] as? String, let total_price = order["total_price"] as? Int else {
+                            guard let id = order["id"] as? Int, var date = order["date"] as? String, let total_price = order["total_price"] as? Int else {
                                 print("2")
                                 completionHandler(false, [nil], "Invalid data format")
                                 return
+                            }
+                            
+                            //convert JSON datetime to date
+                            let dateFormatter = DateFormatter()
+                            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+                            if let dateFormatted = dateFormatter.date(from: date) {
+                                //convert date to "yyyy-MM-dd" format
+                                dateFormatter.dateFormat = "yyyy-MM-dd"
+                                date = dateFormatter.string(from: dateFormatted)
+                            } else {
+                                date = ""
                             }
                             
                             ordersHistory.append(OrderObject(id: id, date: date, totalPrice: total_price, drugs: []))

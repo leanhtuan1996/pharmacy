@@ -151,18 +151,4 @@ class OrderManager: NSObject {
             }
         }
     }
-    
-    func getOrdersHistory(completionHandler: @escaping (_ isSuccess: Bool, _ data: [OrderObject?], _ error: String?) -> Void) {
-        OrderService.shared.getOrdersHistory { (isSuccess, orderObject, error) in
-            
-        }
-    }
-    
-    func getDetailOrderHistory(id: Int, completionHandler: @escaping (_ isSuccess: Bool, _ data: OrderObject?, _ error: String?) -> Void) {
-        OrderService.shared.getDetailOrder(id: id) { (isSuccess, orderObject, error) in
-            
-        }
-    }
-    
-    
 }
