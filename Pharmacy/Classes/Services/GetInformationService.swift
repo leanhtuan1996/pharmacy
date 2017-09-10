@@ -28,7 +28,7 @@ class GetInformationService: NSObject {
                     
                     //check format
                     if let errs = json["errors"] as? [String] {
-                        print(errs)
+                        //print(errs)
                         if errs.count > 0 {
                             completionHandler(false, nil, errs[0])
                             return

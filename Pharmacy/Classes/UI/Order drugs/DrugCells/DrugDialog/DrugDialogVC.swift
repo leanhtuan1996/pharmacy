@@ -91,7 +91,7 @@ class DrugDialogVC: UIViewController {
                 }))
             } else {
                 if let err = error {
-                    print(err)
+                    //print(err)
                 } else {
                     print("ERROR NOT FOUND")
                 }

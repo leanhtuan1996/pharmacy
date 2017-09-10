@@ -53,7 +53,7 @@ class OrderManager: NSObject {
         if let data = userDefaults.object(forKey: "Orders") as? Data {
             //print(data)
             if let orders = NSKeyedUnarchiver.unarchiveObject(with: data) as? [Order] {
-                print(orders)
+                //print(orders)
                 for order in orders {
                     ordersArray.append(order)
                 }
@@ -68,7 +68,7 @@ class OrderManager: NSObject {
         completionHandled(true, nil)
     }
     
-    func getAllOrdersFromCart(completionHanler: @escaping (_ isSuccess: Bool, _ data: DrugObject?, _ error: String?) -> Void) {
+    func getAllOrdersFromCart(completionHanler: @escaping (_ isSuccess: Bool, _ drug: DrugObject?, _ error: String?) -> Void) {
         
         //Get Drugs-id in Cart
         var ordersArray:[Order] = []
@@ -85,10 +85,11 @@ class OrderManager: NSObject {
         
         //Call to DrugsService with getDrug function
         
-        for drugId in ordersArray {
-            DrugsService.shared.getDrug(drugId: drugId.idDrug, completionHandler: { (isSuccess, drug, error) in
+        for drugOrder in ordersArray {
+            DrugsService.shared.getDrug(drugId: drugOrder.idDrug, completionHandler: { (isSuccess, drug, error) in
                 if isSuccess {
                     if let drug = drug {
+                        drug.quantity = drugOrder.quantity
                         completionHanler(true, drug, nil)
                     } else {
                         completionHanler(false, nil, "ERROR")
@@ -104,33 +105,35 @@ class OrderManager: NSObject {
         }
     }
     
-    func checkOut(completionHandler: @escaping (_ isSuccsess: Bool, _ Error: String?) -> Void) {
+    func checkOut(drugToOrders: [DrugObject] ,completionHandler: @escaping (_ isSuccsess: Bool, _ Error: String?) -> Void) {
+        
+        if drugToOrders.count == 0 {
+            return
+        }
         
         //Call to OrderService with newOrder function
-        var ordersArray: [Order] = []
+        var ordersArray: [[String : Any]] = []
         let date = Date()
         let formater = DateFormatter()
-        formater.dateFormat = "mm/dd/yyyy"
+        formater.dateFormat = "MM/dd/yyyy"
         let dateOrder = formater.string(from: date)
         
-        //Get users from NSUserDefault
-        if let data = userDefaults.object(forKey: "Orders") as? Data {
-            if let orders = NSKeyedUnarchiver.unarchiveObject(with: data) as? [Order] {
-                for order in orders {
-                    ordersArray.append(order)
-                }
-            }
+        for drug in drugToOrders {
+            
+            let dict: [String: Any] = [
+                "id" : drug.id,
+                "quantity" : drug.quantity
+            ]
+            
+            ordersArray.append(dict)
         }
-        
-        if ordersArray.count == 0 {
-            completionHandler(false, "ORDERS ARE EMPTY")
-        }
+       
         
         let parameter: [String : Any] = [
             "drugs" : ordersArray,
             "date": dateOrder
         ]
-
+        
         OrderService.shared.newOrder(parameter: parameter) { (isSuccess, error) in
             //- if success: Delete all order in NSUserDefaults
             if isSuccess {
@@ -145,4 +148,5 @@ class OrderManager: NSObject {
             }
         }
     }
+    
 }

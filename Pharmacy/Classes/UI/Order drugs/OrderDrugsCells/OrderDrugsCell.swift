@@ -9,6 +9,9 @@
 import UIKit
 
 class OrderDrugsCell: UITableViewCell {
+    @IBOutlet weak var lblName: UILabel!
+    @IBOutlet weak var lblPrice: UILabel!
+    @IBOutlet weak var lblQuantity: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -19,6 +22,9 @@ class OrderDrugsCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    @IBAction func btnDelete(_ sender: Any) {
+        
     }
     
 }

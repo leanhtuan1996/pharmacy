@@ -31,9 +31,9 @@ class Utilities: NSObject {
             let jsonData = try JSONSerialization.data(withJSONObject: object, options: JSONSerialization.WritingOptions.prettyPrinted)
             
             //Convert back to string. Usually only do this for debugging
-            //if let JSONString = String(data: jsonData, encoding: String.Encoding.utf8) {
-            //    print(JSONString)
-            //}
+            if let JSONString = String(data: jsonData, encoding: String.Encoding.utf8) {
+                //print(JSONString)
+            }
             
             return try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.mutableContainers) as? [String: Any]
             

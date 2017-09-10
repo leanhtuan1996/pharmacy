@@ -119,15 +119,18 @@ class OrderService: NSObject {
                 if let json = (data as NSData).toDictionary() {
                     
                     if let error = json["errors"] as? [String] {
-                        print(error)
+                       
                         if error.count > 0 {
+                            print(error)
                             completionHandler(false, error[0])
+                            return
+                        } else {
+                            completionHandler(true, nil)
                             return
                         }
                     } else {
                         completionHandler(true, nil)
                     }
-                    
                     
                 } else {
                     completionHandler(false,  "Invalid data format")

@@ -8,7 +8,7 @@
 
 import UIKit
 import Alamofire
-typealias JSON = [String: Any]
+typealias JSONString = [String: Any]
 
 class SignIn_UpService: NSObject {
     static let shared = SignIn_UpService()

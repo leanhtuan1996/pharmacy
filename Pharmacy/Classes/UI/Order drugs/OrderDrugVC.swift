@@ -22,14 +22,14 @@ class OrderDrugVC: UIViewController {
         tblDrugs.dataSource = self
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         
-        getDrugs()
+        //getDrugs()
         
     }
     
     func getDrugs() {
         DrugsService.shared.getDrugs { (isSuccess, drugs, error) in
             if isSuccess {
-                if let data = drugs as? [DrugObject]{
+                if let data = drugs as? [DrugObject] {
                     self.drugs = data
                     DispatchQueue.main.async {
                         self.tblDrugs.reloadData()
@@ -83,7 +83,7 @@ extension OrderDrugVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("ID: \(drugs[indexPath.row].id)"  )
+        //print("ID: \(drugs[indexPath.row].id)"  )
         
         
         if let sb = UIStoryboard(name: "DrugDetailDialog", bundle: nil).instantiateInitialViewController() as? DrugDialogVC {

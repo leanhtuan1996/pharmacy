@@ -29,7 +29,7 @@ class DrugsService: NSObject {
                         
                         //check error
                         if let error = json["errors"] as? [String] {
-                            print(error)
+                            //print(error)
                             if error.count > 0 {
                                 completionHandler(false, nil, error[0])
                                 return
@@ -76,7 +76,7 @@ class DrugsService: NSObject {
                 if let json = (res.data! as NSData).toDictionary() {
                     
                     if let err = json["errors"] as? [String]{
-                        print(err)
+                        //print(err)
                         if err.count > 0 {
                             completionHandler(false, [nil], err[0])
                             return
@@ -90,7 +90,7 @@ class DrugsService: NSObject {
                         return
                     }
                     
-                    print(listOfDrugArray)
+                    //print(listOfDrugArray)
                     
                     var drugs: [DrugObject] = []
                     
