@@ -146,7 +146,7 @@ class OrderService: NSObject {
     }
     
     
-    func getOrdersHistory(completionHandler: @escaping (_ isSuccess: Bool, _ order: [OrderObject]?, _ error: String?) -> Void) {
+    func getOrdersHistory(completionHandler: @escaping (_ isSuccess: Bool, _ order: [OrderObject?], _ error: String?) -> Void) {
         
 //        {
 //            "allOrder": [
@@ -169,22 +169,24 @@ class OrderService: NSObject {
         .validate()
         .response { (res) in
             if let err = res.error {
-                completionHandler(false, nil, NetworkManager.shared.handleError(response: res.response, error: err as NSError))
+                completionHandler(false, [nil], NetworkManager.shared.handleError(response: res.response, error: err as NSError))
                 return
             }
             
             if let data = res.data {
                 if let json = (data as NSData).toDictionary() {
                     if let error = json["errors"] as? [String] {
-                        print(error)
+                        
                         if error.count > 0 {
-                            completionHandler(false, nil, error[0])
+                            print(error)
+                            completionHandler(false, [nil], error[0])
                             return
                         }
                     }
                     
                     guard let allOrderJson = json["allOrder"] as? [AnyObject] else {
-                        completionHandler(false, nil, "Invalid data format")
+                        print("1")
+                        completionHandler(false, [nil], "Invalid data format")
                         return
                     }
                     
@@ -192,16 +194,19 @@ class OrderService: NSObject {
                     
                     for orderData in allOrderJson {
                         if let order = Utilities.convertObjectToJson(object: orderData) {
+
                             
-                            guard let id = order["id"] as? Int, let date = order["date"] as? String, let total_price = order["total_Price"] as? Int else {
-                                completionHandler(false, nil, "Invalid data format")
+                            guard let id = order["id"] as? Int, let date = order["date"] as? String, let total_price = order["total_price"] as? Int else {
+                                print("2")
+                                completionHandler(false, [nil], "Invalid data format")
                                 return
                             }
                             
                             ordersHistory.append(OrderObject(id: id, date: date, totalPrice: total_price, drugs: []))
                             
                         } else {
-                            completionHandler(false, nil, "Invalid data format")
+                            print("3")
+                            completionHandler(false, [nil], "Invalid data format")
                             return
                         }
                     }
@@ -209,12 +214,14 @@ class OrderService: NSObject {
                     completionHandler(true, ordersHistory, nil)
                     
                 } else {
-                    completionHandler(false, nil, "Invalid data format")
+                    print("4")
+                    completionHandler(false, [nil], "Invalid data format")
                     return
                 }
                 
             } else {
-                completionHandler(false, nil, "Invalid data format")
+                print("5")
+                completionHandler(false, [nil], "Invalid data format")
                 return
             }
         }

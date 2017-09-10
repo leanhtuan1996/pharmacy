@@ -18,7 +18,7 @@ class CheckOutVC: UIViewController {
         tblDrugsToOrder.delegate = self
         tblDrugsToOrder.dataSource = self
         tblDrugsToOrder.register(UINib(nibName: "OrderDrugsCell", bundle: nil), forCellReuseIdentifier: "OrderDrugsCell")
-        
+        navigationItem.title = "My Cart"
         getAllOrdersFromCart()
     }
 

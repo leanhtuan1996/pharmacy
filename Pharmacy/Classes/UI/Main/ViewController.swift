@@ -54,5 +54,10 @@ class ViewController: UIViewController {
         appDelegate?.SignOut()
     }
     
+    @IBAction func btnOrdersHistoryClicked(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "OrderHistoryVC") as! OrderHistoryVC
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
 }
 

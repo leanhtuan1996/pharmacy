@@ -40,7 +40,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vat-a2-qOx">
-                                <rect key="frame" x="87" y="184" width="200" height="50"/>
+                                <rect key="frame" x="87" y="114" width="200" height="50"/>
                                 <color key="backgroundColor" red="0.099430569329999996" green="0.4406789774" blue="0.66360644040000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="VDu-fK-vmX"/>
@@ -55,7 +55,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PXN-D5-3Hj">
-                                <rect key="frame" x="87" y="284" width="200" height="50"/>
+                                <rect key="frame" x="87" y="214" width="200" height="50"/>
                                 <color key="backgroundColor" red="0.099430569329999996" green="0.4406789774" blue="0.66360644040000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="UPDATE INFORMATION">
@@ -66,7 +66,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f0Z-1E-waY">
-                                <rect key="frame" x="87" y="383" width="200" height="50"/>
+                                <rect key="frame" x="87" y="313" width="200" height="50"/>
                                 <color key="backgroundColor" red="0.099430569329999996" green="0.4406789774" blue="0.66360644040000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="GET INFORMATION">
@@ -77,7 +77,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yus-8U-j6b">
-                                <rect key="frame" x="87" y="478" width="200" height="50"/>
+                                <rect key="frame" x="87" y="408" width="200" height="50"/>
                                 <color key="backgroundColor" red="0.099430569329999996" green="0.4406789774" blue="0.66360644040000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="ORDER DRUG">
@@ -88,39 +88,55 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q9J-y3-Vob">
-                                <rect key="frame" x="87" y="573" width="200" height="50"/>
+                                <rect key="frame" x="87" y="503" width="200" height="50"/>
+                                <color key="backgroundColor" red="0.099430569329999996" green="0.4406789774" blue="0.66360644040000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="ORDERS HISTORY">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnOrdersHistoryClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4MI-nK-emP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PTe-zh-ehC">
+                                <rect key="frame" x="87" y="598" width="200" height="50"/>
                                 <color key="backgroundColor" red="0.099430569329999996" green="0.4406789774" blue="0.66360644040000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="LOGOUT">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="btnLogoutClickedWith_sender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Vci-EH-VbT"/>
+                                    <action selector="btnLogoutClickedWith_sender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lch-4l-OVv"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Q9J-y3-Vob" firstAttribute="height" secondItem="Yus-8U-j6b" secondAttribute="height" id="4a8-am-Mgc"/>
+                            <constraint firstItem="PTe-zh-ehC" firstAttribute="width" secondItem="Q9J-y3-Vob" secondAttribute="width" id="5OR-Fo-JV5"/>
                             <constraint firstItem="PXN-D5-3Hj" firstAttribute="width" secondItem="Vat-a2-qOx" secondAttribute="width" id="6WM-Cv-GKC"/>
-                            <constraint firstItem="Q9J-y3-Vob" firstAttribute="top" secondItem="Yus-8U-j6b" secondAttribute="bottom" constant="45" id="A4d-0x-hjM"/>
                             <constraint firstItem="f0Z-1E-waY" firstAttribute="top" secondItem="PXN-D5-3Hj" secondAttribute="bottom" constant="49" id="A5O-e1-KfW"/>
                             <constraint firstItem="Vat-a2-qOx" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="AMn-U6-hjV"/>
-                            <constraint firstItem="Q9J-y3-Vob" firstAttribute="width" secondItem="Yus-8U-j6b" secondAttribute="width" id="AQO-lC-IgZ"/>
                             <constraint firstItem="PXN-D5-3Hj" firstAttribute="height" secondItem="Vat-a2-qOx" secondAttribute="height" id="AyW-uO-DJU"/>
+                            <constraint firstItem="Q9J-y3-Vob" firstAttribute="top" secondItem="Yus-8U-j6b" secondAttribute="bottom" constant="45" id="BjX-j6-SaK"/>
                             <constraint firstItem="Yus-8U-j6b" firstAttribute="height" secondItem="f0Z-1E-waY" secondAttribute="height" id="GGl-6Q-XeB"/>
                             <constraint firstItem="Yus-8U-j6b" firstAttribute="trailing" secondItem="f0Z-1E-waY" secondAttribute="trailing" id="GLq-5x-SCg"/>
+                            <constraint firstItem="PTe-zh-ehC" firstAttribute="trailing" secondItem="Q9J-y3-Vob" secondAttribute="trailing" id="KBc-Lc-9ov"/>
                             <constraint firstItem="PXN-D5-3Hj" firstAttribute="trailing" secondItem="Vat-a2-qOx" secondAttribute="trailing" id="Q8A-em-0de"/>
                             <constraint firstItem="PXN-D5-3Hj" firstAttribute="top" secondItem="Vat-a2-qOx" secondAttribute="bottom" constant="50" id="Stl-6W-x5H"/>
-                            <constraint firstItem="Q9J-y3-Vob" firstAttribute="height" secondItem="Yus-8U-j6b" secondAttribute="height" id="U1w-X3-VDU"/>
+                            <constraint firstItem="PTe-zh-ehC" firstAttribute="top" secondItem="Q9J-y3-Vob" secondAttribute="bottom" constant="45" id="To7-Sx-0ke"/>
                             <constraint firstItem="f0Z-1E-waY" firstAttribute="width" secondItem="PXN-D5-3Hj" secondAttribute="width" id="Vyb-Ry-dAg"/>
                             <constraint firstItem="Yus-8U-j6b" firstAttribute="width" secondItem="f0Z-1E-waY" secondAttribute="width" id="eCe-St-BAe"/>
+                            <constraint firstItem="Q9J-y3-Vob" firstAttribute="width" secondItem="Yus-8U-j6b" secondAttribute="width" id="hWG-gc-Nlq"/>
                             <constraint firstItem="f0Z-1E-waY" firstAttribute="leading" secondItem="PXN-D5-3Hj" secondAttribute="leading" id="iyB-pS-ldh"/>
-                            <constraint firstItem="Q9J-y3-Vob" firstAttribute="leading" secondItem="Yus-8U-j6b" secondAttribute="leading" id="lAM-An-GSH"/>
+                            <constraint firstItem="Q9J-y3-Vob" firstAttribute="leading" secondItem="Yus-8U-j6b" secondAttribute="leading" id="l84-D5-vND"/>
                             <constraint firstItem="f0Z-1E-waY" firstAttribute="height" secondItem="PXN-D5-3Hj" secondAttribute="height" id="mnc-TZ-3Hd"/>
+                            <constraint firstItem="PTe-zh-ehC" firstAttribute="leading" secondItem="Q9J-y3-Vob" secondAttribute="leading" id="nGP-Jm-wHC"/>
+                            <constraint firstItem="Q9J-y3-Vob" firstAttribute="trailing" secondItem="Yus-8U-j6b" secondAttribute="trailing" id="rAz-9m-AcA"/>
+                            <constraint firstItem="PTe-zh-ehC" firstAttribute="height" secondItem="Q9J-y3-Vob" secondAttribute="height" id="rvI-4c-Xej"/>
                             <constraint firstItem="PXN-D5-3Hj" firstAttribute="leading" secondItem="Vat-a2-qOx" secondAttribute="leading" id="tTA-gV-419"/>
-                            <constraint firstItem="Vat-a2-qOx" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="120" id="tVS-DH-NZv"/>
+                            <constraint firstItem="Vat-a2-qOx" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="tVS-DH-NZv"/>
                             <constraint firstItem="Yus-8U-j6b" firstAttribute="top" secondItem="f0Z-1E-waY" secondAttribute="bottom" constant="45" id="w56-Qe-Brk"/>
-                            <constraint firstItem="Q9J-y3-Vob" firstAttribute="trailing" secondItem="Yus-8U-j6b" secondAttribute="trailing" id="xB4-Ho-SHI"/>
                             <constraint firstItem="Yus-8U-j6b" firstAttribute="leading" secondItem="f0Z-1E-waY" secondAttribute="leading" id="z9i-dw-NUv"/>
                             <constraint firstItem="f0Z-1E-waY" firstAttribute="trailing" secondItem="PXN-D5-3Hj" secondAttribute="trailing" id="zCK-pT-0Wn"/>
                         </constraints>
@@ -246,6 +262,46 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="12S-WD-qRh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1828" y="147"/>
+        </scene>
+        <!--Order HistoryVC-->
+        <scene sceneID="iyv-ao-MxL">
+            <objects>
+                <viewController storyboardIdentifier="OrderHistoryVC" id="bdK-wX-HdW" customClass="OrderHistoryVC" customModule="Pharmacy" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Nuc-c8-nNW"/>
+                        <viewControllerLayoutGuide type="bottom" id="TxP-R7-gnA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="sZQ-Kf-w1r">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zgt-by-h72">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="zgt-by-h72" firstAttribute="top" secondItem="sZQ-Kf-w1r" secondAttribute="top" id="772-8z-xvM"/>
+                            <constraint firstItem="TxP-R7-gnA" firstAttribute="top" secondItem="zgt-by-h72" secondAttribute="bottom" id="DJ8-vp-rqQ"/>
+                            <constraint firstAttribute="trailing" secondItem="zgt-by-h72" secondAttribute="trailing" id="aj5-lD-rUL"/>
+                            <constraint firstItem="zgt-by-h72" firstAttribute="leading" secondItem="sZQ-Kf-w1r" secondAttribute="leading" id="eRv-OD-res"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="U32-R4-CCl">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="lvE-2y-87T">
+                            <connections>
+                                <action selector="btnCancelClicked:" destination="bdK-wX-HdW" id="3Sq-KX-U28"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tblOrderHistory" destination="zgt-by-h72" id="smH-k4-OO7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fcR-ku-ZbE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1001" y="842"/>
         </scene>
         <!--Order DrugVC-->
         <scene sceneID="YtF-yA-dCo">

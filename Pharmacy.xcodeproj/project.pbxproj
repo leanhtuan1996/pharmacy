@@ -17,6 +17,9 @@
 		360AFCF71F616D7E001CBB57 /* CheckOutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360AFCF61F616D7E001CBB57 /* CheckOutVC.swift */; };
 		360AFCFF1F616E7F001CBB57 /* OrderDrugsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360AFCFD1F616E7F001CBB57 /* OrderDrugsCell.swift */; };
 		360AFD001F616E7F001CBB57 /* OrderDrugsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 360AFCFE1F616E7F001CBB57 /* OrderDrugsCell.xib */; };
+		3614F1601F6555FF00861CBC /* OrderHistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3614F15F1F6555FF00861CBC /* OrderHistoryVC.swift */; };
+		3614F1641F65594F00861CBC /* OrderHistoryCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3614F1621F65594F00861CBC /* OrderHistoryCells.swift */; };
+		3614F1651F65594F00861CBC /* OrderHistoryCells.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3614F1631F65594F00861CBC /* OrderHistoryCells.xib */; };
 		36AE94821F4D4D3C00DA6AAA /* ChangePwVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AE94811F4D4D3C00DA6AAA /* ChangePwVC.swift */; };
 		36AE94871F4D52CA00DA6AAA /* ChangeInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AE94861F4D52CA00DA6AAA /* ChangeInfoVC.swift */; };
 		36AE94891F4D719400DA6AAA /* UpdatePwService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AE94881F4D719400DA6AAA /* UpdatePwService.swift */; };
@@ -61,6 +64,9 @@
 		360AFCF61F616D7E001CBB57 /* CheckOutVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckOutVC.swift; sourceTree = "<group>"; };
 		360AFCFD1F616E7F001CBB57 /* OrderDrugsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderDrugsCell.swift; sourceTree = "<group>"; };
 		360AFCFE1F616E7F001CBB57 /* OrderDrugsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderDrugsCell.xib; sourceTree = "<group>"; };
+		3614F15F1F6555FF00861CBC /* OrderHistoryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderHistoryVC.swift; sourceTree = "<group>"; };
+		3614F1621F65594F00861CBC /* OrderHistoryCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderHistoryCells.swift; sourceTree = "<group>"; };
+		3614F1631F65594F00861CBC /* OrderHistoryCells.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderHistoryCells.xib; sourceTree = "<group>"; };
 		36AE94811F4D4D3C00DA6AAA /* ChangePwVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePwVC.swift; sourceTree = "<group>"; };
 		36AE94861F4D52CA00DA6AAA /* ChangeInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeInfoVC.swift; sourceTree = "<group>"; };
 		36AE94881F4D719400DA6AAA /* UpdatePwService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatePwService.swift; sourceTree = "<group>"; };
@@ -134,6 +140,24 @@
 				360AFCFE1F616E7F001CBB57 /* OrderDrugsCell.xib */,
 			);
 			path = OrderDrugsCells;
+			sourceTree = "<group>";
+		};
+		3614F15E1F6555D900861CBC /* OrdersHistory */ = {
+			isa = PBXGroup;
+			children = (
+				3614F1611F65592900861CBC /* OrderHistoryCells */,
+				3614F15F1F6555FF00861CBC /* OrderHistoryVC.swift */,
+			);
+			path = OrdersHistory;
+			sourceTree = "<group>";
+		};
+		3614F1611F65592900861CBC /* OrderHistoryCells */ = {
+			isa = PBXGroup;
+			children = (
+				3614F1621F65594F00861CBC /* OrderHistoryCells.swift */,
+				3614F1631F65594F00861CBC /* OrderHistoryCells.xib */,
+			);
+			path = OrderHistoryCells;
 			sourceTree = "<group>";
 		};
 		36AE94801F4D4D2500DA6AAA /* ChangePassword */ = {
@@ -271,6 +295,7 @@
 		36E48DD31F49D59B0085A097 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				3614F15E1F6555D900861CBC /* OrdersHistory */,
 				360657391F590D9B00B6C2D6 /* Order drugs */,
 				36AE948C1F4FCDA500DA6AAA /* Get Infomations */,
 				36AE94831F4D52A300DA6AAA /* ChangeInfo */,
@@ -423,6 +448,7 @@
 				36E48DCC1F49D3BF0085A097 /* Main.storyboard in Resources */,
 				36E48DCB1F49D3BF0085A097 /* LaunchScreen.storyboard in Resources */,
 				36E48DDA1F49DC1F0085A097 /* SignIn.storyboard in Resources */,
+				3614F1651F65594F00861CBC /* OrderHistoryCells.xib in Resources */,
 				360AFD001F616E7F001CBB57 /* OrderDrugsCell.xib in Resources */,
 				36E48DD21F49D54C0085A097 /* SignUp.storyboard in Resources */,
 				36CACDD71F5ECA1500CE5283 /* DrugCell.xib in Resources */,
@@ -491,6 +517,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3614F1601F6555FF00861CBC /* OrderHistoryVC.swift in Sources */,
 				36E5F2141F61090400BDCC9D /* DrugDialogVC.swift in Sources */,
 				36E48DDE1F49DC5B0085A097 /* SignUpVC.swift in Sources */,
 				360AFCF71F616D7E001CBB57 /* CheckOutVC.swift in Sources */,
@@ -520,6 +547,7 @@
 				36E5F2161F6124DA00BDCC9D /* OrderManager.swift in Sources */,
 				3606573D1F590E7700B6C2D6 /* DrugNetworking.swift in Sources */,
 				36E48DEB1F49F5360085A097 /* SignIn_UpService.swift in Sources */,
+				3614F1641F65594F00861CBC /* OrderHistoryCells.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

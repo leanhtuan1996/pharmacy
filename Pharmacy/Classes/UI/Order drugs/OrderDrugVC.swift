@@ -21,7 +21,7 @@ class OrderDrugVC: UIViewController {
         tblDrugs.delegate = self
         tblDrugs.dataSource = self
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-        
+        navigationItem.title = "All available drugs "
         //getDrugs()
         
     }

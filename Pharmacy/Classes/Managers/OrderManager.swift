@@ -35,6 +35,7 @@ class OrderManager: NSObject {
     static let shared = OrderManager()
     let userDefaults = UserDefaults.standard
     
+    //add drug to cart
     func addToCart(with orderObject: Order?, completionHandled: @escaping (_ isSuccess: Bool, _ error: String?) -> Void) {
         
         
@@ -68,6 +69,7 @@ class OrderManager: NSObject {
         completionHandled(true, nil)
     }
     
+    //get all order from NSUSERDEFAULTS to show in my cart
     func getAllOrdersFromCart(completionHanler: @escaping (_ isSuccess: Bool, _ drug: DrugObject?, _ error: String?) -> Void) {
         
         //Get Drugs-id in Cart
@@ -105,7 +107,8 @@ class OrderManager: NSObject {
         }
     }
     
-    func checkOut(drugToOrders: [DrugObject] ,completionHandler: @escaping (_ isSuccsess: Bool, _ Error: String?) -> Void) {
+    //ORDER DRUGS
+    func checkOut(drugToOrders: [DrugObject], completionHandler: @escaping (_ isSuccsess: Bool, _ Error: String?) -> Void) {
         
         if drugToOrders.count == 0 {
             return
@@ -148,5 +151,18 @@ class OrderManager: NSObject {
             }
         }
     }
+    
+    func getOrdersHistory(completionHandler: @escaping (_ isSuccess: Bool, _ data: [OrderObject?], _ error: String?) -> Void) {
+        OrderService.shared.getOrdersHistory { (isSuccess, orderObject, error) in
+            
+        }
+    }
+    
+    func getDetailOrderHistory(id: Int, completionHandler: @escaping (_ isSuccess: Bool, _ data: OrderObject?, _ error: String?) -> Void) {
+        OrderService.shared.getDetailOrder(id: id) { (isSuccess, orderObject, error) in
+            
+        }
+    }
+    
     
 }
