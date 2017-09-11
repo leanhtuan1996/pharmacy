@@ -21,7 +21,4 @@ class OrderObject: NSObject {
         self.totalPrice = totalPrice
         self.drugs = drugs
     }
-    
-    
-    
 }

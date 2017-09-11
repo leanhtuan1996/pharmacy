@@ -42,7 +42,6 @@ class Utilities: NSObject {
             return nil
         }
     }
-    
 }
 
 extension NSData {

@@ -185,7 +185,7 @@ class OrderService: NSObject {
                                 return
                             }
                             
-                            //convert JSON datetime to date
+                            //convert JSON datetime to date`
                             let dateFormatter = DateFormatter()
                             dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
                             if let dateFormatted = dateFormatter.date(from: date) {
@@ -231,24 +231,6 @@ class OrderService: NSObject {
         Alamofire.request(OrderRouter.getDetailOrder(parameters))
         .validate()
         .response { (res) in
-//            {
-//                "orderNumber": 4,
-//                "customerId": "5",
-//                "date": "2017-09-04T00:00:00.000Z",
-//                "totalPrice": 40,
-//                "drugs": [
-//                {
-//                "id_drug": 1,
-//                "quantity": 10,
-//                "unit_price": 3
-//                },
-//                {
-//                "id_drug": 2,
-//                "quantity": 10,
-//                "unit_price": 1
-//                }
-//                ]
-//            }
             
             if let err = res.error {
                 completionHandler(false, nil, NetworkManager.shared.handleError(response: res.response, error: err as NSError))
@@ -266,33 +248,63 @@ class OrderService: NSObject {
                         }
                     }
                     
-                    guard let id = json["orderNumber"] as? Int, let date = json["date"] as? String, let totalPrice = json["totalPrice"] as? Int, let drugs = json["drugs"] as? [AnyObject] else {
+                    guard let idOrder = json["orderNumber"] as? Int, let date = json["date"] as? String, let totalPrice = json["totalPrice"] as? Int, let drugs = json["drugs"] as? [AnyObject] else {
                         completionHandler(false, nil, "Invalid data format")
                         return
                     }
                     
                     var drugArray: [DrugObject] = []
+                    var flag = 0
                     
                     for drugData in drugs {
                         if let drugObject = Utilities.convertObjectToJson(object: drugData) {
                             
-                            guard let id = drugObject["id_drug"] as? Int, let quantity = drugObject["quantity"] as? Int, let unit_price = drugObject["unit_price"] as? Int else {
+                            guard let id = drugObject["id_drug"] as? Int, let quantity = drugObject["quantity"] as? Int else {
                                 completionHandler(false, nil, "Invalid data format")
                                 return
                             }
                             
-                            let drug = DrugObject(id: id, name: "", instructions: "", formula: "", contraindication: "", sideEffect: "", howToUse: "", price: unit_price)
-                            drug.quantity = quantity
+                            //Get full drug info from ID
+                            DrugsService.shared.getDrug(drugId: id, completionHandler: { (isSuccess, drug, error) in
+                                if isSuccess {
+                                    if let drug = drug {
+                                        drug.quantity = quantity
+                                        drugArray.append(drug)
+                                        //print(drug.id)
+                                        flag = flag + 1
+                                    } else {
+                                        print("GET DRUG INFOMATION ERROR")
+                                        completionHandler(false, nil, "Invalid data format")
+                                    }
+                                } else {
+                                    if let err = error {
+                                        print("GET DRUG INFOMATION WITH ERROR: \(err)")
+                                        completionHandler(false, nil, "Invalid data format")
+                                    } else {
+                                        print("GET DRUG INFOMATION ERROR")
+                                        completionHandler(false, nil, "Invalid data format")
+                                    }
+                                }
+                                
+                                if flag == drugs.count {
+                                    //print(flag)
+                                    completionHandler(true, OrderObject(id: idOrder, date: date, totalPrice: totalPrice, drugs: drugArray), nil)
+                                }
+                            })
                             
-                            drugArray.append(drug)
+//                            let drug = DrugObject(id: id, name: "", instructions: "", formula: "", contraindication: "", sideEffect: "", howToUse: "", price: unit_price)
+//                            drug.quantity = quantity
+//                            
+//                            drugArray.append(drug)
                             
                         } else {
                             completionHandler(false, nil, "Invalid data format")
                             return
                         }
+                        
                     }
                     
-                    completionHandler(true, OrderObject(id: id, date: date, totalPrice: totalPrice, drugs: drugArray), nil)
+                    //completionHandler(true, OrderObject(id: id, date: date, totalPrice: totalPrice, drugs: drugArray), nil)
                     
                 } else {
                     completionHandler(false, nil, "Invalid data format")

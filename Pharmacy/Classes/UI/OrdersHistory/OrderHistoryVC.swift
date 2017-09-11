@@ -19,7 +19,6 @@ class OrderHistoryVC: UIViewController {
         tblOrderHistory.dataSource = self
         tblOrderHistory.delegate = self
         tblOrderHistory.register(UINib(nibName: "OrderHistoryCells", bundle: nil) , forCellReuseIdentifier: "OrderHistoryCells")
-        
         getOrdersHistory()
     }
     
@@ -44,25 +43,6 @@ class OrderHistoryVC: UIViewController {
             }
         }
     }
-    
-//    func getDetailOrder(id: Int) {
-//        OrderManager.shared.getDetailOrderHistory(id: id) { (isSuccess, orderObject, error) in
-//            if isSuccess {
-//                if let _ = orderObject as? OrderObject {
-//                    
-//                } else {
-//                    print("GET ORDERS HISTORY NOT SUCCESSFULLY")
-//                }
-//            } else {
-//                if let err = error {
-//                    print(err)
-//                } else {
-//                    print("GET ORDERS HISTORY NOT SUCCESSFULLY")
-//                }
-//            }
-//        }
-//    }
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -94,4 +74,27 @@ extension OrderHistoryVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 75
     }
+    
+    // method to run when table view cell is tapped
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        // Segue to the second view controller
+        self.performSegue(withIdentifier: "DetailsOrderHistoryVC", sender: tableView.cellForRow(at: indexPath))
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "DetailsOrderHistoryVC", let cell = sender as? OrderHistoryCells {
+            if let vc = segue.destination as? DetailsOrderHistoryVC {
+                if let idOrder = cell.lblId.text, let dateOrder = cell.lblDate.text, let totalPriceOder = cell.lblPrice.text, let idInt = Int(idOrder), let totalPriceOderInt = Int(totalPriceOder) {
+                    //print(idInt)
+                    vc.id = idInt
+                    vc.date = dateOrder
+                    vc.totalPrice = totalPriceOderInt
+                }
+            }
+        }
+    }
+    
+    
+    
 }

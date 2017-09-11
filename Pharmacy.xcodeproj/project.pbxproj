@@ -20,6 +20,9 @@
 		3614F1601F6555FF00861CBC /* OrderHistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3614F15F1F6555FF00861CBC /* OrderHistoryVC.swift */; };
 		3614F1641F65594F00861CBC /* OrderHistoryCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3614F1621F65594F00861CBC /* OrderHistoryCells.swift */; };
 		3614F1651F65594F00861CBC /* OrderHistoryCells.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3614F1631F65594F00861CBC /* OrderHistoryCells.xib */; };
+		3678D89B1F6627E900825990 /* DetailsOrderHistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3678D89A1F6627E900825990 /* DetailsOrderHistoryVC.swift */; };
+		3678D89F1F662CCE00825990 /* DetailOrderHistoryCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3678D89D1F662CCE00825990 /* DetailOrderHistoryCells.swift */; };
+		3678D8A01F662CCE00825990 /* DetailOrderHistoryCells.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3678D89E1F662CCE00825990 /* DetailOrderHistoryCells.xib */; };
 		36AE94821F4D4D3C00DA6AAA /* ChangePwVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AE94811F4D4D3C00DA6AAA /* ChangePwVC.swift */; };
 		36AE94871F4D52CA00DA6AAA /* ChangeInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AE94861F4D52CA00DA6AAA /* ChangeInfoVC.swift */; };
 		36AE94891F4D719400DA6AAA /* UpdatePwService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AE94881F4D719400DA6AAA /* UpdatePwService.swift */; };
@@ -67,6 +70,9 @@
 		3614F15F1F6555FF00861CBC /* OrderHistoryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderHistoryVC.swift; sourceTree = "<group>"; };
 		3614F1621F65594F00861CBC /* OrderHistoryCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderHistoryCells.swift; sourceTree = "<group>"; };
 		3614F1631F65594F00861CBC /* OrderHistoryCells.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderHistoryCells.xib; sourceTree = "<group>"; };
+		3678D89A1F6627E900825990 /* DetailsOrderHistoryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsOrderHistoryVC.swift; sourceTree = "<group>"; };
+		3678D89D1F662CCE00825990 /* DetailOrderHistoryCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailOrderHistoryCells.swift; sourceTree = "<group>"; };
+		3678D89E1F662CCE00825990 /* DetailOrderHistoryCells.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailOrderHistoryCells.xib; sourceTree = "<group>"; };
 		36AE94811F4D4D3C00DA6AAA /* ChangePwVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePwVC.swift; sourceTree = "<group>"; };
 		36AE94861F4D52CA00DA6AAA /* ChangeInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeInfoVC.swift; sourceTree = "<group>"; };
 		36AE94881F4D719400DA6AAA /* UpdatePwService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatePwService.swift; sourceTree = "<group>"; };
@@ -145,6 +151,7 @@
 		3614F15E1F6555D900861CBC /* OrdersHistory */ = {
 			isa = PBXGroup;
 			children = (
+				3678D8991F6627C200825990 /* DetailsOrderHistory */,
 				3614F1611F65592900861CBC /* OrderHistoryCells */,
 				3614F15F1F6555FF00861CBC /* OrderHistoryVC.swift */,
 			);
@@ -158,6 +165,24 @@
 				3614F1631F65594F00861CBC /* OrderHistoryCells.xib */,
 			);
 			path = OrderHistoryCells;
+			sourceTree = "<group>";
+		};
+		3678D8991F6627C200825990 /* DetailsOrderHistory */ = {
+			isa = PBXGroup;
+			children = (
+				3678D89C1F662CB700825990 /* DetailOrderHistoryCells */,
+				3678D89A1F6627E900825990 /* DetailsOrderHistoryVC.swift */,
+			);
+			path = DetailsOrderHistory;
+			sourceTree = "<group>";
+		};
+		3678D89C1F662CB700825990 /* DetailOrderHistoryCells */ = {
+			isa = PBXGroup;
+			children = (
+				3678D89D1F662CCE00825990 /* DetailOrderHistoryCells.swift */,
+				3678D89E1F662CCE00825990 /* DetailOrderHistoryCells.xib */,
+			);
+			path = DetailOrderHistoryCells;
 			sourceTree = "<group>";
 		};
 		36AE94801F4D4D2500DA6AAA /* ChangePassword */ = {
@@ -450,6 +475,7 @@
 				36E48DDA1F49DC1F0085A097 /* SignIn.storyboard in Resources */,
 				3614F1651F65594F00861CBC /* OrderHistoryCells.xib in Resources */,
 				360AFD001F616E7F001CBB57 /* OrderDrugsCell.xib in Resources */,
+				3678D8A01F662CCE00825990 /* DetailOrderHistoryCells.xib in Resources */,
 				36E48DD21F49D54C0085A097 /* SignUp.storyboard in Resources */,
 				36CACDD71F5ECA1500CE5283 /* DrugCell.xib in Resources */,
 				36E5F2111F6108B700BDCC9D /* DrugDetailDialog.storyboard in Resources */,
@@ -520,10 +546,12 @@
 				3614F1601F6555FF00861CBC /* OrderHistoryVC.swift in Sources */,
 				36E5F2141F61090400BDCC9D /* DrugDialogVC.swift in Sources */,
 				36E48DDE1F49DC5B0085A097 /* SignUpVC.swift in Sources */,
+				3678D89B1F6627E900825990 /* DetailsOrderHistoryVC.swift in Sources */,
 				360AFCF71F616D7E001CBB57 /* CheckOutVC.swift in Sources */,
 				36AE94891F4D719400DA6AAA /* UpdatePwService.swift in Sources */,
 				36AE948B1F4DBB3C00DA6AAA /* UpdateInfoService.swift in Sources */,
 				36E48DD81F49D5B00085A097 /* ViewController.swift in Sources */,
+				3678D89F1F662CCE00825990 /* DetailOrderHistoryCells.swift in Sources */,
 				36E271E11F4ADD3900EE3597 /* Utilities.swift in Sources */,
 				36AE94901F4FD0EE00DA6AAA /* GetInformationService.swift in Sources */,
 				360657561F593B8300B6C2D6 /* OrderService.swift in Sources */,
