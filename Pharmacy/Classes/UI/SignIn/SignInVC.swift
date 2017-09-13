@@ -16,13 +16,16 @@ class SignInVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewWillAppear(_ animated: Bool) {
+        if let nav = self.navigationController {
+            if !nav.isNavigationBarHidden {
+                nav.setNavigationBarHidden(true, animated: true)
+            }
+        }
+        
     }
     
     @IBAction func btnSignInClicked(_ sender: Any) {
@@ -60,9 +63,11 @@ class SignInVC: UIViewController {
         }
     }
     
-    @IBAction func btnSignUpClicked(_ sender: Any) {
-        appDelegate.showSignUpView()
-    }
+//    @IBAction func btnSignUpClicked(_ sender: Any) {
+//        if let vc = storyboard?.instantiateViewController(withIdentifier: "SignUpVC") as? SignUpVC {
+//            self.navigationController?.pushViewController(vc, animated: true)
+//        }        
+//    }
 }
 
 extension UIViewController {

@@ -39,9 +39,8 @@
 		36E48DCB1F49D3BF0085A097 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36E48DC51F49D3BF0085A097 /* LaunchScreen.storyboard */; };
 		36E48DCC1F49D3BF0085A097 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36E48DC61F49D3BF0085A097 /* Main.storyboard */; };
 		36E48DCF1F49D46C0085A097 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E48DCE1F49D46C0085A097 /* Alamofire.framework */; };
-		36E48DD21F49D54C0085A097 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36E48DD11F49D54C0085A097 /* SignUp.storyboard */; };
 		36E48DD81F49D5B00085A097 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E48DD71F49D5B00085A097 /* ViewController.swift */; };
-		36E48DDA1F49DC1F0085A097 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36E48DD91F49DC1F0085A097 /* SignIn.storyboard */; };
+		36E48DDA1F49DC1F0085A097 /* SignInUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36E48DD91F49DC1F0085A097 /* SignInUp.storyboard */; };
 		36E48DDC1F49DC420085A097 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E48DDB1F49DC420085A097 /* SignInVC.swift */; };
 		36E48DDE1F49DC5B0085A097 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E48DDD1F49DC5B0085A097 /* SignUpVC.swift */; };
 		36E48DE11F49EC310085A097 /* UserObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E48DE01F49EC310085A097 /* UserObject.swift */; };
@@ -91,9 +90,8 @@
 		36E48DC61F49D3BF0085A097 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		36E48DC81F49D3BF0085A097 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		36E48DCE1F49D46C0085A097 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../Library/Developer/Xcode/DerivedData/Pharmacy-dzuhvatzdfrzkhfcbyqyqrsllicm/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
-		36E48DD11F49D54C0085A097 /* SignUp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
 		36E48DD71F49D5B00085A097 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		36E48DD91F49DC1F0085A097 /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
+		36E48DD91F49DC1F0085A097 /* SignInUp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignInUp.storyboard; sourceTree = "<group>"; };
 		36E48DDB1F49DC420085A097 /* SignInVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		36E48DDD1F49DC5B0085A097 /* SignUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		36E48DE01F49EC310085A097 /* UserObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserObject.swift; sourceTree = "<group>"; };
@@ -302,8 +300,7 @@
 			children = (
 				36E48DC51F49D3BF0085A097 /* LaunchScreen.storyboard */,
 				36E48DC61F49D3BF0085A097 /* Main.storyboard */,
-				36E48DD11F49D54C0085A097 /* SignUp.storyboard */,
-				36E48DD91F49DC1F0085A097 /* SignIn.storyboard */,
+				36E48DD91F49DC1F0085A097 /* SignInUp.storyboard */,
 				36E5F2101F6108B700BDCC9D /* DrugDetailDialog.storyboard */,
 			);
 			path = Storyboards;
@@ -472,11 +469,10 @@
 				36E48DCA1F49D3BF0085A097 /* Assets.xcassets in Resources */,
 				36E48DCC1F49D3BF0085A097 /* Main.storyboard in Resources */,
 				36E48DCB1F49D3BF0085A097 /* LaunchScreen.storyboard in Resources */,
-				36E48DDA1F49DC1F0085A097 /* SignIn.storyboard in Resources */,
+				36E48DDA1F49DC1F0085A097 /* SignInUp.storyboard in Resources */,
 				3614F1651F65594F00861CBC /* OrderHistoryCells.xib in Resources */,
 				360AFD001F616E7F001CBB57 /* OrderDrugsCell.xib in Resources */,
 				3678D8A01F662CCE00825990 /* DetailOrderHistoryCells.xib in Resources */,
-				36E48DD21F49D54C0085A097 /* SignUp.storyboard in Resources */,
 				36CACDD71F5ECA1500CE5283 /* DrugCell.xib in Resources */,
 				36E5F2111F6108B700BDCC9D /* DrugDetailDialog.storyboard in Resources */,
 			);

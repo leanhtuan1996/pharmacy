@@ -65,14 +65,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func showSignInView() {
-        let vc = UIStoryboard(name: "SignIn", bundle: nil).instantiateInitialViewController() as? SignInVC
+        let vc = UIStoryboard(name: "SignInUp", bundle: nil).instantiateViewController(withIdentifier: "navSignInUp")
         self.window?.rootViewController = vc
     }
-    
-    func showSignUpView() {
-        let vc = UIStoryboard(name: "SignUp", bundle: nil).instantiateInitialViewController() as? SignUpVC
-        self.window?.rootViewController = vc
-    }
+//    
+//    func showSignUpView() {
+//        let vc = UIStoryboard(name: "SignInUp", bundle: nil).instantiateViewController(withIdentifier: "navSignIn")
+//        self.window?.rootViewController = vc
+//    }
     
     func signIn_Up(user: UserObject) {
         UserManager.shared.currentUser = user

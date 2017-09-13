@@ -19,7 +19,24 @@ class SignUpVC: UIViewController {
     @IBOutlet weak var txtPhoneNumber: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+                
+        if let nav = self.navigationController {
+            nav.navigationBar.setBackgroundImage(UIImage(), for: .default)
+            nav.navigationBar.shadowImage = UIImage()
+            nav.navigationBar.isTranslucent = true
+            nav.view.backgroundColor = .clear
+            nav.navigationBar.tintColor = UIColor.white
+            nav.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+            
+            if nav.isNavigationBarHidden {
+                nav.setNavigationBarHidden(false, animated: true)
+            } else {
+                nav.setNavigationBarHidden(true, animated: true)
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
