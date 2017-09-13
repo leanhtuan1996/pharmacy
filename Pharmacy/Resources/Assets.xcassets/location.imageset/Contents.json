@@ -2,12 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Profile Selected.png",
+      "filename" : "icons8-Map Marker Filled-50.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Profile Selected@2x.png",
       "scale" : "2x"
     },
     {

@@ -20,6 +20,7 @@ class SignInVC: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        
         if let nav = self.navigationController {
             if !nav.isNavigationBarHidden {
                 nav.setNavigationBarHidden(true, animated: true)

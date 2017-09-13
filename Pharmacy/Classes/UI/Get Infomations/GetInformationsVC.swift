@@ -13,10 +13,12 @@ class GetInformationsVC: UIViewController {
     @IBOutlet weak var txtFullname: UILabel!
     @IBOutlet weak var txtAddress: UILabel!
     @IBOutlet weak var txtPhoneNumber: UILabel!
+    @IBOutlet weak var imgAva: UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(false, animated: true)
+        imgAva.layer.cornerRadius = 50
         // Do any additional setup after loading the view.
     }
     
