@@ -27,7 +27,7 @@
             </objects>
             <point key="canvasLocation" x="-452" y="123"/>
         </scene>
-        <!--Profile-->
+        <!--Get InformationsVC-->
         <scene sceneID="QuO-mj-VLj">
             <objects>
                 <viewController storyboardIdentifier="ProfileSB" id="yHb-7B-LbH" customClass="GetInformationsVC" customModule="Pharmacy" customModuleProvider="target" sceneMemberID="viewController">
@@ -289,7 +289,7 @@
                             <constraint firstItem="ahE-av-eDo" firstAttribute="top" secondItem="Cf1-Pf-13w" secondAttribute="top" id="wR8-zl-R7T"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" image="Profile" id="F9v-IS-4pO"/>
+                    <navigationItem key="navigationItem" id="ee0-Yk-7Fg"/>
                     <connections>
                         <outlet property="imgAva" destination="wNL-z2-vHB" id="xRU-By-DdB"/>
                         <outlet property="txtAddress" destination="EDR-06-KIT" id="gRF-pO-Bxv"/>
@@ -300,12 +300,31 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fSE-zp-Mgs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="517.60000000000002" y="854.1229385307347"/>
+            <point key="canvasLocation" x="1456.8" y="854.1229385307347"/>
         </scene>
-        <!--Prescription-->
+        <!--Settings-->
+        <scene sceneID="ltR-LC-XcN">
+            <objects>
+                <viewController id="tmk-q2-9gy" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lTz-g7-2uG"/>
+                        <viewControllerLayoutGuide type="bottom" id="7vF-f8-vR3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cSm-5D-c8G">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Settings" image="setting" selectedImage="setting" id="cbf-ee-bqU"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cLC-ID-ccj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-263" y="1648"/>
+        </scene>
+        <!--PrescriptionVC-->
         <scene sceneID="fh0-EX-dN1">
             <objects>
-                <viewController id="nmn-cG-ZwF" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PrescriptionVC" id="nmn-cG-ZwF" customClass="PrescriptionVC" customModule="Pharmacy" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qdG-Bc-eoJ"/>
                         <viewControllerLayoutGuide type="bottom" id="VuM-xw-BXA"/>
@@ -335,6 +354,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aH5-Yv-cVH">
                                         <rect key="frame" x="337" y="37" width="22" height="22"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="btnAddPrescriptionClicked:" destination="nmn-cG-ZwF" eventType="touchUpInside" id="nu2-NO-zpJ"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.84959972019999996" green="1" blue="0.95988602590000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -354,11 +376,14 @@
                             <constraint firstItem="XhB-RE-G3c" firstAttribute="leading" secondItem="U4C-PB-nbB" secondAttribute="leading" id="rRb-WO-Vmy"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Prescription" image="prescription" selectedImage="prescription" id="Atr-gk-7mY"/>
+                    <navigationItem key="navigationItem" id="d6L-EB-gNr"/>
+                    <connections>
+                        <outlet property="tblPrescriptions" destination="yp1-fk-3lW" id="ojt-Gf-RUs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b4i-7n-T5O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="436" y="1647.5262368815593"/>
+            <point key="canvasLocation" x="1375.2" y="1647.5262368815593"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -713,7 +738,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DB6-tS-0rH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1940" y="1601"/>
+            <point key="canvasLocation" x="2879.1999999999998" y="1600.7496251874063"/>
         </scene>
         <!--Order HistoryVC-->
         <scene sceneID="iyv-ao-MxL">
@@ -754,7 +779,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fcR-ku-ZbE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2879.1999999999998" y="841.52923538230891"/>
+            <point key="canvasLocation" x="3818.4000000000001" y="841.52923538230891"/>
         </scene>
         <!--Order DrugVC-->
         <scene sceneID="YtF-yA-dCo">
@@ -812,7 +837,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Szn-aE-EsF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3706.4000000000001" y="841.52923538230891"/>
+            <point key="canvasLocation" x="4645.6000000000004" y="841.52923538230891"/>
         </scene>
         <!--Check OutVC-->
         <scene sceneID="QIx-cn-p7O">
@@ -861,7 +886,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oXg-uf-QvN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4436" y="841.52923538230891"/>
+            <point key="canvasLocation" x="5375.1999999999998" y="841.52923538230891"/>
         </scene>
         <!--Change InfoVC-->
         <scene sceneID="dhs-Tk-3ZO">
@@ -984,7 +1009,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ush-YH-uco" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1242" y="854"/>
+            <point key="canvasLocation" x="2180" y="853.22338830584715"/>
         </scene>
         <!--Change PwVC-->
         <scene sceneID="Paa-is-NPJ">
@@ -1124,7 +1149,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DXg-ds-mSZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2056.8000000000002" y="841.52923538230891"/>
+            <point key="canvasLocation" x="2996" y="841.52923538230891"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="6sD-Y2-tTW">
@@ -1136,13 +1161,52 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="nmn-cG-ZwF" kind="relationship" relationship="viewControllers" id="tzQ-5w-jS7"/>
-                        <segue destination="yHb-7B-LbH" kind="relationship" relationship="viewControllers" id="RuC-HC-bSu"/>
+                        <segue destination="owo-WD-acK" kind="relationship" relationship="viewControllers" id="tzQ-5w-jS7"/>
+                        <segue destination="TbC-ZZ-3ao" kind="relationship" relationship="viewControllers" id="RuC-HC-bSu"/>
+                        <segue destination="tmk-q2-9gy" kind="relationship" relationship="viewControllers" id="n7F-V6-zHN"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="efB-fa-UPu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-263.19999999999999" y="841.52923538230891"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="Q51-Bc-rEK">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TbC-ZZ-3ao" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Profile" image="Profile" id="F9v-IS-4pO"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4Dd-Tw-AHe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="yHb-7B-LbH" kind="relationship" relationship="rootViewController" id="nVt-9u-idh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qal-9d-Tz3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="517.60000000000002" y="854.1229385307347"/>
+        </scene>
+        <!--Prescription-->
+        <scene sceneID="2SH-mV-2Gj">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="owo-WD-acK" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Prescription" image="prescription" selectedImage="prescription" id="Atr-gk-7mY"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gOe-F4-zkC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="nmn-cG-ZwF" kind="relationship" relationship="rootViewController" id="5rC-vF-o3L"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1OB-WY-6p5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="585" y="1648"/>
         </scene>
     </scenes>
     <resources>
@@ -1154,5 +1218,6 @@
         <image name="password" width="50" height="50"/>
         <image name="phone" width="50" height="50"/>
         <image name="prescription" width="35" height="35"/>
+        <image name="setting" width="35" height="35"/>
     </resources>
 </document>

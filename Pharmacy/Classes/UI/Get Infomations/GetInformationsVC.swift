@@ -23,6 +23,13 @@ class GetInformationsVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        if let nav = self.navigationController {
+            if !nav.isNavigationBarHidden {
+                nav.setNavigationBarHidden(true, animated: true)
+            }
+        }
+        
         //get info user
         GetInformationService.shared.getInformations { (isSuccess, Data, Error) in
             if isSuccess {
