@@ -15,33 +15,13 @@ class OrderService: NSObject {
     
     func getOrder(parameter: [String: Int], completionHandler: @escaping (_ isSuccess: Bool, _ order: OrderObject?, _ error: String?) -> Void)
     {
-        
-//        {
-//            "orderNumber": 4,
-//            "customerId": "5",
-//            "date": "2017-09-04T00:00:00.000Z",
-//            "totalPrice": 40,
-//            "drugs": [
-//            {
-//            "id_drug": 1,
-//            "quantity": 10,
-//            "unit_price": 3
-//            },
-//            {
-//            "id_drug": 2,
-//            "quantity": 10,
-//            "unit_price": 1
-//            }
-//            ]
-//        }
-        
         Alamofire.request(OrderRouter.getOrder(parameter))
         .validate()
         .response { (res) in
             
             if let err = res.error {
-                completionHandler(false, nil, NetworkManager.shared.handleError(response: res.response, error: err as NSError))
-                return
+                return completionHandler(false, nil, NetworkManager.shared.handleError(response: res.response, error: err as NSError))
+                
             }
             
             if let data = res.data {
@@ -49,14 +29,12 @@ class OrderService: NSObject {
                     if let error = json["errors"] as? [String] {
                         print(error)
                         if error.count > 0 {
-                            completionHandler(false, nil, error[0])
-                            return
+                            return completionHandler(false, nil, error[0])
                         }
                     }
                     
                     guard let id = json["orderNumber"] as? Int, let date = json["date"] as? String, let totalPrice = json["totalPrice"] as? Int, let drugs = json["drugs"] as? [AnyObject] else {
-                        completionHandler(false, nil, "Invalid data format")
-                        return
+                        return completionHandler(false, nil, "Invalid data format")
                     }
                     
                     
@@ -66,31 +44,36 @@ class OrderService: NSObject {
                         if let drugObject = Utilities.convertObjectToJson(object: drugData) {
                             
                             guard let id = drugObject["id"] as? Int, let unit_price = drugObject["unit_price"] as? Int, let quantity = drugObject["quantity"] as? Int else {
-                                completionHandler(false, nil, "Invalid data format")
-                                return
+                                return completionHandler(false, nil, "Invalid data format")
+                                
                             }
                             
-                            let temp = DrugObject(id: id, name: "", instructions: "", formula: "", contraindication: "", sideEffect: "", howToUse: "", price: unit_price)
-                            temp.quantity = quantity
+                            let drugObject = DrugObject()
+                            drugObject.id = id
+                            drugObject.price = unit_price
+                            drugObject.quantity = quantity
                             
-                            drugArray.append(temp)
+//                            let temp = DrugObject(id: id, name: "", instructions: "", formula: "", contraindication: "", sideEffect: "", howToUse: "", price: unit_price)
+                            //temp.quantity = quantity
+                            
+                            drugArray.append(drugObject)
                             
                         } else {
-                            completionHandler(false, nil, "Invalid data format")
-                            return
+                            return completionHandler(false, nil, "Invalid data format")
+                            
                         }
                     }
                     
-                    completionHandler(true, OrderObject(id: id, date: date, totalPrice: totalPrice, drugs: drugArray), nil)
+                    return completionHandler(true, OrderObject(id: id, date: date, totalPrice: totalPrice, drugs: drugArray), nil)
                     
                 } else {
-                    completionHandler(false, nil, "Invalid data format")
-                    return
+                    return completionHandler(false, nil, "Invalid data format")
+                    
                 }
                 
             } else {
-                completionHandler(false, nil, "Invalid data format")
-                return
+                return completionHandler(false, nil, "Invalid data format")
+                
             }
         }
         
@@ -100,7 +83,7 @@ class OrderService: NSObject {
         Alamofire.request(OrderRouter.getAllOrders())
         .validate()
         .response { (res) in
-            completionHandler(false, [nil], "ERROR GET ALL OREDER")
+            return completionHandler(false, [nil], "ERROR GET ALL OREDER")
         }
     }
     
@@ -111,8 +94,8 @@ class OrderService: NSObject {
         .response { (res) in
             
             if let err = res.error {
-                completionHandler(false, NetworkManager.shared.handleError(response: res.response, error: err as NSError))
-                return
+                return completionHandler(false, NetworkManager.shared.handleError(response: res.response, error: err as NSError))
+                
             }
             
             if let data = res.data {
@@ -122,24 +105,24 @@ class OrderService: NSObject {
                        
                         if error.count > 0 {
                             print(error)
-                            completionHandler(false, error[0])
-                            return
+                            return completionHandler(false, error[0])
+                            
                         } else {
-                            completionHandler(true, nil)
-                            return
+                            return completionHandler(true, nil)
+                            
                         }
                     } else {
-                        completionHandler(true, nil)
+                        return completionHandler(true, nil)
                     }
                     
                 } else {
-                    completionHandler(false,  "Invalid data format")
-                    return
+                    return completionHandler(false,  "Invalid data format")
+                    
                 }
                 
             } else {
-                completionHandler(false,  "Invalid data format")
-                return
+                return completionHandler(false,  "Invalid data format")
+                
             }
         }
         
@@ -153,8 +136,8 @@ class OrderService: NSObject {
         .validate()
         .response { (res) in
             if let err = res.error {
-                completionHandler(false, [nil], NetworkManager.shared.handleError(response: res.response, error: err as NSError))
-                return
+                return completionHandler(false, [nil], NetworkManager.shared.handleError(response: res.response, error: err as NSError))
+                
             }
             
             if let data = res.data {
@@ -163,15 +146,15 @@ class OrderService: NSObject {
                         
                         if error.count > 0 {
                             print(error)
-                            completionHandler(false, [nil], error[0])
-                            return
+                            return completionHandler(false, [nil], error[0])
+                            
                         }
                     }
                     
                     guard let allOrderJson = json["allOrder"] as? [AnyObject] else {
                         print("1")
-                        completionHandler(false, [nil], "Invalid data format")
-                        return
+                        return completionHandler(false, [nil], "Invalid data format")
+                        
                     }
                     
                     var ordersHistory: [OrderObject] = []
@@ -181,8 +164,8 @@ class OrderService: NSObject {
                             
                             guard let id = order["id"] as? Int, var date = order["date"] as? String, let total_price = order["total_price"] as? Int else {
                                 print("2")
-                                completionHandler(false, [nil], "Invalid data format")
-                                return
+                                return completionHandler(false, [nil], "Invalid data format")
+                                
                             }
                             
                             //convert JSON datetime to date`
@@ -200,23 +183,23 @@ class OrderService: NSObject {
                             
                         } else {
                             print("3")
-                            completionHandler(false, [nil], "Invalid data format")
-                            return
+                            return completionHandler(false, [nil], "Invalid data format")
+                            
                         }
                     }
                     
-                    completionHandler(true, ordersHistory, nil)
+                    return completionHandler(true, ordersHistory, nil)
                     
                 } else {
                     print("4")
-                    completionHandler(false, [nil], "Invalid data format")
-                    return
+                    return completionHandler(false, [nil], "Invalid data format")
+                    
                 }
                 
             } else {
                 print("5")
-                completionHandler(false, [nil], "Invalid data format")
-                return
+                return completionHandler(false, [nil], "Invalid data format")
+                
             }
         }
         
@@ -233,8 +216,7 @@ class OrderService: NSObject {
         .response { (res) in
             
             if let err = res.error {
-                completionHandler(false, nil, NetworkManager.shared.handleError(response: res.response, error: err as NSError))
-                return
+                return completionHandler(false, nil, NetworkManager.shared.handleError(response: res.response, error: err as NSError))
             }
             
             if let data = res.data {
@@ -243,14 +225,14 @@ class OrderService: NSObject {
                     if let error = json["errors"] as? [String] {
                         print(error)
                         if error.count > 0 {
-                            completionHandler(false, nil, error[0])
-                            return
+                            return completionHandler(false, nil, error[0])
+                            
                         }
                     }
                     
                     guard let idOrder = json["orderNumber"] as? Int, let date = json["date"] as? String, let totalPrice = json["totalPrice"] as? Int, let drugs = json["drugs"] as? [AnyObject] else {
-                        completionHandler(false, nil, "Invalid data format")
-                        return
+                        return completionHandler(false, nil, "Invalid data format")
+                        
                     }
                     
                     var drugArray: [DrugObject] = []
@@ -260,8 +242,8 @@ class OrderService: NSObject {
                         if let drugObject = Utilities.convertObjectToJson(object: drugData) {
                             
                             guard let id = drugObject["id_drug"] as? Int, let quantity = drugObject["quantity"] as? Int else {
-                                completionHandler(false, nil, "Invalid data format")
-                                return
+                                return completionHandler(false, nil, "Invalid data format")
+                                
                             }
                             
                             //Get full drug info from ID
@@ -274,32 +256,27 @@ class OrderService: NSObject {
                                         flag = flag + 1
                                     } else {
                                         print("GET DRUG INFOMATION ERROR")
-                                        completionHandler(false, nil, "Invalid data format")
+                                        return completionHandler(false, nil, "Invalid data format")
                                     }
                                 } else {
                                     if let err = error {
                                         print("GET DRUG INFOMATION WITH ERROR: \(err)")
-                                        completionHandler(false, nil, "Invalid data format")
+                                        return completionHandler(false, nil, "Invalid data format")
                                     } else {
                                         print("GET DRUG INFOMATION ERROR")
-                                        completionHandler(false, nil, "Invalid data format")
+                                        return completionHandler(false, nil, "Invalid data format")
                                     }
                                 }
                                 
                                 if flag == drugs.count {
                                     //print(flag)
-                                    completionHandler(true, OrderObject(id: idOrder, date: date, totalPrice: totalPrice, drugs: drugArray), nil)
+                                    return completionHandler(true, OrderObject(id: idOrder, date: date, totalPrice: totalPrice, drugs: drugArray), nil)
                                 }
                             })
-                            
-//                            let drug = DrugObject(id: id, name: "", instructions: "", formula: "", contraindication: "", sideEffect: "", howToUse: "", price: unit_price)
-//                            drug.quantity = quantity
-//                            
-//                            drugArray.append(drug)
-                            
+  
                         } else {
-                            completionHandler(false, nil, "Invalid data format")
-                            return
+                            return completionHandler(false, nil, "Invalid data format")
+                            
                         }
                         
                     }
@@ -307,13 +284,13 @@ class OrderService: NSObject {
                     //completionHandler(true, OrderObject(id: id, date: date, totalPrice: totalPrice, drugs: drugArray), nil)
                     
                 } else {
-                    completionHandler(false, nil, "Invalid data format")
-                    return
+                    return completionHandler(false, nil, "Invalid data format")
+                    
                 }
                 
             } else {
-                completionHandler(false, nil, "Invalid data format")
-                return
+                return completionHandler(false, nil, "Invalid data format")
+                
             }
 
         }

@@ -9,6 +9,7 @@
 import UIKit
 
 enum Status: String {
+    case creating = "creating"
     case pending = "pending"
     case rejected = "rejected"
     case approved = "approved"
@@ -16,32 +17,32 @@ enum Status: String {
 
 class PrescriptionObject: NSObject, NSCoding {
     
-    var id: Int
-    var name: String
-    var status: Status
-    var drugs: [DrugObject]
+    var id: Int = 0
+    var name: String = ""
+    var status: Status = Status.creating
+    var dateCreate: String = ""
+    var drugs: [DrugObject] = []
+    var totalPrice: Int = 0
     
-    init(id: Int, name: String, drugs: [DrugObject]) {
-        self.id = id
-        self.name = name
-        self.drugs = drugs
-        self.status = Status.pending
+    override init() { super.init() }
+    
+    required init(coder aDecoder: NSCoder) {
+        id = aDecoder.decodeInteger(forKey: "id")
+        totalPrice = aDecoder.decodeInteger(forKey: "totalPrice")
+        name = aDecoder.decodeObject(forKey: "name") as? String ?? ""
+        status = Status(rawValue: (aDecoder.decodeObject(forKey: "status") as? String ?? "")) ?? .creating
+        dateCreate = aDecoder.decodeObject(forKey: "dateCreate") as? String ?? ""
+        drugs = aDecoder.decodeObject(forKey: "drugs") as? [DrugObject] ?? []
         super.init()
-    }
-    
-    required convenience init(coder aDecoder: NSCoder) {
-        let id = aDecoder.decodeInteger(forKey: "id")
-        if let name = aDecoder.decodeObject(forKey: "name") as? String, let drugs = aDecoder.decodeObject(forKey: "drugs") as? [DrugObject] {
-            self.init(id: id, name: name, drugs: drugs)
-        } else {
-            self.init(id: 0, name: "", drugs: [])
-        }
     }
     
     func encode(with aCoder: NSCoder) {
         aCoder.encode(id, forKey: "id")
         aCoder.encode(name, forKey: "name")
+        aCoder.encode(dateCreate, forKey: "dateCreate")
         aCoder.encode(drugs, forKey: "drugs")
+        aCoder.encode(totalPrice, forKey: "totalPrice")
+        aCoder.encode(status.rawValue, forKey: "status")
     }
 
     

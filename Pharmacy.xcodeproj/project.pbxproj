@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3606209D1F6A610100741546 /* AddPrescriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3606209C1F6A610100741546 /* AddPrescriptionVC.swift */; };
 		3606573B1F590DB500B6C2D6 /* OrderDrugVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3606573A1F590DB500B6C2D6 /* OrderDrugVC.swift */; };
 		3606573D1F590E7700B6C2D6 /* DrugNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3606573C1F590E7700B6C2D6 /* DrugNetworking.swift */; };
 		3606573F1F59103B00B6C2D6 /* OrderNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3606573E1F59103B00B6C2D6 /* OrderNetworking.swift */; };
@@ -34,8 +35,6 @@
 		36AE948B1F4DBB3C00DA6AAA /* UpdateInfoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AE948A1F4DBB3C00DA6AAA /* UpdateInfoService.swift */; };
 		36AE948E1F4FCDBC00DA6AAA /* GetInformationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AE948D1F4FCDBC00DA6AAA /* GetInformationsVC.swift */; };
 		36AE94901F4FD0EE00DA6AAA /* GetInformationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AE948F1F4FD0EE00DA6AAA /* GetInformationService.swift */; };
-		36CACDD61F5ECA1500CE5283 /* DrugCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CACDD41F5ECA1500CE5283 /* DrugCell.swift */; };
-		36CACDD71F5ECA1500CE5283 /* DrugCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36CACDD51F5ECA1500CE5283 /* DrugCell.xib */; };
 		36E271DE1F4ADCD400EE3597 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E271DD1F4ADCD400EE3597 /* NetworkManager.swift */; };
 		36E271E11F4ADD3900EE3597 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E271E01F4ADD3900EE3597 /* Utilities.swift */; };
 		36E271E71F4AF94C00EE3597 /* UserNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E271E61F4AF94C00EE3597 /* UserNetworking.swift */; };
@@ -53,14 +52,17 @@
 		36E48DE91F49F2960085A097 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E48DE81F49F2960085A097 /* UserManager.swift */; };
 		36E48DEB1F49F5360085A097 /* SignIn_UpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E48DEA1F49F5360085A097 /* SignIn_UpService.swift */; };
 		36E5F2111F6108B700BDCC9D /* DrugDetailDialog.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36E5F2101F6108B700BDCC9D /* DrugDetailDialog.storyboard */; };
-		36E5F2141F61090400BDCC9D /* DrugDialogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E5F2131F61090400BDCC9D /* DrugDialogVC.swift */; };
 		36E5F2161F6124DA00BDCC9D /* OrderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E5F2151F6124DA00BDCC9D /* OrderManager.swift */; };
+		36F94D241F6A7A8800AE70CB /* DrugCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F94D201F6A7A8800AE70CB /* DrugCell.swift */; };
+		36F94D251F6A7A8800AE70CB /* DrugCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36F94D211F6A7A8800AE70CB /* DrugCell.xib */; };
+		36F94D261F6A7A8800AE70CB /* DrugDialogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F94D231F6A7A8800AE70CB /* DrugDialogVC.swift */; };
 		5C34706F55A0C88B21ED4CB2 /* Pods_Pharmacy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9654EF3342A90AF53F0981E7 /* Pods_Pharmacy.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		053ABE32AC7E87B1E922A5B0 /* Pods-Pharmacy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pharmacy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pharmacy/Pods-Pharmacy.debug.xcconfig"; sourceTree = "<group>"; };
 		1E7969091787900FA307D817 /* Pods-Pharmacy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pharmacy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pharmacy/Pods-Pharmacy.release.xcconfig"; sourceTree = "<group>"; };
+		3606209C1F6A610100741546 /* AddPrescriptionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPrescriptionVC.swift; sourceTree = "<group>"; };
 		3606573A1F590DB500B6C2D6 /* OrderDrugVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderDrugVC.swift; sourceTree = "<group>"; };
 		3606573C1F590E7700B6C2D6 /* DrugNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrugNetworking.swift; sourceTree = "<group>"; };
 		3606573E1F59103B00B6C2D6 /* OrderNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderNetworking.swift; sourceTree = "<group>"; };
@@ -88,8 +90,6 @@
 		36AE948A1F4DBB3C00DA6AAA /* UpdateInfoService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateInfoService.swift; sourceTree = "<group>"; };
 		36AE948D1F4FCDBC00DA6AAA /* GetInformationsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetInformationsVC.swift; sourceTree = "<group>"; };
 		36AE948F1F4FD0EE00DA6AAA /* GetInformationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetInformationService.swift; sourceTree = "<group>"; };
-		36CACDD41F5ECA1500CE5283 /* DrugCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrugCell.swift; sourceTree = "<group>"; };
-		36CACDD51F5ECA1500CE5283 /* DrugCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrugCell.xib; sourceTree = "<group>"; };
 		36E271DD1F4ADCD400EE3597 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		36E271E01F4ADD3900EE3597 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		36E271E61F4AF94C00EE3597 /* UserNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNetworking.swift; sourceTree = "<group>"; };
@@ -109,8 +109,10 @@
 		36E48DE81F49F2960085A097 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		36E48DEA1F49F5360085A097 /* SignIn_UpService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignIn_UpService.swift; sourceTree = "<group>"; };
 		36E5F2101F6108B700BDCC9D /* DrugDetailDialog.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DrugDetailDialog.storyboard; sourceTree = "<group>"; };
-		36E5F2131F61090400BDCC9D /* DrugDialogVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrugDialogVC.swift; sourceTree = "<group>"; };
 		36E5F2151F6124DA00BDCC9D /* OrderManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderManager.swift; sourceTree = "<group>"; };
+		36F94D201F6A7A8800AE70CB /* DrugCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrugCell.swift; sourceTree = "<group>"; };
+		36F94D211F6A7A8800AE70CB /* DrugCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrugCell.xib; sourceTree = "<group>"; };
+		36F94D231F6A7A8800AE70CB /* DrugDialogVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrugDialogVC.swift; sourceTree = "<group>"; };
 		9654EF3342A90AF53F0981E7 /* Pods_Pharmacy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pharmacy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -136,11 +138,19 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		3606209B1F6A60EC00741546 /* New Prescription */ = {
+			isa = PBXGroup;
+			children = (
+				36F94D1F1F6A7A8800AE70CB /* DrugCells */,
+				3606209C1F6A610100741546 /* AddPrescriptionVC.swift */,
+			);
+			path = "New Prescription";
+			sourceTree = "<group>";
+		};
 		360657391F590D9B00B6C2D6 /* Order drugs */ = {
 			isa = PBXGroup;
 			children = (
 				360AFCF81F616E0F001CBB57 /* OrderDrugsCells */,
-				36CACDD31F5ECA1500CE5283 /* DrugCells */,
 				3606573A1F590DB500B6C2D6 /* OrderDrugVC.swift */,
 				360AFCF61F616D7E001CBB57 /* CheckOutVC.swift */,
 			);
@@ -196,6 +206,7 @@
 		36802D851F695AAC00E00ACB /* Prescriptions */ = {
 			isa = PBXGroup;
 			children = (
+				3606209B1F6A60EC00741546 /* New Prescription */,
 				36802D881F695B9A00E00ACB /* PrescriptionCells */,
 				36802D861F695B6200E00ACB /* PrescriptionVC.swift */,
 			);
@@ -233,16 +244,6 @@
 				36AE948D1F4FCDBC00DA6AAA /* GetInformationsVC.swift */,
 			);
 			path = "Get Infomations";
-			sourceTree = "<group>";
-		};
-		36CACDD31F5ECA1500CE5283 /* DrugCells */ = {
-			isa = PBXGroup;
-			children = (
-				36E5F2121F6108F000BDCC9D /* DrugDialog */,
-				36CACDD41F5ECA1500CE5283 /* DrugCell.swift */,
-				36CACDD51F5ECA1500CE5283 /* DrugCell.xib */,
-			);
-			path = DrugCells;
 			sourceTree = "<group>";
 		};
 		36E271DF1F4ADD2700EE3597 /* Utilities */ = {
@@ -417,10 +418,20 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
-		36E5F2121F6108F000BDCC9D /* DrugDialog */ = {
+		36F94D1F1F6A7A8800AE70CB /* DrugCells */ = {
 			isa = PBXGroup;
 			children = (
-				36E5F2131F61090400BDCC9D /* DrugDialogVC.swift */,
+				36F94D201F6A7A8800AE70CB /* DrugCell.swift */,
+				36F94D211F6A7A8800AE70CB /* DrugCell.xib */,
+				36F94D221F6A7A8800AE70CB /* DrugDialog */,
+			);
+			path = DrugCells;
+			sourceTree = "<group>";
+		};
+		36F94D221F6A7A8800AE70CB /* DrugDialog */ = {
+			isa = PBXGroup;
+			children = (
+				36F94D231F6A7A8800AE70CB /* DrugDialogVC.swift */,
 			);
 			path = DrugDialog;
 			sourceTree = "<group>";
@@ -498,6 +509,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				36E48DCA1F49D3BF0085A097 /* Assets.xcassets in Resources */,
+				36F94D251F6A7A8800AE70CB /* DrugCell.xib in Resources */,
 				36E48DCC1F49D3BF0085A097 /* Main.storyboard in Resources */,
 				36E48DCB1F49D3BF0085A097 /* LaunchScreen.storyboard in Resources */,
 				36802D8C1F695BB400E00ACB /* PrescriptionCell.xib in Resources */,
@@ -505,7 +517,6 @@
 				3614F1651F65594F00861CBC /* OrderHistoryCells.xib in Resources */,
 				360AFD001F616E7F001CBB57 /* OrderDrugsCell.xib in Resources */,
 				3678D8A01F662CCE00825990 /* DetailOrderHistoryCells.xib in Resources */,
-				36CACDD71F5ECA1500CE5283 /* DrugCell.xib in Resources */,
 				36E5F2111F6108B700BDCC9D /* DrugDetailDialog.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -573,9 +584,9 @@
 			files = (
 				3614F1601F6555FF00861CBC /* OrderHistoryVC.swift in Sources */,
 				36802D901F69624800E00ACB /* PrescriptionManager.swift in Sources */,
-				36E5F2141F61090400BDCC9D /* DrugDialogVC.swift in Sources */,
 				36E48DDE1F49DC5B0085A097 /* SignUpVC.swift in Sources */,
 				3678D89B1F6627E900825990 /* DetailsOrderHistoryVC.swift in Sources */,
+				36F94D241F6A7A8800AE70CB /* DrugCell.swift in Sources */,
 				360AFCF71F616D7E001CBB57 /* CheckOutVC.swift in Sources */,
 				36AE94891F4D719400DA6AAA /* UpdatePwService.swift in Sources */,
 				36AE948B1F4DBB3C00DA6AAA /* UpdateInfoService.swift in Sources */,
@@ -587,6 +598,7 @@
 				360657561F593B8300B6C2D6 /* OrderService.swift in Sources */,
 				36E271DE1F4ADCD400EE3597 /* NetworkManager.swift in Sources */,
 				360657541F593AC300B6C2D6 /* DrugsService.swift in Sources */,
+				36F94D261F6A7A8800AE70CB /* DrugDialogVC.swift in Sources */,
 				360657581F5A742400B6C2D6 /* OrderObject.swift in Sources */,
 				36E48DE91F49F2960085A097 /* UserManager.swift in Sources */,
 				36E48DDC1F49DC420085A097 /* SignInVC.swift in Sources */,
@@ -595,8 +607,8 @@
 				360657521F59391500B6C2D6 /* DrugObject.swift in Sources */,
 				360AFCFF1F616E7F001CBB57 /* OrderDrugsCell.swift in Sources */,
 				3606573B1F590DB500B6C2D6 /* OrderDrugVC.swift in Sources */,
-				36CACDD61F5ECA1500CE5283 /* DrugCell.swift in Sources */,
 				36E48DE51F49EF170085A097 /* LauchVC.swift in Sources */,
+				3606209D1F6A610100741546 /* AddPrescriptionVC.swift in Sources */,
 				3606573F1F59103B00B6C2D6 /* OrderNetworking.swift in Sources */,
 				36E48DC91F49D3BF0085A097 /* AppDelegate.swift in Sources */,
 				36AE94821F4D4D3C00DA6AAA /* ChangePwVC.swift in Sources */,

@@ -26,8 +26,8 @@ class UpdateInfoService: NSObject {
         .response { (res) in
             //check errors
             if let err = res.error {
-                completionHandler(false, NetworkManager.shared.handleError(response: res.response, error: err as NSError))
-                return
+                return completionHandler(false, NetworkManager.shared.handleError(response: res.response, error: err as NSError))
+                
             }
             
             //try parse data to json
@@ -36,16 +36,16 @@ class UpdateInfoService: NSObject {
                 if let errs = json["errors"] as? [String] {
                     print(errs)
                     if errs.count > 0 {
-                        completionHandler(false, "Invalid data format")
-                        return
+                        return completionHandler(false, "Invalid data format")
+                        
                     }
                 }
                 
-                completionHandler(true, "Information has been updated successfully")
+                return completionHandler(true, "Information has been updated successfully")
                 
             } else {
-                completionHandler(false, "Invalid data format")
-                return
+                return completionHandler(false, "Invalid data format")
+                
             }
             
         }

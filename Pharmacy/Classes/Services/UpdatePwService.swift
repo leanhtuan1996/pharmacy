@@ -25,29 +25,29 @@ class UpdatePwService: NSObject {
             .validate()
             .response { (res) in
                 if let err = res.error {
-                    completionHandler(false, NetworkManager.shared.handleError(response: res.response, error: err as NSError))
-                    return
+                    return completionHandler(false, NetworkManager.shared.handleError(response: res.response, error: err as NSError))
+                    
                 }
                 
                 //try parse data to json
                 if let json = (res.data! as NSData).toDictionary() {
                     
                     guard let errs = json["errors"] as? [String] else {
-                        completionHandler(false, "Invalid data format")
-                        return
+                        return completionHandler(false, "Invalid data format")
+                        
                     }
                     
                     //update password not successfully
                     if errs.count > 0 {
-                        completionHandler(false, errs[0])
-                        return
+                        return completionHandler(false, errs[0])
+                        
                     }
                     
-                    completionHandler(true, "Password has been updated successfully")
+                    return completionHandler(true, "Password has been updated successfully")
                     
                 } else {
-                    completionHandler(false, "Invalid data format")
-                    return
+                    return completionHandler(false, "Invalid data format")
+                    
                 }
                 
         }

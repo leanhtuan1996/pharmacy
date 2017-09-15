@@ -47,7 +47,7 @@ class OrderManager: NSObject {
             ordersArray.append(order)
             //print("ID: \(order.id), QUANTITY: \(order.quantity)")
         } else {
-            completionHandled(false, "ORDER NOT FOUND!")
+            return completionHandled(false, "ORDER NOT FOUND!")
         }
         
         //Get orders from NSUserDefault
@@ -66,7 +66,7 @@ class OrderManager: NSObject {
         userDefaults.set(ordersEncode, forKey: "Orders")
         userDefaults.synchronize()
         print("ADD TO CART OKAY")
-        completionHandled(true, nil)
+        return completionHandled(true, nil)
     }
     
     //get all order from NSUSERDEFAULTS to show in my cart
@@ -92,15 +92,15 @@ class OrderManager: NSObject {
                 if isSuccess {
                     if let drug = drug {
                         drug.quantity = drugOrder.quantity
-                        completionHanler(true, drug, nil)
+                        return completionHanler(true, drug, nil)
                     } else {
-                        completionHanler(false, nil, "ERROR")
+                        return completionHanler(false, nil, "ERROR")
                     }
                 } else {
                     if let err = error {
-                        completionHanler(false, nil, err)
+                        return completionHanler(false, nil, err)
                     } else {
-                        completionHanler(false, nil, "ERROR")
+                        return completionHanler(false, nil, "ERROR")
                     }
                 }
             })
@@ -141,12 +141,12 @@ class OrderManager: NSObject {
             //- if success: Delete all order in NSUserDefaults
             if isSuccess {
                 self.userDefaults.removeObject(forKey: "Orders")
-                completionHandler(true, nil)
+                return completionHandler(true, nil)
             } else {
                 if let err = error {
-                    completionHandler(false, err)
+                    return completionHandler(false, err)
                 } else {
-                    completionHandler(false, "ERROR")
+                    return completionHandler(false, "ERROR")
                 }
             }
         }

@@ -20,8 +20,8 @@ class DrugsService: NSObject {
                 
                 // if request error
                 if let err = res.error {
-                    completionHandler(false, nil, NetworkManager.shared.handleError(response: res.response, error: err as NSError))
-                    return
+                    return completionHandler(false, nil, NetworkManager.shared.handleError(response: res.response, error: err as NSError))
+                    
                 }
                 
                 if let data = res.data {
@@ -31,32 +31,43 @@ class DrugsService: NSObject {
                         if let error = json["errors"] as? [String] {
                             //print(error)
                             if error.count > 0 {
-                                completionHandler(false, nil, error[0])
-                                return
+                                return completionHandler(false, nil, error[0])
+                                
                             }
                         }
                         
                         guard let drug = json["drug"] as? [String : Any] else {
-                            completionHandler(false, nil, "Invalid data format")
-                            return
+                            return completionHandler(false, nil, "Invalid data format")
+                            
                         }
                         
                         guard let id = drug["id"] as? Int, let name = drug["name"] as? String, let instructions = drug["instructions"] as? String, let formula = drug["formula"] as? String, let contraindication = drug["contraindication"] as? String, let sideEffect = drug["side_effect"] as? String, let howToUse = drug["how_to_use"] as? String, let price = drug["price"] as? Int else {
-                            completionHandler(false, nil, "Invalid data format")
-                            return
+                            return completionHandler(false, nil, "Invalid data format")
+                            
                         }
                         
-                        completionHandler(true, DrugObject(id: id, name: name, instructions: instructions, formula: formula, contraindication: contraindication, sideEffect: sideEffect, howToUse: howToUse, price: price), nil)
+                        let drugObject = DrugObject()
+                        drugObject.id = id
+                        drugObject.name = name
+                        drugObject.instructions = instructions
+                        drugObject.formula = formula
+                        drugObject.contraindication = contraindication
+                        drugObject.sideEffect = sideEffect
+                        drugObject.howToUse = howToUse
+                        drugObject.price = price
+                        
+//                        return completionHandler(true, DrugObject(id: id, name: name, instructions: instructions, formula: formula, contraindication: contraindication, sideEffect: sideEffect, howToUse: howToUse, price: price), nil)
+                        return completionHandler(true, drugObject, nil)
                         
                         
                     } else {
-                        completionHandler(false, nil, "Invalid data format")
-                        return
+                        return completionHandler(false, nil, "Invalid data format")
+                        
                     }
                     
                 } else {
-                    completionHandler(false, nil, "Invalid data format")
-                    return
+                    return completionHandler(false, nil, "Invalid data format")
+                    
                 }
             
         }
@@ -68,8 +79,8 @@ class DrugsService: NSObject {
             .response { (res) in
             
                 if let err = res.error {
-                    completionHandler(false, [nil], NetworkManager.shared.handleError(response: res.response, error: err as NSError))
-                    return
+                    return completionHandler(false, [nil], NetworkManager.shared.handleError(response: res.response, error: err as NSError))
+                    
                 }
                 
                 //try parse data to json
@@ -78,8 +89,8 @@ class DrugsService: NSObject {
                     if let err = json["errors"] as? [String]{
                         //print(err)
                         if err.count > 0 {
-                            completionHandler(false, [nil], err[0])
-                            return
+                            return completionHandler(false, [nil], err[0])
+                            
                         }
                     }
                     
@@ -98,24 +109,34 @@ class DrugsService: NSObject {
                         if let drugObject = Utilities.convertObjectToJson(object: drugData) {
                             
                             guard let id = drugObject["id"] as? Int, let name = drugObject["name"] as? String, let instructions = drugObject["instructions"] as? String, let formula = drugObject["formula"] as? String, let contraindication = drugObject["contraindication"] as? String, let sideEffect = drugObject["side_effect"] as? String, let howToUse = drugObject["how_to_use"] as? String, let price = drugObject["price"] as? Int else {
-                                completionHandler(false, [nil], "Invalid data format")
-                                return
+                                return completionHandler(false, [nil], "Invalid data format")
+                                
                             }
                             
                             //print(name)
+                            let drugObject = DrugObject()
+                            drugObject.id = id
+                            drugObject.name = name
+                            drugObject.instructions = instructions
+                            drugObject.formula = formula
+                            drugObject.contraindication = contraindication
+                            drugObject.sideEffect = sideEffect
+                            drugObject.howToUse = howToUse
+                            drugObject.price = price
                             
-                            drugs.append(DrugObject(id: id, name: name, instructions: instructions, formula: formula, contraindication: contraindication, sideEffect: sideEffect, howToUse: howToUse, price: price))
+//                            drugs.append(DrugObject(id: id, name: name, instructions: instructions, formula: formula, contraindication: contraindication, sideEffect: sideEffect, howToUse: howToUse, price: price))
+                            drugs.append(drugObject)
                             
                         } else {
-                            completionHandler(false, [nil], "Invalid data format")
-                            return
+                            return completionHandler(false, [nil], "Invalid data format")
+                            
                         }
                     }
-                    completionHandler(true, drugs, nil)
+                    return completionHandler(true, drugs, nil)
                     
                 } else {
-                    completionHandler(false, [nil], "Invalid data format")
-                    return
+                    return completionHandler(false, [nil], "Invalid data format")
+                    
                 }
         }
     }

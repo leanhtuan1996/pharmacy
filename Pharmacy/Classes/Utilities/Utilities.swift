@@ -42,6 +42,10 @@ class Utilities: NSObject {
             return nil
         }
     }
+    
+    static func getDate() -> String {
+        return "14/09/2017"
+    }
 }
 
 extension NSData {
