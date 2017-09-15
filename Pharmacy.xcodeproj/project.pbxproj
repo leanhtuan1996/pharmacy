@@ -296,6 +296,7 @@
 		36E48DBF1F49D3BF0085A097 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				36F94D271F6BA00C00AE70CB /* Extensions */,
 				36E271E51F4AF93600EE3597 /* Network */,
 				36E271DF1F4ADD2700EE3597 /* Utilities */,
 				36E48DE21F49EEEB0085A097 /* Services */,
@@ -434,6 +435,13 @@
 				36F94D231F6A7A8800AE70CB /* DrugDialogVC.swift */,
 			);
 			path = DrugDialog;
+			sourceTree = "<group>";
+		};
+		36F94D271F6BA00C00AE70CB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		E2A5A75C6776ED6BF33E4024 /* Frameworks */ = {

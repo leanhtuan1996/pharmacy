@@ -18,9 +18,10 @@ class PrescriptionVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //UserDefaults.standard.removeObject(forKey: "Prescriptions")
         tblPrescriptions.dataSource = self
         tblPrescriptions.delegate = self
-        tblPrescriptions.rowHeight = UITableViewAutomaticDimension
+        //tblPrescriptions.rowHeight = UITableViewAutomaticDimension
         tabControl.layer.cornerRadius = 15
         tabControl.clipsToBounds = true
         txtSearch.layer.cornerRadius = 15
@@ -70,7 +71,8 @@ class PrescriptionVC: UIViewController {
 
 }
 
-extension PrescriptionVC: UITableViewDataSource, UITableViewDelegate {
+extension PrescriptionVC: UITableViewDataSource, UITableViewDelegate, DeletePrecription {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return prescriptionsArray.count
     }
@@ -80,12 +82,13 @@ extension PrescriptionVC: UITableViewDataSource, UITableViewDelegate {
             return UITableViewCell()
         }
         
+        cell.id = prescriptionsArray[indexPath.row].id
         cell.lblName.text = prescriptionsArray[indexPath.row].name
         cell.lblTotalDrugs.text = String(prescriptionsArray[indexPath.row].drugs.count)
         cell.lblTotalPrice.text = String(prescriptionsArray[indexPath.row].totalPrice) + " VND"
         cell.lblStatus.text = prescriptionsArray[indexPath.row].status.rawValue
         cell.lblDateCreated.text = prescriptionsArray[indexPath.row].dateCreate
-        
+        cell.delegate = self
         
         return cell
     }
@@ -94,4 +97,24 @@ extension PrescriptionVC: UITableViewDataSource, UITableViewDelegate {
         return 120
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(prescriptionsArray[indexPath.row].name)
+    }
+    
+    func deletePre(with id: Int) {
+        //print(id)
+        if let index = prescriptionsArray.index(where: { (pre) -> Bool in
+            return pre.id == id
+        }) {
+            ///delete
+            prescriptionsArray.remove(at: index)
+            //self.tblPrescriptions.reloadData()
+            self.tblPrescriptions.deleteRows(at: [IndexPath.init(row: index, section: 0)], with: .fade)
+        }
+    }
+    
+}
+
+protocol DeletePrecription {
+    func deletePre(with id: Int) -> Void
 }

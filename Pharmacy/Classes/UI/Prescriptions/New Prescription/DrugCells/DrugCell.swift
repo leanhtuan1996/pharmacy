@@ -40,7 +40,7 @@ class DrugCell: UITableViewCell {
             
             if let drug = drug {
                 drug.quantity = soluongInt + 1
-                delegate?.changeProperty(with: drug)
+                delegate?.addDrug(with: drug)
             }
         }
         
@@ -56,7 +56,7 @@ class DrugCell: UITableViewCell {
             
             if let drug = drug {
                 drug.quantity = soluongInt - 1
-                delegate?.changeProperty(with: drug)
+                delegate?.addDrug(with: drug)
             }
         }
     }

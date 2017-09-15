@@ -97,11 +97,17 @@ class AddPrescriptionVC: UIViewController {
                 return
             }
             print("OKAY")
+            let alert = UIAlertController(title: "Add prescription", message: "Add Prescription Successfully", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Back to main", style: .default, handler: { (btn) in
+                self.navigationController?.popViewController(animated: true)
+            }))
+            
+            self.showStoryBoard(vc: alert)
         }
     }
     
     // - MARK: FUNC IN PROTOCOL
-    func changeProperty(with drug: DrugObject) {
+    func addDrug(with drug: DrugObject) {
         //print(drug.quantity)
        //nếu số lượng = 0 thì xoá trong array
         if drug.quantity == 0 {
@@ -200,5 +206,5 @@ extension AddPrescriptionVC: UITableViewDelegate, UITableViewDataSource, ActionW
 }
 
 protocol ActionWhenChooseDrug {
-    func changeProperty(with drug: DrugObject) -> Void
+    func addDrug(with drug: DrugObject) -> Void
 }

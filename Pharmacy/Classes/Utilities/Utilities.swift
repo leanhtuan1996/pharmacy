@@ -43,6 +43,19 @@ class Utilities: NSObject {
         }
     }
     
+    static func emptyMessage(message:String, tableView:UITableView) {
+        
+        let messageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: tableView.frame.size.height))
+        messageLabel.text = message
+        messageLabel.textColor = UIColor.black
+        messageLabel.numberOfLines = 0
+        messageLabel.textAlignment = NSTextAlignment.center
+        messageLabel.font = UIFont(name: "TrebuchetMS", size: 15)
+        messageLabel.sizeToFit()
+        tableView.backgroundView = messageLabel;
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.none
+    }
+    
     static func getDate() -> String {
         return "14/09/2017"
     }
