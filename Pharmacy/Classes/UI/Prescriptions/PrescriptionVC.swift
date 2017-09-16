@@ -38,6 +38,8 @@ class PrescriptionVC: UIViewController {
         txtSearch.layer.cornerRadius = 15
         tblPrescriptions.register(UINib(nibName: "PendingPrescriptionCell", bundle: nil), forCellReuseIdentifier: "PendingPrescriptionCell")
         tblPrescriptions.register(UINib(nibName: "SubmitPrescriptionCell", bundle: nil), forCellReuseIdentifier: "SubmitPrescriptionCell")
+        tblPrescriptions.register(UINib(nibName: "RejectedPrescriptionCell", bundle: nil), forCellReuseIdentifier: "RejectedPrescriptionCell")
+        tblPrescriptions.register(UINib(nibName: "ReadyPrescriptionCell", bundle: nil), forCellReuseIdentifier: "ReadyPrescriptionCell")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -191,16 +193,26 @@ extension PrescriptionVC: UITableViewDataSource, UITableViewDelegate, ManagerPre
             return cell
             
         case .approved:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "PendingPrescriptionCell", for: indexPath) as? PendingPrescriptionCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ReadyPrescriptionCell", for: indexPath) as? ReadyPrescriptionCell else {
                 return UITableViewCell()
             }
-            
+            cell.prescription = prescriptionsOrder[indexPath.row]
+            cell.lblName.text = prescriptionsOrder[indexPath.row].name
+            cell.lblTotalDrugs.text = String(prescriptionsOrder[indexPath.row].drugs.count)
+            cell.lblTotalPrice.text = String(prescriptionsOrder[indexPath.row].totalPrice) + " VND"
+            cell.lblStatus.text = prescriptionsOrder[indexPath.row].status.rawValue
+            cell.lblDateCreated.text = prescriptionsOrder[indexPath.row].dateCreate
             return cell
         case .rejected:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "PendingPrescriptionCell", for: indexPath) as? PendingPrescriptionCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "RejectedPrescriptionCell", for: indexPath) as? PendingPrescriptionCell else {
                 return UITableViewCell()
             }
-            
+            cell.prescription = prescriptionsRejected[indexPath.row]
+            cell.lblName.text = prescriptionsRejected[indexPath.row].name
+            cell.lblTotalDrug.text = String(prescriptionsRejected[indexPath.row].drugs.count)
+            cell.lblTotalPrice.text = String(prescriptionsRejected[indexPath.row].totalPrice) + " VND"
+            cell.lblStatus.text = prescriptionsRejected[indexPath.row].status.rawValue
+            cell.lblDate.text = prescriptionsRejected[indexPath.row].dateCreate
             return cell
         }
     }
@@ -240,6 +252,20 @@ extension PrescriptionVC: UITableViewDataSource, UITableViewDelegate, ManagerPre
                 return
             }
             print("Submit Okay")
+            //del pre in array
+            PrescriptionManager.shared.deletePresciption(withId: prescription.id, completionHandler: { (error) in
+                if let error = error {
+                    print("DELETE PRESCRIPTION INCOMPLETED: \(error)")
+                }
+                self.deletePre(with: prescription.id)
+            })
+            
+            let alert = UIAlertController(title: "Gửi yêu cầu thành công!", message: "Gửi đơn thuốc thành công, đang đợi xét duyệt.", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "Done", style: UIAlertActionStyle.default, handler: nil))
+            
+            self.showStoryBoard(vc: alert)
+            
         }
     }
 }

@@ -77,14 +77,6 @@
                                 <color key="textColor" red="0.31064094460000002" green="0.49422394920000001" blue="0.64600874350000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NTq-Rs-zhS" userLabel="del">
-                                <rect key="frame" x="477" y="48.5" width="25" height="25"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="Kz4-pH-uN4"/>
-                                    <constraint firstAttribute="width" constant="25" id="zCp-bZ-e04"/>
-                                </constraints>
-                                <state key="normal" backgroundImage="edit-filled"/>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14/09/2017 12:05" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iXV-Nj-wgv">
                                 <rect key="frame" x="132" y="32" width="97" height="15"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
@@ -97,19 +89,10 @@
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yeT-of-edH" userLabel="request">
-                                <rect key="frame" x="522" y="48.5" width="25" height="25"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="4dJ-Wq-Ktf"/>
-                                    <constraint firstAttribute="width" constant="25" id="zX7-Ls-0Hv"/>
-                                </constraints>
-                                <state key="normal" backgroundImage="push"/>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="KUd-9L-gnk" firstAttribute="leading" secondItem="Ui1-T0-rfz" secondAttribute="leading" id="2a0-X7-ni7"/>
-                            <constraint firstItem="NTq-Rs-zhS" firstAttribute="centerY" secondItem="yeT-of-edH" secondAttribute="centerY" id="92G-hC-nws"/>
                             <constraint firstItem="0IN-Ph-lYP" firstAttribute="leading" secondItem="v6u-fa-GlS" secondAttribute="leading" constant="5" id="APB-q8-O49"/>
                             <constraint firstItem="n4W-zf-63n" firstAttribute="leading" secondItem="Ui1-T0-rfz" secondAttribute="leading" id="Ay7-Pf-FFy"/>
                             <constraint firstItem="abd-Dh-uE5" firstAttribute="top" secondItem="t1N-na-fdG" secondAttribute="top" id="BRf-xH-U5D"/>
@@ -129,14 +112,11 @@
                             <constraint firstItem="iXV-Nj-wgv" firstAttribute="height" secondItem="n4W-zf-63n" secondAttribute="height" id="ZlE-TP-4ey"/>
                             <constraint firstItem="OFw-zG-fyh" firstAttribute="top" secondItem="KUd-9L-gnk" secondAttribute="top" id="avo-8n-uig"/>
                             <constraint firstItem="t1N-na-fdG" firstAttribute="leading" secondItem="KUd-9L-gnk" secondAttribute="leading" id="b36-Jr-gdT"/>
-                            <constraint firstAttribute="trailing" secondItem="yeT-of-edH" secondAttribute="trailing" constant="20" id="dp5-PO-ueR"/>
                             <constraint firstItem="iXV-Nj-wgv" firstAttribute="bottom" secondItem="n4W-zf-63n" secondAttribute="bottom" id="eZo-vM-yKe"/>
                             <constraint firstItem="Ui1-T0-rfz" firstAttribute="centerY" secondItem="0IN-Ph-lYP" secondAttribute="centerY" id="g4D-yQ-R4q"/>
-                            <constraint firstItem="yeT-of-edH" firstAttribute="leading" secondItem="NTq-Rs-zhS" secondAttribute="trailing" constant="20" id="hsl-wO-WpP"/>
                             <constraint firstItem="1vT-rL-ysO" firstAttribute="centerY" secondItem="Ui1-T0-rfz" secondAttribute="centerY" id="if9-Ch-zSb"/>
                             <constraint firstItem="1A2-kI-9fk" firstAttribute="leading" secondItem="n4W-zf-63n" secondAttribute="leading" id="ks9-OR-Rrs"/>
                             <constraint firstItem="1vT-rL-ysO" firstAttribute="leading" secondItem="Ui1-T0-rfz" secondAttribute="trailing" constant="10" id="wbY-f8-UKZ"/>
-                            <constraint firstItem="yeT-of-edH" firstAttribute="centerY" secondItem="v6u-fa-GlS" secondAttribute="centerY" id="yMO-vR-Dc6"/>
                             <constraint firstItem="OFw-zG-fyh" firstAttribute="height" secondItem="KUd-9L-gnk" secondAttribute="height" id="yU5-NC-ou9"/>
                             <constraint firstItem="t1N-na-fdG" firstAttribute="height" secondItem="KUd-9L-gnk" secondAttribute="height" id="ymg-fK-sA1"/>
                         </constraints>
@@ -161,8 +141,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="edit-filled" width="25" height="25"/>
         <image name="prescription" width="35" height="35"/>
-        <image name="push" width="25" height="25"/>
     </resources>
 </document>

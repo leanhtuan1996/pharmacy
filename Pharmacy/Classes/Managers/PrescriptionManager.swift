@@ -53,7 +53,7 @@ class PrescriptionManager: NSObject {
         }
     }
     
-    func deletePresciption(id: Int, completionHandler: @escaping (_ error: String?) -> Void ) {
+    func deletePresciption(withId id: Int, completionHandler: @escaping (_ error: String?) -> Void ) {
         //tìm theo id trong currentPre
         
         if let index = currentAllPrescriptions.index(where: { (pre) -> Bool in

@@ -32,7 +32,7 @@ class SubmitPrescriptionCell: UITableViewCell {
     @IBAction func btnDeletePrescription(_ sender: Any) {
         
         if let prescription = prescription {
-            PrescriptionManager.shared.deletePresciption(id: prescription.id, completionHandler: { (error) in
+            PrescriptionManager.shared.deletePresciption(withId: prescription.id, completionHandler: { (error) in
                 if let error = error {
                     print("DELETE FAILED: \(error)")
                     return

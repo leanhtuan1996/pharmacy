@@ -33,6 +33,10 @@
 		368303951F6CC4C900F7DB70 /* PrescriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368303941F6CC4C900F7DB70 /* PrescriptionService.swift */; };
 		368303BF1F6CDCAA00F7DB70 /* PendingPrescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368303BD1F6CDCAA00F7DB70 /* PendingPrescriptionCell.swift */; };
 		368303C01F6CDCAA00F7DB70 /* PendingPrescriptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 368303BE1F6CDCAA00F7DB70 /* PendingPrescriptionCell.xib */; };
+		368303C61F6D0BF700F7DB70 /* RejectedPrescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368303C41F6D0BF700F7DB70 /* RejectedPrescriptionCell.swift */; };
+		368303C71F6D0BF700F7DB70 /* RejectedPrescriptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 368303C51F6D0BF700F7DB70 /* RejectedPrescriptionCell.xib */; };
+		368303CA1F6D0C0A00F7DB70 /* ReadyPrescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368303C81F6D0C0A00F7DB70 /* ReadyPrescriptionCell.swift */; };
+		368303CB1F6D0C0A00F7DB70 /* ReadyPrescriptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 368303C91F6D0C0A00F7DB70 /* ReadyPrescriptionCell.xib */; };
 		36AE94821F4D4D3C00DA6AAA /* ChangePwVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AE94811F4D4D3C00DA6AAA /* ChangePwVC.swift */; };
 		36AE94871F4D52CA00DA6AAA /* ChangeInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AE94861F4D52CA00DA6AAA /* ChangeInfoVC.swift */; };
 		36AE94891F4D719400DA6AAA /* UpdatePwService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AE94881F4D719400DA6AAA /* UpdatePwService.swift */; };
@@ -92,6 +96,10 @@
 		368303941F6CC4C900F7DB70 /* PrescriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrescriptionService.swift; sourceTree = "<group>"; };
 		368303BD1F6CDCAA00F7DB70 /* PendingPrescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingPrescriptionCell.swift; sourceTree = "<group>"; };
 		368303BE1F6CDCAA00F7DB70 /* PendingPrescriptionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PendingPrescriptionCell.xib; sourceTree = "<group>"; };
+		368303C41F6D0BF700F7DB70 /* RejectedPrescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RejectedPrescriptionCell.swift; sourceTree = "<group>"; };
+		368303C51F6D0BF700F7DB70 /* RejectedPrescriptionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RejectedPrescriptionCell.xib; sourceTree = "<group>"; };
+		368303C81F6D0C0A00F7DB70 /* ReadyPrescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadyPrescriptionCell.swift; sourceTree = "<group>"; };
+		368303C91F6D0C0A00F7DB70 /* ReadyPrescriptionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReadyPrescriptionCell.xib; sourceTree = "<group>"; };
 		36AE94811F4D4D3C00DA6AAA /* ChangePwVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePwVC.swift; sourceTree = "<group>"; };
 		36AE94861F4D52CA00DA6AAA /* ChangeInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeInfoVC.swift; sourceTree = "<group>"; };
 		36AE94881F4D719400DA6AAA /* UpdatePwService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatePwService.swift; sourceTree = "<group>"; };
@@ -224,6 +232,8 @@
 		36802D881F695B9A00E00ACB /* PrescriptionCells */ = {
 			isa = PBXGroup;
 			children = (
+				368303C21F6D0BD200F7DB70 /* ReadyPrescriptionCell */,
+				368303C11F6D0B9300F7DB70 /* RejectedPrescriptionCell */,
 				368303BC1F6CDB3600F7DB70 /* PendingPrescriptionCell */,
 				3683038D1F6CBEDE00F7DB70 /* SubmitPrescriptionCell */,
 			);
@@ -246,6 +256,24 @@
 				368303BE1F6CDCAA00F7DB70 /* PendingPrescriptionCell.xib */,
 			);
 			path = PendingPrescriptionCell;
+			sourceTree = "<group>";
+		};
+		368303C11F6D0B9300F7DB70 /* RejectedPrescriptionCell */ = {
+			isa = PBXGroup;
+			children = (
+				368303C41F6D0BF700F7DB70 /* RejectedPrescriptionCell.swift */,
+				368303C51F6D0BF700F7DB70 /* RejectedPrescriptionCell.xib */,
+			);
+			path = RejectedPrescriptionCell;
+			sourceTree = "<group>";
+		};
+		368303C21F6D0BD200F7DB70 /* ReadyPrescriptionCell */ = {
+			isa = PBXGroup;
+			children = (
+				368303C81F6D0C0A00F7DB70 /* ReadyPrescriptionCell.swift */,
+				368303C91F6D0C0A00F7DB70 /* ReadyPrescriptionCell.xib */,
+			);
+			path = ReadyPrescriptionCell;
 			sourceTree = "<group>";
 		};
 		36AE94801F4D4D2500DA6AAA /* ChangePassword */ = {
@@ -546,9 +574,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				36E48DCA1F49D3BF0085A097 /* Assets.xcassets in Resources */,
+				368303C71F6D0BF700F7DB70 /* RejectedPrescriptionCell.xib in Resources */,
 				36F94D251F6A7A8800AE70CB /* DrugCell.xib in Resources */,
 				368303C01F6CDCAA00F7DB70 /* PendingPrescriptionCell.xib in Resources */,
 				36E48DCC1F49D3BF0085A097 /* Main.storyboard in Resources */,
+				368303CB1F6D0C0A00F7DB70 /* ReadyPrescriptionCell.xib in Resources */,
 				36E48DCB1F49D3BF0085A097 /* LaunchScreen.storyboard in Resources */,
 				368303911F6CBF2A00F7DB70 /* SubmitPrescriptionCell.xib in Resources */,
 				36E48DDA1F49DC1F0085A097 /* SignInUp.storyboard in Resources */,
@@ -623,6 +653,8 @@
 				3614F1601F6555FF00861CBC /* OrderHistoryVC.swift in Sources */,
 				36802D901F69624800E00ACB /* PrescriptionManager.swift in Sources */,
 				36E48DDE1F49DC5B0085A097 /* SignUpVC.swift in Sources */,
+				368303CA1F6D0C0A00F7DB70 /* ReadyPrescriptionCell.swift in Sources */,
+				368303C61F6D0BF700F7DB70 /* RejectedPrescriptionCell.swift in Sources */,
 				3678D89B1F6627E900825990 /* DetailsOrderHistoryVC.swift in Sources */,
 				36F94D241F6A7A8800AE70CB /* DrugCell.swift in Sources */,
 				360AFCF71F616D7E001CBB57 /* CheckOutVC.swift in Sources */,
