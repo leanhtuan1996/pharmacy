@@ -116,10 +116,8 @@ class OrderManager: NSObject {
         
         //Call to OrderService with newOrder function
         var ordersArray: [[String : Any]] = []
-        let date = Date()
-        let formater = DateFormatter()
-        formater.dateFormat = "MM/dd/yyyy"
-        let dateOrder = formater.string(from: date)
+        
+        let dateOrder = Utilities.getDate()
         
         for drug in drugToOrders {
             

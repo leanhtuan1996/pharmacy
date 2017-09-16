@@ -9,10 +9,10 @@
 import UIKit
 
 enum Status: String {
-    case creating = "can submit"
-    case pending = "pending"
-    case rejected = "rejected"
-    case approved = "can order"
+    case creating = "Có thể xin phép"
+    case pending = "Đang chờ duyệt"
+    case rejected = "Bị từ chối"
+    case approved = "Có thể mua"
 }
 
 class PrescriptionObject: NSObject, NSCoding {

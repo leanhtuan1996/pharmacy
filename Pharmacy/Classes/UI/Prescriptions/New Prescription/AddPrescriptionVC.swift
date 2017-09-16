@@ -10,7 +10,6 @@ import UIKit
 
 class AddPrescriptionVC: UIViewController {
     @IBOutlet weak var tblListDrugs: UITableView!
-    
     @IBOutlet weak var txtNameOfPre: UITextField!
     @IBOutlet weak var txtSearch: UITextField!
     @IBOutlet weak var lblTotalDrugs: UILabel!
@@ -35,7 +34,7 @@ class AddPrescriptionVC: UIViewController {
             nav.navigationBar.isTranslucent = true
             nav.view.backgroundColor = .clear
             nav.navigationBar.tintColor = UIColor.white
-            nav.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+            nav.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
             
             if nav.isNavigationBarHidden {
                 nav.setNavigationBarHidden(false, animated: true)

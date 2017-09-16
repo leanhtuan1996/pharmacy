@@ -29,7 +29,7 @@ class SignUpVC: UIViewController {
             nav.navigationBar.isTranslucent = true
             nav.view.backgroundColor = .clear
             nav.navigationBar.tintColor = UIColor.white
-            nav.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+            nav.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
             
             if nav.isNavigationBarHidden {
                 nav.setNavigationBarHidden(false, animated: true)

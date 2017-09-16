@@ -31,9 +31,9 @@ class Utilities: NSObject {
             let jsonData = try JSONSerialization.data(withJSONObject: object, options: JSONSerialization.WritingOptions.prettyPrinted)
             
             //Convert back to string. Usually only do this for debugging
-            if let JSONString = String(data: jsonData, encoding: String.Encoding.utf8) {
+            //if let JSONString = String(data: jsonData, encoding: String.Encoding.utf8) {
                 //print(JSONString)
-            }
+            //}
             
             return try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.mutableContainers) as? [String: Any]
             
@@ -57,7 +57,24 @@ class Utilities: NSObject {
     }
     
     static func getDate() -> String {
-        return "14/09/2017"
+        let date = Date()
+        let formater = DateFormatter()
+        formater.dateFormat = "MM/dd/yyyy"
+        let dateOrder = formater.string(from: date)
+        return dateOrder
+    }
+    
+    static func convertJsonDateToDate(with date: String) -> String {
+        //convert JSON datetime to date`
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        if let dateFormatted = dateFormatter.date(from: date) {
+            //convert date to "yyyy-MM-dd" format
+            dateFormatter.dateFormat = "MM/dd/yyyy"
+            return dateFormatter.string(from: dateFormatted)
+        } else {
+            return ""
+        }
     }
 }
 
