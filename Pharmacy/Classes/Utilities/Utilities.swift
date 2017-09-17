@@ -43,17 +43,28 @@ class Utilities: NSObject {
         }
     }
     
-    static func emptyMessage(message:String, tableView:UITableView) {
+    static func emptyMessage(activityIndicatorView:UIActivityIndicatorView, tableView:UITableView) {
         
-        let messageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: tableView.frame.size.height))
-        messageLabel.text = message
-        messageLabel.textColor = UIColor.black
-        messageLabel.numberOfLines = 0
-        messageLabel.textAlignment = NSTextAlignment.center
-        messageLabel.font = UIFont(name: "TrebuchetMS", size: 15)
-        messageLabel.sizeToFit()
-        tableView.backgroundView = messageLabel;
+        //let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        activityIndicatorView.color = UIColor.white
+        //tableView.view.addSubview(activityIndicatorView)
+        tableView.backgroundView = activityIndicatorView
+        activityIndicatorView.frame = tableView.frame
+        activityIndicatorView.center = tableView.center
+        activityIndicatorView.backgroundColor = UIColor.clear.withAlphaComponent(0.3)
+        activityIndicatorView.sizeToFit()
+        activityIndicatorView.startAnimating()
         tableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        
+//        let messageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: tableView.frame.size.height))
+//        messageLabel.text = message
+//        messageLabel.textColor = UIColor.black
+//        messageLabel.numberOfLines = 0
+//        messageLabel.textAlignment = NSTextAlignment.center
+//        messageLabel.font = UIFont(name: "TrebuchetMS", size: 15)
+//        messageLabel.sizeToFit()
+//        tableView.backgroundView = messageLabel;
+//        tableView.separatorStyle = UITableViewCellSeparatorStyle.none
     }
     
     static func getDate() -> String {

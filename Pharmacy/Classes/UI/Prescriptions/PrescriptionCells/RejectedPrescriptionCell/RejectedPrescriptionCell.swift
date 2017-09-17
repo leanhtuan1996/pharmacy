@@ -12,7 +12,6 @@ class RejectedPrescriptionCell: UITableViewCell {
     var prescription: PrescriptionObject?
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblTotalDrugs: UILabel!
-    @IBOutlet weak var lblTotalPrice: UILabel!
     @IBOutlet weak var lblStatus: UILabel!
     @IBOutlet weak var lblDateCreated: UILabel!
     override func awakeFromNib() {

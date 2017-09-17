@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="DrugOfNewPresciptionCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="DrugOfNewPresciptionCell" rowHeight="58" id="KGk-i7-Jjw" customClass="DrugOfNewPresciptionCell" customModule="Pharmacy" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="528" height="58"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM" userLabel="rootView">
+                <rect key="frame" x="0.0" y="0.0" width="528" height="57.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VfJ-sZ-SbG" userLabel="contentView">
+                        <rect key="frame" x="0.0" y="0.0" width="528" height="58"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="drug" translatesAutoresizingMaskIntoConstraints="NO" id="kJ2-NI-yKH">
+                                <rect key="frame" x="5" y="14" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="CKM-mg-W0V"/>
+                                    <constraint firstAttribute="height" constant="30" id="OAS-HR-VWg"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phanadol" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rpk-So-zKr">
+                                <rect key="frame" x="45" y="5" width="64" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="gLM-UM-0Oy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xf7-a0-INj">
+                                <rect key="frame" x="80.5" y="30" width="41" height="25"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Giá:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9lV-Vk-PCr">
+                                <rect key="frame" x="45" y="30" width="25.5" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="6K8-6q-pVu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Rpk-So-zKr" firstAttribute="leading" secondItem="kJ2-NI-yKH" secondAttribute="trailing" constant="10" id="5QD-Kt-2Vz"/>
+                            <constraint firstItem="Rpk-So-zKr" firstAttribute="top" secondItem="VfJ-sZ-SbG" secondAttribute="top" constant="5" id="F8W-XK-UX5"/>
+                            <constraint firstItem="Xf7-a0-INj" firstAttribute="top" secondItem="9lV-Vk-PCr" secondAttribute="top" id="FIq-cx-tGy"/>
+                            <constraint firstItem="9lV-Vk-PCr" firstAttribute="leading" secondItem="Rpk-So-zKr" secondAttribute="leading" id="NTI-4h-jo0"/>
+                            <constraint firstItem="kJ2-NI-yKH" firstAttribute="leading" secondItem="VfJ-sZ-SbG" secondAttribute="leading" constant="5" id="RgV-fk-uf5"/>
+                            <constraint firstItem="9lV-Vk-PCr" firstAttribute="top" secondItem="Rpk-So-zKr" secondAttribute="bottom" id="gsO-VS-r5k"/>
+                            <constraint firstItem="kJ2-NI-yKH" firstAttribute="centerY" secondItem="VfJ-sZ-SbG" secondAttribute="centerY" id="mwA-v9-H8S"/>
+                            <constraint firstItem="Xf7-a0-INj" firstAttribute="height" secondItem="9lV-Vk-PCr" secondAttribute="height" id="swZ-uO-jr1"/>
+                            <constraint firstItem="Xf7-a0-INj" firstAttribute="leading" secondItem="9lV-Vk-PCr" secondAttribute="trailing" constant="10" id="xtA-4T-qBd"/>
+                        </constraints>
+                    </view>
+                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="3h1-4O-fPD">
+                        <rect key="frame" x="469" y="13" width="51" height="31"/>
+                        <connections>
+                            <action selector="switchSelected:" destination="KGk-i7-Jjw" eventType="valueChanged" id="1We-pI-9Uj"/>
+                        </connections>
+                    </switch>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="VfJ-sZ-SbG" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="BEy-v9-YOz"/>
+                    <constraint firstAttribute="trailing" secondItem="3h1-4O-fPD" secondAttribute="trailing" constant="10" id="G0g-Qe-2UJ"/>
+                    <constraint firstItem="3h1-4O-fPD" firstAttribute="centerY" secondItem="VfJ-sZ-SbG" secondAttribute="centerY" id="Kcg-hK-AIQ"/>
+                    <constraint firstItem="VfJ-sZ-SbG" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="nol-iq-I92"/>
+                    <constraint firstItem="VfJ-sZ-SbG" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" id="pCK-5V-B8v"/>
+                    <constraint firstItem="VfJ-sZ-SbG" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" id="xBZ-hS-dXT"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="switchSelected" destination="3h1-4O-fPD" id="ZyU-as-eKf"/>
+                <outlet property="txtName" destination="Rpk-So-zKr" id="m3V-rd-rH1"/>
+                <outlet property="txtPrice" destination="Xf7-a0-INj" id="rsz-GD-7XU"/>
+            </connections>
+            <point key="canvasLocation" x="130" y="59"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="drug" width="35" height="35"/>
+    </resources>
+</document>

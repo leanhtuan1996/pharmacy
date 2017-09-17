@@ -17,7 +17,7 @@ class OrderDrugVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tblDrugs.register(UINib(nibName: "DrugCell", bundle: nil), forCellReuseIdentifier: "DrugCell")
+        tblDrugs.register(UINib(nibName: "DrugOfNewPresciptionCell", bundle: nil), forCellReuseIdentifier: "DrugOfNewPresciptionCell")
         tblDrugs.delegate = self
         tblDrugs.dataSource = self
         self.navigationController?.setNavigationBarHidden(false, animated: true)
@@ -69,7 +69,7 @@ extension OrderDrugVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tblDrugs.dequeueReusableCell(withIdentifier: "DrugCell", for: indexPath) as? DrugCell else {
+        guard let cell = tblDrugs.dequeueReusableCell(withIdentifier: "DrugOfNewPresciptionCell", for: indexPath) as? DrugOfNewPresciptionCell else {
             return UITableViewCell()
         }
         

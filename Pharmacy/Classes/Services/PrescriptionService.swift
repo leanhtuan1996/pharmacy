@@ -105,30 +105,39 @@ class PrescriptionService: NSObject {
                             }
                         }
                         //if success
-                        guard let id = json["id"] as? Int, let drugs = json["drugs"] as? [AnyObject] else {
+                        guard let idPre = json["id"] as? Int, let drugs = json["drugs"] as? [AnyObject] else {
                             print("1")
                             return completionHandler(nil, "Invalid data format")
                         }
                         
                         var drugsArray: [DrugObject] = []
-                        
+                        var flag = 0
                         for drug in drugs {
                             if let drugJson = Utilities.convertObjectToJson(object: drug) {
                                 //print(drugJson["DrugID"])
                                 if let id = drugJson["DrugID"] as? Int {
-                                    let drug = DrugObject()
-                                    drug.id = id
-                                    drugsArray.append(drug)
+                                    
+                                    //get detail drug
+                                    DrugsService.shared.getDrug(drugId: id, completionHandler: { (drug, error) in
+                                        flag += 1
+                                        if let error = error {
+                                            return completionHandler(nil, "Get detail drug error: \(error)")
+                                        }
+                                        
+                                        if let drug = drug {
+                                            drugsArray.append(drug)
+                                        }
+                                        
+                                        if flag == drugs.count {
+                                            let pre = PrescriptionObject()
+                                            pre.drugs = drugsArray
+                                            pre.id = idPre
+                                            return completionHandler(pre, nil)
+                                        }
+                                    })
                                 }
                             }
                         }
-                        
-                        let pre = PrescriptionObject()
-                        pre.drugs = drugsArray
-                        pre.id = id
-                        
-                        return completionHandler(pre, nil)
-                        
                     } else {
                         print("2")
                         return completionHandler(nil, "Invalid data format")

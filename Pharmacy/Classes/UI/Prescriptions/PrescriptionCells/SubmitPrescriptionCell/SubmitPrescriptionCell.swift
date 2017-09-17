@@ -16,7 +16,6 @@ class SubmitPrescriptionCell: UITableViewCell {
     @IBOutlet weak var lblDateCreated: UILabel!
     @IBOutlet weak var lblTotalDrugs: UILabel!
     @IBOutlet weak var lblStatus: UILabel!
-    @IBOutlet weak var lblTotalPrice: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -39,7 +39,7 @@ class PrescriptionVC: UIViewController {
         tblPrescriptions.register(UINib(nibName: "PendingPrescriptionCell", bundle: nil), forCellReuseIdentifier: "PendingPrescriptionCell")
         tblPrescriptions.register(UINib(nibName: "SubmitPrescriptionCell", bundle: nil), forCellReuseIdentifier: "SubmitPrescriptionCell")
         tblPrescriptions.register(UINib(nibName: "RejectedPrescriptionCell", bundle: nil), forCellReuseIdentifier: "RejectedPrescriptionCell")
-        tblPrescriptions.register(UINib(nibName: "ReadyPrescriptionCell", bundle: nil), forCellReuseIdentifier: "ReadyPrescriptionCell")
+        tblPrescriptions.register(UINib(nibName: "ApprovedPrescriptionCell", bundle: nil), forCellReuseIdentifier: "ApprovedPrescriptionCell")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -178,7 +178,6 @@ extension PrescriptionVC: UITableViewDataSource, UITableViewDelegate, ManagerPre
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //print(selectionType.rawValue)
         switch selectionType {
         case .creating:
             
@@ -189,7 +188,7 @@ extension PrescriptionVC: UITableViewDataSource, UITableViewDelegate, ManagerPre
             cell.prescription = prescriptionsCreated[indexPath.row]
             cell.lblName.text = prescriptionsCreated[indexPath.row].name
             cell.lblTotalDrugs.text = String(prescriptionsCreated[indexPath.row].drugs.count)
-            cell.lblTotalPrice.text = String(prescriptionsCreated[indexPath.row].totalPrice) + " VND"
+            //cell.lblTotalPrice.text = String(prescriptionsCreated[indexPath.row].totalPrice) + " VND"
             cell.lblStatus.text = prescriptionsCreated[indexPath.row].status.rawValue
             cell.lblDateCreated.text = prescriptionsCreated[indexPath.row].dateCreate
             cell.delegate = self
@@ -202,19 +201,18 @@ extension PrescriptionVC: UITableViewDataSource, UITableViewDelegate, ManagerPre
             cell.prescription = prescriptionsPending[indexPath.row]
             cell.lblName.text = prescriptionsPending[indexPath.row].name
             cell.lblTotalDrug.text = String(prescriptionsPending[indexPath.row].drugs.count)
-            cell.lblTotalPrice.text = String(prescriptionsPending[indexPath.row].totalPrice) + " VND"
             cell.lblStatus.text = prescriptionsPending[indexPath.row].status.rawValue
             cell.lblDate.text = prescriptionsPending[indexPath.row].dateCreate
             return cell
             
         case .approved:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ReadyPrescriptionCell", for: indexPath) as? ReadyPrescriptionCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ApprovedPrescriptionCell", for: indexPath) as? ApprovedPrescriptionCell else {
                 return UITableViewCell()
             }
             cell.prescription = prescriptionsOrder[indexPath.row]
             cell.lblName.text = prescriptionsOrder[indexPath.row].name
             cell.lblTotalDrugs.text = String(prescriptionsOrder[indexPath.row].drugs.count)
-            cell.lblTotalPrice.text = String(prescriptionsOrder[indexPath.row].totalPrice) + " VND"
+            //cell.lblTotalPrice.text = String(prescriptionsOrder[indexPath.row].totalPrice) + " VND"
             cell.lblStatus.text = prescriptionsOrder[indexPath.row].status.rawValue
             cell.lblDateCreated.text = prescriptionsOrder[indexPath.row].dateCreate
             return cell
@@ -224,8 +222,6 @@ extension PrescriptionVC: UITableViewDataSource, UITableViewDelegate, ManagerPre
             }
             cell.prescription = prescriptionsRejected[indexPath.row]
             cell.lblName.text = prescriptionsRejected[indexPath.row].name
-            cell.lblTotalDrug.text = String(prescriptionsRejected[indexPath.row].drugs.count)
-            cell.lblTotalPrice.text = String(prescriptionsRejected[indexPath.row].totalPrice) + " VND"
             cell.lblStatus.text = prescriptionsRejected[indexPath.row].status.rawValue
             cell.lblDate.text = prescriptionsRejected[indexPath.row].dateCreate
             return cell
@@ -233,13 +229,25 @@ extension PrescriptionVC: UITableViewDataSource, UITableViewDelegate, ManagerPre
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        switch selectionType {
+        case .approved:
+            return 100
+        case .pending:
+           return 100
+        case .rejected:
+            return 100
+        case .creating:
+            return 100
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch selectionType {
         case .approved:
-            print(prescriptionsOrder[indexPath.row].id)
+            if let sb = storyboard?.instantiateViewController(withIdentifier: "OrderPrescriptionVC") as? OrderPrescriptionVC {
+                sb.prescription = prescriptionsOrder[indexPath.row]
+                self.navigationController?.pushViewController(sb, animated: true)
+            }
         case .pending:
             print(prescriptionsPending[indexPath.row].id)
         case .rejected:
@@ -269,6 +277,7 @@ extension PrescriptionVC: UITableViewDataSource, UITableViewDelegate, ManagerPre
         activityIndicatorView.center = self.view.center
         activityIndicatorView.backgroundColor = UIColor.clear.withAlphaComponent(0.3)
         activityIndicatorView.startAnimating()
+        
         PrescriptionService.shared.submitPrescription(with: prescription) { (error) in
             activityIndicatorView.stopAnimating()
             if let error = error {

@@ -13,18 +13,16 @@ class AddPrescriptionVC: UIViewController {
     @IBOutlet weak var txtNameOfPre: UITextField!
     @IBOutlet weak var txtSearch: UITextField!
     @IBOutlet weak var lblTotalDrugs: UILabel!
-    @IBOutlet weak var lblTotalPrice: UILabel!
     
     //show all drugs to add
     var drugs: [DrugObject] = []
-    
     var drugsSelected: [DrugObject] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tblListDrugs.delegate = self
         tblListDrugs.dataSource = self
-        tblListDrugs.register(UINib(nibName: "DrugCell", bundle: nil), forCellReuseIdentifier: "DrugCell")
+        tblListDrugs.register(UINib(nibName: "DrugOfNewPresciptionCell", bundle: nil), forCellReuseIdentifier: "DrugOfNewPresciptionCell")
         
         getDrugs()
         
@@ -93,42 +91,20 @@ class AddPrescriptionVC: UIViewController {
     
     // - MARK: FUNC IN PROTOCOL
     func addDrug(with drug: DrugObject) {
-        //print(drug.quantity)
-       //nếu số lượng = 0 thì xoá trong array
-        if drug.quantity == 0 {
-            if let index = drugsSelected.index(where: { (drugWhere) -> Bool in
-                return drugWhere.id == drug.id
-            }) {
-                //xoá
-                drugsSelected.remove(at: index)
-            }
-        } else {
-            //nếu sl # 0
-            //- 1: Check drug đó có trong arrray hay không
-            //- Có: sửa số lượng
-            //- Không: thêm drug vào array
-            if let index = drugsSelected.index(where: { (drugWhere) -> Bool in
-                return drugWhere.id == drug.id
-            }) {
-                //sửa số lượng
-                drugsSelected[index].quantity = drug.quantity
-                
-            } else {
-                drugsSelected.append(drug)
-            }
-        }
-        
-        print(drugsSelected.count)
-        
-        //Cập nhật lại số lượng & giá
+        print(drug.id)
+        drugsSelected.append(drug)
         lblTotalDrugs.text = String(drugsSelected.count)
+    }
+    
+    func delDrug(with drug: DrugObject) {
         
-        var totalPrice = 0
-        for temp in drugsSelected {
-            totalPrice = totalPrice + (temp.quantity * temp.price)
+        if let index = drugsSelected.index(where: { (d) -> Bool in
+            return d.id == drug.id
+        }) {
+            print(drug.id)
+            drugsSelected.remove(at: index)
+            lblTotalDrugs.text = String(drugsSelected.count)
         }
-        
-        lblTotalPrice.text = String(totalPrice)
     }
     
     // - MARK: ACTION
@@ -136,21 +112,21 @@ class AddPrescriptionVC: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     @IBAction func btnDoneClicked(_ sender: Any) {
-        guard let name = txtNameOfPre.text, let totalDrugs = lblTotalDrugs.text, let totalDrugsInt = Int(totalDrugs) , let totalPrice = lblTotalPrice.text, let totalPriceInt = Int(totalPrice) else {
-            let alert = UIAlertController(title: "Fail", message: "Fields are required", preferredStyle: .alert)
-            alert.addAction(.init(title: "Okay", style: .default, handler: nil))
+        guard let name = txtNameOfPre.text, let totalDrugs = lblTotalDrugs.text, let totalDrugsInt = Int(totalDrugs) else {
+            let alert = UIAlertController(title: "Add prescription incomplete", message: "Fields are required", preferredStyle: .alert)
+            alert.addAction(.init(title: "Re try", style: .default, handler: nil))
             self.showStoryBoard(vc: alert)
             return
         }
         
         if name.isEmpty {
-            let alert = UIAlertController(title: "Fail", message: "Fields are required", preferredStyle: .alert)
-            alert.addAction(.init(title: "Okay", style: .default, handler: nil))
+            let alert = UIAlertController(title: "Add prescription incomplete", message: "Fields are required", preferredStyle: .alert)
+            alert.addAction(.init(title: "Re try", style: .default, handler: nil))
             self.showStoryBoard(vc: alert)
             return
         }
-       
-        if totalDrugsInt == 0 || totalPriceInt == 0 {
+        
+        if totalDrugsInt == 0 {
             let alert = UIAlertController(title: "Fail", message: "Please choose drugs", preferredStyle: .alert)
             alert.addAction(.init(title: "Okay", style: .default, handler: nil))
             self.showStoryBoard(vc: alert)
@@ -161,11 +137,10 @@ class AddPrescriptionVC: UIViewController {
         let pre = PrescriptionObject()
         pre.name = name
         pre.dateCreate = Utilities.getDate()
-        pre.totalPrice = totalPriceInt
         pre.drugs = drugsSelected
         addPrescription(with: pre)
     }
-
+    
 }
 
 extension AddPrescriptionVC: UITableViewDelegate, UITableViewDataSource, ActionWhenChooseDrug {
@@ -174,14 +149,13 @@ extension AddPrescriptionVC: UITableViewDelegate, UITableViewDataSource, ActionW
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "DrugCell", for: indexPath) as? DrugCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "DrugOfNewPresciptionCell", for: indexPath) as? DrugOfNewPresciptionCell else {
             return UITableViewCell()
         }
         cell.delegate = self
         cell.txtName.text = drugs[indexPath.row].name
         cell.txtPrice.text = String(drugs[indexPath.row].price)
         cell.drug = drugs[indexPath.row]
-        
         return cell
     }
     
@@ -192,4 +166,5 @@ extension AddPrescriptionVC: UITableViewDelegate, UITableViewDataSource, ActionW
 
 protocol ActionWhenChooseDrug {
     func addDrug(with drug: DrugObject) -> Void
+    func delDrug(with drug: DrugObject) -> Void
 }
