@@ -14,6 +14,7 @@ enum PrescriptionRouter: URLRequestConvertible {
     
     //Action
     case getAllPrescription()
+    case getDetailPrescription([String: Any])
     case newPrescription([String : Any])
     
     //Variable Method
@@ -22,6 +23,8 @@ enum PrescriptionRouter: URLRequestConvertible {
         case .getAllPrescription:
             return .get
         case .newPrescription:
+            return .post
+        case .getDetailPrescription:
             return .post
         }
     }
@@ -33,6 +36,8 @@ enum PrescriptionRouter: URLRequestConvertible {
             return "/get-list-prescriptions"
         case .newPrescription:
             return "/new-prescription"
+        case .getDetailPrescription:
+            return "/get-prescription-detail"
         }
     }
     
@@ -53,6 +58,8 @@ enum PrescriptionRouter: URLRequestConvertible {
             return try Alamofire.URLEncoding.default.encode(urlRequest, with: [:])
         case .newPrescription(let parameters):
             return try Alamofire.JSONEncoding.default.encode(urlRequest, with: parameters)
+        case .getDetailPrescription(let parameters):
+            return try Alamofire.URLEncoding.default.encode(urlRequest, with: parameters)
         }
     }
 }

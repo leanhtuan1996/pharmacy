@@ -23,23 +23,21 @@ class OrderHistoryVC: UIViewController {
     }
     
     func getOrdersHistory() {
-        OrderService.shared.getOrdersHistory { (isSuccess, orderObject, error) in
-             if isSuccess {
-                if let orderArray = orderObject as? [OrderObject] {
-                    self.ordersHistory = orderArray
-                    //print(orderArray.count)
-                    DispatchQueue.main.async {
-                        self.tblOrderHistory.reloadData()
-                    }
-                } else {
-                    print("GET ORDERS HISTORY NOT SUCCESSFULLY")
+        OrderService.shared.getOrdersHistory { (orderObject, error) in
+            
+            if let error = error {
+                print(error)
+                return
+            }
+            
+            if let orderArray = orderObject as? [OrderObject] {
+                self.ordersHistory = orderArray
+                //print(orderArray.count)
+                DispatchQueue.main.async {
+                    self.tblOrderHistory.reloadData()
                 }
             } else {
-                if let error = error {
-                    print(error)
-                } else {
-                    print("GET ORDERS HISTORY NOT SUCCESSFULLY")
-                }
+                print("GET ORDERS HISTORY NOT SUCCESSFULLY")
             }
         }
     }

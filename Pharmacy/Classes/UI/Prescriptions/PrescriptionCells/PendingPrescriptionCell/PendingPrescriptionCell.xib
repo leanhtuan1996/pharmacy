@@ -89,6 +89,14 @@
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y1v-fl-Hct" userLabel="viewDetail">
+                                <rect key="frame" x="522" y="48.5" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="25" id="KwC-ON-lJk"/>
+                                    <constraint firstAttribute="height" constant="25" id="TI8-vb-8F3"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="rightArrow"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -105,6 +113,7 @@
                             <constraint firstItem="0IN-Ph-lYP" firstAttribute="centerY" secondItem="v6u-fa-GlS" secondAttribute="centerY" id="Paa-Wq-ygf"/>
                             <constraint firstItem="n4W-zf-63n" firstAttribute="top" secondItem="1A2-kI-9fk" secondAttribute="bottom" constant="3.5" id="QiY-kB-4p0"/>
                             <constraint firstItem="OFw-zG-fyh" firstAttribute="leading" secondItem="KUd-9L-gnk" secondAttribute="trailing" constant="10" id="RnT-eS-1rq"/>
+                            <constraint firstAttribute="trailing" secondItem="Y1v-fl-Hct" secondAttribute="trailing" constant="20" id="T5Y-ZL-2l3"/>
                             <constraint firstItem="KUd-9L-gnk" firstAttribute="height" secondItem="Ui1-T0-rfz" secondAttribute="height" id="TWw-K5-fY7"/>
                             <constraint firstItem="Ui1-T0-rfz" firstAttribute="top" secondItem="n4W-zf-63n" secondAttribute="bottom" constant="5" id="VnS-w5-Tzr"/>
                             <constraint firstItem="t1N-na-fdG" firstAttribute="top" secondItem="KUd-9L-gnk" secondAttribute="bottom" constant="5" id="W08-r0-yeP"/>
@@ -116,6 +125,7 @@
                             <constraint firstItem="Ui1-T0-rfz" firstAttribute="centerY" secondItem="0IN-Ph-lYP" secondAttribute="centerY" id="g4D-yQ-R4q"/>
                             <constraint firstItem="1vT-rL-ysO" firstAttribute="centerY" secondItem="Ui1-T0-rfz" secondAttribute="centerY" id="if9-Ch-zSb"/>
                             <constraint firstItem="1A2-kI-9fk" firstAttribute="leading" secondItem="n4W-zf-63n" secondAttribute="leading" id="ks9-OR-Rrs"/>
+                            <constraint firstItem="Y1v-fl-Hct" firstAttribute="centerY" secondItem="v6u-fa-GlS" secondAttribute="centerY" id="ldQ-6p-SjK"/>
                             <constraint firstItem="1vT-rL-ysO" firstAttribute="leading" secondItem="Ui1-T0-rfz" secondAttribute="trailing" constant="10" id="wbY-f8-UKZ"/>
                             <constraint firstItem="OFw-zG-fyh" firstAttribute="height" secondItem="KUd-9L-gnk" secondAttribute="height" id="yU5-NC-ou9"/>
                             <constraint firstItem="t1N-na-fdG" firstAttribute="height" secondItem="KUd-9L-gnk" secondAttribute="height" id="ymg-fK-sA1"/>
@@ -142,5 +152,6 @@
     </objects>
     <resources>
         <image name="prescription" width="35" height="35"/>
+        <image name="rightArrow" width="35" height="35"/>
     </resources>
 </document>

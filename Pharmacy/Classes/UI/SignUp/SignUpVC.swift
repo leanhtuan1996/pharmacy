@@ -86,18 +86,18 @@ class SignUpVC: UIViewController {
         
         let userObject = UserObject(email: email, password: password, fullName: fullName, address: address, phoneNumber: phoneNumber)
         
-        SignIn_UpService.shared.signUp(user: userObject) { (isSuccess, user, error) in
+        SignIn_UpService.shared.signUp(user: userObject) { (user, error) in
             activityIndicatorView.stopAnimating()
-            if isSuccess {
-                
-                if let user = user {
-                    self.appDelegate.signIn_Up(user: user)
-                } else {
-                    print("Invalid User")
-                }
-                
+            
+            if let error = error {
+                self.present(self.showAlert(message: error), animated: true, completion: nil)
+                return
+            }
+            
+            if let user = user {
+                self.appDelegate.signIn_Up(user: user)
             } else {
-                self.present(self.showAlert(message: error!), animated: true, completion: nil)
+                print("Invalid User")
             }
         }
     }

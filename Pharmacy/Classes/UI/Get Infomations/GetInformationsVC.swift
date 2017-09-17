@@ -31,9 +31,13 @@ class GetInformationsVC: UIViewController {
         }
         
         //get info user
-        GetInformationService.shared.getInformations { (isSuccess, Data, Error) in
-            if isSuccess {
-                guard let user = Data else {
+        GetInformationService.shared.getInformations { (user, error) in
+            
+            if let error = error {
+                self.present(self.showAlert(message: error), animated: true, completion: nil)
+                self.navigationController?.popViewController(animated: true)
+            } else {
+                guard let user = user else {
                     self.present(self.showAlert(message: "Data is not available"), animated: true, completion: nil)
                     return
                 }
@@ -42,18 +46,7 @@ class GetInformationsVC: UIViewController {
                 self.txtEmail.text = user.email
                 self.txtPhoneNumber.text = user.phoneNumber
                 self.txtFullname.text = user.fullName
-                
                 UserManager.shared.currentUser = user
-                
-            } else {
-                //Show error
-                guard let err = Error else {
-                    self.present(self.showAlert(message: "Get failed informations"), animated: true, completion: nil)
-                    self.navigationController?.popViewController(animated: true)
-                    return
-                }
-                self.present(self.showAlert(message: err), animated: true, completion: nil)                
-                self.navigationController?.popViewController(animated: true)
             }
         }
     }

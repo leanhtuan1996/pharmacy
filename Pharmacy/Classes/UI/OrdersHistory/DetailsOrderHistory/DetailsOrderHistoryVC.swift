@@ -41,23 +41,21 @@ class DetailsOrderHistoryVC: UIViewController {
             return
         }
         
-        OrderService.shared.getDetailOrder(id: idDrug) { (isSuccess, orderHistory, error) in
-            if isSuccess {
-                if let orderObject = orderHistory {
-                    self.orderHistory = orderObject
-                    self.drugOfOrder = orderObject.drugs
-                    DispatchQueue.main.async {
-                        self.tblDetailsOrder.reloadData()
-                    }
-                } else {
-                    print("GET DETAIL ORDER HISTORY ERROR")
+        OrderService.shared.getDetailOrder(id: idDrug) { (orderHistory, error) in
+            
+            if let error = error {
+                print(error)
+                return
+            }
+            
+            if let orderObject = orderHistory {
+                self.orderHistory = orderObject
+                self.drugOfOrder = orderObject.drugs
+                DispatchQueue.main.async {
+                    self.tblDetailsOrder.reloadData()
                 }
             } else {
-                if let err = error {
-                    print(err)
-                } else {
-                    print("GET DETAIL ORDER HISTORY ERROR")
-                }
+                print("GET DETAIL ORDER HISTORY ERROR")
             }
         }
     }

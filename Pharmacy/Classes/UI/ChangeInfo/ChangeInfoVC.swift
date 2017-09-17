@@ -55,28 +55,23 @@ class ChangeInfoVC: UIViewController {
         
         let userObject = UserObject(email: "", password: currentPw, fullName: fullName, address: address, phoneNumber: phoneNumber)
         
-        UpdateInfoService.shared.updateInfo(user: userObject) { (isSuccess, error) in
+        UpdateInfoService.shared.updateInfo(user: userObject) { (error) in
             activityIndicatorView.stopAnimating()
             self.navigationController?.setNavigationBarHidden(false, animated: true)
-            if isSuccess {
-                
-                //show alert
-                let alert = UIAlertController(title: "Thông báo", message: "Infomations has been updated successfully", preferredStyle: .alert)
-                alert.addAction(.init(title: "Back to main", style: UIAlertActionStyle.default, handler: { (btn) in
-                    UserManager.shared.currentUser = userObject
-                    self.navigationController?.popViewController(animated: true)
-                }))
-                
-                self.present(alert, animated: true, completion: nil)
-                
-            } else {
-                //Show error
-                guard let err = error else {
-                    self.present(self.showAlert(message: "Update failed informations"), animated: true, completion: nil)
-                    return
-                }
-                self.present(self.showAlert(message: err), animated: true, completion: nil)
+            
+            if let error = error {
+                self.present(self.showAlert(message: error), animated: true, completion: nil)
+                return
             }
+            
+            //show alert
+            let alert = UIAlertController(title: "Thông báo", message: "Infomations has been updated successfully", preferredStyle: .alert)
+            alert.addAction(.init(title: "Back to main", style: UIAlertActionStyle.default, handler: { (btn) in
+                UserManager.shared.currentUser = userObject
+                self.navigationController?.popViewController(animated: true)
+            }))
+            
+            self.present(alert, animated: true, completion: nil)
         }
         
     }

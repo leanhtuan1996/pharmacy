@@ -43,25 +43,18 @@ class ChangePwVC: UIViewController {
             return
         }
         
-        UpdatePwService.shared.updatePw(oldPassword: oldPassword, newPassword: newPassword, confirmPw: confirmPassword) { (isSuccess, error) in
-            if isSuccess {
-                //Show Alert 
-                
-                let alert = UIAlertController(title: "Thông báo", message: "Password has been updated successfully", preferredStyle: .alert)
-                alert.addAction(.init(title: "Back to main", style: UIAlertActionStyle.default, handler: { (btn) in
-                    self.navigationController?.popViewController(animated: true)
-                }))
-                
-                self.present(alert, animated: true, completion: nil)
-                
-            } else {
-                //Show error                
-                guard let err = error else {
-                    self.present(self.showAlert(message: "Password update failed"), animated: true, completion: nil)
-                    return
-                }
-                self.present(self.showAlert(message: err), animated: true, completion: nil)
+        UpdatePwService.shared.updatePw(oldPassword: oldPassword, newPassword: newPassword, confirmPw: confirmPassword) { (error) in
+            
+            if let error = error {
+                self.present(self.showAlert(message: error), animated: true, completion: nil)
+                return
             }
+            
+            let alert = UIAlertController(title: "Thông báo", message: "Password has been updated successfully", preferredStyle: .alert)
+            alert.addAction(.init(title: "Back to main", style: UIAlertActionStyle.default, handler: { (btn) in
+                self.navigationController?.popViewController(animated: true)
+            }))
+            self.present(alert, animated: true, completion: nil)
         }
         
         

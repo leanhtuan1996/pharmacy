@@ -36,29 +36,31 @@ class CheckOutVC: UIViewController {
         activityIndicatorView.backgroundColor = UIColor.clear.withAlphaComponent(0.3)
         activityIndicatorView.startAnimating()
 
-        OrderManager.shared.checkOut(drugToOrders: drugsToOrder) { (isSuccess, error) in
+        OrderManager.shared.checkOut(drugToOrders: drugsToOrder) { (error) in
             activityIndicatorView.stopAnimating()
-            if isSuccess {
-                let alert = UIAlertController(title: "Notify", message: "ORDER SUCCESSFULLY", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "CONTINUE TO ORDER", style: .default, handler: { (btn) in
-                    self.navigationController?.popViewController(animated: true)
-                }))
-                
-                self.showStoryBoard(vc: alert)
-                
-            } else {
-                if let err = error {
-                    print("CHECK OUT ERROR: \(err)")
-                } else {
-                    print("CHECK OUT ERROR")
-                }
+            
+            if let error = error {
+                print("CHECK OUT ERROR: \(error)")
+                return
             }
+            
+            let alert = UIAlertController(title: "Notify", message: "ORDER SUCCESSFULLY", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "CONTINUE TO ORDER", style: .default, handler: { (btn) in
+                self.navigationController?.popViewController(animated: true)
+            }))
+            self.showStoryBoard(vc: alert)
         }
         
     }
     
     func getAllOrdersFromCart() {
-        OrderManager.shared.getAllOrdersFromCart { (isSuccess, drug, error) in
+        OrderManager.shared.getAllOrdersFromCart { (drug, error) in
+           
+            if let error = error {
+                print(error)
+                return
+            }
+            
             if let drug = drug {
                 //print(drug.quantity)
                 self.drugsToOrder.append(drug)

@@ -75,33 +75,26 @@ class DrugDialogVC: UIViewController {
         //Gồm thuốc + số lượng
         guard let idDrug = idDrug, let quantity = Int(txtSoLuong.text!) else {
             return
-        }
+        }        
         
-        
-        OrderManager.shared.addToCart(with: Order(idDrug: idDrug, quantity: quantity), completionHandled: { (isSuccess, error) in
-            //activityIndicatorView.stopAnimating()
+        OrderManager.shared.addToCart(with: Order(idDrug: idDrug, quantity: quantity), completionHandled: { (error) in
             
             let alert = UIAlertController(title: "", message: "", preferredStyle: UIAlertControllerStyle.alert)
             
-            if isSuccess {
+            if let error = error {
+                alert.title = "Error"
+                alert.message = error
+                alert.addAction(UIAlertAction(title: "Try again", style: .default, handler: { (btn) in
+                    self.view.removeFromSuperview()
+                }))
+            } else {
                 alert.title = "Successfully"
                 alert.message = "Add to cart Successfully"
                 alert.addAction(UIAlertAction(title: "Continue to buy", style: .default, handler: { (btn) in
                     self.view.removeFromSuperview()
                 }))
-            } else {
-                if let err = error {
-                    //print(err)
-                } else {
-                    print("ERROR NOT FOUND")
-                }
-                
-                alert.title = "Error"
-                alert.message = "Can not add to cart"
-                alert.addAction(UIAlertAction(title: "Try again", style: .default, handler: { (btn) in
-                    self.view.removeFromSuperview()
-                }))
             }
+            
             self.showStoryBoard(vc: alert)
         })
         

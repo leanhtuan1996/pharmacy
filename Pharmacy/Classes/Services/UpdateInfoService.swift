@@ -12,7 +12,7 @@ import Alamofire
 class UpdateInfoService: NSObject {
     static let shared = UpdateInfoService()
     
-    func updateInfo(user: UserObject, completionHandler: @escaping (_ isSuccess: Bool, _ error: String?) -> ()) {
+    func updateInfo(user: UserObject, completionHandler: @escaping (_ error: String?) -> ()) {
         
         let parameters = [
             "currentPassword" : user.password,
@@ -26,8 +26,7 @@ class UpdateInfoService: NSObject {
         .response { (res) in
             //check errors
             if let err = res.error {
-                return completionHandler(false, NetworkManager.shared.handleError(response: res.response, error: err as NSError))
-                
+                return completionHandler(NetworkManager.shared.handleError(response: res.response, error: err as NSError))
             }
             
             //try parse data to json
@@ -36,19 +35,14 @@ class UpdateInfoService: NSObject {
                 if let errs = json["errors"] as? [String] {
                     print(errs)
                     if errs.count > 0 {
-                        return completionHandler(false, "Invalid data format")
-                        
+                        return completionHandler("Invalid data format")
                     }
                 }
-                
-                return completionHandler(true, "Information has been updated successfully")
+                return completionHandler(nil)
                 
             } else {
-                return completionHandler(false, "Invalid data format")
-                
+                return completionHandler("Invalid data format")
             }
-            
         }
     }
-    
 }

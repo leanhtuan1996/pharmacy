@@ -36,8 +36,7 @@ class OrderManager: NSObject {
     let userDefaults = UserDefaults.standard
     
     //add drug to cart
-    func addToCart(with orderObject: Order?, completionHandled: @escaping (_ isSuccess: Bool, _ error: String?) -> Void) {
-        
+    func addToCart(with orderObject: Order?, completionHandled: @escaping (_ error: String?) -> Void) {
         
         var ordersArray:[Order] = []
         
@@ -47,7 +46,7 @@ class OrderManager: NSObject {
             ordersArray.append(order)
             //print("ID: \(order.id), QUANTITY: \(order.quantity)")
         } else {
-            return completionHandled(false, "ORDER NOT FOUND!")
+            return completionHandled("ORDER NOT FOUND!")
         }
         
         //Get orders from NSUserDefault
@@ -66,11 +65,11 @@ class OrderManager: NSObject {
         userDefaults.set(ordersEncode, forKey: "Orders")
         userDefaults.synchronize()
         print("ADD TO CART OKAY")
-        return completionHandled(true, nil)
+        return completionHandled(nil)
     }
     
     //get all order from NSUSERDEFAULTS to show in my cart
-    func getAllOrdersFromCart(completionHanler: @escaping (_ isSuccess: Bool, _ drug: DrugObject?, _ error: String?) -> Void) {
+    func getAllOrdersFromCart(completionHandler: @escaping (_ drug: DrugObject?, _ error: String?) -> Void) {
         
         //Get Drugs-id in Cart
         var ordersArray:[Order] = []
@@ -88,19 +87,15 @@ class OrderManager: NSObject {
         //Call to DrugsService with getDrug function
         
         for drugOrder in ordersArray {
-            DrugsService.shared.getDrug(drugId: drugOrder.idDrug, completionHandler: { (isSuccess, drug, error) in
-                if isSuccess {
+            DrugsService.shared.getDrug(drugId: drugOrder.idDrug, completionHandler: { (drug, error) in
+                if let error = error {
+                    return completionHandler(nil, error)
+                } else {
                     if let drug = drug {
                         drug.quantity = drugOrder.quantity
-                        return completionHanler(true, drug, nil)
+                        return completionHandler(drug, nil)
                     } else {
-                        return completionHanler(false, nil, "ERROR")
-                    }
-                } else {
-                    if let err = error {
-                        return completionHanler(false, nil, err)
-                    } else {
-                        return completionHanler(false, nil, "ERROR")
+                        return completionHandler(nil, "ERROR")
                     }
                 }
             })
@@ -108,7 +103,7 @@ class OrderManager: NSObject {
     }
     
     //ORDER DRUGS
-    func checkOut(drugToOrders: [DrugObject], completionHandler: @escaping (_ isSuccsess: Bool, _ Error: String?) -> Void) {
+    func checkOut(drugToOrders: [DrugObject], completionHandler: @escaping (_ Error: String?) -> Void) {
         
         if drugToOrders.count == 0 {
             return
@@ -135,17 +130,13 @@ class OrderManager: NSObject {
             "date": dateOrder
         ]
         
-        OrderService.shared.newOrder(parameter: parameter) { (isSuccess, error) in
-            //- if success: Delete all order in NSUserDefaults
-            if isSuccess {
-                self.userDefaults.removeObject(forKey: "Orders")
-                return completionHandler(true, nil)
+        OrderService.shared.newOrder(parameter: parameter) { (error) in
+           
+            if let error = error {
+                return completionHandler(error)
             } else {
-                if let err = error {
-                    return completionHandler(false, err)
-                } else {
-                    return completionHandler(false, "ERROR")
-                }
+                self.userDefaults.removeObject(forKey: "Orders")
+                return completionHandler(nil)
             }
         }
     }

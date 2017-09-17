@@ -13,14 +13,14 @@ import Alamofire
 class DrugsService: NSObject {
     static let shared = DrugsService()
     
-    func getDrug(drugId: Int, completionHandler: @escaping (_ isSuccess: Bool, _ Data: DrugObject?, _ Error: String? ) -> Void) {
+    func getDrug(drugId: Int, completionHandler: @escaping (_ Data: DrugObject?, _ Error: String? ) -> Void) {
         Alamofire.request(DrugRouter.getDrug(["drugId": drugId]))
             .validate()
             .response { (res) in
                 
                 // if request error
                 if let err = res.error {
-                    return completionHandler(false, nil, NetworkManager.shared.handleError(response: res.response, error: err as NSError))
+                    return completionHandler(nil, NetworkManager.shared.handleError(response: res.response, error: err as NSError))
                     
                 }
                 
@@ -31,18 +31,18 @@ class DrugsService: NSObject {
                         if let error = json["errors"] as? [String] {
                             //print(error)
                             if error.count > 0 {
-                                return completionHandler(false, nil, error[0])
+                                return completionHandler(nil, error[0])
                                 
                             }
                         }
                         
                         guard let drug = json["drug"] as? [String : Any] else {
-                            return completionHandler(false, nil, "Invalid data format")
+                            return completionHandler(nil, "Invalid data format")
                             
                         }
                         
                         guard let id = drug["id"] as? Int, let name = drug["name"] as? String, let instructions = drug["instructions"] as? String, let formula = drug["formula"] as? String, let contraindication = drug["contraindication"] as? String, let sideEffect = drug["side_effect"] as? String, let howToUse = drug["how_to_use"] as? String, let price = drug["price"] as? Int else {
-                            return completionHandler(false, nil, "Invalid data format")
+                            return completionHandler(nil, "Invalid data format")
                             
                         }
                         
@@ -57,29 +57,29 @@ class DrugsService: NSObject {
                         drugObject.price = price
                         
 //                        return completionHandler(true, DrugObject(id: id, name: name, instructions: instructions, formula: formula, contraindication: contraindication, sideEffect: sideEffect, howToUse: howToUse, price: price), nil)
-                        return completionHandler(true, drugObject, nil)
+                        return completionHandler(drugObject, nil)
                         
                         
                     } else {
-                        return completionHandler(false, nil, "Invalid data format")
+                        return completionHandler(nil, "Invalid data format")
                         
                     }
                     
                 } else {
-                    return completionHandler(false, nil, "Invalid data format")
+                    return completionHandler(nil, "Invalid data format")
                     
                 }
             
         }
     }
     
-    func getDrugs(completionHandler: @escaping (_ isSuccess: Bool, _ Data: [DrugObject?], _ Error: String? ) -> Void) {
+    func getDrugs(completionHandler: @escaping (_ Data: [DrugObject?], _ Error: String? ) -> Void) {
         Alamofire.request(DrugRouter.listOfDrug())
             .validate()
             .response { (res) in
             
                 if let err = res.error {
-                    return completionHandler(false, [nil], NetworkManager.shared.handleError(response: res.response, error: err as NSError))
+                    return completionHandler([nil], NetworkManager.shared.handleError(response: res.response, error: err as NSError))
                     
                 }
                 
@@ -89,7 +89,7 @@ class DrugsService: NSObject {
                     if let err = json["errors"] as? [String]{
                         //print(err)
                         if err.count > 0 {
-                            return completionHandler(false, [nil], err[0])
+                            return completionHandler([nil], err[0])
                             
                         }
                     }
@@ -97,7 +97,7 @@ class DrugsService: NSObject {
                     //convert to array
                     guard let listOfDrugArray = json["listOfDrug"] as? [AnyObject] else {
                         
-                        completionHandler(false, [nil], "Invalid data format")
+                        completionHandler([nil], "Invalid data format")
                         return
                     }
                     
@@ -109,7 +109,7 @@ class DrugsService: NSObject {
                         if let drugObject = Utilities.convertObjectToJson(object: drugData) {
                             
                             guard let id = drugObject["id"] as? Int, let name = drugObject["name"] as? String, let instructions = drugObject["instructions"] as? String, let formula = drugObject["formula"] as? String, let contraindication = drugObject["contraindication"] as? String, let sideEffect = drugObject["side_effect"] as? String, let howToUse = drugObject["how_to_use"] as? String, let price = drugObject["price"] as? Int else {
-                                return completionHandler(false, [nil], "Invalid data format")
+                                return completionHandler([nil], "Invalid data format")
                                 
                             }
                             
@@ -128,45 +128,16 @@ class DrugsService: NSObject {
                             drugs.append(drugObject)
                             
                         } else {
-                            return completionHandler(false, [nil], "Invalid data format")
+                            return completionHandler([nil], "Invalid data format")
                             
                         }
                     }
-                    return completionHandler(true, drugs, nil)
+                    return completionHandler(drugs, nil)
                     
                 } else {
-                    return completionHandler(false, [nil], "Invalid data format")
+                    return completionHandler([nil], "Invalid data format")
                     
                 }
         }
     }
-    
-    func addDrug(parameter: DrugObject, completionHandler: @escaping (_ isSuccess: Bool, _ error: String?) -> Void) {
-        
-        let newDrug: [String: Any] = [
-            "name" : parameter.name,
-            "instructions" : parameter.instructions,
-            "formula" : parameter.formula,
-            "contraindication" : parameter.contraindication,
-            "sideEffect" : parameter.sideEffect,
-            "howToUse" : parameter.howToUse,
-            "price" : parameter.price
-        ]
-        
-        
-        Alamofire.request(DrugRouter.addNewDrug(newDrug))
-        .validate()
-        .response { (res) in
-            
-        }
-    }
-    
-    func updateDrug() {
-        
-    }
-    
-    func deleteDrug() {
-        
-    }
-    
 }

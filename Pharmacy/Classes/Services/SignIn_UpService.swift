@@ -17,7 +17,7 @@ class SignIn_UpService: NSObject {
     
     // MARK: - SIGN IN
     
-    func signIn(email: String, password: String, completionHandler: @escaping (_ success: Bool, _ user: UserObject?, _ error: String?) -> ()) {
+    func signIn(email: String, password: String, completionHandler: @escaping (_ user: UserObject?, _ error: String?) -> ()) {
         
         let parameters = [
             "email" : email,
@@ -27,7 +27,7 @@ class SignIn_UpService: NSObject {
         Alamofire.request(UserRouter.signIn(parameters)).validate().response { (res) in
             //Error handle
             if let err = res.error {
-                return completionHandler(false, nil, NetworkManager.shared.handleError(response: res.response, error: err as NSError))
+                return completionHandler(nil, NetworkManager.shared.handleError(response: res.response, error: err as NSError))
             }
             
             //try parse data to json
@@ -35,17 +35,17 @@ class SignIn_UpService: NSObject {
                 //handle json data
                 //print((json["token"] as! [String]).count)
                 guard let errs = json["errors"] as? [String], let token = json["token"] as? [String] else {
-                    return completionHandler(false, nil, "Invalid data format")
+                    return completionHandler(nil, "Invalid data format")
                 }
                 
                 //login not successfully
                 if errs.count > 0 || token.count == 0 {
-                    return completionHandler(false, nil, errs[0])
+                    return completionHandler(nil, errs[0])
                 }
                 
                 //Check cast "userinfo" to [String : String]
                 guard let userInfoObject = json["userInfo"] as? AnyObject else {
-                    return completionHandler(false, nil, "Invalid data format")
+                    return completionHandler(nil, "Invalid data format")
                 }
                 
                 //login successfully
@@ -53,11 +53,11 @@ class SignIn_UpService: NSObject {
                     print(userInfo)
                     
                     guard let email = userInfo["email"] as? String, let fullName = userInfo["fullname"] as? String, let address = userInfo["address"] as? String, let phoneNumber = userInfo["phonenumber"] as? String, let roleString = userInfo["role"] as? String else {
-                        return completionHandler(false, nil, "Invalid data format")
+                        return completionHandler(nil, "Invalid data format")
                     }
                     
                     guard let role = userRole(rawValue: roleString) else {
-                        return completionHandler(false, nil, "Role not found")
+                        return completionHandler(nil, "Role not found")
                     }
                     
                     let user = UserObject(email: email, password: "", fullName: fullName, address: address, phoneNumber: phoneNumber)
@@ -67,24 +67,24 @@ class SignIn_UpService: NSObject {
                     if token.count != 0 {
                         user.token = token[0]
                         print(user.token)
-                        return completionHandler(true, user, nil)
+                        return completionHandler(user, nil)
                     } else {
-                        return completionHandler(false, nil, "Received with no token")
+                        return completionHandler(nil, "Received with no token")
                         
                     }
                 } else {
-                   return completionHandler(false, nil, "Invalid data format")
+                   return completionHandler(nil, "Invalid data format")
                     
                 }
                 
             } else {
-                return completionHandler(false, nil, "Invalid data format")
+                return completionHandler(nil, "Invalid data format")
             }
         }
     }
     
     // MARK: - SIGN UP
-    func signUp(user: UserObject, completionHandler: @escaping (_ isSuccess: Bool, _ user: UserObject?, _ error: String?) -> ()){
+    func signUp(user: UserObject, completionHandler: @escaping (_ user: UserObject?, _ error: String?) -> ()){
         let parameters = [
             "email" : user.email,
             "password" : user.password,
@@ -98,7 +98,7 @@ class SignIn_UpService: NSObject {
             .response { (res) in
                 
                 if let err = res.error {
-                    return completionHandler(false, nil, NetworkManager.shared.handleError(response: res.response, error: err as NSError))
+                    return completionHandler(nil, NetworkManager.shared.handleError(response: res.response, error: err as NSError))
                     
                 }
                 
@@ -108,14 +108,14 @@ class SignIn_UpService: NSObject {
                     //handle json data
                     
                     guard let errs = json["errors"] as? [String], let token = json["token"] as? [String] else {
-                        return completionHandler(false, nil, "Invalid data format")
+                        return completionHandler(nil, "Invalid data format")
                         
                     }
                     
                     
                     //if sign up not successfully
                     if errs.count > 0 || token.count == 0 {
-                        return completionHandler(false, nil, errs[0])
+                        return completionHandler(nil, errs[0])
                         
                     }
                     
@@ -124,7 +124,7 @@ class SignIn_UpService: NSObject {
                         //print(userInfo)
                         
                         guard let email = userInfo["email"] as? String, let fullName = userInfo["fullname"] as? String, let address = userInfo["address"] as? String, let phoneNumber = userInfo["phonenumber"] as? String else {
-                            return completionHandler(false, nil, "Invalid data format")
+                            return completionHandler(nil, "Invalid data format")
                             
                         }
                         
@@ -132,19 +132,19 @@ class SignIn_UpService: NSObject {
                         
                         if token.count != 0 {
                             user.token = token[0]
-                            return completionHandler(true, user, nil)
+                            return completionHandler(user, nil)
                         } else {
-                            return completionHandler(false, nil, "Sign Up Error")
+                            return completionHandler(nil, "Sign Up Error")
                             
                         }
                         
                     } else {
-                        return completionHandler(false, nil, "Invalid data format")
+                        return completionHandler(nil, "Invalid data format")
                         
                     }
                     
                 } else {
-                    return completionHandler(false, nil, "Invalid data format")
+                    return completionHandler(nil, "Invalid data format")
                     
                 }
         }

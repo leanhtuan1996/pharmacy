@@ -27,22 +27,25 @@ class OrderDrugVC: UIViewController {
     }
     
     func getDrugs() {
-        DrugsService.shared.getDrugs { (isSuccess, drugs, error) in
-            if isSuccess {
-                if let data = drugs as? [DrugObject] {
-                    self.drugs = data
-                    DispatchQueue.main.async {
-                        self.tblDrugs.reloadData()
-                    }
-                    return
-                }
-                
-            } else {
-                if let error = error {
-                    print("ERROR " + error)
-                    return
-                }
+        DrugsService.shared.getDrugs { (drugs, error) in
+            
+            if let error = error {
+                print("ERROR " + error)
+                return
             }
+            
+            if let data = drugs as? [DrugObject] {
+                self.drugs = data
+                DispatchQueue.main.async {
+                    self.tblDrugs.reloadData()
+                }
+                return
+            } else {
+                print("GET DRUGS ERROR")
+                return
+            }
+            
+           
         }
     }
     

@@ -48,27 +48,26 @@ class SignInVC: UIViewController {
         activityIndicatorView.center = self.view.center
         activityIndicatorView.backgroundColor = UIColor.clear.withAlphaComponent(0.3)
         activityIndicatorView.startAnimating()
-
         
-        SignIn_UpService.shared.signIn(email: txtEmail.text!, password: txtPassword.text!) { ( isSuccess, user, error) in
+        guard let email = txtEmail.text, let password = txtPassword.text else {
+            present(showAlert(message: "Email or Password invalid format"), animated: true, completion: nil)
+            return
+        }
+        
+        SignIn_UpService.shared.signIn(email: email, password: password) { (user, error) in
             activityIndicatorView.stopAnimating()
-            if isSuccess {                
-                //Login successfully
-                if let user = user {
-                    self.appDelegate.signIn_Up(user: user)
-                }
-            } else {
+            
+            if let error = error {
                 //Noti login failed
-                self.present(self.showAlert(message: error!), animated: true, completion: nil)
+                self.present(self.showAlert(message: error), animated: true, completion: nil)
+                return
+            }
+            
+            if let user = user {
+                self.appDelegate.signIn_Up(user: user)
             }
         }
     }
-    
-//    @IBAction func btnSignUpClicked(_ sender: Any) {
-//        if let vc = storyboard?.instantiateViewController(withIdentifier: "SignUpVC") as? SignUpVC {
-//            self.navigationController?.pushViewController(vc, animated: true)
-//        }        
-//    }
 }
 
 extension UIViewController {

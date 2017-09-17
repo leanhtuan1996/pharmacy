@@ -11,7 +11,7 @@ import UIKit
 
 
 class PrescriptionVC: UIViewController {
-
+    
     @IBOutlet weak var tblPrescriptions: UITableView!
     @IBOutlet weak var tabControl: UIView!
     @IBOutlet weak var txtSearch: UITextField!
@@ -60,7 +60,7 @@ class PrescriptionVC: UIViewController {
     }
     //Get all prescriptions in NSUSERDEFAULTS
     func getAllPrescriptionsFromUserDefault() {
-        
+        tblPrescriptions.isScrollEnabled = false
         //Get all presciptions from prescription manager
         PrescriptionManager.shared.getAllPrescription { (prescription, error) in
             //if error
@@ -74,6 +74,7 @@ class PrescriptionVC: UIViewController {
                 }
             }
             DispatchQueue.main.async {
+                self.tblPrescriptions.isScrollEnabled = true
                 self.tblPrescriptions.reloadData()
             }
         }
@@ -82,37 +83,42 @@ class PrescriptionVC: UIViewController {
     func getAllPrescriptionsFromService() {
         
         //Get all prescriptions of user from Service
-        PrescriptionService.shared.getPrescriptions { (prescriptionArray, error) in
+        PrescriptionService.shared.getPrescriptions { (prescription, error) in
             if let error = error {
                 print("GET ALL PRESCRIPTION FROM SERVICE NOT COMPLETE WITH ERROR: \(error)")
                 return
             }
             
-            guard let prescriptionArray = prescriptionArray else {
+            guard let prescription = prescription else {
                 print("GET ALL PRESCRIPTION FROM SERVICE NOT COMPLETE WITH ERROR")
                 return
             }
-            
-            for pre in prescriptionArray {
-                switch pre.status {
-                //pending
-                case .pending :
-                    self.prescriptionsPending.append(pre)
-                //accepted
-                case .approved :
-                    self.prescriptionsOrder.append(pre)
-                //rejected
-                case .rejected :
-                    self.prescriptionsRejected.append(pre)
-                default:
-                    break
-                }
+
+            switch prescription.status {
+            //pending
+            case .pending :
+                self.prescriptionsPending.append(prescription)
+            //accepted
+            case .approved :
+                self.prescriptionsOrder.append(prescription)
+            //rejected
+            case .rejected :
+                self.prescriptionsRejected.append(prescription)
+            default:
+                break
             }
-            self.tblPrescriptions.reloadData()
+            
+            DispatchQueue.main.async {
+                self.tblPrescriptions.reloadData()
+                self.btnCreatedPre.isEnabled = true
+                self.btnOrderedPre.isEnabled = true
+                self.btnRejectedPre.isEnabled = true
+                self.btnRequestedPre.isEnabled = true
+            }
             
         }
     }
-
+    
     // - MARK: ACTION
     @IBAction func btnAddPrescriptionClicked(_ sender: Any) {
         if let nav = self.navigationController {
@@ -122,27 +128,36 @@ class PrescriptionVC: UIViewController {
         }
     }
     
-
+    
     @IBAction func btnCreatedPreClicked(_ sender: Any) {
+        btnCreatedPre.isEnabled = false
         selectionType = .creating
+        prescriptionsCreated = []
+        tblPrescriptions.reloadData()
         getAllPrescriptionsFromUserDefault()
     }
     
     @IBAction func btnRequestedPreClicked(_ sender: Any) {
+        btnRequestedPre.isEnabled = false
         selectionType = .pending
         prescriptionsPending = []
+        tblPrescriptions.reloadData()
         getAllPrescriptionsFromService()
     }
     
     @IBAction func btnRejectedPreClicked(_ sender: Any) {
+        btnRejectedPre.isEnabled = false
         selectionType = .rejected
         prescriptionsRejected = []
+        tblPrescriptions.reloadData()
         getAllPrescriptionsFromService()
     }
     
     @IBAction func btnOrderedPreClicked(_ sender: Any) {
+        btnOrderedPre.isEnabled = false
         selectionType = .approved
         prescriptionsOrder = []
+        tblPrescriptions.reloadData()
         getAllPrescriptionsFromService()
     }
 }
@@ -163,10 +178,10 @@ extension PrescriptionVC: UITableViewDataSource, UITableViewDelegate, ManagerPre
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print(selectionType.rawValue)
+        //print(selectionType.rawValue)
         switch selectionType {
         case .creating:
-           
+            
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "SubmitPrescriptionCell", for: indexPath) as? SubmitPrescriptionCell else {
                 return UITableViewCell()
             }
@@ -222,7 +237,16 @@ extension PrescriptionVC: UITableViewDataSource, UITableViewDelegate, ManagerPre
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //print(prescriptionsCreated[indexPath.row].name)
+        switch selectionType {
+        case .approved:
+            print(prescriptionsOrder[indexPath.row].id)
+        case .pending:
+            print(prescriptionsPending[indexPath.row].id)
+        case .rejected:
+            print(prescriptionsRejected[indexPath.row].id)
+        case .creating:
+            print(prescriptionsCreated[indexPath.row].id)
+        }
     }
     
     func deletePre(with id: Int) {

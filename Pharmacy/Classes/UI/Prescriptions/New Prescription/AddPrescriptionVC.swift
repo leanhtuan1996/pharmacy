@@ -46,34 +46,20 @@ class AddPrescriptionVC: UIViewController {
     
     // - MARK: FUNCTIONS
     func getDrugs() {
-        DrugsService.shared.getDrugs { (isSuccess, drugs, error) in
-            if isSuccess {
-                if let data = drugs as? [DrugObject] {
-                   
-//                    if let index = data.index(where: { (drug) -> Bool in
-//                        return drug.id == 1
-//                    }) {
-//                        print(index)
-//                        data.remove(at: index)
-//                    }
-//                    
-//                    print(data.count)
-                    
-                    self.drugs = data
-                    DispatchQueue.main.async {
-                        self.tblListDrugs.reloadData()
-                    }
-                    return
-                }
-                
-            } else {
-                if let error = error {
-                    print("ERROR " + error)
-                    return
-                }
+        DrugsService.shared.getDrugs { (drugs, error) in
+            
+            if let error = error {
+                print("ERROR " + error)
+                return
             }
-            
-            
+            if let data = drugs as? [DrugObject] {
+                
+                self.drugs = data
+                DispatchQueue.main.async {
+                    self.tblListDrugs.reloadData()
+                }
+                return
+            }
         }
     }
     
