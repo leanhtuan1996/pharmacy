@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		360601B51F6E9FFC00D2E630 /* Extensions+UIActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360601B41F6E9FFC00D2E630 /* Extensions+UIActivityIndicatorView.swift */; };
 		3606209D1F6A610100741546 /* AddPrescriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3606209C1F6A610100741546 /* AddPrescriptionVC.swift */; };
 		3606573B1F590DB500B6C2D6 /* OrderDrugVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3606573A1F590DB500B6C2D6 /* OrderDrugVC.swift */; };
 		3606573D1F590E7700B6C2D6 /* DrugNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3606573C1F590E7700B6C2D6 /* DrugNetworking.swift */; };
@@ -73,6 +74,7 @@
 /* Begin PBXFileReference section */
 		053ABE32AC7E87B1E922A5B0 /* Pods-Pharmacy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pharmacy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pharmacy/Pods-Pharmacy.debug.xcconfig"; sourceTree = "<group>"; };
 		1E7969091787900FA307D817 /* Pods-Pharmacy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pharmacy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pharmacy/Pods-Pharmacy.release.xcconfig"; sourceTree = "<group>"; };
+		360601B41F6E9FFC00D2E630 /* Extensions+UIActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+UIActivityIndicatorView.swift"; sourceTree = "<group>"; };
 		3606209C1F6A610100741546 /* AddPrescriptionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPrescriptionVC.swift; sourceTree = "<group>"; };
 		3606573A1F590DB500B6C2D6 /* OrderDrugVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderDrugVC.swift; sourceTree = "<group>"; };
 		3606573C1F590E7700B6C2D6 /* DrugNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrugNetworking.swift; sourceTree = "<group>"; };
@@ -521,6 +523,7 @@
 		36F94D271F6BA00C00AE70CB /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				360601B41F6E9FFC00D2E630 /* Extensions+UIActivityIndicatorView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -687,6 +690,7 @@
 				36AE94891F4D719400DA6AAA /* UpdatePwService.swift in Sources */,
 				36AE948B1F4DBB3C00DA6AAA /* UpdateInfoService.swift in Sources */,
 				36E48DD81F49D5B00085A097 /* ViewController.swift in Sources */,
+				360601B51F6E9FFC00D2E630 /* Extensions+UIActivityIndicatorView.swift in Sources */,
 				3615B5501F6E504700311059 /* DrugsOfOrderPrescriptionCell.swift in Sources */,
 				3678D89F1F662CCE00825990 /* DetailOrderHistoryCells.swift in Sources */,
 				36E271E11F4ADD3900EE3597 /* Utilities.swift in Sources */,

@@ -60,7 +60,6 @@ class PrescriptionVC: UIViewController {
     }
     //Get all prescriptions in NSUSERDEFAULTS
     func getAllPrescriptionsFromUserDefault() {
-        tblPrescriptions.isScrollEnabled = false
         //Get all presciptions from prescription manager
         PrescriptionManager.shared.getAllPrescription { (prescription, error) in
             //if error
@@ -73,10 +72,9 @@ class PrescriptionVC: UIViewController {
                     self.tblPrescriptions.reloadData()
                 }
             }
-            DispatchQueue.main.async {
-                self.tblPrescriptions.isScrollEnabled = true
-                self.tblPrescriptions.reloadData()
-            }
+            
+           self.tblPrescriptions.reloadData()
+            
         }
     }
     
@@ -270,16 +268,10 @@ extension PrescriptionVC: UITableViewDataSource, UITableViewDelegate, ManagerPre
     }
     
     func submitPre(with prescription: PrescriptionObject) {
-        let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
-        activityIndicatorView.color = UIColor.white
-        self.view.addSubview(activityIndicatorView)
-        activityIndicatorView.frame = self.view.bounds
-        activityIndicatorView.center = self.view.center
-        activityIndicatorView.backgroundColor = UIColor.clear.withAlphaComponent(0.3)
-        activityIndicatorView.startAnimating()
-        
+        let activityIndicatorView = UIActivityIndicatorView()
+        activityIndicatorView.showLoadingDialog(toVC: self)
         PrescriptionService.shared.submitPrescription(with: prescription) { (error) in
-            activityIndicatorView.stopAnimating()
+            activityIndicatorView.stopLoadingDialog()
             if let error = error {
                 print("SUBMIT PRESCRIPTION WITH ERROR: \(error)")
                 return

@@ -63,18 +63,14 @@ class AddPrescriptionVC: UIViewController {
     
     func addPrescription(with prescription: PrescriptionObject) {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
-        txtNameOfPre.isEnabled = false
-        let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
-        activityIndicatorView.color = UIColor.white
-        self.view.addSubview(activityIndicatorView)
-        activityIndicatorView.frame = self.view.bounds
-        activityIndicatorView.center = self.view.center
-        activityIndicatorView.backgroundColor = UIColor.clear.withAlphaComponent(0.3)
-        activityIndicatorView.startAnimating()
+
+        let activityIndicatorView = UIActivityIndicatorView()
+        activityIndicatorView.showLoadingDialog(toVC: self)
+
         PrescriptionManager.shared.addPrescription(with: prescription) { (error) in
-            self.txtNameOfPre.isEnabled = true
+        
             self.navigationController?.setNavigationBarHidden(false, animated: true)
-            activityIndicatorView.stopAnimating()
+            activityIndicatorView.stopLoadingDialog()
             if let err = error {
                 print(err)
                 return
@@ -91,7 +87,7 @@ class AddPrescriptionVC: UIViewController {
     
     // - MARK: FUNC IN PROTOCOL
     func addDrug(with drug: DrugObject) {
-        print(drug.id)
+        //print(drug.id)
         drugsSelected.append(drug)
         lblTotalDrugs.text = String(drugsSelected.count)
     }

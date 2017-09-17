@@ -35,7 +35,12 @@ class DrugsOfOrderPrescriptionCell: UITableViewCell {
                 lblQuantity.text = "1"
                 
             } else {
-                lblQuantity.text = String(Int(soluong)! + 1)
+                
+                guard var soluongInt = Int(soluong) else {
+                    return
+                }
+                
+                lblQuantity.text = String(soluongInt + 1)
             }
             
             if let drug = drug {
@@ -51,7 +56,8 @@ class DrugsOfOrderPrescriptionCell: UITableViewCell {
             if soluongInt == 0 {
                 return
             } else {
-                lblQuantity.text = String(Int(soluong)! - 1)
+                
+                lblQuantity.text = String(soluongInt - 1)
             }
             
             if let drug = drug {

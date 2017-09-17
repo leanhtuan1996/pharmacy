@@ -24,7 +24,7 @@ class Utilities: NSObject {
         return nil
     }
     
-    static func convertObjectToJson(object: AnyObject) -> [String: Any]? {
+    static func convertObjectToJson(object: Any) -> [String: Any]? {
         do {
             
             //Convert to Data

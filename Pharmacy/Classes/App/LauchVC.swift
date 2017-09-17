@@ -15,20 +15,17 @@ class LauchVC: UIViewController {
         super.viewDidLoad()
 
         //check token in NSUserDefaults thì vào main
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
-        //delete cart
-        //UserDefaults.standard.removeObject(forKey: "Orders")
-        
-        //appDelegate.SignOut()
-        print(UserManager.shared.getToken() ?? "NIL")
-        
-        if UserManager.shared.isLoggedIn() {
-            authToken = UserManager.shared.getToken()
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.SignOut()
+            print(UserManager.shared.getToken() ?? "NIL")
             
-            appDelegate.showMainView()
-        } else {
-            appDelegate.showSignInView()
+            if UserManager.shared.isLoggedIn() {
+                authToken = UserManager.shared.getToken()
+                
+                appDelegate.showMainView()
+            } else {
+                appDelegate.showSignInView()
+            }
         }
     }
 

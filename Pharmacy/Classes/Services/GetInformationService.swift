@@ -22,8 +22,12 @@ class GetInformationService: NSObject {
                     return completionHandler(nil, NetworkManager.shared.handleError(response: res.response, error: err as NSError))
                 }
                 
+                guard let data = res.data else {
+                    return completionHandler(nil, "Invalid data format")
+                }
+                
                 //try parse data to json
-                if let json = (res.data! as NSData).toDictionary() {
+                if let json = (data as NSData).toDictionary() {
                     //check format
                     if let errs = json["errors"] as? [String] {
                         //print(errs)
@@ -32,8 +36,12 @@ class GetInformationService: NSObject {
                         }
                     }
                     
+                    guard let customerInfoObject = json["customerInfo"] else {
+                        return completionHandler(nil, "Invalid data format")
+                    }
+                    
                     //sign up successfully
-                    if let userInfo = Utilities.convertObjectToJson(object: json["customerInfo"]! as AnyObject) {
+                    if let userInfo = Utilities.convertObjectToJson(object: customerInfoObject) {
                         //print(userInfo)
                         guard let email = userInfo["email"] as? String, let fullName = userInfo["fullname"] as? String, let address = userInfo["address"] as? String, let phoneNumber = userInfo["phonenumber"] as? String else {
                             return completionHandler(nil, "Invalid data format")

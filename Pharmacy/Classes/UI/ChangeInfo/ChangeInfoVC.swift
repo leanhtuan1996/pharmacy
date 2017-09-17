@@ -36,22 +36,14 @@ class ChangeInfoVC: UIViewController {
             return
         }
         
-        let currentPw = txtCurrentPw.text!, fullName = txtFullname.text!, phoneNumber = txtPhonenumber.text!, address = txtAddress.text!
+        guard let currentPw = txtCurrentPw.text, let fullName = txtFullname.text, let phoneNumber = txtPhonenumber.text, let address = txtAddress.text else {
+            return
+        }
         
-        
-        let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
-        activityIndicatorView.color = UIColor.blue
-        self.view.addSubview(activityIndicatorView)
-        activityIndicatorView.frame = self.view.bounds
-        activityIndicatorView.center = self.view.center
-        activityIndicatorView.backgroundColor = UIColor.clear.withAlphaComponent(0.2)
-        
-        
+        let activityIndicatorView = UIActivityIndicatorView()
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         
-        activityIndicatorView.startAnimating()
-        
-        //print("CurrentPW: \(currentPw), fullName: \(fullName), phone: \(phoneNumber), address: \(address)")
+        activityIndicatorView.showLoadingDialog(toVC: self)
         
         let userObject = UserObject(email: "", password: currentPw, fullName: fullName, address: address, phoneNumber: phoneNumber)
         

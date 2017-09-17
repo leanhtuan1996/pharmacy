@@ -29,25 +29,27 @@ class ViewController: UIViewController {
     }
 
     @IBAction func btnUpdatePwClicked(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "changePwVC") as! ChangePwVC
-        
-        navigationController?.pushViewController(vc, animated: true)
-        
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "changePwVC") as? ChangePwVC {
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
 
     @IBAction func btnUpdateInfoClicked(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "changeInfoVC") as! ChangeInfoVC 
-        navigationController?.pushViewController(vc, animated: true)
-        
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "changeInfoVC") as? ChangeInfoVC {
+             navigationController?.pushViewController(vc, animated: true)
+        }
     }
     @IBAction func btnGetInfoClicked(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "GetInformationsVC") as! GetInformationsVC
-        navigationController?.pushViewController(vc, animated: true)
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "GetInformationsVC") as? GetInformationsVC {
+         navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     @IBAction func btnOrderDrugClicked(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "OrderDrugVC") as! OrderDrugVC
-        navigationController?.pushViewController(vc, animated: true)
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "OrderDrugVC") as? OrderDrugVC {
+            navigationController?.pushViewController(vc, animated: true)
+        }
+        
     }
     
     @IBAction func btnLogoutClicked(_sender: Any) {
@@ -55,8 +57,9 @@ class ViewController: UIViewController {
     }
     
     @IBAction func btnOrdersHistoryClicked(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "OrderHistoryVC") as! OrderHistoryVC
-        navigationController?.pushViewController(vc, animated: true)
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "OrderHistoryVC") as? OrderHistoryVC {
+             navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
 }

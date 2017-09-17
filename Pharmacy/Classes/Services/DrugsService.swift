@@ -83,8 +83,12 @@ class DrugsService: NSObject {
                     
                 }
                 
+                guard let data = res.data else {
+                    return completionHandler([nil], "Invalid data format")
+                }
+                
                 //try parse data to json
-                if let json = (res.data! as NSData).toDictionary() {
+                if let json = (data as NSData).toDictionary() {
                     
                     if let err = json["errors"] as? [String]{
                         //print(err)
@@ -96,9 +100,7 @@ class DrugsService: NSObject {
                     
                     //convert to array
                     guard let listOfDrugArray = json["listOfDrug"] as? [AnyObject] else {
-                        
-                        completionHandler([nil], "Invalid data format")
-                        return
+                        return completionHandler([nil], "Invalid data format")
                     }
                     
                     //print(listOfDrugArray)

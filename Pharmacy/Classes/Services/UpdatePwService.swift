@@ -27,8 +27,12 @@ class UpdatePwService: NSObject {
                     
                 }
                 
+                guard let data = res.data else {
+                    return completionHandler("Invalid data format")
+                }
+                
                 //try parse data to json
-                if let json = (res.data! as NSData).toDictionary() {
+                if let json = (data as NSData).toDictionary() {
                     
                     guard let errs = json["errors"] as? [String] else {
                         return completionHandler("Invalid data format")

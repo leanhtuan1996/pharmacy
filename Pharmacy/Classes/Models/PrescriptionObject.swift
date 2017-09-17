@@ -22,13 +22,11 @@ class PrescriptionObject: NSObject, NSCoding {
     var status: Status = Status.creating
     var dateCreate: String = ""
     var drugs: [DrugObject] = []
-    var totalPrice: Int = 0
     
     override init() { super.init() }
     
     required init(coder aDecoder: NSCoder) {
         id = aDecoder.decodeInteger(forKey: "id")
-        totalPrice = aDecoder.decodeInteger(forKey: "totalPrice")
         name = aDecoder.decodeObject(forKey: "name") as? String ?? ""
         status = Status(rawValue: (aDecoder.decodeObject(forKey: "status") as? String ?? "")) ?? .creating
         dateCreate = aDecoder.decodeObject(forKey: "dateCreate") as? String ?? ""
@@ -41,7 +39,6 @@ class PrescriptionObject: NSObject, NSCoding {
         aCoder.encode(name, forKey: "name")
         aCoder.encode(dateCreate, forKey: "dateCreate")
         aCoder.encode(drugs, forKey: "drugs")
-        aCoder.encode(totalPrice, forKey: "totalPrice")
         aCoder.encode(status.rawValue, forKey: "status")
     }
 
