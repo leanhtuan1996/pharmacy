@@ -34,6 +34,41 @@ class OrderPrescriptionVC: UIViewController {
     
     @IBAction func btnOrderClicked(_ sender: Any) {
         
+        if let prescription = prescription, drugsSelected.count > 0 {
+            var drugs:[[String: Any]] = []
+            
+            for drug in drugsSelected {
+                let temp: [String: Any] = [
+                    "id" : drug.id,
+                    "quantity" : drug.quantity
+                ]
+                drugs.append(temp)
+            }
+            
+            let parameter: [String: Any] = [
+                "drugs" : drugs,
+                "date" : Utilities.getDate(),
+                "prescriptionID": prescription.id
+            ]
+            
+            OrderService.shared.newOrder(parameter: parameter, completionHandler: { (error) in
+                
+                let alert = UIAlertController(title: "", message: "", preferredStyle: UIAlertControllerStyle.alert)
+                
+                if let error = error {
+                    alert.title = "Order incompleted"
+                    alert.message = "Order incompleted with error: \(error)"
+                    alert.addAction(UIAlertAction.init(title: "Try again", style: UIAlertActionStyle.default, handler: nil))
+                } else {
+                    alert.title = "Order completed"
+                    alert.message = "Your precription had been completed"
+                    alert.addAction(UIAlertAction.init(title: "Done", style: UIAlertActionStyle.default, handler: nil))
+                }
+                self.showStoryBoard(vc: alert)
+            })
+        } else {
+            print("ERROR")
+        }
     }
 }
 
