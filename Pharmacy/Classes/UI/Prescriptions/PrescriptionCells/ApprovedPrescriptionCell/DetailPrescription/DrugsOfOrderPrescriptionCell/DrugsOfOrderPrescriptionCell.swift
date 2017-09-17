@@ -15,7 +15,7 @@ class DrugsOfOrderPrescriptionCell: UITableViewCell {
     @IBOutlet weak var lblPrice: UILabel!
     @IBOutlet weak var lblQuantity: UILabel!
     
-    var delegate: ActionWhenChooseDrug?
+    var delegate: ChooseDrugOrder?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -40,7 +40,7 @@ class DrugsOfOrderPrescriptionCell: UITableViewCell {
             
             if let drug = drug {
                 drug.quantity = soluongInt + 1
-                //delegate?.addDrug(with: drug)
+                delegate?.choose(with: drug)
             }
         }
         
@@ -56,7 +56,7 @@ class DrugsOfOrderPrescriptionCell: UITableViewCell {
             
             if let drug = drug {
                 drug.quantity = soluongInt - 1
-                //delegate?.addDrug(with: drug)
+                delegate?.choose(with: drug)
             }
         }
     }
