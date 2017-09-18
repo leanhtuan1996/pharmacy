@@ -17,7 +17,7 @@ class PrescriptionManager: NSObject {
     
     //To prescription to userdefaults
     func addPrescription(with prescription: PrescriptionObject, completionHanler: @escaping (_ error: String?) -> Void) {
-       
+        
         prescription.id = currentAllPrescriptions.count
         currentAllPrescriptions.append(prescription)
         addToUserDefault(with: currentAllPrescriptions)
@@ -46,7 +46,7 @@ class PrescriptionManager: NSObject {
             //print(data)
             if let prescriptions = NSKeyedUnarchiver.unarchiveObject(with: data) as? [PrescriptionObject] {
                 currentAllPrescriptions = prescriptions
-                print(currentAllPrescriptions.count)
+                //print(currentAllPrescriptions.count)
                 return completionHandler(currentAllPrescriptions, nil)
                 
             }

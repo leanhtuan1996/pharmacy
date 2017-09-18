@@ -373,7 +373,7 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D4J-EE-drY">
                                                 <rect key="frame" x="0.0" y="0.0" width="85" height="40"/>
-                                                <color key="backgroundColor" red="0.4640318155" green="0.87883341309999996" blue="0.60332518820000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" red="0.0" green="1" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" title="Đã tạo">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1548,7 +1548,7 @@
             <objects>
                 <tabBarController storyboardIdentifier="tabController" automaticallyAdjustsScrollViewInsets="NO" id="JLy-45-nXH" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <tabBar key="tabBar" autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" translucent="NO" itemPositioning="fill" id="qaZ-aS-cNK">
+                    <tabBar key="tabBar" clipsSubviews="YES" contentMode="scaleToFill" translucent="NO" itemPositioning="fill" id="qaZ-aS-cNK">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </tabBar>

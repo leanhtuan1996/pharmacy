@@ -97,7 +97,7 @@ class AddPrescriptionVC: UIViewController {
         if let index = drugsSelected.index(where: { (d) -> Bool in
             return d.id == drug.id
         }) {
-            print(drug.id)
+            //print(drug.id)
             drugsSelected.remove(at: index)
             lblTotalDrugs.text = String(drugsSelected.count)
         }

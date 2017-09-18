@@ -52,9 +52,13 @@ class OrderPrescriptionVC: UIViewController {
     }
     
     @IBAction func btnOrderClicked(_ sender: Any) {
-        
+        let activityIndicatorView = UIActivityIndicatorView()
+        activityIndicatorView.showLoadingDialog(toVC: self)
+        let alert = UIAlertController(title: "", message: "", preferredStyle: UIAlertControllerStyle.alert)
         if let prescription = prescription, drugsSelected.count > 0 {
             var drugs:[[String: Any]] = []
+            
+            
             
             for drug in drugsSelected {
                 let temp: [String: Any] = [
@@ -71,8 +75,7 @@ class OrderPrescriptionVC: UIViewController {
             ]
             
             OrderService.shared.newOrder(parameter: parameter, completionHandler: { (error) in
-                
-                let alert = UIAlertController(title: "", message: "", preferredStyle: UIAlertControllerStyle.alert)
+                activityIndicatorView.stopAnimating()
                 
                 if let error = error {
                     alert.title = "Order incompleted"
@@ -81,12 +84,19 @@ class OrderPrescriptionVC: UIViewController {
                 } else {
                     alert.title = "Order completed"
                     alert.message = "Your precription had been completed"
-                    alert.addAction(UIAlertAction.init(title: "Done", style: UIAlertActionStyle.default, handler: nil))
+                    alert.addAction(UIAlertAction.init(title: "Done", style: UIAlertActionStyle.default, handler: { (btn) in
+                        self.navigationController?.popViewController(animated: true)
+                    }))
                 }
                 self.showStoryBoard(vc: alert)
             })
         } else {
-            print("ERROR")
+            activityIndicatorView.stopAnimating()
+            alert.title = "Drug not selected"
+            alert.message = "Please choose minimize one drug to order"
+            alert.addAction(UIAlertAction.init(title: "Yes", style: UIAlertActionStyle.default, handler: nil))
+            self.showStoryBoard(vc: alert)
+            
         }
     }
 }
@@ -139,7 +149,7 @@ extension OrderPrescriptionVC: UITableViewDelegate, UITableViewDataSource, Choos
             }
         }
         
-        print(drugsSelected.count)
+        //print(drugsSelected.count)
         
         //Cập nhật lại số lượng & giá
         var totalPrice = 0

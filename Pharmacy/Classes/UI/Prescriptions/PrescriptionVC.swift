@@ -8,8 +8,6 @@
 
 import UIKit
 
-
-
 class PrescriptionVC: UIViewController {
     
     @IBOutlet weak var tblPrescriptions: UITableView!
@@ -29,10 +27,9 @@ class PrescriptionVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //UserDefaults.standard.removeObject(forKey: "Prescriptions")
+        
         tblPrescriptions.dataSource = self
         tblPrescriptions.delegate = self
-        //tblPrescriptions.rowHeight = UITableViewAutomaticDimension
         tabControl.layer.cornerRadius = 15
         tabControl.clipsToBounds = true
         txtSearch.layer.cornerRadius = 15
@@ -73,7 +70,7 @@ class PrescriptionVC: UIViewController {
                 }
             }
             
-           self.tblPrescriptions.reloadData()
+            self.tblPrescriptions.reloadData()
             
         }
     }
@@ -100,7 +97,7 @@ class PrescriptionVC: UIViewController {
                 print("GET ALL PRESCRIPTION FROM SERVICE NOT COMPLETE WITH ERROR")
                 return
             }
-
+            
             switch prescription.status {
             //pending
             case .pending :
@@ -116,20 +113,47 @@ class PrescriptionVC: UIViewController {
             }
         }
     }
- 
+    
+    func switchButtonSelection() {
+        switch selectionType {
+        case .approved:
+            btnOrderedPre.backgroundColor = #colorLiteral(red: 0.4640318155, green: 0.8788334131, blue: 0.6033251882, alpha: 1)
+            btnCreatedPre.backgroundColor = UIColor.clear
+            btnRejectedPre.backgroundColor = UIColor.clear
+            btnRequestedPre.backgroundColor = UIColor.clear
+        case .creating:
+            btnCreatedPre.backgroundColor = #colorLiteral(red: 0.4640318155, green: 0.8788334131, blue: 0.6033251882, alpha: 1)
+            btnOrderedPre.backgroundColor = UIColor.clear
+            btnRejectedPre.backgroundColor = UIColor.clear
+            btnRequestedPre.backgroundColor = UIColor.clear
+        case .rejected:
+            btnRejectedPre.backgroundColor = #colorLiteral(red: 0.4640318155, green: 0.8788334131, blue: 0.6033251882, alpha: 1)
+            btnOrderedPre.backgroundColor = UIColor.clear
+            btnCreatedPre.backgroundColor = UIColor.clear
+            btnRequestedPre.backgroundColor = UIColor.clear
+        case .pending:
+            btnRequestedPre.backgroundColor = #colorLiteral(red: 0.4640318155, green: 0.8788334131, blue: 0.6033251882, alpha: 1)
+            btnOrderedPre.backgroundColor = UIColor.clear
+            btnCreatedPre.backgroundColor = UIColor.clear
+            btnRejectedPre.backgroundColor = UIColor.clear
+        }
+    }
+    
     // - MARK: ACTION
     @IBAction func btnAddPrescriptionClicked(_ sender: Any) {
         if let nav = self.navigationController {
             if let sb = storyboard?.instantiateViewController(withIdentifier: "AddPrescriptionVC") as? AddPrescriptionVC {
                 nav.pushViewController(sb, animated: true)
+                
             }
         }
     }
     
     
-    @IBAction func btnCreatedPreClicked(_ sender: Any) {
+    @IBAction func btnCreatedPreClicked(_ sender: UIButton) {
         btnCreatedPre.isEnabled = false
         selectionType = .creating
+        switchButtonSelection()
         prescriptionsCreated = []
         tblPrescriptions.reloadData()
         getAllPrescriptionsFromUserDefault()
@@ -138,6 +162,7 @@ class PrescriptionVC: UIViewController {
     @IBAction func btnRequestedPreClicked(_ sender: Any) {
         btnRequestedPre.isEnabled = false
         selectionType = .pending
+        switchButtonSelection()
         prescriptionsPending = []
         tblPrescriptions.reloadData()
         getAllPrescriptionsFromService()
@@ -146,6 +171,7 @@ class PrescriptionVC: UIViewController {
     @IBAction func btnRejectedPreClicked(_ sender: Any) {
         btnRejectedPre.isEnabled = false
         selectionType = .rejected
+        switchButtonSelection()
         prescriptionsRejected = []
         tblPrescriptions.reloadData()
         getAllPrescriptionsFromService()
@@ -154,6 +180,7 @@ class PrescriptionVC: UIViewController {
     @IBAction func btnOrderedPreClicked(_ sender: Any) {
         btnOrderedPre.isEnabled = false
         selectionType = .approved
+        switchButtonSelection()
         prescriptionsOrder = []
         tblPrescriptions.reloadData()
         getAllPrescriptionsFromService()
@@ -186,7 +213,6 @@ extension PrescriptionVC: UITableViewDataSource, UITableViewDelegate, ManagerPre
             cell.prescription = prescriptionsCreated[indexPath.row]
             cell.lblName.text = prescriptionsCreated[indexPath.row].name
             cell.lblTotalDrugs.text = String(prescriptionsCreated[indexPath.row].drugs.count)
-            //cell.lblTotalPrice.text = String(prescriptionsCreated[indexPath.row].totalPrice) + " VND"
             cell.lblStatus.text = prescriptionsCreated[indexPath.row].status.rawValue
             cell.lblDateCreated.text = prescriptionsCreated[indexPath.row].dateCreate
             cell.delegate = self
@@ -208,7 +234,6 @@ extension PrescriptionVC: UITableViewDataSource, UITableViewDelegate, ManagerPre
             }
             cell.prescription = prescriptionsOrder[indexPath.row]
             cell.lblName.text = prescriptionsOrder[indexPath.row].name
-            //cell.lblTotalPrice.text = String(prescriptionsOrder[indexPath.row].totalPrice) + " VND"
             cell.lblStatus.text = prescriptionsOrder[indexPath.row].status.rawValue
             cell.lblDateCreated.text = prescriptionsOrder[indexPath.row].dateCreate
             return cell
@@ -229,7 +254,7 @@ extension PrescriptionVC: UITableViewDataSource, UITableViewDelegate, ManagerPre
         case .approved:
             return 100
         case .pending:
-           return 100
+            return 100
         case .rejected:
             return 100
         case .creating:
