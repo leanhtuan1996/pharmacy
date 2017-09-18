@@ -32,6 +32,8 @@
 		3615B54D1F6E20CF00311059 /* OrderPrescriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3615B54C1F6E20CF00311059 /* OrderPrescriptionVC.swift */; };
 		3615B5501F6E504700311059 /* DrugsOfOrderPrescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3615B54E1F6E504700311059 /* DrugsOfOrderPrescriptionCell.swift */; };
 		3615B5511F6E504700311059 /* DrugsOfOrderPrescriptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3615B54F1F6E504700311059 /* DrugsOfOrderPrescriptionCell.xib */; };
+		363EC31A1F6F97CE00159A9C /* Admin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 363EC3191F6F97CE00159A9C /* Admin.storyboard */; };
+		363EC31F1F6F987700159A9C /* DrugsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363EC31E1F6F987700159A9C /* DrugsVC.swift */; };
 		3678D89B1F6627E900825990 /* DetailsOrderHistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3678D89A1F6627E900825990 /* DetailsOrderHistoryVC.swift */; };
 		3678D89F1F662CCE00825990 /* DetailOrderHistoryCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3678D89D1F662CCE00825990 /* DetailOrderHistoryCells.swift */; };
 		3678D8A01F662CCE00825990 /* DetailOrderHistoryCells.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3678D89E1F662CCE00825990 /* DetailOrderHistoryCells.xib */; };
@@ -106,6 +108,8 @@
 		3615B54C1F6E20CF00311059 /* OrderPrescriptionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderPrescriptionVC.swift; sourceTree = "<group>"; };
 		3615B54E1F6E504700311059 /* DrugsOfOrderPrescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrugsOfOrderPrescriptionCell.swift; sourceTree = "<group>"; };
 		3615B54F1F6E504700311059 /* DrugsOfOrderPrescriptionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DrugsOfOrderPrescriptionCell.xib; sourceTree = "<group>"; };
+		363EC3191F6F97CE00159A9C /* Admin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Admin.storyboard; sourceTree = "<group>"; };
+		363EC31E1F6F987700159A9C /* DrugsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrugsVC.swift; sourceTree = "<group>"; };
 		3678D89A1F6627E900825990 /* DetailsOrderHistoryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsOrderHistoryVC.swift; sourceTree = "<group>"; };
 		3678D89D1F662CCE00825990 /* DetailOrderHistoryCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailOrderHistoryCells.swift; sourceTree = "<group>"; };
 		3678D89E1F662CCE00825990 /* DetailOrderHistoryCells.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailOrderHistoryCells.xib; sourceTree = "<group>"; };
@@ -239,6 +243,30 @@
 				3615B54F1F6E504700311059 /* DrugsOfOrderPrescriptionCell.xib */,
 			);
 			path = DrugsOfOrderPrescriptionCell;
+			sourceTree = "<group>";
+		};
+		363EC31B1F6F97E700159A9C /* Admin */ = {
+			isa = PBXGroup;
+			children = (
+				363EC31D1F6F985100159A9C /* Drugs */,
+				363EC31C1F6F984700159A9C /* Prescriptions */,
+			);
+			path = Admin;
+			sourceTree = "<group>";
+		};
+		363EC31C1F6F984700159A9C /* Prescriptions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Prescriptions;
+			sourceTree = "<group>";
+		};
+		363EC31D1F6F985100159A9C /* Drugs */ = {
+			isa = PBXGroup;
+			children = (
+				363EC31E1F6F987700159A9C /* DrugsVC.swift */,
+			);
+			path = Drugs;
 			sourceTree = "<group>";
 		};
 		3678D8991F6627C200825990 /* DetailsOrderHistory */ = {
@@ -428,6 +456,7 @@
 				36E48DC61F49D3BF0085A097 /* Main.storyboard */,
 				36E48DD91F49DC1F0085A097 /* SignInUp.storyboard */,
 				36E5F2101F6108B700BDCC9D /* DrugDetailDialog.storyboard */,
+				363EC3191F6F97CE00159A9C /* Admin.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -443,6 +472,7 @@
 		36E48DD31F49D59B0085A097 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				363EC31B1F6F97E700159A9C /* Admin */,
 				36802D851F695AAC00E00ACB /* Prescriptions */,
 				3614F15E1F6555D900861CBC /* OrdersHistory */,
 				360657391F590D9B00B6C2D6 /* Order drugs */,
@@ -623,6 +653,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3615B5511F6E504700311059 /* DrugsOfOrderPrescriptionCell.xib in Resources */,
+				363EC31A1F6F97CE00159A9C /* Admin.storyboard in Resources */,
 				36E48DCA1F49D3BF0085A097 /* Assets.xcassets in Resources */,
 				368303C71F6D0BF700F7DB70 /* RejectedPrescriptionCell.xib in Resources */,
 				36F94D251F6A7A8800AE70CB /* DrugOfNewPresciptionCell.xib in Resources */,
@@ -748,6 +779,7 @@
 				36AE948E1F4FCDBC00DA6AAA /* GetInformationsVC.swift in Sources */,
 				36E271E71F4AF94C00EE3597 /* UserNetworking.swift in Sources */,
 				361304BB1F6F577A008F0364 /* Extensions+String.swift in Sources */,
+				363EC31F1F6F987700159A9C /* DrugsVC.swift in Sources */,
 				36E5F2161F6124DA00BDCC9D /* OrderManager.swift in Sources */,
 				3606573D1F590E7700B6C2D6 /* DrugNetworking.swift in Sources */,
 				36E48DEB1F49F5360085A097 /* SignIn_UpService.swift in Sources */,

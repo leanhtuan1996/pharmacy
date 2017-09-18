@@ -43,4 +43,20 @@ class UserManager: NSObject {
             userDefault.removeObject(forKey: "token")
         }
     }
+    
+    func verifyToken(completionHandler: @escaping(_ role: userRole?, _ error: String?) -> Void) {
+        if let token = userDefault.object(forKey: "token") as? String {
+            authToken = token
+            GetInformationService.shared.getInformations(completionHandler: { (user, error) in
+                if let error = error {
+                    return completionHandler(nil, error)
+                }
+                if let user = user {
+                    return completionHandler(user.role, nil)
+                }
+            })
+        } else {
+            return completionHandler(nil, "Verified token failed")
+        }
+    }
 }
