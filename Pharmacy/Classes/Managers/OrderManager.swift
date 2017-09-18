@@ -112,7 +112,7 @@ class OrderManager: NSObject {
         //Call to OrderService with newOrder function
         var ordersArray: [[String : Any]] = []
         
-        let dateOrder = Utilities.getDate()
+        let dateOrder = Date.getDate()
         
         for drug in drugToOrders {
             

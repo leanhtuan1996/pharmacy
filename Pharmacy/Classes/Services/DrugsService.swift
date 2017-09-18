@@ -20,12 +20,12 @@ class DrugsService: NSObject {
                 
                 // if request error
                 if let err = res.error {
-                    return completionHandler(nil, NetworkManager.shared.handleError(response: res.response, error: err as NSError))
+                    return completionHandler(nil, Utilities.handleError(response: res.response, error: err as NSError))
                     
                 }
                 
                 if let data = res.data {
-                    if let json = (data as NSData).toDictionary() {
+                    if let json = data.toDictionary() {
                         
                         //check error
                         if let error = json["errors"] as? [String] {
@@ -79,7 +79,7 @@ class DrugsService: NSObject {
             .response { (res) in
             
                 if let err = res.error {
-                    return completionHandler([nil], NetworkManager.shared.handleError(response: res.response, error: err as NSError))
+                    return completionHandler([nil], Utilities.handleError(response: res.response, error: err as NSError))
                     
                 }
                 
@@ -88,7 +88,7 @@ class DrugsService: NSObject {
                 }
                 
                 //try parse data to json
-                if let json = (data as NSData).toDictionary() {
+                if let json = data.toDictionary() {
                     
                     if let err = json["errors"] as? [String]{
                         //print(err)

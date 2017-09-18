@@ -20,12 +20,12 @@ class OrderService: NSObject {
         .response { (res) in
             
             if let err = res.error {
-                return completionHandler(nil, NetworkManager.shared.handleError(response: res.response, error: err as NSError))
+                return completionHandler(nil, Utilities.handleError(response: res.response, error: err as NSError))
                 
             }
             
             if let data = res.data {
-                if let json = (data as NSData).toDictionary() {
+                if let json = data.toDictionary() {
                     if let error = json["errors"] as? [String] {
                         print(error)
                         if error.count > 0 {
@@ -75,12 +75,12 @@ class OrderService: NSObject {
         .response { (res) in
             
             if let err = res.error {
-                return completionHandler(NetworkManager.shared.handleError(response: res.response, error: err as NSError))
+                return completionHandler(Utilities.handleError(response: res.response, error: err as NSError))
                 
             }
             
             if let data = res.data {
-                if let json = (data as NSData).toDictionary() {
+                if let json = data.toDictionary() {
                     
                     if let error = json["errors"] as? [String] {
                         if error.count > 0 {
@@ -105,10 +105,10 @@ class OrderService: NSObject {
         .validate()
         .response { (res) in
             if let err = res.error {
-                return completionHandler([nil], NetworkManager.shared.handleError(response: res.response, error: err as NSError))
+                return completionHandler([nil], Utilities.handleError(response: res.response, error: err as NSError))
             }
             if let data = res.data {
-                if let json = (data as NSData).toDictionary() {
+                if let json = data.toDictionary() {
                     if let error = json["errors"] as? [String] {
                         if error.count > 0 {
                             print(error)
@@ -129,7 +129,7 @@ class OrderService: NSObject {
                                 print("2")
                                 return completionHandler([nil], "Invalid data format")
                             }
-                            ordersHistory.append(OrderObject(id: id, date: Utilities.convertJsonDateToDate(with: date), totalPrice: total_price, drugs: []))
+                            ordersHistory.append(OrderObject(id: id, date: date.jsonDateToDate(), totalPrice: total_price, drugs: []))
                         } else {
                             print("3")
                             return completionHandler([nil], "Invalid data format")
@@ -159,11 +159,11 @@ class OrderService: NSObject {
         .response { (res) in
             
             if let err = res.error {
-                return completionHandler(nil, NetworkManager.shared.handleError(response: res.response, error: err as NSError))
+                return completionHandler(nil, Utilities.handleError(response: res.response, error: err as NSError))
             }
             
             if let data = res.data {
-                if let json = (data as NSData).toDictionary() {
+                if let json = data.toDictionary() {
                     
                     if let error = json["errors"] as? [String] {
                         print(error)

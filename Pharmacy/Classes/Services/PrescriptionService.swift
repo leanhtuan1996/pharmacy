@@ -17,11 +17,11 @@ class PrescriptionService: NSObject {
             .validate()
             .response { (res) in
                 if let err = res.error {
-                    return completionHandler(nil, NetworkManager.shared.handleError(response: res.response, error: err as NSError))
+                    return completionHandler(nil, Utilities.handleError(response: res.response, error: err as NSError))
                 }
                 
                 if let data = res.data {
-                    if let json = (data as NSData).toDictionary() {
+                    if let json = data.toDictionary() {
                         if let error = json["errors"] as? [String] {
                             if error.count > 0 {
                                 return completionHandler(nil, error[0])
@@ -29,7 +29,7 @@ class PrescriptionService: NSObject {
                         }
                         //if success
                         if let prescriptions = json["prescriptions"] as? [AnyObject] {
-                          
+                            
                             for preObject in prescriptions {
                                 
                                 //convert preObject to Dictionary
@@ -40,7 +40,7 @@ class PrescriptionService: NSObject {
                                     print(id)
                                     let pre = PrescriptionObject()
                                     pre.id = id
-                                    pre.dateCreate = Utilities.convertJsonDateToDate(with: dateCreate)
+                                    pre.dateCreate = dateCreate.jsonDateToDate()
                                     pre.name = "Toa thuốc"
                                     
                                     switch status {
@@ -54,19 +54,20 @@ class PrescriptionService: NSObject {
                                         break
                                     }
                                     //Get detail prescription from id
-                                    self.getDetailPrescription(with: id, completionHandler: { (prescripion, error) in
-                                       
-                                        if let error = error {
-                                            print(error)
-                                            return completionHandler(nil, "Invalid data format")
-                                        }
-                                        
-                                        //get drugs
-                                        if let preObject = prescripion {
-                                            pre.drugs = preObject.drugs
-                                        }
-                                        completionHandler(pre, nil)
-                                    })
+//                                    self.getDetailPrescription(with: id, completionHandler: { (prescripion, error) in
+//
+//                                        if let error = error {
+//                                            print(error)
+//                                            return completionHandler(nil, "Invalid data format")
+//                                        }
+//                                        
+//                                        //get drugs
+//                                        if let preObject = prescripion {
+//                                            pre.drugs = preObject.drugs
+//                                        }
+//                                        completionHandler(pre, nil)
+//                                    })
+                                    completionHandler(pre, nil)
                                 }
                             }
                         } else {
@@ -93,11 +94,11 @@ class PrescriptionService: NSObject {
             .validate()
             .response { (res) in
                 if let error = res.error {
-                    return completionHandler(nil, NetworkManager.shared.handleError(response: res.response, error: error as NSError))
+                    return completionHandler(nil, Utilities.handleError(response: res.response, error: error as NSError))
                 }
                 
                 if let data = res.data {
-                    if let json = (data as NSData).toDictionary() {
+                    if let json = data.toDictionary() {
                         if let error = json["errors"] as? [String] {
                             if error.count > 0 {
                                 print("0")
@@ -162,17 +163,17 @@ class PrescriptionService: NSObject {
         
         let parameter: [String: Any] = [
             "drugs" : drugs,
-            "date" : Utilities.getDate()
+            "date" : Date.getDate()
         ]
         
         Alamofire.request(PrescriptionRouter.newPrescription(parameter)).validate().response { (res) in
             
             if let err = res.error {
-                return completionHandler(NetworkManager.shared.handleError(response: res.response, error: err as NSError))
+                return completionHandler(Utilities.handleError(response: res.response, error: err as NSError))
             }
             
             if let data = res.data {
-                if let json = (data as NSData).toDictionary() {
+                if let json = data.toDictionary() {
                     if let error = json["errors"] as? [String] {
                         if error.count > 0 {
                             return completionHandler(error[0])

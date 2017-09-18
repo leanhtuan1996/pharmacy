@@ -82,6 +82,15 @@ class PrescriptionVC: UIViewController {
         
         //Get all prescriptions of user from Service
         PrescriptionService.shared.getPrescriptions { (prescription, error) in
+            
+            DispatchQueue.main.async {
+                self.tblPrescriptions.reloadData()
+                self.btnCreatedPre.isEnabled = true
+                self.btnOrderedPre.isEnabled = true
+                self.btnRejectedPre.isEnabled = true
+                self.btnRequestedPre.isEnabled = true
+            }
+            
             if let error = error {
                 print("GET ALL PRESCRIPTION FROM SERVICE NOT COMPLETE WITH ERROR: \(error)")
                 return
@@ -105,18 +114,9 @@ class PrescriptionVC: UIViewController {
             default:
                 break
             }
-            
-            DispatchQueue.main.async {
-                self.tblPrescriptions.reloadData()
-                self.btnCreatedPre.isEnabled = true
-                self.btnOrderedPre.isEnabled = true
-                self.btnRejectedPre.isEnabled = true
-                self.btnRequestedPre.isEnabled = true
-            }
-            
         }
     }
-    
+ 
     // - MARK: ACTION
     @IBAction func btnAddPrescriptionClicked(_ sender: Any) {
         if let nav = self.navigationController {
@@ -198,7 +198,6 @@ extension PrescriptionVC: UITableViewDataSource, UITableViewDelegate, ManagerPre
             }
             cell.prescription = prescriptionsPending[indexPath.row]
             cell.lblName.text = prescriptionsPending[indexPath.row].name
-            cell.lblTotalDrug.text = String(prescriptionsPending[indexPath.row].drugs.count)
             cell.lblStatus.text = prescriptionsPending[indexPath.row].status.rawValue
             cell.lblDate.text = prescriptionsPending[indexPath.row].dateCreate
             return cell
@@ -209,7 +208,6 @@ extension PrescriptionVC: UITableViewDataSource, UITableViewDelegate, ManagerPre
             }
             cell.prescription = prescriptionsOrder[indexPath.row]
             cell.lblName.text = prescriptionsOrder[indexPath.row].name
-            cell.lblTotalDrugs.text = String(prescriptionsOrder[indexPath.row].drugs.count)
             //cell.lblTotalPrice.text = String(prescriptionsOrder[indexPath.row].totalPrice) + " VND"
             cell.lblStatus.text = prescriptionsOrder[indexPath.row].status.rawValue
             cell.lblDateCreated.text = prescriptionsOrder[indexPath.row].dateCreate
@@ -242,7 +240,9 @@ extension PrescriptionVC: UITableViewDataSource, UITableViewDelegate, ManagerPre
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch selectionType {
         case .approved:
+            
             if let sb = storyboard?.instantiateViewController(withIdentifier: "OrderPrescriptionVC") as? OrderPrescriptionVC {
+                
                 sb.prescription = prescriptionsOrder[indexPath.row]
                 self.navigationController?.pushViewController(sb, animated: true)
             }

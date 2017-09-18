@@ -12,7 +12,6 @@ class ApprovedPrescriptionCell: UITableViewCell {
     var prescription: PrescriptionObject?
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblDateCreated: UILabel!
-    @IBOutlet weak var lblTotalDrugs: UILabel!
     @IBOutlet weak var lblStatus: UILabel!
     
     

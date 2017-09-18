@@ -27,7 +27,7 @@ class SignIn_UpService: NSObject {
         Alamofire.request(UserRouter.signIn(parameters)).validate().response { (res) in
             //Error handle
             if let err = res.error {
-                return completionHandler(nil, NetworkManager.shared.handleError(response: res.response, error: err as NSError))
+                return completionHandler(nil, Utilities.handleError(response: res.response, error: err as NSError))
             }
             
             guard let data = res.data else {
@@ -35,7 +35,7 @@ class SignIn_UpService: NSObject {
             }
             
             //try parse data to json
-            if let json = (data as NSData).toDictionary() {
+            if let json = data.toDictionary() {
                 //handle json data
                 guard let errs = json["errors"] as? [String], let token = json["token"] as? [String] else {
                     return completionHandler(nil, "Invalid data format")
@@ -47,7 +47,7 @@ class SignIn_UpService: NSObject {
                 }
                 
                 //Check cast "userinfo" to [String : String]
-                guard let userInfoObject = json["userInfo"] as? AnyObject else {
+                guard let userInfoObject = json["userInfo"] else {
                     return completionHandler(nil, "Invalid data format")
                 }
                 
@@ -101,7 +101,7 @@ class SignIn_UpService: NSObject {
             .response { (res) in
                 
                 if let err = res.error {
-                    return completionHandler(nil, NetworkManager.shared.handleError(response: res.response, error: err as NSError))
+                    return completionHandler(nil, Utilities.handleError(response: res.response, error: err as NSError))
                     
                 }
                 
@@ -110,7 +110,7 @@ class SignIn_UpService: NSObject {
                 }
                 
                 //parse data to json
-                if let json = (data as NSData).toDictionary() {
+                if let json = data.toDictionary() {
                     
                     //handle json data
                     guard let errs = json["errors"] as? [String], let token = json["token"] as? [String] else {

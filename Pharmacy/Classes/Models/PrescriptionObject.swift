@@ -41,6 +41,4 @@ class PrescriptionObject: NSObject, NSCoding {
         aCoder.encode(drugs, forKey: "drugs")
         aCoder.encode(status.rawValue, forKey: "status")
     }
-
-    
 }

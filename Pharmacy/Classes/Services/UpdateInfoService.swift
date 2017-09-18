@@ -26,7 +26,7 @@ class UpdateInfoService: NSObject {
         .response { (res) in
             //check errors
             if let err = res.error {
-                return completionHandler(NetworkManager.shared.handleError(response: res.response, error: err as NSError))
+                return completionHandler(Utilities.handleError(response: res.response, error: err as NSError))
             }
             
             guard let data = res.data else {
@@ -34,7 +34,7 @@ class UpdateInfoService: NSObject {
             }
             
             //try parse data to json
-            if let json = (data as NSData).toDictionary() {
+            if let json = data.toDictionary() {
                 
                 if let errs = json["errors"] as? [String] {
                     print(errs)

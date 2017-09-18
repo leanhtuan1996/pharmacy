@@ -14,19 +14,8 @@ class Utilities: NSObject {
         return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: candidate)
     }
     
-    static func convertToDictionary(data: Data) -> [String: Any]? {
-        do {
-            return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-        } catch {
-            print(error.localizedDescription)
-        }
-        
-        return nil
-    }
-    
     static func convertObjectToJson(object: Any) -> [String: Any]? {
         do {
-            
             //Convert to Data
             let jsonData = try JSONSerialization.data(withJSONObject: object, options: JSONSerialization.WritingOptions.prettyPrinted)
             
@@ -67,60 +56,33 @@ class Utilities: NSObject {
 //        tableView.separatorStyle = UITableViewCellSeparatorStyle.none
     }
     
-    static func getDate() -> String {
-        let date = Date()
-        let formater = DateFormatter()
-        formater.dateFormat = "MM/dd/yyyy"
-        let dateOrder = formater.string(from: date)
-        return dateOrder
-    }
-    
-    static func convertJsonDateToDate(with date: String) -> String {
-        //convert JSON datetime to date`
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-        if let dateFormatted = dateFormatter.date(from: date) {
-            //convert date to "yyyy-MM-dd" format
-            dateFormatter.dateFormat = "MM/dd/yyyy"
-            return dateFormatter.string(from: dateFormatted)
-        } else {
-            return ""
+    //Handled Error
+    static func handleError(response: HTTPURLResponse?, error: NSError) -> String {
+        
+        guard let res = response else {
+            return "Error not found"
         }
+        
+        if error.isNoInternetConnectionError() {
+            print("Internet Connection Error")
+            return "Internet Connection Error"
+        } else if error.isRequestTimeOutError() {
+            print("Request TimeOut")
+            return "Request TimeOut"
+        } else if res.isServerNotFound() {
+            print("Server not found")
+            return "Server not found"
+        } else if res.isInternalError() {
+            print("Internal Error")
+            return "Internal Error"
+        }
+        return "Error Not Found"
     }
+   
 }
 
-extension NSData {
-    func toDictionary() -> [String: Any]? {
-        
-        do {
-            return try JSONSerialization.jsonObject(with: self as Data, options: []) as? [String: Any]
-        } catch {
-            print(error.localizedDescription)
-        }
-        
-        return nil
-        
-    }
-}
 
-extension UIViewController {
-    
-    func showStoryBoard(vc: UIViewController?) {
-        if let vc = vc {
-            present(vc, animated: true, completion: nil)
-        }
-    }
-}
 
-extension UINavigationController {
-    
-    func backToViewController(viewController: Swift.AnyClass) {
-        
-        for element in viewControllers as Array {
-            if element.isKind(of: viewController) {
-                self.popToViewController(element, animated: true)
-                break
-            }
-        }
-    }
-}
+
+
+

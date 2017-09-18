@@ -23,9 +23,28 @@ class OrderPrescriptionVC: UIViewController {
         tblDrugs.dataSource = self
         tblDrugs.delegate = self
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         lblName.text = prescription?.name ?? "Name Not Found"
+        
+        if let pre = prescription {
+            //Load detail prescription
+            getDetailPrescription(with: pre.id)
+        }
+    }
+    
+    func getDetailPrescription(with id: Int) {
+        PrescriptionService.shared.getDetailPrescription(with: id) { (pre, error) in
+            if let error = error {
+                print("GET DETAIL PRESCRIPTION WITH ERROR: \(error)")
+                return
+            }
+            
+            if let pre = pre {
+                self.prescription = pre
+                self.tblDrugs.reloadData()
+            }
+        }
     }
     
     @IBAction func btnCancelClicked(_ sender: Any) {
@@ -47,7 +66,7 @@ class OrderPrescriptionVC: UIViewController {
             
             let parameter: [String: Any] = [
                 "drugs" : drugs,
-                "date" : Utilities.getDate(),
+                "date" : Date.getDate(),
                 "prescriptionID": prescription.id
             ]
             
@@ -95,7 +114,7 @@ extension OrderPrescriptionVC: UITableViewDelegate, UITableViewDataSource, Choos
     }
     
     func choose(with drug: DrugObject) {
-        print(drug.quantity)
+        //print(drug.quantity)
         //nếu số lượng = 0 thì xoá trong array
         if drug.quantity == 0 {
             if let index = drugsSelected.index(where: { (drugWhere) -> Bool in

@@ -12,7 +12,6 @@ class PendingPrescriptionCell: UITableViewCell {
     var prescription: PrescriptionObject?
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblDate: UILabel!
-    @IBOutlet weak var lblTotalDrug: UILabel!
     @IBOutlet weak var lblStatus: UILabel!
     
     override func awakeFromNib() {

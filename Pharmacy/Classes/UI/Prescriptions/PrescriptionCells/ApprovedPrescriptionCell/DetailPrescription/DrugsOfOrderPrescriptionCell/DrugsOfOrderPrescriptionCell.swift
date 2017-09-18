@@ -36,7 +36,7 @@ class DrugsOfOrderPrescriptionCell: UITableViewCell {
                 
             } else {
                 
-                guard var soluongInt = Int(soluong) else {
+                guard let soluongInt = Int(soluong) else {
                     return
                 }
                 

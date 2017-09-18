@@ -19,6 +19,13 @@
 		360AFCF71F616D7E001CBB57 /* CheckOutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360AFCF61F616D7E001CBB57 /* CheckOutVC.swift */; };
 		360AFCFF1F616E7F001CBB57 /* OrderDrugsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360AFCFD1F616E7F001CBB57 /* OrderDrugsCell.swift */; };
 		360AFD001F616E7F001CBB57 /* OrderDrugsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 360AFCFE1F616E7F001CBB57 /* OrderDrugsCell.xib */; };
+		360FDCA11F6F688700E902D1 /* Extensions+NSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360FDCA01F6F688700E902D1 /* Extensions+NSError.swift */; };
+		360FDCA31F6F68AB00E902D1 /* Extensions+HTTPURLResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360FDCA21F6F68AB00E902D1 /* Extensions+HTTPURLResponse.swift */; };
+		361304B51F6F5147008F0364 /* Extensions+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361304B41F6F5147008F0364 /* Extensions+Data.swift */; };
+		361304B71F6F5313008F0364 /* Extensions+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361304B61F6F5313008F0364 /* Extensions+UIViewController.swift */; };
+		361304B91F6F535D008F0364 /* Extensions+UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361304B81F6F535D008F0364 /* Extensions+UINavigationController.swift */; };
+		361304BB1F6F577A008F0364 /* Extensions+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361304BA1F6F577A008F0364 /* Extensions+String.swift */; };
+		361304BD1F6F6556008F0364 /* Extensions+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361304BC1F6F6556008F0364 /* Extensions+Date.swift */; };
 		3614F1601F6555FF00861CBC /* OrderHistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3614F15F1F6555FF00861CBC /* OrderHistoryVC.swift */; };
 		3614F1641F65594F00861CBC /* OrderHistoryCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3614F1621F65594F00861CBC /* OrderHistoryCells.swift */; };
 		3614F1651F65594F00861CBC /* OrderHistoryCells.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3614F1631F65594F00861CBC /* OrderHistoryCells.xib */; };
@@ -86,6 +93,13 @@
 		360AFCF61F616D7E001CBB57 /* CheckOutVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckOutVC.swift; sourceTree = "<group>"; };
 		360AFCFD1F616E7F001CBB57 /* OrderDrugsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderDrugsCell.swift; sourceTree = "<group>"; };
 		360AFCFE1F616E7F001CBB57 /* OrderDrugsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderDrugsCell.xib; sourceTree = "<group>"; };
+		360FDCA01F6F688700E902D1 /* Extensions+NSError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+NSError.swift"; sourceTree = "<group>"; };
+		360FDCA21F6F68AB00E902D1 /* Extensions+HTTPURLResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+HTTPURLResponse.swift"; sourceTree = "<group>"; };
+		361304B41F6F5147008F0364 /* Extensions+Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+Data.swift"; sourceTree = "<group>"; };
+		361304B61F6F5313008F0364 /* Extensions+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+UIViewController.swift"; sourceTree = "<group>"; };
+		361304B81F6F535D008F0364 /* Extensions+UINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+UINavigationController.swift"; sourceTree = "<group>"; };
+		361304BA1F6F577A008F0364 /* Extensions+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+String.swift"; sourceTree = "<group>"; };
+		361304BC1F6F6556008F0364 /* Extensions+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+Date.swift"; sourceTree = "<group>"; };
 		3614F15F1F6555FF00861CBC /* OrderHistoryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderHistoryVC.swift; sourceTree = "<group>"; };
 		3614F1621F65594F00861CBC /* OrderHistoryCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderHistoryCells.swift; sourceTree = "<group>"; };
 		3614F1631F65594F00861CBC /* OrderHistoryCells.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderHistoryCells.xib; sourceTree = "<group>"; };
@@ -524,6 +538,13 @@
 			isa = PBXGroup;
 			children = (
 				360601B41F6E9FFC00D2E630 /* Extensions+UIActivityIndicatorView.swift */,
+				361304B41F6F5147008F0364 /* Extensions+Data.swift */,
+				361304B61F6F5313008F0364 /* Extensions+UIViewController.swift */,
+				361304B81F6F535D008F0364 /* Extensions+UINavigationController.swift */,
+				361304BA1F6F577A008F0364 /* Extensions+String.swift */,
+				361304BC1F6F6556008F0364 /* Extensions+Date.swift */,
+				360FDCA01F6F688700E902D1 /* Extensions+NSError.swift */,
+				360FDCA21F6F68AB00E902D1 /* Extensions+HTTPURLResponse.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -679,6 +700,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				361304BD1F6F6556008F0364 /* Extensions+Date.swift in Sources */,
 				3614F1601F6555FF00861CBC /* OrderHistoryVC.swift in Sources */,
 				36802D901F69624800E00ACB /* PrescriptionManager.swift in Sources */,
 				36E48DDE1F49DC5B0085A097 /* SignUpVC.swift in Sources */,
@@ -691,9 +713,12 @@
 				36AE948B1F4DBB3C00DA6AAA /* UpdateInfoService.swift in Sources */,
 				36E48DD81F49D5B00085A097 /* ViewController.swift in Sources */,
 				360601B51F6E9FFC00D2E630 /* Extensions+UIActivityIndicatorView.swift in Sources */,
+				361304B71F6F5313008F0364 /* Extensions+UIViewController.swift in Sources */,
 				3615B5501F6E504700311059 /* DrugsOfOrderPrescriptionCell.swift in Sources */,
+				361304B91F6F535D008F0364 /* Extensions+UINavigationController.swift in Sources */,
 				3678D89F1F662CCE00825990 /* DetailOrderHistoryCells.swift in Sources */,
 				36E271E11F4ADD3900EE3597 /* Utilities.swift in Sources */,
+				361304B51F6F5147008F0364 /* Extensions+Data.swift in Sources */,
 				36802D871F695B6200E00ACB /* PrescriptionVC.swift in Sources */,
 				36AE94901F4FD0EE00DA6AAA /* GetInformationService.swift in Sources */,
 				360657561F593B8300B6C2D6 /* OrderService.swift in Sources */,
@@ -702,6 +727,7 @@
 				360657541F593AC300B6C2D6 /* DrugsService.swift in Sources */,
 				36F94D261F6A7A8800AE70CB /* DrugDialogVC.swift in Sources */,
 				360657581F5A742400B6C2D6 /* OrderObject.swift in Sources */,
+				360FDCA31F6F68AB00E902D1 /* Extensions+HTTPURLResponse.swift in Sources */,
 				36E48DE91F49F2960085A097 /* UserManager.swift in Sources */,
 				36E48DDC1F49DC420085A097 /* SignInVC.swift in Sources */,
 				3615B54D1F6E20CF00311059 /* OrderPrescriptionVC.swift in Sources */,
@@ -712,6 +738,7 @@
 				36E48DE51F49EF170085A097 /* LauchVC.swift in Sources */,
 				3606209D1F6A610100741546 /* AddPrescriptionVC.swift in Sources */,
 				3606573F1F59103B00B6C2D6 /* OrderNetworking.swift in Sources */,
+				360FDCA11F6F688700E902D1 /* Extensions+NSError.swift in Sources */,
 				36E48DC91F49D3BF0085A097 /* AppDelegate.swift in Sources */,
 				36AE94821F4D4D3C00DA6AAA /* ChangePwVC.swift in Sources */,
 				368303931F6CC3CE00F7DB70 /* PrescriptionNetworking.swift in Sources */,
@@ -720,6 +747,7 @@
 				36AE94871F4D52CA00DA6AAA /* ChangeInfoVC.swift in Sources */,
 				36AE948E1F4FCDBC00DA6AAA /* GetInformationsVC.swift in Sources */,
 				36E271E71F4AF94C00EE3597 /* UserNetworking.swift in Sources */,
+				361304BB1F6F577A008F0364 /* Extensions+String.swift in Sources */,
 				36E5F2161F6124DA00BDCC9D /* OrderManager.swift in Sources */,
 				3606573D1F590E7700B6C2D6 /* DrugNetworking.swift in Sources */,
 				36E48DEB1F49F5360085A097 /* SignIn_UpService.swift in Sources */,

@@ -19,7 +19,7 @@ class GetInformationService: NSObject {
             .response { (res) in
                 //check errors
                 if let err = res.error {
-                    return completionHandler(nil, NetworkManager.shared.handleError(response: res.response, error: err as NSError))
+                    return completionHandler(nil, Utilities.handleError(response: res.response, error: err as NSError))
                 }
                 
                 guard let data = res.data else {
@@ -27,7 +27,7 @@ class GetInformationService: NSObject {
                 }
                 
                 //try parse data to json
-                if let json = (data as NSData).toDictionary() {
+                if let json = data.toDictionary() {
                     //check format
                     if let errs = json["errors"] as? [String] {
                         //print(errs)
