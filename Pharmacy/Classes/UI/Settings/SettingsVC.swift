@@ -41,6 +41,8 @@ class SettingsVC: UIViewController {
         
         settings = [updatePwSetting, logoutSetting]
     }
+    
+    
 
 }
 
@@ -66,7 +68,9 @@ extension SettingsVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch settings[indexPath.row].type {
         case .logout:
-            print("logout")
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                appDelegate.SignOut()
+            }
         case .updatePw:
             print("updatePw")
         }
