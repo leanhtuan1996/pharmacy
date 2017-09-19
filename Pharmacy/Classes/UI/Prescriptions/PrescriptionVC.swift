@@ -52,6 +52,7 @@ class PrescriptionVC: UIViewController {
                 nav.setNavigationBarHidden(true, animated: true)
             }
         }
+       
         getAllPrescriptionsFromUserDefault()
         //getAllPrescriptionsFromService()
     }

@@ -24,6 +24,7 @@ class ChangePwVC: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+        
     @IBAction func btnUpdateClicked(_ sender: Any) {
         
         //Check empty fields

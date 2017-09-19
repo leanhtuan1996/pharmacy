@@ -72,7 +72,11 @@ extension SettingsVC: UITableViewDelegate, UITableViewDataSource {
                 appDelegate.SignOut()
             }
         case .updatePw:
-            print("updatePw")
+            if let sb = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ChangePwVC") as? ChangePwVC {
+                self.navigationController?.pushViewController(sb, animated: true)
+            }
+            
+            
         }
     }
 }
