@@ -53,11 +53,24 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hxy-d0-9t0">
+                                <rect key="frame" x="350" y="18.5" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="25" id="J75-fu-Kaf"/>
+                                    <constraint firstAttribute="height" constant="25" id="m7x-Io-DdS"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="delete"/>
+                                <connections>
+                                    <action selector="btnDeleteClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Vbq-lV-thf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="hxy-d0-9t0" firstAttribute="centerY" secondItem="9vR-qw-N0Y" secondAttribute="centerY" id="CN2-NG-YZt"/>
                             <constraint firstItem="9vR-qw-N0Y" firstAttribute="leading" secondItem="ljp-1w-Qmm" secondAttribute="leading" constant="5" id="FU5-95-2Av"/>
                             <constraint firstItem="CLP-DT-5wy" firstAttribute="leading" secondItem="xRr-gm-dr2" secondAttribute="leading" id="GUU-9X-aMd"/>
                             <constraint firstItem="G31-lW-rHr" firstAttribute="top" secondItem="CLP-DT-5wy" secondAttribute="top" id="Ws8-1o-l4Q"/>
+                            <constraint firstAttribute="trailing" secondItem="hxy-d0-9t0" secondAttribute="trailing" constant="10" id="bAG-eL-n09"/>
                             <constraint firstItem="9vR-qw-N0Y" firstAttribute="centerY" secondItem="ljp-1w-Qmm" secondAttribute="centerY" id="dlw-cZ-sbf"/>
                             <constraint firstItem="CLP-DT-5wy" firstAttribute="top" secondItem="xRr-gm-dr2" secondAttribute="bottom" id="nly-5u-3T8"/>
                             <constraint firstItem="G31-lW-rHr" firstAttribute="leading" secondItem="CLP-DT-5wy" secondAttribute="trailing" constant="10" id="pYG-p9-RVm"/>
@@ -83,6 +96,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="delete" width="25" height="25"/>
         <image name="drug" width="35" height="35"/>
     </resources>
 </document>

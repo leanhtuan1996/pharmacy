@@ -11,6 +11,7 @@ import UIKit
 class DrugAdminCell: UITableViewCell {
     
     var drug: DrugObject?
+    var delegate: DrugDelegate?
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblPrice: UILabel!
     override func awakeFromNib() {
@@ -24,4 +25,9 @@ class DrugAdminCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    @IBAction func btnDeleteClicked(_ sender: Any) {
+        if let drug = drug {
+            delegate?.delete(with: drug.id)
+        }
+    }
 }

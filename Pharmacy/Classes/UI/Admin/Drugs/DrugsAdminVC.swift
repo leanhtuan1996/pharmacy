@@ -63,7 +63,7 @@ class DrugsAdminVC: UIViewController {
     }
 }
 
-extension DrugsAdminVC: UITableViewDelegate, UITableViewDataSource {
+extension DrugsAdminVC: UITableViewDelegate, UITableViewDataSource, DrugDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return drugs.count
@@ -77,6 +77,7 @@ extension DrugsAdminVC: UITableViewDelegate, UITableViewDataSource {
         cell.drug = drugs[indexPath.row]
         cell.lblPrice.text = String(drugs[indexPath.row].price)
         cell.lblName.text = drugs[indexPath.row].name
+        cell.delegate = self
         
         return cell
     }
@@ -84,4 +85,32 @@ extension DrugsAdminVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
+    
+    func delete(with id: Int) {
+        
+        let activityIndicatorView = UIActivityIndicatorView()
+        activityIndicatorView.showLoadingDialog(toVC: self)
+        DrugsService.shared.deleteDrug(with: id) { (error) in
+            activityIndicatorView.stopAnimating()
+            if let error = error {
+                self.showAlert(message: "Delete drug failed with error: \(error)", title: "Error", buttons: nil)
+                return
+            }
+            
+            if let index = self.drugs.index(where: { (d) -> Bool in
+                return d.id == id
+            }) {
+                self.drugs.remove(at: index)
+                self.tblDrugs.deleteRows(at: [IndexPath.init(row: index, section: 0)], with: UITableViewRowAnimation.fade)
+            } else {
+                self.getDrugs()
+                self.tblDrugs.reloadData()
+            }
+        }
+    }
+    
+}
+
+protocol DrugDelegate {
+    func delete(with id: Int) -> Void
 }

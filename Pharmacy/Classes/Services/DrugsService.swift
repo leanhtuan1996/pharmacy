@@ -225,7 +225,7 @@ class DrugsService: NSObject {
         }
     }
     
-    func editDrug(with id: Int, completionHandler: @escaping (_ error: String?) -> Void ) {
+    func deleteDrug(with id: Int, completionHandler: @escaping (_ error: String?) -> Void ) {
         let parameter: [String: Any] = [
             "drugId" : id
         ]
