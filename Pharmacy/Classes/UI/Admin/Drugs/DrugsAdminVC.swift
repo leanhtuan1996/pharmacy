@@ -86,6 +86,15 @@ extension DrugsAdminVC: UITableViewDelegate, UITableViewDataSource, DrugDelegate
         return 60
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let sb = storyboard?.instantiateViewController(withIdentifier: "EditDrugAdminVC") as? EditDrugAdminVC else {
+            self.showAlert(message: "View Controller Not Found", title: "error", buttons: nil)
+            return
+        }
+        sb.drug = drugs[indexPath.row]
+        self.navigationController?.pushViewController(sb, animated: true)
+    }
+    
     func delete(with id: Int) {
         
         let activityIndicatorView = UIActivityIndicatorView()
