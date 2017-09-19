@@ -53,20 +53,6 @@ class PrescriptionService: NSObject {
                                     default:
                                         break
                                     }
-                                    //Get detail prescription from id
-//                                    self.getDetailPrescription(with: id, completionHandler: { (prescripion, error) in
-//
-//                                        if let error = error {
-//                                            print(error)
-//                                            return completionHandler(nil, "Invalid data format")
-//                                        }
-//                                        
-//                                        //get drugs
-//                                        if let preObject = prescripion {
-//                                            pre.drugs = preObject.drugs
-//                                        }
-//                                        completionHandler(pre, nil)
-//                                    })
                                     completionHandler(pre, nil)
                                 }
                             }
@@ -191,6 +177,136 @@ class PrescriptionService: NSObject {
                 
             }
         }
+    }
+    
+    // ** FUNCTIONS FOR ADMIN RULE **
+    
+    //Get all prescription of customers
+    func getListPrescriptions(completionHandler: @escaping (_ data: PrescriptionObject?, _ error: String?) -> Void) {
+        Alamofire.request(PrescriptionRouter.getListPrescription())
+            .validate()
+            .response { (res) in
+                if let err = res.error {
+                    return completionHandler(nil, Utilities.handleError(response: res.response, error: err as NSError))
+                }
+                
+                if let data = res.data {
+                    if let json = data.toDictionary() {
+                        if let error = json["errors"] as? [String] {
+                            if error.count > 0 {
+                                return completionHandler(nil, error[0])
+                            }
+                        }
+                        //if success
+                        if let prescriptions = json["prescriptions"] as? [AnyObject] {
+                            
+                            for preObject in prescriptions {
+                                
+                                //convert preObject to Dictionary
+                                if let preDic = Utilities.convertObjectToJson(object: preObject) {
+                                    guard let id = preDic["id"] as? Int, let dateCreate = preDic["date"] as? String, let status = preDic["status"] as? Int else {
+                                        return completionHandler(nil, "Invalid data format")
+                                    }
+                                    
+                                    let pre = PrescriptionObject()
+                                    pre.id = id
+                                    pre.dateCreate = dateCreate.jsonDateToDate()
+                                    pre.name = "Toa thuốc"
+                                    
+                                    switch status {
+                                    case 0 :
+                                        pre.status = Status.pending
+                                    case 1:
+                                        pre.status = Status.approved
+                                    case 2:
+                                        pre.status = Status.rejected
+                                    default:
+                                        break
+                                    }
+                                    completionHandler(pre, nil)
+                                }
+                            }
+                        } else {
+                            print("1")
+                            return completionHandler(nil, "Invalid data format")
+                        }
+                    } else {
+                        print("2")
+                        return completionHandler(nil, "Invalid data format")
+                    }
+                } else {
+                    print("3")
+                    return completionHandler(nil, "Invalid data format")
+                }
+        }
+    }
+    
+    //Accept prescription function
+    func acceptPrescription(withId id: Int, completionHandler: @escaping (_ error: String?) -> Void) {
         
+        let parameter: [String: Any] = [
+            "prescriptionID" : id
+        ]
+        
+        Alamofire.request(PrescriptionRouter.appceptPrescription(parameter))
+            .validate()
+            .response { (res) in
+                if let err = res.error {
+                    return completionHandler(Utilities.handleError(response: res.response, error: err as NSError))
+                }
+                
+                if let data = res.data {
+                    if let json = data.toDictionary() {
+                        if let error = json["errors"] as? [String] {
+                            if error.count > 0 {
+                                return completionHandler(error[0])
+                            } else {
+                                return completionHandler(nil)
+                            }
+                        } else {
+                            return completionHandler("Invalid data format")
+                        }
+                    } else {
+                        return completionHandler("Invalid data format")
+                    }
+                } else {
+                    return completionHandler("Invalid data format")
+                    
+                }
+        }
+    }
+    
+    //Reject prescription function
+    func rejectPrescription(withId id: Int, completionHandler: @escaping (_ error: String?) -> Void) {
+        let parameter: [String: Any] = [
+            "prescriptionID" : id
+        ]
+        
+        Alamofire.request(PrescriptionRouter.rejectPrescription(parameter))
+            .validate()
+            .response { (res) in
+                if let err = res.error {
+                    return completionHandler(Utilities.handleError(response: res.response, error: err as NSError))
+                }
+                
+                if let data = res.data {
+                    if let json = data.toDictionary() {
+                        if let error = json["errors"] as? [String] {
+                            if error.count > 0 {
+                                return completionHandler(error[0])
+                            } else {
+                                return completionHandler(nil)
+                            }
+                        } else {
+                            return completionHandler("Invalid data format")
+                        }
+                    } else {
+                        return completionHandler("Invalid data format")
+                    }
+                } else {
+                    return completionHandler("Invalid data format")
+                    
+                }
+        }
     }
 }

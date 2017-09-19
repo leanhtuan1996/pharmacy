@@ -52,7 +52,16 @@ class UserManager: NSObject {
                     return completionHandler(nil, error)
                 }
                 if let user = user {
-                    return completionHandler(user.role, nil)
+                    
+                    if user.email.hasPrefix("admin") {
+                        user.role = userRole.admin
+                        return completionHandler(user.role, nil)
+                    } else {
+                        user.role = userRole.customer
+                        return completionHandler(user.role, nil)
+                    }
+                    
+                    
                 }
             })
         } else {

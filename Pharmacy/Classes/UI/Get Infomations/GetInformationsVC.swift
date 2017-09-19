@@ -34,11 +34,12 @@ class GetInformationsVC: UIViewController {
         GetInformationService.shared.getInformations { (user, error) in
             
             if let error = error {
-                self.present(self.showAlert(message: error), animated: true, completion: nil)
+                self.showAlert(message: error, title: "Get informations error", buttons: nil)
+                //self.present(self.showAlert(message: error), animated: true, completion: nil)
                 self.navigationController?.popViewController(animated: true)
             } else {
                 guard let user = user else {
-                    self.present(self.showAlert(message: "Data is not available"), animated: true, completion: nil)
+                    self.showAlert(message: "Data is not available", title: "Get information failed", buttons: nil)
                     return
                 }
                 

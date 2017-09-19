@@ -28,7 +28,7 @@ class ChangePwVC: UIViewController {
         
         //Check empty fields
         if !(txtOldPw.hasText && txtConfirmPw.hasText && txtNewPw.hasText) {
-            present(showAlert(message: "Fields are required"), animated: true, completion: nil)
+            self.showAlert(message: "Fields are required", title: "Fields have be not empty", buttons: nil)
             return
         }
         
@@ -39,28 +39,25 @@ class ChangePwVC: UIViewController {
         
         //check match between newPw & confirmPw
         if newPassword != confirmPassword {
-            present(showAlert(message: "Retype new password not match"), animated: true, completion: nil)
+            self.showAlert(message: "Retype new password not match", title: "Error", buttons: nil)
             return
         }
         
         UpdatePwService.shared.updatePw(oldPassword: oldPassword, newPassword: newPassword, confirmPw: confirmPassword) { (error) in
             
             if let error = error {
-                self.present(self.showAlert(message: error), animated: true, completion: nil)
+                self.showAlert(message: error, title: "Update password error", buttons: nil)
                 return
             }
             
-            let alert = UIAlertController(title: "Thông báo", message: "Password has been updated successfully", preferredStyle: .alert)
-            alert.addAction(.init(title: "Back to main", style: UIAlertActionStyle.default, handler: { (btn) in
+            let action = UIAlertAction(title: "Back to main", style: UIAlertActionStyle.default, handler: { (btn) in
                 self.navigationController?.popViewController(animated: true)
-            }))
-            self.present(alert, animated: true, completion: nil)
+            })
+            
+            self.showAlert(message: "Password has been updated successfully", title: "Thông báo", buttons: [action])
         }
-        
-        
     }
     @IBAction func btnCancelClicked(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
-   
 }

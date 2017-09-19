@@ -32,7 +32,7 @@ class ChangeInfoVC: UIViewController {
         
         //check empty
         if !(txtCurrentPw.hasText && txtFullname.hasText && txtAddress.hasText && txtPhonenumber.hasText) {
-            present(showAlert(message: "Fields can not empty"), animated: true, completion: nil)
+            self.showAlert(message: "Fields can not empty", title: "Fields are required", buttons: nil)
             return
         }
         
@@ -52,7 +52,7 @@ class ChangeInfoVC: UIViewController {
             self.navigationController?.setNavigationBarHidden(false, animated: true)
             
             if let error = error {
-                self.present(self.showAlert(message: error), animated: true, completion: nil)
+                self.showAlert(message: error, title: "Update information failed", buttons: nil)
                 return
             }
             

@@ -31,26 +31,21 @@ class SignInVC: UIViewController {
     
     @IBAction func btnSignInClicked(_ sender: Any) {
         if !txtEmail.hasText {
-            present(showAlert(message: "Email can not empty"), animated: true, completion: nil)
+            self.showAlert(message: "Email can not empty", title: "Field are required", buttons: nil)
             return
         } else if !txtPassword.hasText {
-            present(showAlert(message: "Password can not empty"), animated: true, completion: nil)
+            self.showAlert(message: "Password can not empty", title: "Field are required", buttons: nil)
             return
         } else if !Utilities.validateEmail(candidate: txtEmail.text!) {
-            present(showAlert(message: "Email invalid format"), animated: true, completion: nil)
+            self.showAlert(message: "Email invalid format", title: "Field are required", buttons: nil)
             return
         }
         
-        let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
-        activityIndicatorView.color = UIColor.white
-        self.view.addSubview(activityIndicatorView)
-        activityIndicatorView.frame = self.view.bounds
-        activityIndicatorView.center = self.view.center
-        activityIndicatorView.backgroundColor = UIColor.clear.withAlphaComponent(0.3)
-        activityIndicatorView.startAnimating()
+        let activityIndicatorView = UIActivityIndicatorView()
+        activityIndicatorView.showLoadingDialog(toVC: self)
         
         guard let email = txtEmail.text, let password = txtPassword.text else {
-            present(showAlert(message: "Email or Password invalid format"), animated: true, completion: nil)
+            self.showAlert(message: "Email or Password invalid format", title: "Fields have be not empty", buttons: nil)
             return
         }
         
@@ -59,7 +54,7 @@ class SignInVC: UIViewController {
             
             if let error = error {
                 //Noti login failed
-                self.present(self.showAlert(message: error), animated: true, completion: nil)
+                self.showAlert(message: "Sign In error: \(error)", title: "Sign in not success", buttons: nil)
                 return
             }
             
@@ -67,13 +62,5 @@ class SignInVC: UIViewController {
                 self.appDelegate.signIn_Up(user: user)
             }
         }
-    }
-}
-
-extension UIViewController {
-    func showAlert(message:String) -> UIAlertController {
-        let alert:UIAlertController = UIAlertController(title: "ERROR", message: message, preferredStyle: .alert)
-        alert.addAction(.init(title: "Ok", style: .default, handler: nil))
-        return alert
     }
 }

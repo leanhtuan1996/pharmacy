@@ -126,7 +126,6 @@ class DrugsService: NSObject {
                             drugObject.howToUse = howToUse
                             drugObject.price = price
                             
-//                            drugs.append(DrugObject(id: id, name: name, instructions: instructions, formula: formula, contraindication: contraindication, sideEffect: sideEffect, howToUse: howToUse, price: price))
                             drugs.append(drugObject)
                             
                         } else {
@@ -142,4 +141,122 @@ class DrugsService: NSObject {
                 }
         }
     }
+    
+    func addDrug(drug: DrugObject, completionHandler: @escaping(_ error: String?) -> Void ) {
+        
+        let parameter: [String: Any] = [
+            "name" : drug.name,
+            "instructions" : drug.instructions,
+            "formula" : drug.formula,
+            "contraindication" : drug.contraindication,
+            "sideEffect" : drug.sideEffect,
+            "howToUse" : drug.howToUse,
+            "price" : drug.price
+        ]
+        
+        Alamofire.request(DrugRouter.addNewDrug(parameter))
+            .validate()
+            .response { (res) in
+                if let err = res.error {
+                    return completionHandler(Utilities.handleError(response: res.response, error: err as NSError))
+                }
+                
+                guard let data = res.data else {
+                    return completionHandler("Invalid data format")
+                }
+                
+                //try parse data to json
+                if let json = data.toDictionary() {
+                    
+                    if let err = json["errors"] as? [String]{
+                        //print(err)
+                        if err.count > 0 {
+                            return completionHandler(err[0])
+                        }
+                    }
+                    return completionHandler(nil)
+                    
+                } else {
+                    return completionHandler("Invalid data format")
+                    
+                }
+        }
+        
+    }
+    
+    func editDrug(drug: DrugObject, completionHandler: @escaping (_ error: String?) -> Void ) {
+        let parameter: [String: Any] = [
+            "drugId" : drug.id,
+            "name" : drug.name,
+            "instructions" : drug.instructions,
+            "formula" : drug.formula,
+            "contraindication" : drug.contraindication,
+            "sideEffect" : drug.sideEffect,
+            "howToUse" : drug.howToUse,
+            "price" : drug.price
+        ]
+        
+        Alamofire.request(DrugRouter.updateDrug(parameter))
+            .validate()
+            .response { (res) in
+                if let err = res.error {
+                    return completionHandler(Utilities.handleError(response: res.response, error: err as NSError))
+                }
+                
+                guard let data = res.data else {
+                    return completionHandler("Invalid data format")
+                }
+                
+                //try parse data to json
+                if let json = data.toDictionary() {
+                    
+                    if let err = json["errors"] as? [String]{
+                        //print(err)
+                        if err.count > 0 {
+                            return completionHandler(err[0])
+                        }
+                    }
+                    return completionHandler(nil)
+                    
+                } else {
+                    return completionHandler("Invalid data format")
+                    
+                }
+        }
+    }
+    
+    func editDrug(with id: Int, completionHandler: @escaping (_ error: String?) -> Void ) {
+        let parameter: [String: Any] = [
+            "drugId" : id
+        ]
+        
+        Alamofire.request(DrugRouter.deleteDrug(parameter))
+            .validate()
+            .response { (res) in
+                if let err = res.error {
+                    return completionHandler(Utilities.handleError(response: res.response, error: err as NSError))
+                }
+                
+                guard let data = res.data else {
+                    return completionHandler("Invalid data format")
+                }
+                
+                //try parse data to json
+                if let json = data.toDictionary() {
+                    
+                    if let err = json["errors"] as? [String]{
+                        //print(err)
+                        if err.count > 0 {
+                            return completionHandler(err[0])
+                        }
+                    }
+                    return completionHandler(nil)
+                    
+                } else {
+                    return completionHandler("Invalid data format")
+                    
+                }
+        }
+    }
+    
 }

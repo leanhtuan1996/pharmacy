@@ -238,13 +238,13 @@ extension PrescriptionVC: UITableViewDataSource, UITableViewDelegate, ManagerPre
             cell.lblDateCreated.text = prescriptionsOrder[indexPath.row].dateCreate
             return cell
         case .rejected:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "RejectedPrescriptionCell", for: indexPath) as? PendingPrescriptionCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "RejectedPrescriptionCell", for: indexPath) as? RejectedPrescriptionCell else {
                 return UITableViewCell()
             }
             cell.prescription = prescriptionsRejected[indexPath.row]
             cell.lblName.text = prescriptionsRejected[indexPath.row].name
             cell.lblStatus.text = prescriptionsRejected[indexPath.row].status.rawValue
-            cell.lblDate.text = prescriptionsRejected[indexPath.row].dateCreate
+            cell.lblDateCreated.text = prescriptionsRejected[indexPath.row].dateCreate
             return cell
         }
     }

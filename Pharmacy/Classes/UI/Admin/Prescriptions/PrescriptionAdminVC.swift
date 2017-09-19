@@ -10,26 +10,130 @@ import UIKit
 
 class PrescriptionAdminVC: UIViewController {
 
+    var prescriptions: [PrescriptionObject] = []
+    @IBOutlet weak var tblPrescriptions: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        tblPrescriptions.register(UINib(nibName: "PrescriptionsAdminCell", bundle: nil), forCellReuseIdentifier: "PrescriptionsAdminCell")
+        tblPrescriptions.delegate = self
+        tblPrescriptions.dataSource = self
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(_ animated: Bool) {
+        getAllPrescriptionsFromService()
     }
-    */
-
+    
+    func getAllPrescriptionsFromService() {
+        prescriptions = []
+        //Get all prescriptions of user from Service
+        PrescriptionService.shared.getListPrescriptions { (prescription, error) in
+            
+            self.tblPrescriptions.reloadData()
+            
+            if let error = error {
+                print("GET ALL PRESCRIPTION FROM SERVICE NOT COMPLETE WITH ERROR: \(error)")
+                return
+            }
+            
+            guard let prescription = prescription else {
+                print("GET ALL PRESCRIPTION FROM SERVICE NOT COMPLETE WITH ERROR")
+                return
+            }
+            
+            switch prescription.status {
+            //pending
+            case .pending :
+                self.prescriptions.append(prescription)
+            default:
+                break
+            }
+            
+            DispatchQueue.main.async {
+                self.tblPrescriptions.reloadData()
+            }
+        }
+    }
+   
 }
+
+extension PrescriptionAdminVC: UITableViewDelegate, UITableViewDataSource, PrescriptionReviewHandler {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return prescriptions.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "PrescriptionsAdminCell", for: indexPath) as? PrescriptionsAdminCell else {
+            return UITableViewCell()
+        }
+        
+        cell.prescription = prescriptions[indexPath.row]
+        cell.lblName.text = prescriptions[indexPath.row].name
+        cell.lblDateCreated.text = prescriptions[indexPath.row].dateCreate
+        cell.delegate = self
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
+    
+    func reject(withId id: Int) {
+        let activityIndicatorView = UIActivityIndicatorView()
+        activityIndicatorView.showLoadingDialog(toVC: self)
+        PrescriptionService.shared.rejectPrescription(withId: id) { (error) in
+            activityIndicatorView.stopAnimating()
+            if let error = error {
+                self.showAlert(message: "Reject incomplete with error: \(error)", title: "Error", buttons: nil)
+                return
+            }
+            
+            self.deleteElementInArray(with: id)
+            self.deleteCellInTable(with: id)
+            
+        }
+    }
+    
+    func accept(withId id: Int) {
+        let activityIndicatorView = UIActivityIndicatorView()
+        activityIndicatorView.showLoadingDialog(toVC: self)
+        PrescriptionService.shared.acceptPrescription(withId: id) { (error) in
+            activityIndicatorView.stopAnimating()
+            if let error = error {
+                self.showAlert(message: "Reject incomplete with error: \(error)", title: "Error", buttons: nil)
+                return
+            }
+            self.deleteElementInArray(with: id)
+            self.deleteCellInTable(with: id)
+            
+        }
+    }
+    
+    func deleteCellInTable(with index: Int) {
+        if let index = prescriptions.index(where: { (p) -> Bool in
+            return index == p.id
+        }) {
+            tblPrescriptions.deleteRows(at: [IndexPath.init(row: index, section: 0)], with: UITableViewRowAnimation.fade)
+        }
+        
+        
+    }
+    
+    func deleteElementInArray(with index: Int) {
+        if let index = prescriptions.index(where: { (p) -> Bool in
+            return index == p.id
+        }) {
+            prescriptions.remove(at: index)
+            tblPrescriptions.reloadData()
+        }
+    }
+    
+}
+
+protocol PrescriptionReviewHandler {
+    func reject(withId id: Int) -> Void
+    func accept(withId id: Int) -> Void
+}
+

@@ -70,7 +70,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func showAdminView() {
-        let vc = UIStoryboard(name: "Admin", bundle: nil).instantiateViewController(withIdentifier: "DrugsVC")
+        let vc = UIStoryboard(name: "Admin", bundle: nil).instantiateViewController(withIdentifier: "tabController")
         self.window?.rootViewController = vc
     }
     
@@ -89,8 +89,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             showAdminView()
         case .customer:
             showMainView()
-        case .manager:
-            print("manager")
         }
         
     }

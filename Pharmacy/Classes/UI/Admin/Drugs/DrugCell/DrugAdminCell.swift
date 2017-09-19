@@ -9,7 +9,10 @@
 import UIKit
 
 class DrugAdminCell: UITableViewCell {
-
+    
+    var drug: DrugObject?
+    @IBOutlet weak var lblName: UILabel!
+    @IBOutlet weak var lblPrice: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -17,6 +17,11 @@ enum PrescriptionRouter: URLRequestConvertible {
     case getDetailPrescription([String: Any])
     case newPrescription([String : Any])
     
+    //Action for Admin
+    case getListPrescription()
+    case appceptPrescription([String: Any])
+    case rejectPrescription([String: Any])
+    
     //Variable Method
     var method: Alamofire.HTTPMethod {
         switch self {
@@ -25,6 +30,12 @@ enum PrescriptionRouter: URLRequestConvertible {
         case .newPrescription:
             return .post
         case .getDetailPrescription:
+            return .post
+        case .getListPrescription:
+            return .get
+        case .appceptPrescription:
+            return .post
+        case .rejectPrescription:
             return .post
         }
     }
@@ -38,6 +49,12 @@ enum PrescriptionRouter: URLRequestConvertible {
             return "/new-prescription"
         case .getDetailPrescription:
             return "/get-prescription-detail"
+        case .getListPrescription:
+            return "/admin/get-all-prescriptions"
+        case .appceptPrescription:
+            return "/admin/accept-prescription"
+        case .rejectPrescription:
+            return "/admin/reject-prescription"
         }
     }
     
@@ -59,6 +76,12 @@ enum PrescriptionRouter: URLRequestConvertible {
         case .newPrescription(let parameters):
             return try Alamofire.JSONEncoding.default.encode(urlRequest, with: parameters)
         case .getDetailPrescription(let parameters):
+            return try Alamofire.URLEncoding.default.encode(urlRequest, with: parameters)
+        case .getListPrescription():
+            return try Alamofire.URLEncoding.default.encode(urlRequest, with: [:])
+        case .appceptPrescription(let parameters):
+            return try Alamofire.URLEncoding.default.encode(urlRequest, with: parameters)
+        case .rejectPrescription(let parameters):
             return try Alamofire.URLEncoding.default.encode(urlRequest, with: parameters)
         }
     }

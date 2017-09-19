@@ -8,28 +8,80 @@
 
 import UIKit
 
-class DrugsVC: UIViewController {
+class DrugsAdminVC: UIViewController {
 
+    @IBOutlet weak var tblDrugs: UITableView!
+    var drugs: [DrugObject] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        tblDrugs.register(UINib(nibName: "DrugAdminCell", bundle: nil), forCellReuseIdentifier: "DrugAdminCell")
+        tblDrugs.dataSource = self
+        tblDrugs.delegate = self
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(_ animated: Bool) {
+        getDrugs()
+        if let nav = self.navigationController {
+            nav.navigationBar.setBackgroundImage(UIImage(), for: .default)
+            nav.navigationBar.shadowImage = UIImage()
+            nav.navigationBar.isTranslucent = true
+            nav.view.backgroundColor = .clear
+            nav.navigationBar.tintColor = UIColor.white
+            nav.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
+            
+            if !nav.isNavigationBarHidden {
+                nav.setNavigationBarHidden(true, animated: true)
+            }
+        }
     }
-    */
+    
+    // - MARK: FUNCTIONS
+    func getDrugs() {
+        DrugsService.shared.getDrugs { (drugs, error) in
+            
+            if let error = error {
+                print("ERROR " + error)
+                return
+            }
+            if let data = drugs as? [DrugObject] {
+                
+                self.drugs = data
+                DispatchQueue.main.async {
+                    self.tblDrugs.reloadData()
+                }
+            }
+        }
+    }
+    
+    @IBAction func btnAddDrugClicked(_ sender: Any) {
+        if let nav = self.navigationController {
+            if let sb = storyboard?.instantiateViewController(withIdentifier: "AddDrugAdminVC") as? AddDrugAdminVC {
+                nav.pushViewController(sb, animated: true)
+            }
+        }
+    }
+}
 
+extension DrugsAdminVC: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return drugs.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "DrugAdminCell", for: indexPath) as? DrugAdminCell else {
+            return UITableViewCell()
+        }
+        
+        cell.drug = drugs[indexPath.row]
+        cell.lblPrice.text = String(drugs[indexPath.row].price)
+        cell.lblName.text = drugs[indexPath.row].name
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
 }

@@ -10,13 +10,13 @@ import UIKit
 import Alamofire
 
 class LauchVC: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         //check token in NSUserDefaults thì vào main
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            appDelegate.SignOut()
+            //appDelegate.SignOut()
             print(UserManager.shared.getToken() ?? "NIL")
             
             if UserManager.shared.isLoggedIn() {
@@ -28,11 +28,9 @@ class LauchVC: UIViewController {
                         if let role = role {
                             switch role {
                             case .admin:
-                                print("admin")
+                                appDelegate.showAdminView()
                             case .customer:
                                 appDelegate.showMainView()
-                            case .manager:
-                                print("manager")
                             }
                         }
                     }
@@ -42,12 +40,4 @@ class LauchVC: UIViewController {
             }
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
-
 }

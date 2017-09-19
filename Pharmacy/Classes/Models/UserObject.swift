@@ -11,7 +11,6 @@ import UIKit
 enum userRole: String {
     case customer = "customer"
     case admin = "admin"
-    case manager = "manager"    
 }
 
 class UserObject: NSObject {

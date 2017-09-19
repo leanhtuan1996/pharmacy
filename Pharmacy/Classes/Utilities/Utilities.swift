@@ -25,8 +25,6 @@ class Utilities: NSObject {
             //}
             
             return try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.mutableContainers) as? [String: Any]
-            
-            
         } catch {
             return nil
         }
@@ -78,7 +76,6 @@ class Utilities: NSObject {
         }
         return "Error Not Found"
     }
-   
 }
 
 

@@ -11,13 +11,16 @@ import UIKit
 import Alamofire
 
 enum DrugRouter: URLRequestConvertible {
-        
+    
     //Action
     case getDrug([String: Int])
     case listOfDrug()
+    
+    
+    //Admin for admin
     case addNewDrug([String : Any])
-    case updateDrug([String : String])
-    case deleteDrug([String : String])
+    case updateDrug([String : Any])
+    case deleteDrug([String : Any])
     
     //Variable Method
     var method: Alamofire.HTTPMethod {
@@ -77,5 +80,5 @@ enum DrugRouter: URLRequestConvertible {
         }
         
     }
-
+    
 }
