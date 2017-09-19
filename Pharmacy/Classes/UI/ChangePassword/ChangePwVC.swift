@@ -24,12 +24,12 @@ class ChangePwVC: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-        
+    
     @IBAction func btnUpdateClicked(_ sender: Any) {
         
         //Check empty fields
         if !(txtOldPw.hasText && txtConfirmPw.hasText && txtNewPw.hasText) {
-            self.showAlert(message: "Fields are required", title: "Fields have be not empty", buttons: nil)
+            self.showAlert("Fields are required", title: "Fields have be not empty", buttons: nil)
             return
         }
         
@@ -40,14 +40,14 @@ class ChangePwVC: UIViewController {
         
         //check match between newPw & confirmPw
         if newPassword != confirmPassword {
-            self.showAlert(message: "Retype new password not match", title: "Error", buttons: nil)
+            self.showAlert("Retype new password not match", title: "Error", buttons: nil)
             return
         }
         
-        UpdatePwService.shared.updatePw(oldPassword: oldPassword, newPassword: newPassword, confirmPw: confirmPassword) { (error) in
+        UpdatePwService.shared.updatePw(oldPassword, newPassword: newPassword, confirmPw: confirmPassword) { (error) in
             
             if let error = error {
-                self.showAlert(message: error, title: "Update password error", buttons: nil)
+                self.showAlert(error, title: "Update password error", buttons: nil)
                 return
             }
             
@@ -55,7 +55,7 @@ class ChangePwVC: UIViewController {
                 self.navigationController?.popViewController(animated: true)
             })
             
-            self.showAlert(message: "Password has been updated successfully", title: "Thông báo", buttons: [action])
+            self.showAlert("Password has been updated successfully", title: "Thông báo", buttons: [action])
         }
     }
     @IBAction func btnCancelClicked(_ sender: Any) {

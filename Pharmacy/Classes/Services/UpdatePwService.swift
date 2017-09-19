@@ -12,7 +12,7 @@ import Alamofire
 class UpdatePwService: NSObject {
     static let shared = UpdatePwService()
     
-    func updatePw(oldPassword: String, newPassword: String, confirmPw: String, completionHandler: @escaping (_ error: String?) -> ()) {
+    func updatePw(_ oldPassword: String, newPassword: String, confirmPw: String, completionHandler: @escaping (_ error: String?) -> ()) {
         
         let parameters: [String : String] = [
             "currentPassword" : oldPassword,
@@ -23,7 +23,7 @@ class UpdatePwService: NSObject {
             .validate()
             .response { (res) in
                 if let err = res.error {
-                    return completionHandler(Utilities.handleError(response: res.response, error: err as NSError))
+                    return completionHandler(Utilities.handleError(res.response, error: err as NSError))
                     
                 }
                 

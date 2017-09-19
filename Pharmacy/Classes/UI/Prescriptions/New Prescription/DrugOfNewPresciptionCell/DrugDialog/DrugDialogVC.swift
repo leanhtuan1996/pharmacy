@@ -95,7 +95,7 @@ class DrugDialogVC: UIViewController {
                 }))
             }
             
-            self.showStoryBoard(vc: alert)
+            self.showStoryBoard(alert)
         })
         
     }

@@ -31,35 +31,35 @@ class SignInVC: UIViewController {
     
     @IBAction func btnSignInClicked(_ sender: Any) {
         if !txtEmail.hasText {
-            self.showAlert(message: "Email can not empty", title: "Field are required", buttons: nil)
+            self.showAlert("Email can not empty", title: "Field are required", buttons: nil)
             return
         } else if !txtPassword.hasText {
-            self.showAlert(message: "Password can not empty", title: "Field are required", buttons: nil)
+            self.showAlert("Password can not empty", title: "Field are required", buttons: nil)
             return
-        } else if !Utilities.validateEmail(candidate: txtEmail.text!) {
-            self.showAlert(message: "Email invalid format", title: "Field are required", buttons: nil)
+        } else if !Utilities.validateEmail(txtEmail.text!) {
+            self.showAlert("Email invalid format", title: "Field are required", buttons: nil)
             return
         }
         
         let activityIndicatorView = UIActivityIndicatorView()
-        activityIndicatorView.showLoadingDialog(toVC: self)
+        activityIndicatorView.showLoadingDialog(self)
         
         guard let email = txtEmail.text, let password = txtPassword.text else {
-            self.showAlert(message: "Email or Password invalid format", title: "Fields have be not empty", buttons: nil)
+            self.showAlert("Email or Password invalid format", title: "Fields have be not empty", buttons: nil)
             return
         }
         
-        SignIn_UpService.shared.signIn(email: email, password: password) { (user, error) in
+        SignIn_UpService.shared.signIn(email, password: password) { (user, error) in
             activityIndicatorView.stopAnimating()
             
             if let error = error {
                 //Noti login failed
-                self.showAlert(message: "Sign In error: \(error)", title: "Sign in not success", buttons: nil)
+                self.showAlert("Sign In error: \(error)", title: "Sign in not success", buttons: nil)
                 return
             }
             
             if let user = user {
-                self.appDelegate.signIn_Up(user: user)
+                self.appDelegate.signIn_Up(user)
             }
         }
     }

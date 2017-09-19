@@ -52,7 +52,7 @@ class ViewController: UIViewController {
         
     }
     
-    @IBAction func btnLogoutClicked(_sender: Any) {
+    @IBAction func btnLogoutClicked(_ _sender: Any) {
         appDelegate?.SignOut()
     }
     

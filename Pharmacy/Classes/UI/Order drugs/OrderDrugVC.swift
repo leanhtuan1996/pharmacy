@@ -34,7 +34,7 @@ class OrderDrugVC: UIViewController {
                 return
             }
             
-            if let data = drugs as? [DrugObject] {
+            if let data = drugs {
                 self.drugs = data
                 DispatchQueue.main.async {
                     self.tblDrugs.reloadData()
@@ -74,8 +74,6 @@ extension OrderDrugVC: UITableViewDelegate, UITableViewDataSource {
         }
         
         cell.txtName.text = drugs[indexPath.row].name
-        cell.txtPrice.text = String(drugs[indexPath.row].price)
-
         
         return cell
         
@@ -96,12 +94,6 @@ extension OrderDrugVC: UITableViewDelegate, UITableViewDataSource {
             sb.didMove(toParentViewController: self)
             
             sb.lblName.text = drugs[indexPath.row].name
-            sb.lblDonGia.text = String(drugs[indexPath.row].price)
-            sb.lblHDSD.text = drugs[indexPath.row].instructions
-            sb.lblCongThuc.text = drugs[indexPath.row].formula
-            sb.lblCachSuDung.text = drugs[indexPath.row].howToUse
-            sb.lblTacDungPhu.text = drugs[indexPath.row].sideEffect
-            sb.lblChongChiDinh.text = drugs[indexPath.row].contraindication
             sb.idDrug = drugs[indexPath.row].id
             
         }

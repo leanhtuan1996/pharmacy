@@ -53,7 +53,7 @@ class OrderPrescriptionVC: UIViewController {
     
     @IBAction func btnOrderClicked(_ sender: Any) {
         let activityIndicatorView = UIActivityIndicatorView()
-        activityIndicatorView.showLoadingDialog(toVC: self)
+        activityIndicatorView.showLoadingDialog(self)
         let alert = UIAlertController(title: "", message: "", preferredStyle: UIAlertControllerStyle.alert)
         if let prescription = prescription, drugsSelected.count > 0 {
             var drugs:[[String: Any]] = []
@@ -74,7 +74,7 @@ class OrderPrescriptionVC: UIViewController {
                 "prescriptionID": prescription.id
             ]
             
-            OrderService.shared.newOrder(parameter: parameter, completionHandler: { (error) in
+            OrderService.shared.newOrder(parameter, completionHandler: { (error) in
                 activityIndicatorView.stopAnimating()
                 
                 if let error = error {
@@ -88,14 +88,14 @@ class OrderPrescriptionVC: UIViewController {
                         self.navigationController?.popViewController(animated: true)
                     }))
                 }
-                self.showStoryBoard(vc: alert)
+                self.showStoryBoard(alert)
             })
         } else {
             activityIndicatorView.stopAnimating()
             alert.title = "Drug not selected"
             alert.message = "Please choose minimize one drug to order"
             alert.addAction(UIAlertAction.init(title: "Yes", style: UIAlertActionStyle.default, handler: nil))
-            self.showStoryBoard(vc: alert)
+            self.showStoryBoard(alert)
             
         }
     }
@@ -113,7 +113,6 @@ extension OrderPrescriptionVC: UITableViewDelegate, UITableViewDataSource, Choos
         
         cell.drug = prescription?.drugs[indexPath.row] ?? DrugObject()
         cell.lblName.text = prescription?.drugs[indexPath.row].name ?? ""
-        cell.lblPrice.text = String(prescription?.drugs[indexPath.row].price ?? 0)
         cell.delegate = self
        
         return cell
@@ -149,14 +148,7 @@ extension OrderPrescriptionVC: UITableViewDelegate, UITableViewDataSource, Choos
             }
         }
         
-        //print(drugsSelected.count)
-        
         //Cập nhật lại số lượng & giá
-        var totalPrice = 0
-        for temp in drugsSelected {
-            totalPrice = totalPrice + (temp.quantity * temp.price)
-        }
-        lblTotalPrice.text = String(totalPrice)
         lblTotalDrug.text = String(drugsSelected.count)
     }
 }

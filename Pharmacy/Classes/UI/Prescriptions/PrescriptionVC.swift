@@ -46,7 +46,7 @@ class PrescriptionVC: UIViewController {
             nav.navigationBar.isTranslucent = true
             nav.view.backgroundColor = .clear
             nav.navigationBar.tintColor = UIColor.white
-            nav.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
+            nav.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
             
             if !nav.isNavigationBarHidden {
                 nav.setNavigationBarHidden(true, animated: true)
@@ -295,7 +295,7 @@ extension PrescriptionVC: UITableViewDataSource, UITableViewDelegate, ManagerPre
     
     func submitPre(with prescription: PrescriptionObject) {
         let activityIndicatorView = UIActivityIndicatorView()
-        activityIndicatorView.showLoadingDialog(toVC: self)
+        activityIndicatorView.showLoadingDialog(self)
         PrescriptionService.shared.submitPrescription(with: prescription) { (error) in
             activityIndicatorView.stopLoadingDialog()
             if let error = error {
@@ -315,7 +315,7 @@ extension PrescriptionVC: UITableViewDataSource, UITableViewDelegate, ManagerPre
             
             alert.addAction(UIAlertAction(title: "Done", style: UIAlertActionStyle.default, handler: nil))
             
-            self.showStoryBoard(vc: alert)
+            self.showStoryBoard(alert)
             
         }
     }

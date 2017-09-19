@@ -38,13 +38,6 @@ class EditDrugAdminVC: UIViewController {
         guard let drug = drug else {
             return
         }
-        
-        txtPrice.text = String(drug.price)
-        txtHowToUse.text = drug.howToUse
-        txtSideEffect.text = drug.sideEffect
-        txtContraindication.text = drug.contraindication
-        txtInstructions.text = drug.instructions
-        txtFormula.text = drug.formula
         txtName.text = drug.name
     }
    
@@ -54,18 +47,13 @@ class EditDrugAdminVC: UIViewController {
     
     @IBAction func btnDone(_ sender: Any) {
         //Add drug
-        if !(txtPrice.hasText && txtHowToUse.hasText && txtSideEffect.hasText && txtContraindication.hasText && txtInstructions.hasText && txtFormula.hasText && txtName.hasText) {
-            self.showAlert(message: "Fields can not empty", title: "Fields are required", buttons: nil)
-            return
-        }
-        
-        guard let priceText = txtPrice.text, let price = Int(priceText) else {
-            self.showAlert(message: "Price must be a number", title: "Fields are required", buttons: nil)
+        if !txtName.hasText {
+            self.showAlert("Fields can not empty", title: "Fields are required", buttons: nil)
             return
         }
         
         let activityIndicatorView = UIActivityIndicatorView()
-        activityIndicatorView.showLoadingDialog(toVC: self)
+        activityIndicatorView.showLoadingDialog(self)
         
         guard let drug = drug else {
             return
@@ -74,24 +62,18 @@ class EditDrugAdminVC: UIViewController {
         let drugObject = DrugObject()
         drugObject.id = drug.id
         drugObject.name = txtName.text ?? ""
-        drugObject.instructions = txtInstructions.text ?? ""
-        drugObject.formula = txtFormula.text ?? ""
-        drugObject.contraindication = txtContraindication.text ?? ""
-        drugObject.sideEffect = txtSideEffect.text ?? ""
-        drugObject.howToUse = txtHowToUse.text ?? ""
-        drugObject.price = price
         
-        DrugsService.shared.editDrug(drug: drugObject) { (error) in
+        DrugsService.shared.editDrug(drugObject) { (error) in
             activityIndicatorView.stopAnimating()
             if let error = error {
-                self.showAlert(message: error, title: "Edit drug incompleted", buttons: nil)
+                self.showAlert(error, title: "Edit drug incompleted", buttons: nil)
                 return
             }
             let alertAction = UIAlertAction(title: "Back to main", style: UIAlertActionStyle.default, handler: { (btn) in
                 self.navigationController?.popViewController(animated: true)
             })
             
-            self.showAlert(message: "Edit drug successfully", title: "Success", buttons: [alertAction])
+            self.showAlert("Edit drug successfully", title: "Success", buttons: [alertAction])
         }
     }
 

@@ -40,7 +40,7 @@ class PrescriptionManager: NSObject {
     }
     
     //get all prescriptions from userdefaults
-    func getAllPrescription(completionHandler: @escaping(_ data: [PrescriptionObject]?, _ error: String?) -> Void ) {
+    func getAllPrescription(_ completionHandler: @escaping(_ data: [PrescriptionObject]?, _ error: String?) -> Void ) {
         //Get orders from NSUserDefault
         if let data = userDefaults.object(forKey: "Prescriptions") as? Data {
             //print(data)

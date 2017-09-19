@@ -41,7 +41,7 @@ class DetailsOrderHistoryVC: UIViewController {
             return
         }
         
-        OrderService.shared.getDetailOrder(id: idDrug) { (orderHistory, error) in
+        OrderService.shared.getDetailOrder(idDrug) { (orderHistory, error) in
             
             if let error = error {
                 print(error)
@@ -73,7 +73,6 @@ extension DetailsOrderHistoryVC: UITableViewDelegate, UITableViewDataSource {
         
         cell.lblId.text = String(drugOfOrder[indexPath.row].id)
         cell.lblName.text = drugOfOrder[indexPath.row].name
-        cell.lblPrice.text = String(drugOfOrder[indexPath.row].price)
         cell.lblTotalQuantity.text = String(drugOfOrder[indexPath.row].quantity)
         
         return cell

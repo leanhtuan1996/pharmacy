@@ -32,7 +32,7 @@ class AddPrescriptionVC: UIViewController {
             nav.navigationBar.isTranslucent = true
             nav.view.backgroundColor = .clear
             nav.navigationBar.tintColor = UIColor.white
-            nav.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
+            nav.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
             
             if nav.isNavigationBarHidden {
                 nav.setNavigationBarHidden(false, animated: true)
@@ -50,7 +50,7 @@ class AddPrescriptionVC: UIViewController {
                 print("ERROR " + error)
                 return
             }
-            if let data = drugs as? [DrugObject] {
+            if let data = drugs {
                 
                 self.drugs = data
                 DispatchQueue.main.async {
@@ -65,7 +65,7 @@ class AddPrescriptionVC: UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
 
         let activityIndicatorView = UIActivityIndicatorView()
-        activityIndicatorView.showLoadingDialog(toVC: self)
+        activityIndicatorView.showLoadingDialog(self)
 
         PrescriptionManager.shared.addPrescription(with: prescription) { (error) in
         
@@ -81,7 +81,7 @@ class AddPrescriptionVC: UIViewController {
                 self.navigationController?.popViewController(animated: true)
             }))
             
-            self.showStoryBoard(vc: alert)
+            self.showStoryBoard(alert)
         }
     }
     
@@ -111,21 +111,21 @@ class AddPrescriptionVC: UIViewController {
         guard let name = txtNameOfPre.text, let totalDrugs = lblTotalDrugs.text, let totalDrugsInt = Int(totalDrugs) else {
             let alert = UIAlertController(title: "Add prescription incomplete", message: "Fields are required", preferredStyle: .alert)
             alert.addAction(.init(title: "Re try", style: .default, handler: nil))
-            self.showStoryBoard(vc: alert)
+            self.showStoryBoard(alert)
             return
         }
         
         if name.isEmpty {
             let alert = UIAlertController(title: "Add prescription incomplete", message: "Fields are required", preferredStyle: .alert)
             alert.addAction(.init(title: "Re try", style: .default, handler: nil))
-            self.showStoryBoard(vc: alert)
+            self.showStoryBoard(alert)
             return
         }
         
         if totalDrugsInt == 0 {
             let alert = UIAlertController(title: "Fail", message: "Please choose drugs", preferredStyle: .alert)
             alert.addAction(.init(title: "Okay", style: .default, handler: nil))
-            self.showStoryBoard(vc: alert)
+            self.showStoryBoard(alert)
             return
         }
         
@@ -150,7 +150,6 @@ extension AddPrescriptionVC: UITableViewDelegate, UITableViewDataSource, ActionW
         }
         cell.delegate = self
         cell.txtName.text = drugs[indexPath.row].name
-        cell.txtPrice.text = String(drugs[indexPath.row].price)
         cell.drug = drugs[indexPath.row]
         return cell
     }

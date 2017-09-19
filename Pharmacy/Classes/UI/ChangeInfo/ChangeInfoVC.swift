@@ -32,7 +32,7 @@ class ChangeInfoVC: UIViewController {
         
         //check empty
         if !(txtCurrentPw.hasText && txtFullname.hasText && txtAddress.hasText && txtPhonenumber.hasText) {
-            self.showAlert(message: "Fields can not empty", title: "Fields are required", buttons: nil)
+            self.showAlert("Fields can not empty", title: "Fields are required", buttons: nil)
             return
         }
         
@@ -43,16 +43,16 @@ class ChangeInfoVC: UIViewController {
         let activityIndicatorView = UIActivityIndicatorView()
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         
-        activityIndicatorView.showLoadingDialog(toVC: self)
+        activityIndicatorView.showLoadingDialog(self)
         
         let userObject = UserObject(email: "", password: currentPw, fullName: fullName, address: address, phoneNumber: phoneNumber)
         
-        UpdateInfoService.shared.updateInfo(user: userObject) { (error) in
+        UpdateInfoService.shared.updateInfo(userObject) { (error) in
             activityIndicatorView.stopAnimating()
             self.navigationController?.setNavigationBarHidden(false, animated: true)
             
             if let error = error {
-                self.showAlert(message: error, title: "Update information failed", buttons: nil)
+                self.showAlert(error, title: "Update information failed", buttons: nil)
                 return
             }
             

@@ -74,14 +74,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = vc
     }
     
-    func signIn_Up(user: UserObject) {
+    func signIn_Up(_ user: UserObject) {
         
         let alert = UIAlertController(title: "Login error", message: "Hiện tại chưa có ứng dụng dành cho admin.", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Done", style: UIAlertActionStyle.default, handler: nil))
         UserManager.shared.currentUser = user
         
         //set token to NSUserDefault & UserNetwork
-        UserManager.shared.setToken(token: user.token)
+        UserManager.shared.setToken(user.token)
         authToken = user.token
         
         switch user.role {

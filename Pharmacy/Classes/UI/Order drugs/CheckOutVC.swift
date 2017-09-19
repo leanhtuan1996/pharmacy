@@ -36,7 +36,7 @@ class CheckOutVC: UIViewController {
         activityIndicatorView.backgroundColor = UIColor.clear.withAlphaComponent(0.3)
         activityIndicatorView.startAnimating()
 
-        OrderManager.shared.checkOut(drugToOrders: drugsToOrder) { (error) in
+        OrderManager.shared.checkOut(drugsToOrder) { (error) in
             activityIndicatorView.stopAnimating()
             
             if let error = error {
@@ -48,7 +48,7 @@ class CheckOutVC: UIViewController {
             alert.addAction(UIAlertAction(title: "CONTINUE TO ORDER", style: .default, handler: { (btn) in
                 self.navigationController?.popViewController(animated: true)
             }))
-            self.showStoryBoard(vc: alert)
+            self.showStoryBoard(alert)
         }
         
     }
@@ -86,7 +86,6 @@ extension CheckOutVC: UITableViewDataSource, UITableViewDelegate {
         }
         
         cell.lblName.text = drugsToOrder[indexPath.row].name
-        cell.lblPrice.text = String(drugsToOrder[indexPath.row].price)
         cell.lblQuantity.text = String(drugsToOrder[indexPath.row].quantity)
         
         return cell

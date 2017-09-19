@@ -12,14 +12,14 @@ import Alamofire
 class GetInformationService: NSObject {
     static let shared = GetInformationService()
     
-    func getInformations(completionHandler: @escaping(_ data: UserObject?, _ error: String?) -> ()) {
+    func getInformations(_ completionHandler: @escaping(_ data: UserObject?, _ error: String?) -> ()) {
         
         Alamofire.request(UserRouter.getInfo())
             .validate()
             .response { (res) in
                 //check errors
                 if let err = res.error {
-                    return completionHandler(nil, Utilities.handleError(response: res.response, error: err as NSError))
+                    return completionHandler(nil, Utilities.handleError(res.response, error: err as NSError))
                 }
                 
                 guard let data = res.data else {

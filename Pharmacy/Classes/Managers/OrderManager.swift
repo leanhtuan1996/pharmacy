@@ -69,7 +69,7 @@ class OrderManager: NSObject {
     }
     
     //get all order from NSUSERDEFAULTS to show in my cart
-    func getAllOrdersFromCart(completionHandler: @escaping (_ drug: DrugObject?, _ error: String?) -> Void) {
+    func getAllOrdersFromCart(_ completionHandler: @escaping (_ drug: DrugObject?, _ error: String?) -> Void) {
         
         //Get Drugs-id in Cart
         var ordersArray:[Order] = []
@@ -87,7 +87,7 @@ class OrderManager: NSObject {
         //Call to DrugsService with getDrug function
         
         for drugOrder in ordersArray {
-            DrugsService.shared.getDrug(drugId: drugOrder.idDrug, completionHandler: { (drug, error) in
+            DrugsService.shared.getDrug(drugOrder.idDrug, completionHandler: { (drug, error) in
                 if let error = error {
                     return completionHandler(nil, error)
                 } else {
@@ -103,7 +103,7 @@ class OrderManager: NSObject {
     }
     
     //ORDER DRUGS
-    func checkOut(drugToOrders: [DrugObject], completionHandler: @escaping (_ Error: String?) -> Void) {
+    func checkOut(_ drugToOrders: [DrugObject], completionHandler: @escaping (_ Error: String?) -> Void) {
         
         if drugToOrders.count == 0 {
             return
@@ -130,7 +130,7 @@ class OrderManager: NSObject {
             "date": dateOrder
         ]
         
-        OrderService.shared.newOrder(parameter: parameter) { (error) in
+        OrderService.shared.newOrder(parameter) { (error) in
            
             if let error = error {
                 return completionHandler(error)

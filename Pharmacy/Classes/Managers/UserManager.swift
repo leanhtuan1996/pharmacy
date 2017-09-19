@@ -25,7 +25,7 @@ class UserManager: NSObject {
     }
     
     //set token to NSUserDefaults
-    func setToken(token: String) {
+    func setToken(_ token: String) {
         userDefault.set(token, forKey: "token")
     }
     
@@ -44,10 +44,10 @@ class UserManager: NSObject {
         }
     }
     
-    func verifyToken(completionHandler: @escaping(_ role: userRole?, _ error: String?) -> Void) {
+    func verifyToken(_ completionHandler: @escaping(_ role: userRole?, _ error: String?) -> Void) {
         if let token = userDefault.object(forKey: "token") as? String {
             authToken = token
-            GetInformationService.shared.getInformations(completionHandler: { (user, error) in
+            GetInformationService.shared.getInformations({ (user, error) in
                 if let error = error {
                     return completionHandler(nil, error)
                 }
@@ -60,8 +60,6 @@ class UserManager: NSObject {
                         user.role = userRole.customer
                         return completionHandler(user.role, nil)
                     }
-                    
-                    
                 }
             })
         } else {

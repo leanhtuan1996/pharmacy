@@ -28,7 +28,7 @@ class DrugsAdminVC: UIViewController {
             nav.navigationBar.isTranslucent = true
             nav.view.backgroundColor = .clear
             nav.navigationBar.tintColor = UIColor.white
-            nav.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
+            nav.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
             
             if !nav.isNavigationBarHidden {
                 nav.setNavigationBarHidden(true, animated: true)
@@ -44,7 +44,7 @@ class DrugsAdminVC: UIViewController {
                 print("ERROR " + error)
                 return
             }
-            if let data = drugs as? [DrugObject] {
+            if let data = drugs {
                 
                 self.drugs = data
                 DispatchQueue.main.async {
@@ -55,11 +55,11 @@ class DrugsAdminVC: UIViewController {
     }
     
     @IBAction func btnAddDrugClicked(_ sender: Any) {
-        if let nav = self.navigationController {
-            if let sb = storyboard?.instantiateViewController(withIdentifier: "AddDrugAdminVC") as? AddDrugAdminVC {
-                nav.pushViewController(sb, animated: true)
-            }
-        }
+//        if let nav = self.navigationController {
+//            if let sb = storyboard?.instantiateViewController(withIdentifier: "AddDrugAdminVC") as? AddDrugAdminVC {
+//                nav.pushViewController(sb, animated: true)
+//            }
+//        }
     }
 }
 
@@ -75,7 +75,6 @@ extension DrugsAdminVC: UITableViewDelegate, UITableViewDataSource, DrugDelegate
         }
         
         cell.drug = drugs[indexPath.row]
-        cell.lblPrice.text = String(drugs[indexPath.row].price)
         cell.lblName.text = drugs[indexPath.row].name
         cell.delegate = self
         
@@ -87,22 +86,22 @@ extension DrugsAdminVC: UITableViewDelegate, UITableViewDataSource, DrugDelegate
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let sb = storyboard?.instantiateViewController(withIdentifier: "EditDrugAdminVC") as? EditDrugAdminVC else {
-            self.showAlert(message: "View Controller Not Found", title: "error", buttons: nil)
-            return
-        }
-        sb.drug = drugs[indexPath.row]
-        self.navigationController?.pushViewController(sb, animated: true)
+//        guard let sb = storyboard?.instantiateViewController(withIdentifier: "EditDrugAdminVC") as? EditDrugAdminVC else {
+//            self.showAlert("View Controller Not Found", title: "error", buttons: nil)
+//            return
+//        }
+//        sb.drug = drugs[indexPath.row]
+//        self.navigationController?.pushViewController(sb, animated: true)
     }
     
     func delete(with id: Int) {
         
         let activityIndicatorView = UIActivityIndicatorView()
-        activityIndicatorView.showLoadingDialog(toVC: self)
+        activityIndicatorView.showLoadingDialog(self)
         DrugsService.shared.deleteDrug(with: id) { (error) in
             activityIndicatorView.stopAnimating()
             if let error = error {
-                self.showAlert(message: "Delete drug failed with error: \(error)", title: "Error", buttons: nil)
+                self.showAlert("Delete drug failed with error: \(error)", title: "Error", buttons: nil)
                 return
             }
             

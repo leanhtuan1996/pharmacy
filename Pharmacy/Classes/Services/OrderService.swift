@@ -13,14 +13,14 @@ import Alamofire
 class OrderService: NSObject {
     static let shared = OrderService()
     
-    func getOrder(parameter: [String: Int], completionHandler: @escaping (_ order: OrderObject?, _ error: String?) -> Void)
+    func getOrder(_ parameter: [String: Int], completionHandler: @escaping (_ order: OrderObject?, _ error: String?) -> Void)
     {
         Alamofire.request(OrderRouter.getOrder(parameter))
         .validate()
         .response { (res) in
             
             if let err = res.error {
-                return completionHandler(nil, Utilities.handleError(response: res.response, error: err as NSError))
+                return completionHandler(nil, Utilities.handleError(res.response, error: err as NSError))
                 
             }
             
@@ -42,13 +42,12 @@ class OrderService: NSObject {
                     
                     for drugData in drugs {
                         if let drugObject = Utilities.convertObjectToJson(object: drugData) {
-                            guard let id = drugObject["id"] as? Int, let unit_price = drugObject["unit_price"] as? Int, let quantity = drugObject["quantity"] as? Int else {
+                            guard let id = drugObject["id"] as? Int, let quantity = drugObject["quantity"] as? Int else {
                                 return completionHandler(nil, "Invalid data format")
                             }
                             
                             let drugObject = DrugObject()
                             drugObject.id = id
-                            drugObject.price = unit_price
                             drugObject.quantity = quantity
                             
                             drugArray.append(drugObject)
@@ -69,22 +68,19 @@ class OrderService: NSObject {
         
     }
     
-    func newOrder(parameter: [String : Any], completionHandler: @escaping (_ error: String?) -> Void) {
+    func newOrder(_ parameter: [String : Any], completionHandler: @escaping (_ error: String?) -> Void) {
         Alamofire.request(OrderRouter.newOrder(parameter))
         .validate()
         .response { (res) in
             
             if let err = res.error {
-                return completionHandler(Utilities.handleError(response: res.response, error: err as NSError))
-                
+                return completionHandler(Utilities.handleError(res.response, error: err as NSError))
             }
             
             if let data = res.data {
                 if let json = data.toDictionary() {
-                    
                     if let error = json["errors"] as? [String] {
                         if error.count > 0 {
-                            print(error)
                             return completionHandler(error[0])
                         }
                         return completionHandler(nil)
@@ -100,25 +96,25 @@ class OrderService: NSObject {
         }
     }
     
-    func getOrdersHistory(completionHandler: @escaping (_ order: [OrderObject?], _ error: String?) -> Void) {
+    func getOrdersHistory(_ completionHandler: @escaping (_ order: [OrderObject]?, _ error: String?) -> Void) {
         Alamofire.request(OrderRouter.getOrderHistory())
         .validate()
         .response { (res) in
             if let err = res.error {
-                return completionHandler([nil], Utilities.handleError(response: res.response, error: err as NSError))
+                return completionHandler(nil, Utilities.handleError(res.response, error: err as NSError))
             }
             if let data = res.data {
                 if let json = data.toDictionary() {
                     if let error = json["errors"] as? [String] {
                         if error.count > 0 {
                             print(error)
-                            return completionHandler([nil], error[0])
+                            return completionHandler(nil, error[0])
                         }
                     }
                     
                     guard let allOrderJson = json["allOrder"] as? [AnyObject] else {
                         print("1")
-                        return completionHandler([nil], "Invalid data format")
+                        return completionHandler(nil, "Invalid data format")
                     }
                     
                     var ordersHistory: [OrderObject] = []
@@ -127,28 +123,27 @@ class OrderService: NSObject {
                         if let order = Utilities.convertObjectToJson(object: orderData) {
                             guard let id = order["id"] as? Int, let date = order["date"] as? String, let total_price = order["total_price"] as? Int else {
                                 print("2")
-                                return completionHandler([nil], "Invalid data format")
+                                return completionHandler(nil, "Invalid data format")
                             }
                             ordersHistory.append(OrderObject(id: id, date: date.jsonDateToDate(), totalPrice: total_price, drugs: []))
                         } else {
                             print("3")
-                            return completionHandler([nil], "Invalid data format")
+                            return completionHandler(nil, "Invalid data format")
                         }
                     }
                     return completionHandler(ordersHistory, nil)
                 } else {
                     print("4")
-                    return completionHandler([nil], "Invalid data format")
+                    return completionHandler(nil, "Invalid data format")
                 }
             } else {
                 print("5")
-                return completionHandler([nil], "Invalid data format")
+                return completionHandler(nil, "Invalid data format")
             }
         }
-        
     }
     
-    func getDetailOrder(id: Int, completionHandler: @escaping (_ order: OrderObject?, _ error: String?) -> Void) {
+    func getDetailOrder(_ id: Int, completionHandler: @escaping (_ order: OrderObject?, _ error: String?) -> Void) {
         
         let parameters = [
             "orderId" : id
@@ -159,7 +154,7 @@ class OrderService: NSObject {
         .response { (res) in
             
             if let err = res.error {
-                return completionHandler(nil, Utilities.handleError(response: res.response, error: err as NSError))
+                return completionHandler(nil, Utilities.handleError(res.response, error: err as NSError))
             }
             
             if let data = res.data {
@@ -169,13 +164,11 @@ class OrderService: NSObject {
                         print(error)
                         if error.count > 0 {
                             return completionHandler(nil, error[0])
-                            
                         }
                     }
                     
                     guard let idOrder = json["orderNumber"] as? Int, let date = json["date"] as? String, let totalPrice = json["totalPrice"] as? Int, let drugs = json["drugs"] as? [AnyObject] else {
                         return completionHandler(nil, "Invalid data format")
-                        
                     }
                     
                     var drugArray: [DrugObject] = []
@@ -186,11 +179,10 @@ class OrderService: NSObject {
                             
                             guard let id = drugObject["id_drug"] as? Int, let quantity = drugObject["quantity"] as? Int else {
                                 return completionHandler(nil, "Invalid data format")
-                                
                             }
                             
                             //Get full drug info from ID
-                            DrugsService.shared.getDrug(drugId: id, completionHandler: { (drug, error) in
+                            DrugsService.shared.getDrug(id, completionHandler: { (drug, error) in
                                 
                                 if let error = error {
                                     print("GET DRUG INFOMATION WITH ERROR: \(error)")
@@ -212,24 +204,15 @@ class OrderService: NSObject {
                                     return completionHandler(OrderObject(id: idOrder, date: date, totalPrice: totalPrice, drugs: drugArray), nil)
                                 }
                             })
-  
                         } else {
                             return completionHandler(nil, "Invalid data format")
-                            
                         }
-                        
                     }
-                    
-                    //completionHandler(true, OrderObject(id: id, date: date, totalPrice: totalPrice, drugs: drugArray), nil)
-                    
                 } else {
                     return completionHandler(nil, "Invalid data format")
-                    
                 }
-                
             } else {
                 return completionHandler(nil, "Invalid data format")
-                
             }
 
         }

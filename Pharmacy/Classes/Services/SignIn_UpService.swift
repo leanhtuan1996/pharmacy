@@ -17,7 +17,7 @@ class SignIn_UpService: NSObject {
     
     // MARK: - SIGN IN
     
-    func signIn(email: String, password: String, completionHandler: @escaping (_ user: UserObject?, _ error: String?) -> ()) {
+    func signIn(_ email: String, password: String, completionHandler: @escaping (_ user: UserObject?, _ error: String?) -> ()) {
         
         let parameters = [
             "email" : email,
@@ -27,7 +27,7 @@ class SignIn_UpService: NSObject {
         Alamofire.request(UserRouter.signIn(parameters)).validate().response { (res) in
             //Error handle
             if let err = res.error {
-                return completionHandler(nil, Utilities.handleError(response: res.response, error: err as NSError))
+                return completionHandler(nil, Utilities.handleError(res.response, error: err as NSError))
             }
             
             guard let data = res.data else {
@@ -87,7 +87,7 @@ class SignIn_UpService: NSObject {
     }
     
     // MARK: - SIGN UP
-    func signUp(user: UserObject, completionHandler: @escaping (_ user: UserObject?, _ error: String?) -> ()){
+    func signUp(_ user: UserObject, completionHandler: @escaping (_ user: UserObject?, _ error: String?) -> ()){
         let parameters = [
             "email" : user.email,
             "password" : user.password,
@@ -101,7 +101,7 @@ class SignIn_UpService: NSObject {
             .response { (res) in
                 
                 if let err = res.error {
-                    return completionHandler(nil, Utilities.handleError(response: res.response, error: err as NSError))
+                    return completionHandler(nil, Utilities.handleError(res.response, error: err as NSError))
                     
                 }
                 

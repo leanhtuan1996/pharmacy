@@ -10,7 +10,7 @@ import UIKit
 
 extension UIActivityIndicatorView {
     
-    func showLoadingDialog(toVC: UIViewController) {
+    func showLoadingDialog(_ toVC: UIViewController) {
         
         self.activityIndicatorViewStyle = .whiteLarge
         self.color = UIColor.white

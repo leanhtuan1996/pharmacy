@@ -12,12 +12,12 @@ import Alamofire
 class PrescriptionService: NSObject {
     static let shared = PrescriptionService()
     
-    func getPrescriptions(completionHandler: @escaping (_ prescription: PrescriptionObject?, _ error: String?) -> Void) {
+    func getPrescriptions(_ completionHandler: @escaping (_ prescription: PrescriptionObject?, _ error: String?) -> Void) {
         Alamofire.request(PrescriptionRouter.getAllPrescription())
             .validate()
             .response { (res) in
                 if let err = res.error {
-                    return completionHandler(nil, Utilities.handleError(response: res.response, error: err as NSError))
+                    return completionHandler(nil, Utilities.handleError(res.response, error: err as NSError))
                 }
                 
                 if let data = res.data {
@@ -37,7 +37,6 @@ class PrescriptionService: NSObject {
                                     guard let id = preDic["id"] as? Int, let dateCreate = preDic["date"] as? String, let status = preDic["status"] as? Int else {
                                         return completionHandler(nil, "Invalid data format")
                                     }
-                                    print(id)
                                     let pre = PrescriptionObject()
                                     pre.id = id
                                     pre.dateCreate = dateCreate.jsonDateToDate()
@@ -80,7 +79,7 @@ class PrescriptionService: NSObject {
             .validate()
             .response { (res) in
                 if let error = res.error {
-                    return completionHandler(nil, Utilities.handleError(response: res.response, error: error as NSError))
+                    return completionHandler(nil, Utilities.handleError(res.response, error: error as NSError))
                 }
                 
                 if let data = res.data {
@@ -105,7 +104,7 @@ class PrescriptionService: NSObject {
                                 if let id = drugJson["DrugID"] as? Int {
                                     
                                     //get detail drug
-                                    DrugsService.shared.getDrug(drugId: id, completionHandler: { (drug, error) in
+                                    DrugsService.shared.getDrug(id, completionHandler: { (drug, error) in
                                         flag += 1
                                         if let error = error {
                                             return completionHandler(nil, "Get detail drug error: \(error)")
@@ -155,7 +154,7 @@ class PrescriptionService: NSObject {
         Alamofire.request(PrescriptionRouter.newPrescription(parameter)).validate().response { (res) in
             
             if let err = res.error {
-                return completionHandler(Utilities.handleError(response: res.response, error: err as NSError))
+                return completionHandler(Utilities.handleError(res.response, error: err as NSError))
             }
             
             if let data = res.data {
@@ -182,12 +181,12 @@ class PrescriptionService: NSObject {
     // ** FUNCTIONS FOR ADMIN RULE **
     
     //Get all prescription of customers
-    func getListPrescriptions(completionHandler: @escaping (_ data: PrescriptionObject?, _ error: String?) -> Void) {
+    func getListPrescriptions(_ completionHandler: @escaping (_ data: PrescriptionObject?, _ error: String?) -> Void) {
         Alamofire.request(PrescriptionRouter.getListPrescription())
             .validate()
             .response { (res) in
                 if let err = res.error {
-                    return completionHandler(nil, Utilities.handleError(response: res.response, error: err as NSError))
+                    return completionHandler(nil, Utilities.handleError(res.response, error: err as NSError))
                 }
                 
                 if let data = res.data {
@@ -252,7 +251,7 @@ class PrescriptionService: NSObject {
             .validate()
             .response { (res) in
                 if let err = res.error {
-                    return completionHandler(Utilities.handleError(response: res.response, error: err as NSError))
+                    return completionHandler(Utilities.handleError(res.response, error: err as NSError))
                 }
                 
                 if let data = res.data {
@@ -286,7 +285,7 @@ class PrescriptionService: NSObject {
             .validate()
             .response { (res) in
                 if let err = res.error {
-                    return completionHandler(Utilities.handleError(response: res.response, error: err as NSError))
+                    return completionHandler(Utilities.handleError(res.response, error: err as NSError))
                 }
                 
                 if let data = res.data {

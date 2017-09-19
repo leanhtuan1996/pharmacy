@@ -9,12 +9,12 @@
 import UIKit
 
 class Utilities: NSObject {
-    static func validateEmail(candidate: String) -> Bool {
+    static func validateEmail(_ candidate: String) -> Bool {
         let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: candidate)
     }
     
-    static func convertObjectToJson(object: Any) -> [String: Any]? {
+    static func convertObjectToJson(_ object: Any) -> [String: Any]? {
         do {
             //Convert to Data
             let jsonData = try JSONSerialization.data(withJSONObject: object, options: JSONSerialization.WritingOptions.prettyPrinted)
@@ -30,7 +30,7 @@ class Utilities: NSObject {
         }
     }
     
-    static func emptyMessage(activityIndicatorView:UIActivityIndicatorView, tableView:UITableView) {
+    static func emptyMessage(_ activityIndicatorView:UIActivityIndicatorView, tableView:UITableView) {
         
         //let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
         activityIndicatorView.color = UIColor.white
@@ -55,7 +55,7 @@ class Utilities: NSObject {
     }
     
     //Handled Error
-    static func handleError(response: HTTPURLResponse?, error: NSError) -> String {
+    static func handleError(_ response: HTTPURLResponse?, error: NSError) -> String {
         
         guard let res = response else {
             return "Error not found"

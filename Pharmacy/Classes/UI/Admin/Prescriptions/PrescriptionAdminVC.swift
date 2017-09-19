@@ -82,11 +82,11 @@ extension PrescriptionAdminVC: UITableViewDelegate, UITableViewDataSource, Presc
     
     func reject(withId id: Int) {
         let activityIndicatorView = UIActivityIndicatorView()
-        activityIndicatorView.showLoadingDialog(toVC: self)
+        activityIndicatorView.showLoadingDialog(self)
         PrescriptionService.shared.rejectPrescription(withId: id) { (error) in
             activityIndicatorView.stopAnimating()
             if let error = error {
-                self.showAlert(message: "Reject incomplete with error: \(error)", title: "Error", buttons: nil)
+                self.showAlert("Reject incomplete with error: \(error)", title: "Error", buttons: nil)
                 return
             }
             
@@ -98,11 +98,11 @@ extension PrescriptionAdminVC: UITableViewDelegate, UITableViewDataSource, Presc
     
     func accept(withId id: Int) {
         let activityIndicatorView = UIActivityIndicatorView()
-        activityIndicatorView.showLoadingDialog(toVC: self)
+        activityIndicatorView.showLoadingDialog(self)
         PrescriptionService.shared.acceptPrescription(withId: id) { (error) in
             activityIndicatorView.stopAnimating()
             if let error = error {
-                self.showAlert(message: "Reject incomplete with error: \(error)", title: "Error", buttons: nil)
+                self.showAlert("Reject incomplete with error: \(error)", title: "Error", buttons: nil)
                 return
             }
             self.deleteElementInArray(with: id)

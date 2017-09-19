@@ -12,7 +12,7 @@ import Alamofire
 class UpdateInfoService: NSObject {
     static let shared = UpdateInfoService()
     
-    func updateInfo(user: UserObject, completionHandler: @escaping (_ error: String?) -> ()) {
+    func updateInfo(_ user: UserObject, completionHandler: @escaping (_ error: String?) -> ()) {
         
         let parameters = [
             "currentPassword" : user.password,
@@ -26,7 +26,7 @@ class UpdateInfoService: NSObject {
         .response { (res) in
             //check errors
             if let err = res.error {
-                return completionHandler(Utilities.handleError(response: res.response, error: err as NSError))
+                return completionHandler(Utilities.handleError(res.response, error: err as NSError))
             }
             
             guard let data = res.data else {

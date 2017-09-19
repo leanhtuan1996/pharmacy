@@ -20,7 +20,7 @@ class LauchVC: UIViewController {
             print(UserManager.shared.getToken() ?? "NIL")
             
             if UserManager.shared.isLoggedIn() {
-                UserManager.shared.verifyToken(completionHandler: { ( role, error) in
+                UserManager.shared.verifyToken({ ( role, error) in
                     if let error = error {
                         print(error)
                         appDelegate.showSignInView()

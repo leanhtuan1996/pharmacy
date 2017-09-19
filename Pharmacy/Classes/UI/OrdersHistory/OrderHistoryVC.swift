@@ -30,7 +30,7 @@ class OrderHistoryVC: UIViewController {
                 return
             }
             
-            if let orderArray = orderObject as? [OrderObject] {
+            if let orderArray = orderObject {
                 self.ordersHistory = orderArray
                 //print(orderArray.count)
                 DispatchQueue.main.async {

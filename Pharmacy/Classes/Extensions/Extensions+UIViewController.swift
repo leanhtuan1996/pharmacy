@@ -11,13 +11,13 @@ import UIKit
 
 extension UIViewController {
     
-    func showStoryBoard(vc: UIViewController?) {
+    func showStoryBoard(_ vc: UIViewController?) {
         if let vc = vc {
             present(vc, animated: true, completion: nil)
         }
     }
     
-    func showAlert(message:String, title: String, buttons: [UIAlertAction]?) {
+    func showAlert(_ message:String, title: String, buttons: [UIAlertAction]?) {
         let alert:UIAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         if let buttons = buttons {

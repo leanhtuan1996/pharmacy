@@ -44,38 +44,27 @@ class AddDrugAdminVC: UIViewController {
     
     @IBAction func btnDone(_ sender: Any) {
         //Add drug
-        if !(txtPrice.hasText && txtHowToUse.hasText && txtSideEffect.hasText && txtContraindication.hasText && txtInstructions.hasText && txtFormula.hasText && txtName.hasText) {
-            self.showAlert(message: "Fields can not empty", title: "Fields are required", buttons: nil)
-            return
-        }
-        
-        guard let priceText = txtPrice.text, let price = Int(priceText) else {
-            self.showAlert(message: "Price must be a number", title: "Fields are required", buttons: nil)
+        if !txtName.hasText {
+            self.showAlert("Fields can not empty", title: "Fields are required", buttons: nil)
             return
         }
         
         let activityIndicatorView = UIActivityIndicatorView()
-        activityIndicatorView.showLoadingDialog(toVC: self)
+        activityIndicatorView.showLoadingDialog(self)
         let drugObject = DrugObject()
         drugObject.name = txtName.text ?? ""
-        drugObject.instructions = txtInstructions.text ?? ""
-        drugObject.formula = txtFormula.text ?? ""
-        drugObject.contraindication = txtContraindication.text ?? ""
-        drugObject.sideEffect = txtSideEffect.text ?? ""
-        drugObject.howToUse = txtHowToUse.text ?? ""
-        drugObject.price = price
         
-        DrugsService.shared.addDrug(drug: drugObject) { (error) in
+        DrugsService.shared.addDrug(drugObject) { (error) in
             activityIndicatorView.stopAnimating()
             if let error = error {
-                self.showAlert(message: error, title: "Add new drug incompleted", buttons: nil)
+                self.showAlert(error, title: "Add new drug incompleted", buttons: nil)
                 return
             }
             let alertAction = UIAlertAction(title: "Back to main", style: UIAlertActionStyle.default, handler: { (btn) in
                 self.navigationController?.popViewController(animated: true)
             })
             
-            self.showAlert(message: "Add new drug successfully", title: "Success", buttons: [alertAction])
+            self.showAlert("Add new drug successfully", title: "Success", buttons: [alertAction])
         }
     }
 }
