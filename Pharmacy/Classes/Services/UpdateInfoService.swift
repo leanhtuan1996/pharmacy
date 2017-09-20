@@ -37,7 +37,6 @@ class UpdateInfoService: NSObject {
             if let json = data.toDictionary() {
                 
                 if let errs = json["errors"] as? [String] {
-                    print(errs)
                     if errs.count > 0 {
                         return completionHandler("Invalid data format")
                     }

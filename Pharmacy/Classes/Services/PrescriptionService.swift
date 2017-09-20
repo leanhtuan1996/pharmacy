@@ -34,28 +34,6 @@ class PrescriptionService: NSObject {
                                 
                                 //convert preObject to Dictionary
                                 if let prescriptionJSON = Utilities.convertObjectToJson(object: preObject) {
-//                                    guard let id = preDic["id"] as? Int, let status = preDic["status"] as? Int else {
-//                                        return completionHandler(nil, "Invalid data format")
-//                                    }
-//                                    let pre = PrescriptionObject()
-//                                    
-//                                    if let dateCreate = preDic["date"] as? String {
-//                                        pre.dateCreate = dateCreate.jsonDateToDate()
-//                                    }
-//                                    
-//                                    pre.id = id
-//                                    pre.name = "Toa thuốc"
-//                                    
-//                                    switch status {
-//                                    case 0 :
-//                                        pre.status = Status.pending
-//                                    case 1:
-//                                        pre.status = Status.approved
-//                                    case 2:
-//                                        pre.status = Status.rejected
-//                                    default:
-//                                        break
-//                                    }
                                     print(prescriptionJSON)
                                     if let prescription = PrescriptionObject(json: prescriptionJSON) {
                                         prescriptionArray.append(prescription)
@@ -222,29 +200,6 @@ class PrescriptionService: NSObject {
                                 
                                 //convert preObject to Dictionary
                                 if let prescriptionJSON = Utilities.convertObjectToJson(object: preObject) {
-                                    //                                    guard let id = preDic["id"] as? Int, let status = preDic["status"] as? Int else {
-                                    //                                        return completionHandler(nil, "Invalid data format")
-                                    //                                    }
-                                    //                                    let pre = PrescriptionObject()
-                                    //
-                                    //                                    if let dateCreate = preDic["date"] as? String {
-                                    //                                        pre.dateCreate = dateCreate.jsonDateToDate()
-                                    //                                    }
-                                    //
-                                    //                                    pre.id = id
-                                    //                                    pre.name = "Toa thuốc"
-                                    //
-                                    //                                    switch status {
-                                    //                                    case 0 :
-                                    //                                        pre.status = Status.pending
-                                    //                                    case 1:
-                                    //                                        pre.status = Status.approved
-                                    //                                    case 2:
-                                    //                                        pre.status = Status.rejected
-                                    //                                    default:
-                                    //                                        break
-                                    //                                    }
-                                    print(prescriptionJSON)
                                     if let prescription = PrescriptionObject(json: prescriptionJSON) {
                                         prescriptionArray.append(prescription)
                                     }

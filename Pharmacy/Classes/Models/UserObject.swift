@@ -31,9 +31,9 @@ class UserObject: NSObject {
     required init?(json: JSON) {
         self.email = "email" <~~ json ?? "N/A"
         self.password = "password" <~~ json
-        self.fullName = "fullName" <~~ json
+        self.fullName = "fullname" <~~ json
         self.address = "address" <~~ json
-        self.phoneNumber = "phoneNumber" <~~ json
+        self.phoneNumber = "phonenumber" <~~ json
         self.role =   "role" <~~ json
         self.password = "password" <~~ json
         self.token = "token" <~~ json

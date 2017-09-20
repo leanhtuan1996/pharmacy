@@ -77,6 +77,7 @@ class PrescriptionVC: UIViewController {
             self.prescriptionsPending = []
             self.prescriptionsOrder = []
             self.prescriptionsRejected = []
+            self.tblPrescriptions.reloadData()
             
             if let error = error {
                 print("GET ALL PRESCRIPTION FROM SERVICE NOT COMPLETE WITH ERROR: \(error)")
