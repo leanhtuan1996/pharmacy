@@ -64,7 +64,6 @@ extension OrderHistoryVC: UITableViewDelegate, UITableViewDataSource {
         }
         cell.lblId.text = String(ordersHistory[indexPath.row].id)
         cell.lblDate.text = ordersHistory[indexPath.row].date
-        cell.lblPrice.text = String(ordersHistory[indexPath.row].totalPrice)
         
         return cell
     }
@@ -83,11 +82,10 @@ extension OrderHistoryVC: UITableViewDelegate, UITableViewDataSource {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "DetailsOrderHistoryVC", let cell = sender as? OrderHistoryCells {
             if let vc = segue.destination as? DetailsOrderHistoryVC {
-                if let idOrder = cell.lblId.text, let dateOrder = cell.lblDate.text, let totalPriceOder = cell.lblPrice.text, let idInt = Int(idOrder), let totalPriceOderInt = Int(totalPriceOder) {
+                if let idOrder = cell.lblId.text, let dateOrder = cell.lblDate.text, let idInt = Int(idOrder) {
                     //print(idInt)
                     vc.id = idInt
                     vc.date = dateOrder
-                    vc.totalPrice = totalPriceOderInt
                 }
             }
         }

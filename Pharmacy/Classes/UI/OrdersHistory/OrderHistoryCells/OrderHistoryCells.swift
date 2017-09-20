@@ -11,7 +11,6 @@ import UIKit
 class OrderHistoryCells: UITableViewCell {
     @IBOutlet weak var lblId: UILabel!
     @IBOutlet weak var lblDate: UILabel!
-    @IBOutlet weak var lblPrice: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

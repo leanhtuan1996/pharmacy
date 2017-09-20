@@ -43,10 +43,31 @@ class GetInformationService: NSObject {
                     //sign up successfully
                     if let userInfo = Utilities.convertObjectToJson(object: customerInfoObject) {
                         //print(userInfo)
-                        guard let email = userInfo["email"] as? String, let fullName = userInfo["fullname"] as? String, let address = userInfo["address"] as? String, let phoneNumber = userInfo["phonenumber"] as? String else {
+                        guard let email = userInfo["email"] as? String else {
                             return completionHandler(nil, "Invalid data format")
                         }
-                        let user = UserObject(email: email, password: "", fullName: fullName, address: address, phoneNumber: phoneNumber)
+                        
+                        let user = UserObject(email: email)
+                        
+                        
+                        if let fullName = userInfo["fullname"] as? String {
+                            user.fullName = fullName
+                        }
+                        
+                        if let address = userInfo["address"] as? String {
+                            user.address = address
+                        }
+                        
+                        if let phoneNumber = userInfo["phonenumber"] as? String {
+                            user.phoneNumber = phoneNumber
+                        }
+                        
+                        if let ruleString = userInfo["role"] as? String {
+                            if let role = userRole(rawValue: ruleString) {
+                                user.role = role
+                            }
+                        }
+                        
                         return completionHandler(user, nil)
                     } else {
                         return completionHandler(nil, "Invalid data format")

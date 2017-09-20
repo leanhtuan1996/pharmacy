@@ -59,20 +59,13 @@ class PrescriptionVC: UIViewController {
     //Get all prescriptions in NSUSERDEFAULTS
     func getAllPrescriptionsFromUserDefault() {
         //Get all presciptions from prescription manager
-        PrescriptionManager.shared.getAllPrescription { (prescription, error) in
-            //if error
-            if let err = error {
-                print(err)
-                return
-            } else {
-                if let preObject = prescription {
-                    self.prescriptionsCreated = preObject
-                    self.tblPrescriptions.reloadData()
-                }
-            }
-            
+        
+        if let prescriptions = PrescriptionManager.shared.getAllPrescription() {
+            self.prescriptionsCreated = prescriptions
             self.tblPrescriptions.reloadData()
-            
+        } else {
+            print("Get all prescriptions from UserDefaults Failed or nil")
+            return
         }
     }
     
@@ -304,19 +297,17 @@ extension PrescriptionVC: UITableViewDataSource, UITableViewDelegate, ManagerPre
             }
             print("Submit Okay")
             //del pre in array
-            PrescriptionManager.shared.deletePresciption(withId: prescription.id, completionHandler: { (error) in
-                if let error = error {
-                    print("DELETE PRESCRIPTION INCOMPLETED: \(error)")
-                }
+            
+            if PrescriptionManager.shared.deletePresciption(withId: prescription.id) {
                 self.deletePre(with: prescription.id)
-            })
-            
-            let alert = UIAlertController(title: "Gửi yêu cầu thành công!", message: "Gửi đơn thuốc thành công, đang đợi xét duyệt.", preferredStyle: .alert)
-            
-            alert.addAction(UIAlertAction(title: "Done", style: UIAlertActionStyle.default, handler: nil))
-            
-            self.showStoryBoard(alert)
-            
+                let alert = UIAlertController(title: "Gửi yêu cầu thành công!", message: "Gửi đơn thuốc thành công, đang đợi xét duyệt.", preferredStyle: .alert)
+                
+                alert.addAction(UIAlertAction(title: "Done", style: UIAlertActionStyle.default, handler: nil))
+                
+                self.showStoryBoard(alert)
+            } else {
+                print("DELETE PRESCRIPTION INCOMPLETED")
+            }
         }
     }
 }

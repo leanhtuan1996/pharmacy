@@ -11,14 +11,11 @@ import UIKit
 class OrderObject: NSObject {
     
     var id: Int
-    var date: String
-    var totalPrice: Int
+    var date: String = ""
     var drugs: [DrugObject]
     
-    init(id: Int, date: String, totalPrice: Int, drugs: [DrugObject]) {
+    init(id: Int, drugs: [DrugObject]) {
         self.id = id
-        self.date = date
-        self.totalPrice = totalPrice
         self.drugs = drugs
     }
 }

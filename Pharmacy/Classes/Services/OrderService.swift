@@ -33,8 +33,14 @@ class OrderService: NSObject {
                         }
                     }
                     
-                    guard let id = json["orderNumber"] as? Int, let date = json["date"] as? String, let totalPrice = json["totalPrice"] as? Int, let drugs = json["drugs"] as? [AnyObject] else {
+                    guard let id = json["orderNumber"] as? Int, let drugs = json["drugs"] as? [AnyObject] else {
                         return completionHandler(nil, "Invalid data format")
+                    }
+                    
+                    let orderObject = OrderObject(id: id, drugs: [])
+                    
+                    if  let date = json["date"] as? String {
+                        orderObject.date = date.jsonDateToDate()
                     }
                     
                     
@@ -55,8 +61,7 @@ class OrderService: NSObject {
                             return completionHandler(nil, "Invalid data format")
                         }
                     }
-                    
-                    return completionHandler(OrderObject(id: id, date: date, totalPrice: totalPrice, drugs: drugArray), nil)
+                    return completionHandler(orderObject, nil)
                 } else {
                     return completionHandler(nil, "Invalid data format")
                 }
@@ -121,11 +126,17 @@ class OrderService: NSObject {
                     
                     for orderData in allOrderJson {
                         if let order = Utilities.convertObjectToJson(object: orderData) {
-                            guard let id = order["id"] as? Int, let date = order["date"] as? String, let total_price = order["total_price"] as? Int else {
+                            guard let id = order["id"] as? Int else {
                                 print("2")
                                 return completionHandler(nil, "Invalid data format")
                             }
-                            ordersHistory.append(OrderObject(id: id, date: date.jsonDateToDate(), totalPrice: total_price, drugs: []))
+                            
+                            let orderObject = OrderObject(id: id, drugs: [])
+                            
+                            if let date = order["date"] as? String {
+                                orderObject.date = date.jsonDateToDate()
+                            }
+                            ordersHistory.append(orderObject)
                         } else {
                             print("3")
                             return completionHandler(nil, "Invalid data format")
@@ -167,8 +178,14 @@ class OrderService: NSObject {
                         }
                     }
                     
-                    guard let idOrder = json["orderNumber"] as? Int, let date = json["date"] as? String, let totalPrice = json["totalPrice"] as? Int, let drugs = json["drugs"] as? [AnyObject] else {
+                    guard let idOrder = json["orderNumber"] as? Int, let drugs = json["drugs"] as? [AnyObject] else {
                         return completionHandler(nil, "Invalid data format")
+                    }
+                    
+                    let orderObject = OrderObject(id: idOrder, drugs: [])
+                    
+                    if let date = json["date"] as? String {
+                        orderObject.date = date.jsonDateToDate()
                     }
                     
                     var drugArray: [DrugObject] = []
@@ -200,8 +217,8 @@ class OrderService: NSObject {
                                 }
                                 
                                 if flag == drugs.count {
-                                    //print(flag)
-                                    return completionHandler(OrderObject(id: idOrder, date: date, totalPrice: totalPrice, drugs: drugArray), nil)
+                                    orderObject.drugs = drugArray
+                                    return completionHandler(orderObject, nil)
                                 }
                             })
                         } else {

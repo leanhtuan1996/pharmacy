@@ -66,23 +66,14 @@ class AddPrescriptionVC: UIViewController {
 
         let activityIndicatorView = UIActivityIndicatorView()
         activityIndicatorView.showLoadingDialog(self)
-
-        PrescriptionManager.shared.addPrescription(with: prescription) { (error) in
         
-            self.navigationController?.setNavigationBarHidden(false, animated: true)
-            activityIndicatorView.stopLoadingDialog()
-            if let err = error {
-                print(err)
-                return
-            }
-            print("OKAY")
-            let alert = UIAlertController(title: "Add prescription", message: "Add Prescription Successfully", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Back to main", style: .default, handler: { (btn) in
-                self.navigationController?.popViewController(animated: true)
-            }))
-            
-            self.showStoryBoard(alert)
-        }
+        PrescriptionManager.shared.addPrescription(with: prescription)
+        let alert = UIAlertController(title: "Add prescription", message: "Add Prescription Successfully", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Back to main", style: .default, handler: { (btn) in
+            self.navigationController?.popViewController(animated: true)
+        }))
+        
+        self.showStoryBoard(alert)
     }
     
     // - MARK: FUNC IN PROTOCOL

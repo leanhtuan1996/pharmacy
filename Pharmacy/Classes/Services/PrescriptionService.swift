@@ -34,12 +34,16 @@ class PrescriptionService: NSObject {
                                 
                                 //convert preObject to Dictionary
                                 if let preDic = Utilities.convertObjectToJson(object: preObject) {
-                                    guard let id = preDic["id"] as? Int, let dateCreate = preDic["date"] as? String, let status = preDic["status"] as? Int else {
+                                    guard let id = preDic["id"] as? Int, let status = preDic["status"] as? Int else {
                                         return completionHandler(nil, "Invalid data format")
                                     }
                                     let pre = PrescriptionObject()
+                                    
+                                    if let dateCreate = preDic["date"] as? String {
+                                        pre.dateCreate = dateCreate.jsonDateToDate()
+                                    }
+                                    
                                     pre.id = id
-                                    pre.dateCreate = dateCreate.jsonDateToDate()
                                     pre.name = "Toa thuốc"
                                     
                                     switch status {
@@ -203,13 +207,17 @@ class PrescriptionService: NSObject {
                                 
                                 //convert preObject to Dictionary
                                 if let preDic = Utilities.convertObjectToJson(object: preObject) {
-                                    guard let id = preDic["id"] as? Int, let dateCreate = preDic["date"] as? String, let status = preDic["status"] as? Int else {
+                                    guard let id = preDic["id"] as? Int,  let status = preDic["status"] as? Int else {
                                         return completionHandler(nil, "Invalid data format")
                                     }
                                     
                                     let pre = PrescriptionObject()
+                                    
+                                    if let dateCreate = preDic["date"] as? String {
+                                        pre.dateCreate = dateCreate.jsonDateToDate()
+                                    }
+                                    
                                     pre.id = id
-                                    pre.dateCreate = dateCreate.jsonDateToDate()
                                     pre.name = "Toa thuốc"
                                     
                                     switch status {

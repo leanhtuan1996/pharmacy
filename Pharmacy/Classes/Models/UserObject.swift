@@ -15,22 +15,14 @@ enum userRole: String {
 
 class UserObject: NSObject {
     var email: String
-    var password: String
-    var fullName: String
-    var address: String
-    var phoneNumber: String
-    var role: userRole
-    var token: String
+    var password: String = ""
+    var fullName: String = ""
+    var address: String = ""
+    var phoneNumber: String = ""
+    var role: userRole = .customer
+    var token: String?
     
-    init(email: String, password: String, fullName: String, address: String, phoneNumber: String) {
+    init(email: String) {
         self.email = email
-        self.password = password
-        self.fullName = fullName
-        self.address = address
-        self.phoneNumber = phoneNumber
-        self.token = ""
-        self.role = userRole.customer
     }
-    
-    
 }

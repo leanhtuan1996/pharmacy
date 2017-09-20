@@ -45,7 +45,11 @@ class ChangeInfoVC: UIViewController {
         
         activityIndicatorView.showLoadingDialog(self)
         
-        let userObject = UserObject(email: "", password: currentPw, fullName: fullName, address: address, phoneNumber: phoneNumber)
+        let userObject = UserObject(email: "")
+        userObject.address = address
+        userObject.password = currentPw
+        userObject.fullName = fullName
+        userObject.phoneNumber = phoneNumber
         
         UpdateInfoService.shared.updateInfo(userObject) { (error) in
             activityIndicatorView.stopAnimating()

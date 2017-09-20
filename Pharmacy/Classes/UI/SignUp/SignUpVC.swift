@@ -79,7 +79,11 @@ class SignUpVC: UIViewController {
         let activityIndicatorView = UIActivityIndicatorView()
         activityIndicatorView.showLoadingDialog(self)
         
-        let userObject = UserObject(email: email, password: password, fullName: fullName, address: address, phoneNumber: phoneNumber)
+        let userObject = UserObject(email: email)
+        userObject.address = address
+        userObject.password = password
+        userObject.fullName = fullName
+        userObject.phoneNumber = phoneNumber
         
         SignIn_UpService.shared.signUp(userObject) { (user, error) in
             activityIndicatorView.stopAnimating()

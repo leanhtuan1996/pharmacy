@@ -16,16 +16,16 @@ class PrescriptionManager: NSObject {
     var currentAllPrescriptions: [PrescriptionObject] = []
     
     //To prescription to userdefaults
-    func addPrescription(with prescription: PrescriptionObject, completionHanler: @escaping (_ error: String?) -> Void) {
+    func addPrescription(with prescription: PrescriptionObject) {
         
         prescription.id = currentAllPrescriptions.count
         currentAllPrescriptions.append(prescription)
         addToUserDefault(with: currentAllPrescriptions)
         print("ADD PRESCRIPTION TO NSUSERDEFAULTS SUCCESSFULLY")
-        return completionHanler(nil)
+       
     }
     
-    func editPrescription(with prescription: PrescriptionObject, completionHanler: @escaping (_ error: String?) -> Void ) {
+    func editPrescription(with prescription: PrescriptionObject) -> Bool {
         //check if exist current
         if let index = currentAllPrescriptions.index(where: { (pre) -> Bool in
             return pre.id == prescription.id
@@ -33,27 +33,30 @@ class PrescriptionManager: NSObject {
             //exist 
             currentAllPrescriptions[index] = prescription
             addToUserDefault(with: currentAllPrescriptions)
-            return completionHanler(nil)
+            return true
         } else {
-            return completionHanler("Prescription not found")
+            return false
         }
     }
     
     //get all prescriptions from userdefaults
-    func getAllPrescription(_ completionHandler: @escaping(_ data: [PrescriptionObject]?, _ error: String?) -> Void ) {
+    func getAllPrescription() -> [PrescriptionObject]? {
         //Get orders from NSUserDefault
         if let data = userDefaults.object(forKey: "Prescriptions") as? Data {
             //print(data)
             if let prescriptions = NSKeyedUnarchiver.unarchiveObject(with: data) as? [PrescriptionObject] {
                 currentAllPrescriptions = prescriptions
                 //print(currentAllPrescriptions.count)
-                return completionHandler(currentAllPrescriptions, nil)
-                
+                return prescriptions
+            } else {
+                return nil
             }
+        } else {
+            return nil
         }
     }
     
-    func deletePresciption(withId id: Int, completionHandler: @escaping (_ error: String?) -> Void ) {
+    func deletePresciption(withId id: Int) -> Bool {
         //tìm theo id trong currentPre
         
         if let index = currentAllPrescriptions.index(where: { (pre) -> Bool in
@@ -61,13 +64,10 @@ class PrescriptionManager: NSObject {
         }) {
             currentAllPrescriptions.remove(at: index)
             addToUserDefault(with: currentAllPrescriptions)
-            return completionHandler(nil)
+            return true
         } else {
-            return completionHandler("Prescription not found")
+            return false
         }
-        
-        //Xoá
-        //Ghi lại vào userdefault
     }
     
     func addToUserDefault(with prescription: [PrescriptionObject] ) {

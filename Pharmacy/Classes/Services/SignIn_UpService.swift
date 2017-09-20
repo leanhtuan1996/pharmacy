@@ -55,21 +55,33 @@ class SignIn_UpService: NSObject {
                 if let userInfo = Utilities.convertObjectToJson(object: userInfoObject) {
                     print(userInfo)
                     
-                    guard let email = userInfo["email"] as? String, let fullName = userInfo["fullname"] as? String, let address = userInfo["address"] as? String, let phoneNumber = userInfo["phonenumber"] as? String, let roleString = userInfo["role"] as? String else {
+                    guard let email = userInfo["email"] as? String else {
                         return completionHandler(nil, "Invalid data format")
                     }
                     
-                    guard let role = userRole(rawValue: roleString) else {
-                        return completionHandler(nil, "Role not found")
+                    let user = UserObject(email: email)
+
+                    
+                    if let fullName = userInfo["fullname"] as? String {
+                        user.fullName = fullName
                     }
                     
-                    let user = UserObject(email: email, password: "", fullName: fullName, address: address, phoneNumber: phoneNumber)
+                    if let address = userInfo["address"] as? String {
+                        user.address = address
+                    }
                     
-                    user.role = role
+                    if let phoneNumber = userInfo["phonenumber"] as? String {
+                        user.phoneNumber = phoneNumber
+                    }
+                    
+                    if let ruleString = userInfo["role"] as? String {
+                        if let role = userRole(rawValue: ruleString) {
+                            user.role = role
+                        }
+                    }
                     
                     if token.count > 0 {
                         user.token = token[0]
-                        print(user.token)
                         return completionHandler(user, nil)
                     } else {
                         return completionHandler(nil, "Received with no token")
@@ -77,7 +89,6 @@ class SignIn_UpService: NSObject {
                     }
                 } else {
                    return completionHandler(nil, "Invalid data format")
-                    
                 }
                 
             } else {
@@ -88,7 +99,7 @@ class SignIn_UpService: NSObject {
     
     // MARK: - SIGN UP
     func signUp(_ user: UserObject, completionHandler: @escaping (_ user: UserObject?, _ error: String?) -> ()){
-        let parameters = [
+        let parameters: [String: String] = [
             "email" : user.email,
             "password" : user.password,
             "address" : user.address,
@@ -115,14 +126,12 @@ class SignIn_UpService: NSObject {
                     //handle json data
                     guard let errs = json["errors"] as? [String], let token = json["token"] as? [String] else {
                         return completionHandler(nil, "Invalid data format")
-                        
                     }
                     
                     
                     //if sign up not successfully
                     if errs.count > 0 || token.count == 0 {
                         return completionHandler(nil, errs[0])
-                        
                     }
                     
                     guard let userInfoObject = json["userInfo"] else {
@@ -133,29 +142,42 @@ class SignIn_UpService: NSObject {
                     if let userInfo = Utilities.convertObjectToJson(object: userInfoObject) {
                         //print(userInfo)
                         
-                        guard let email = userInfo["email"] as? String, let fullName = userInfo["fullname"] as? String, let address = userInfo["address"] as? String, let phoneNumber = userInfo["phonenumber"] as? String else {
+                        guard let email = userInfo["email"] as? String else {
                             return completionHandler(nil, "Invalid data format")
-                            
                         }
                         
-                        let user = UserObject(email: email, password: "", fullName: fullName, address: address, phoneNumber: phoneNumber)
+                        let user = UserObject(email: email)
+                        
+                        
+                        if let fullName = userInfo["fullname"] as? String {
+                            user.fullName = fullName
+                        }
+                        
+                        if let address = userInfo["address"] as? String {
+                            user.address = address
+                        }
+                        
+                        if let phoneNumber = userInfo["phonenumber"] as? String {
+                            user.phoneNumber = phoneNumber
+                        }
+                        
+                        if let ruleString = userInfo["role"] as? String {
+                            if let role = userRole(rawValue: ruleString) {
+                                user.role = role
+                            }
+                        }
                         
                         if token.count > 0 {
                             user.token = token[0]
                             return completionHandler(user, nil)
                         } else {
                             return completionHandler(nil, "Sign Up Error")
-                            
                         }
-                        
                     } else {
                         return completionHandler(nil, "Invalid data format")
-                        
                     }
-                    
                 } else {
                     return completionHandler(nil, "Invalid data format")
-                    
                 }
         }
     }
