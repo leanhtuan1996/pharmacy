@@ -72,38 +72,40 @@ class PrescriptionVC: UIViewController {
     func getAllPrescriptionsFromService() {
         
         //Get all prescriptions of user from Service
-        PrescriptionService.shared.getPrescriptions { (prescription, error) in
+        PrescriptionService.shared.getPrescriptions { (prescriptions, error) in
             
-            DispatchQueue.main.async {
-                self.tblPrescriptions.reloadData()
-                self.btnCreatedPre.isEnabled = true
-                self.btnOrderedPre.isEnabled = true
-                self.btnRejectedPre.isEnabled = true
-                self.btnRequestedPre.isEnabled = true
-            }
+            self.prescriptionsPending = []
+            self.prescriptionsOrder = []
+            self.prescriptionsRejected = []
             
             if let error = error {
                 print("GET ALL PRESCRIPTION FROM SERVICE NOT COMPLETE WITH ERROR: \(error)")
                 return
             }
             
-            guard let prescription = prescription else {
+            guard let prescriptions = prescriptions else {
                 print("GET ALL PRESCRIPTION FROM SERVICE NOT COMPLETE WITH ERROR")
                 return
             }
             
-            switch prescription.status {
-            //pending
-            case .pending :
-                self.prescriptionsPending.append(prescription)
-            //accepted
-            case .approved :
-                self.prescriptionsOrder.append(prescription)
-            //rejected
-            case .rejected :
-                self.prescriptionsRejected.append(prescription)
-            default:
-                break
+            for prescription in prescriptions {
+                if let status = prescription.status {
+                    switch status {
+                    //pending
+                    case .pending :
+                        self.prescriptionsPending.append(prescription)
+                    //accepted
+                    case .approved :
+                        self.prescriptionsOrder.append(prescription)
+                    //rejected
+                    case .rejected :
+                        self.prescriptionsRejected.append(prescription)
+                    default:
+                        break
+                    }
+                }
+                
+                self.tblPrescriptions.reloadData()
             }
         }
     }
@@ -145,38 +147,31 @@ class PrescriptionVC: UIViewController {
     
     
     @IBAction func btnCreatedPreClicked(_ sender: UIButton) {
-        btnCreatedPre.isEnabled = false
         selectionType = .creating
         switchButtonSelection()
         prescriptionsCreated = []
-        tblPrescriptions.reloadData()
+        //tblPrescriptions.reloadData()
         getAllPrescriptionsFromUserDefault()
     }
     
     @IBAction func btnRequestedPreClicked(_ sender: Any) {
-        btnRequestedPre.isEnabled = false
         selectionType = .pending
         switchButtonSelection()
-        prescriptionsPending = []
-        tblPrescriptions.reloadData()
+        //tblPrescriptions.reloadData()
         getAllPrescriptionsFromService()
     }
     
     @IBAction func btnRejectedPreClicked(_ sender: Any) {
-        btnRejectedPre.isEnabled = false
         selectionType = .rejected
         switchButtonSelection()
-        prescriptionsRejected = []
-        tblPrescriptions.reloadData()
+        //tblPrescriptions.reloadData()
         getAllPrescriptionsFromService()
     }
     
     @IBAction func btnOrderedPreClicked(_ sender: Any) {
-        btnOrderedPre.isEnabled = false
         selectionType = .approved
         switchButtonSelection()
-        prescriptionsOrder = []
-        tblPrescriptions.reloadData()
+        //tblPrescriptions.reloadData()
         getAllPrescriptionsFromService()
     }
 }
@@ -206,8 +201,8 @@ extension PrescriptionVC: UITableViewDataSource, UITableViewDelegate, ManagerPre
             
             cell.prescription = prescriptionsCreated[indexPath.row]
             cell.lblName.text = prescriptionsCreated[indexPath.row].name
-            cell.lblTotalDrugs.text = String(prescriptionsCreated[indexPath.row].drugs.count)
-            cell.lblStatus.text = prescriptionsCreated[indexPath.row].status.rawValue
+            cell.lblTotalDrugs.text = String(prescriptionsCreated[indexPath.row].drugs?.count ?? 0)
+            cell.lblStatus.text = "Tạo mới"
             cell.lblDateCreated.text = prescriptionsCreated[indexPath.row].dateCreate
             cell.delegate = self
             return cell
@@ -218,7 +213,7 @@ extension PrescriptionVC: UITableViewDataSource, UITableViewDelegate, ManagerPre
             }
             cell.prescription = prescriptionsPending[indexPath.row]
             cell.lblName.text = prescriptionsPending[indexPath.row].name
-            cell.lblStatus.text = prescriptionsPending[indexPath.row].status.rawValue
+            cell.lblStatus.text = "Đang chờ duyệt"
             cell.lblDate.text = prescriptionsPending[indexPath.row].dateCreate
             return cell
             
@@ -228,7 +223,7 @@ extension PrescriptionVC: UITableViewDataSource, UITableViewDelegate, ManagerPre
             }
             cell.prescription = prescriptionsOrder[indexPath.row]
             cell.lblName.text = prescriptionsOrder[indexPath.row].name
-            cell.lblStatus.text = prescriptionsOrder[indexPath.row].status.rawValue
+            cell.lblStatus.text = "Được chấp nhận"
             cell.lblDateCreated.text = prescriptionsOrder[indexPath.row].dateCreate
             return cell
         case .rejected:
@@ -237,7 +232,7 @@ extension PrescriptionVC: UITableViewDataSource, UITableViewDelegate, ManagerPre
             }
             cell.prescription = prescriptionsRejected[indexPath.row]
             cell.lblName.text = prescriptionsRejected[indexPath.row].name
-            cell.lblStatus.text = prescriptionsRejected[indexPath.row].status.rawValue
+            cell.lblStatus.text = "Bị từ chối"
             cell.lblDateCreated.text = prescriptionsRejected[indexPath.row].dateCreate
             return cell
         }
@@ -266,11 +261,11 @@ extension PrescriptionVC: UITableViewDataSource, UITableViewDelegate, ManagerPre
                 self.navigationController?.pushViewController(sb, animated: true)
             }
         case .pending:
-            print(prescriptionsPending[indexPath.row].id)
+            print(prescriptionsPending[indexPath.row].id  ?? 0 )
         case .rejected:
-            print(prescriptionsRejected[indexPath.row].id)
+            print(prescriptionsRejected[indexPath.row].id ?? 0)
         case .creating:
-            print(prescriptionsCreated[indexPath.row].id)
+            print(prescriptionsCreated[indexPath.row].id ?? 0)
         }
     }
     
@@ -298,8 +293,13 @@ extension PrescriptionVC: UITableViewDataSource, UITableViewDelegate, ManagerPre
             print("Submit Okay")
             //del pre in array
             
-            if PrescriptionManager.shared.deletePresciption(withId: prescription.id) {
-                self.deletePre(with: prescription.id)
+            guard let id = prescription.id else {
+                print("Id of prescription not found")
+                return
+            }
+            
+            if PrescriptionManager.shared.deletePresciption(withId: id) {
+                self.deletePre(with: id)
                 let alert = UIAlertController(title: "Gửi yêu cầu thành công!", message: "Gửi đơn thuốc thành công, đang đợi xét duyệt.", preferredStyle: .alert)
                 
                 alert.addAction(UIAlertAction(title: "Done", style: UIAlertActionStyle.default, handler: nil))

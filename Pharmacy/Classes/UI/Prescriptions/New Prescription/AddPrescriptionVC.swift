@@ -122,6 +122,7 @@ class AddPrescriptionVC: UIViewController {
         
         //let add to nsuserdefault
         let pre = PrescriptionObject()
+       
         pre.name = name
         pre.dateCreate = Date.getDate()
         pre.drugs = drugsSelected

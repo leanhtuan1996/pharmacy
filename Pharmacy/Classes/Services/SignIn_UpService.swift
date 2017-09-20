@@ -101,10 +101,10 @@ class SignIn_UpService: NSObject {
     func signUp(_ user: UserObject, completionHandler: @escaping (_ user: UserObject?, _ error: String?) -> ()){
         let parameters: [String: String] = [
             "email" : user.email,
-            "password" : user.password,
-            "address" : user.address,
-            "fullname" : user.fullName,
-            "phonenumber" : user.phoneNumber
+            "password" : user.password ?? "",
+            "address" : user.address ?? "",
+            "fullname" : user.fullName ?? "",
+            "phonenumber" : user.phoneNumber ?? ""
         ]
         
         Alamofire.request(UserRouter.signUp(parameters))

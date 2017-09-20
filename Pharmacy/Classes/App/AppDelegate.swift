@@ -83,8 +83,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //set token to NSUserDefault & UserNetwork
         UserManager.shared.setToken(user.token)
         authToken = user.token
-        
-        switch user.role {
+        switch user.role ?? userRole.customer {
         case .admin:
             showAdminView()
         case .customer:

@@ -15,10 +15,10 @@ class UpdateInfoService: NSObject {
     func updateInfo(_ user: UserObject, completionHandler: @escaping (_ error: String?) -> ()) {
         
         let parameters = [
-            "currentPassword" : user.password,
-            "address" : user.address,
-            "phonenumber" : user.phoneNumber,
-            "fullname" : user.fullName
+            "currentPassword" : user.password ?? "",
+            "address" : user.address ?? "",
+            "phonenumber" : user.phoneNumber ?? "",
+            "fullname" : user.fullName ?? ""
         ]
         
         Alamofire.request(UserRouter.updateInfo(parameters))

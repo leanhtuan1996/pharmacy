@@ -28,7 +28,10 @@ class OrderPrescriptionVC: UIViewController {
         
         if let pre = prescription {
             //Load detail prescription
-            getDetailPrescription(with: pre.id)
+            guard let id = pre.id else {
+                return
+            }
+            getDetailPrescription(with: id)
         }
     }
     
@@ -57,20 +60,29 @@ class OrderPrescriptionVC: UIViewController {
         if let prescription = prescription, drugsSelected.count > 0 {
             var drugs:[[String: Any]] = []
             
-            
-            
             for drug in drugsSelected {
+                
+                guard let id = drug.id, let quantity = drug.quantity else {
+                    print("Drug id or quantity is empty")
+                    return
+                }
+                
                 let temp: [String: Any] = [
-                    "id" : drug.id,
-                    "quantity" : drug.quantity
+                    "id" : id,
+                    "quantity" : quantity
                 ]
                 drugs.append(temp)
+            }
+            
+            guard let idPrescription = prescription.id else {
+                print("Id prescription not found")
+                return
             }
             
             let parameter: [String: Any] = [
                 "drugs" : drugs,
                 "date" : Date.getDate(),
-                "prescriptionID": prescription.id
+                "prescriptionID": idPrescription
             ]
             
             OrderService.shared.newOrder(parameter, completionHandler: { (error) in
@@ -102,7 +114,7 @@ class OrderPrescriptionVC: UIViewController {
 
 extension OrderPrescriptionVC: UITableViewDelegate, UITableViewDataSource, ChooseDrugOrder {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return prescription?.drugs.count ?? 0
+        return prescription?.drugs?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -110,8 +122,8 @@ extension OrderPrescriptionVC: UITableViewDelegate, UITableViewDataSource, Choos
             return UITableViewCell()
         }
         
-        cell.drug = prescription?.drugs[indexPath.row] ?? DrugObject()
-        cell.lblName.text = prescription?.drugs[indexPath.row].name ?? ""
+        cell.drug = prescription?.drugs?[indexPath.row] ?? DrugObject()
+        cell.lblName.text = prescription?.drugs?[indexPath.row].name ?? ""
         cell.delegate = self
        
         return cell

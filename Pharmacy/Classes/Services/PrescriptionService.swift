@@ -12,7 +12,7 @@ import Alamofire
 class PrescriptionService: NSObject {
     static let shared = PrescriptionService()
     
-    func getPrescriptions(_ completionHandler: @escaping (_ prescription: PrescriptionObject?, _ error: String?) -> Void) {
+    func getPrescriptions(_ completionHandler: @escaping (_ prescription: [PrescriptionObject]?, _ error: String?) -> Void) {
         Alamofire.request(PrescriptionRouter.getAllPrescription())
             .validate()
             .response { (res) in
@@ -29,36 +29,42 @@ class PrescriptionService: NSObject {
                         }
                         //if success
                         if let prescriptions = json["prescriptions"] as? [AnyObject] {
-                            
+                            var prescriptionArray: [PrescriptionObject] = []
                             for preObject in prescriptions {
                                 
                                 //convert preObject to Dictionary
-                                if let preDic = Utilities.convertObjectToJson(object: preObject) {
-                                    guard let id = preDic["id"] as? Int, let status = preDic["status"] as? Int else {
-                                        return completionHandler(nil, "Invalid data format")
+                                if let prescriptionJSON = Utilities.convertObjectToJson(object: preObject) {
+//                                    guard let id = preDic["id"] as? Int, let status = preDic["status"] as? Int else {
+//                                        return completionHandler(nil, "Invalid data format")
+//                                    }
+//                                    let pre = PrescriptionObject()
+//                                    
+//                                    if let dateCreate = preDic["date"] as? String {
+//                                        pre.dateCreate = dateCreate.jsonDateToDate()
+//                                    }
+//                                    
+//                                    pre.id = id
+//                                    pre.name = "Toa thuốc"
+//                                    
+//                                    switch status {
+//                                    case 0 :
+//                                        pre.status = Status.pending
+//                                    case 1:
+//                                        pre.status = Status.approved
+//                                    case 2:
+//                                        pre.status = Status.rejected
+//                                    default:
+//                                        break
+//                                    }
+                                    print(prescriptionJSON)
+                                    if let prescription = PrescriptionObject(json: prescriptionJSON) {
+                                        prescriptionArray.append(prescription)
                                     }
-                                    let pre = PrescriptionObject()
-                                    
-                                    if let dateCreate = preDic["date"] as? String {
-                                        pre.dateCreate = dateCreate.jsonDateToDate()
-                                    }
-                                    
-                                    pre.id = id
-                                    pre.name = "Toa thuốc"
-                                    
-                                    switch status {
-                                    case 0 :
-                                        pre.status = Status.pending
-                                    case 1:
-                                        pre.status = Status.approved
-                                    case 2:
-                                        pre.status = Status.rejected
-                                    default:
-                                        break
-                                    }
-                                    completionHandler(pre, nil)
                                 }
                             }
+                            
+                            return completionHandler(prescriptionArray, nil)
+                            
                         } else {
                             print("1")
                             return completionHandler(nil, "Invalid data format")
@@ -143,9 +149,18 @@ class PrescriptionService: NSObject {
         
         var drugs: [[String: Any]] = []
         
-        for drug in prescription.drugs {
+        guard let drugOfPrescription = prescription.drugs else {
+            return completionHandler("Prescription must have a drug")
+        }
+        
+        for drug in drugOfPrescription {
+            
+            guard let id = drug.id else {
+                return completionHandler("Drug Id not found")
+            }
+            
             let drugDic: [String : Any] = [
-                "id" : drug.id
+                "id" : id
             ]
             drugs.append(drugDic)
         }
@@ -185,7 +200,7 @@ class PrescriptionService: NSObject {
     // ** FUNCTIONS FOR ADMIN RULE **
     
     //Get all prescription of customers
-    func getListPrescriptions(_ completionHandler: @escaping (_ data: PrescriptionObject?, _ error: String?) -> Void) {
+    func getListPrescriptions(_ completionHandler: @escaping (_ data: [PrescriptionObject]?, _ error: String?) -> Void) {
         Alamofire.request(PrescriptionRouter.getListPrescription())
             .validate()
             .response { (res) in
@@ -202,37 +217,42 @@ class PrescriptionService: NSObject {
                         }
                         //if success
                         if let prescriptions = json["prescriptions"] as? [AnyObject] {
-                            
+                            var prescriptionArray: [PrescriptionObject] = []
                             for preObject in prescriptions {
                                 
                                 //convert preObject to Dictionary
-                                if let preDic = Utilities.convertObjectToJson(object: preObject) {
-                                    guard let id = preDic["id"] as? Int,  let status = preDic["status"] as? Int else {
-                                        return completionHandler(nil, "Invalid data format")
+                                if let prescriptionJSON = Utilities.convertObjectToJson(object: preObject) {
+                                    //                                    guard let id = preDic["id"] as? Int, let status = preDic["status"] as? Int else {
+                                    //                                        return completionHandler(nil, "Invalid data format")
+                                    //                                    }
+                                    //                                    let pre = PrescriptionObject()
+                                    //
+                                    //                                    if let dateCreate = preDic["date"] as? String {
+                                    //                                        pre.dateCreate = dateCreate.jsonDateToDate()
+                                    //                                    }
+                                    //
+                                    //                                    pre.id = id
+                                    //                                    pre.name = "Toa thuốc"
+                                    //
+                                    //                                    switch status {
+                                    //                                    case 0 :
+                                    //                                        pre.status = Status.pending
+                                    //                                    case 1:
+                                    //                                        pre.status = Status.approved
+                                    //                                    case 2:
+                                    //                                        pre.status = Status.rejected
+                                    //                                    default:
+                                    //                                        break
+                                    //                                    }
+                                    print(prescriptionJSON)
+                                    if let prescription = PrescriptionObject(json: prescriptionJSON) {
+                                        prescriptionArray.append(prescription)
                                     }
-                                    
-                                    let pre = PrescriptionObject()
-                                    
-                                    if let dateCreate = preDic["date"] as? String {
-                                        pre.dateCreate = dateCreate.jsonDateToDate()
-                                    }
-                                    
-                                    pre.id = id
-                                    pre.name = "Toa thuốc"
-                                    
-                                    switch status {
-                                    case 0 :
-                                        pre.status = Status.pending
-                                    case 1:
-                                        pre.status = Status.approved
-                                    case 2:
-                                        pre.status = Status.rejected
-                                    default:
-                                        break
-                                    }
-                                    completionHandler(pre, nil)
                                 }
                             }
+                            
+                            return completionHandler(prescriptionArray, nil)
+                            
                         } else {
                             print("1")
                             return completionHandler(nil, "Invalid data format")

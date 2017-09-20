@@ -86,7 +86,7 @@ extension CheckOutVC: UITableViewDataSource, UITableViewDelegate {
         }
         
         cell.lblName.text = drugsToOrder[indexPath.row].name
-        cell.lblQuantity.text = String(drugsToOrder[indexPath.row].quantity)
+        cell.lblQuantity.text = String(drugsToOrder[indexPath.row].quantity ?? 0)
         
         return cell
     }

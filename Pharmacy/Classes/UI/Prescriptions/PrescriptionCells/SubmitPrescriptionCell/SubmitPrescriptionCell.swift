@@ -31,9 +31,13 @@ class SubmitPrescriptionCell: UITableViewCell {
     @IBAction func btnDeletePrescription(_ sender: Any) {
         
         if let prescription = prescription {
-            if PrescriptionManager.shared.deletePresciption(withId: prescription.id) {
+            guard let id = prescription.id else {
+                return
+            }
+            
+            if PrescriptionManager.shared.deletePresciption(withId: id) {
                 print("Delete Ok")
-                self.delegate?.deletePre(with: prescription.id)
+                self.delegate?.deletePre(with: id)
             } else {
                 print("DELETE FAILED")
             }

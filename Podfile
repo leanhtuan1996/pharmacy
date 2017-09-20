@@ -5,4 +5,5 @@ use_frameworks!
 target 'Pharmacy' do
  
 	pod 'Alamofire', '~> 4.4'
+    pod 'Gloss', '~> 1.2'
 end

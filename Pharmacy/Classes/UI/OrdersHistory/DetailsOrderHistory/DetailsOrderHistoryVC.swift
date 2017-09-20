@@ -71,9 +71,9 @@ extension DetailsOrderHistoryVC: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.lblId.text = String(drugOfOrder[indexPath.row].id)
-        cell.lblName.text = drugOfOrder[indexPath.row].name
-        cell.lblTotalQuantity.text = String(drugOfOrder[indexPath.row].quantity)
+        cell.lblId.text = String(drugOfOrder[indexPath.row].id ?? 0)
+        cell.lblName.text = drugOfOrder[indexPath.row].name ?? ""
+        cell.lblTotalQuantity.text = String(drugOfOrder[indexPath.row].quantity ?? 0)
         
         return cell
     }

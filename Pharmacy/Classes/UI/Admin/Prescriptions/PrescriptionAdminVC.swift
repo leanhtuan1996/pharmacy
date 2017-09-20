@@ -26,31 +26,33 @@ class PrescriptionAdminVC: UIViewController {
     }
     
     func getAllPrescriptionsFromService() {
-        prescriptions = []
+        
         //Get all prescriptions of user from Service
-        PrescriptionService.shared.getListPrescriptions { (prescription, error) in
+        PrescriptionService.shared.getListPrescriptions { (prescriptions, error) in
             
-            self.tblPrescriptions.reloadData()
+            self.prescriptions = []
             
             if let error = error {
                 print("GET ALL PRESCRIPTION FROM SERVICE NOT COMPLETE WITH ERROR: \(error)")
                 return
             }
             
-            guard let prescription = prescription else {
+            guard let prescriptions = prescriptions else {
                 print("GET ALL PRESCRIPTION FROM SERVICE NOT COMPLETE WITH ERROR")
                 return
             }
             
-            switch prescription.status {
-            //pending
-            case .pending :
-                self.prescriptions.append(prescription)
-            default:
-                break
-            }
-            
-            DispatchQueue.main.async {
+            for prescription in prescriptions {
+                if let status = prescription.status {
+                    switch status {
+                    //pending
+                    case .pending :
+                        self.prescriptions.append(prescription)
+                    default:
+                        break
+                    }
+                }
+                
                 self.tblPrescriptions.reloadData()
             }
         }

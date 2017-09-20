@@ -25,12 +25,16 @@ class PrescriptionsAdminCell: UITableViewCell {
     
     @IBAction func btnRejectClicked(_ sender: Any) {
         if let prescription = prescription {
-            delegate?.reject(withId: prescription.id)
+            if let id = prescription.id {
+                delegate?.reject(withId: id)
+            }
         }
     }
     @IBAction func btnAcceptClicked(_ sender: Any) {
         if let prescription = prescription {
-            delegate?.accept(withId: prescription.id)
+            if let id = prescription.id {
+                delegate?.accept(withId: id)
+            }
         }
     }
     

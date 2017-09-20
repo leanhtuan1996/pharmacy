@@ -14,7 +14,12 @@ class DrugsService: NSObject {
     static let shared = DrugsService()
     
     func getDrug(_ drugId: Int, completionHandler: @escaping (_ Data: DrugObject?, _ Error: String? ) -> Void) {
-        Alamofire.request(DrugRouter.getDrug(["drugId": drugId]))
+        
+        let parameter: [String : Any] = [
+            "drugId": drugId
+        ]
+        
+        Alamofire.request(DrugRouter.getDrug(parameter))
             .validate()
             .response { (res) in
                 
@@ -34,15 +39,19 @@ class DrugsService: NSObject {
                             }
                         }
                         
-                        guard let drug = json["drug"] as? [String : Any], let id = drug["id"] as? Int, let name = drug["name"] as? String else {
+                        guard let drugObject = json["drug"] else {
                             return completionHandler(nil, "Invalid data format")
                         }
                         
-                        let drugObject = DrugObject()
-                        drugObject.id = id
-                        drugObject.name = name
-                        
-                        return completionHandler(drugObject, nil)
+                        if let drugJSON = Utilities.convertObjectToJson(drugObject) {
+                            if let drug = DrugObject(json: drugJSON) {
+                                return completionHandler(drug, nil)
+                            }
+                            return completionHandler(nil, "Invalid data format")
+                        } else {
+                            return completionHandler(nil, "Invalid data format")
+                        }
+                       
                     } else {
                         return completionHandler(nil, "Invalid data format")
                     }
@@ -87,15 +96,11 @@ class DrugsService: NSObject {
                     for drugData in listOfDrugArray {
                         if let drugObject = Utilities.convertObjectToJson(object: drugData) {
                             
-                            guard let id = drugObject["id"] as? Int, let name = drugObject["name"] as? String else {
+                            guard let drug = DrugObject(json: drugObject) else {
                                 return completionHandler(nil, "Invalid data format")
                             }
                             
-                            //print(name)
-                            let drugObject = DrugObject()
-                            drugObject.id = id
-                            drugObject.name = name
-                            drugs.append(drugObject)
+                            drugs.append(drug)
                             
                         } else {
                             return completionHandler(nil, "Invalid data format")
@@ -111,8 +116,12 @@ class DrugsService: NSObject {
     
     func addDrug(_ drug: DrugObject, completionHandler: @escaping(_ error: String?) -> Void ) {
         
-        let parameter: [String: Any] = [
-            "name" : drug.name
+        guard let name = drug.name else {
+            return completionHandler("Name can not empty")
+        }
+        
+        let parameter: [String: String] = [
+            "name" : name
         ]
         
         Alamofire.request(DrugRouter.addNewDrug(parameter))
@@ -145,9 +154,14 @@ class DrugsService: NSObject {
     }
     
     func editDrug(_ drug: DrugObject, completionHandler: @escaping (_ error: String?) -> Void ) {
+        
+        guard let id = drug.id, let name = drug.name else {
+            return completionHandler("drug id or name is empty")
+        }
+        
         let parameter: [String: Any] = [
-            "drugId" : drug.id,
-            "name" : drug.name
+            "drugId" : id,
+            "name" : name
         ]
         
         Alamofire.request(DrugRouter.updateDrug(parameter))
@@ -196,7 +210,7 @@ class DrugsService: NSObject {
                 //try parse data to json
                 if let json = data.toDictionary() {
                     
-                    if let err = json["errors"] as? [String]{
+                    if let err = json["errors"] as? [String] {
                         //print(err)
                         if err.count > 0 {
                             return completionHandler(err[0])

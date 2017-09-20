@@ -19,6 +19,7 @@ class PrescriptionManager: NSObject {
     func addPrescription(with prescription: PrescriptionObject) {
         
         prescription.id = currentAllPrescriptions.count
+        prescription.status = Status.creating
         currentAllPrescriptions.append(prescription)
         addToUserDefault(with: currentAllPrescriptions)
         print("ADD PRESCRIPTION TO NSUSERDEFAULTS SUCCESSFULLY")

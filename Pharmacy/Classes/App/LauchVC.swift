@@ -13,7 +13,7 @@ class LauchVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        UserDefaults.standard.removeObject(forKey: "Prescriptions")
         //check token in NSUserDefaults thì vào main
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             //appDelegate.SignOut()

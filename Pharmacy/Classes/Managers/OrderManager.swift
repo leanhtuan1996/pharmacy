@@ -117,8 +117,8 @@ class OrderManager: NSObject {
         for drug in drugToOrders {
             
             let dict: [String: Any] = [
-                "id" : drug.id,
-                "quantity" : drug.quantity
+                "id" : drug.id ?? 0,
+                "quantity" : drug.quantity ?? 0
             ]
             
             ordersArray.append(dict)

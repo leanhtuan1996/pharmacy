@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Gloss
 
 enum userRole: String {
     case customer = "customer"
@@ -15,14 +16,26 @@ enum userRole: String {
 
 class UserObject: NSObject {
     var email: String
-    var password: String = ""
-    var fullName: String = ""
-    var address: String = ""
-    var phoneNumber: String = ""
-    var role: userRole = .customer
+    var password: String?
+    var fullName: String?
+    var address: String?
+    var phoneNumber: String?
+    var role: userRole?
     var token: String?
     
     init(email: String) {
         self.email = email
+        self.role = userRole.customer
+    }
+    
+    required init?(json: JSON) {
+        self.email = "email" <~~ json ?? "N/A"
+        self.password = "password" <~~ json
+        self.fullName = "fullName" <~~ json
+        self.address = "address" <~~ json
+        self.phoneNumber = "phoneNumber" <~~ json
+        self.role =   "role" <~~ json
+        self.password = "password" <~~ json
+        self.token = "token" <~~ json
     }
 }

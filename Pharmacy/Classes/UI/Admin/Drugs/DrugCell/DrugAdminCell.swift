@@ -27,7 +27,7 @@ class DrugAdminCell: UITableViewCell {
     
     @IBAction func btnDeleteClicked(_ sender: Any) {
         if let drug = drug {
-            delegate?.delete(with: drug.id)
+            delegate?.delete(with: drug.id ?? 0)
         }
     }
 }
