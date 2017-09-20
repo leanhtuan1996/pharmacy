@@ -15,7 +15,6 @@ class OrderHistoryVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
         tblOrderHistory.dataSource = self
         tblOrderHistory.delegate = self
         tblOrderHistory.register(UINib(nibName: "OrderHistoryCells", bundle: nil) , forCellReuseIdentifier: "OrderHistoryCells")
@@ -42,14 +41,6 @@ class OrderHistoryVC: UIViewController {
         }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    @IBAction func btnCancelClicked(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
-    }
 }
 
 extension OrderHistoryVC: UITableViewDelegate, UITableViewDataSource {
@@ -76,21 +67,7 @@ extension OrderHistoryVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         // Segue to the second view controller
-        self.performSegue(withIdentifier: "DetailsOrderHistoryVC", sender: tableView.cellForRow(at: indexPath))
+//        self.performSegue(withIdentifier: "DetailsOrderHistoryVC", sender: tableView.cellForRow(at: indexPath))
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "DetailsOrderHistoryVC", let cell = sender as? OrderHistoryCells {
-            if let vc = segue.destination as? DetailsOrderHistoryVC {
-                if let idOrder = cell.lblId.text, let dateOrder = cell.lblDate.text, let idInt = Int(idOrder) {
-                    //print(idInt)
-                    vc.id = idInt
-                    vc.date = dateOrder
-                }
-            }
-        }
-    }
-    
-    
     
 }

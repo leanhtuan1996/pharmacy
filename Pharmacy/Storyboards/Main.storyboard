@@ -59,7 +59,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <state key="normal" title="Edit"/>
                                         <connections>
-                                            <segue destination="6bd-c0-gg9" kind="showDetail" id="Xof-0q-QMW"/>
+                                            <action selector="showUpdateInfo:" destination="yHb-7B-LbH" eventType="touchUpInside" id="gcE-Fc-9oc"/>
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JQO-TL-BP3" userLabel="Separator">
@@ -301,7 +301,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fSE-zp-Mgs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1456.8" y="854.1229385307347"/>
+            <point key="canvasLocation" x="2252" y="841.52923538230891"/>
         </scene>
         <!--Settings-->
         <scene sceneID="ltR-LC-XcN">
@@ -366,7 +366,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cLC-ID-ccj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-986" y="1648"/>
+            <point key="canvasLocation" x="-263" y="2415"/>
         </scene>
         <!--PrescriptionVC-->
         <scene sceneID="fh0-EX-dN1">
@@ -556,7 +556,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b4i-7n-T5O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1727.2" y="1647.5262368815593"/>
+            <point key="canvasLocation" x="2666.4000000000001" y="1647.5262368815593"/>
         </scene>
         <!--Order-->
         <scene sceneID="UEz-dS-ov4">
@@ -796,7 +796,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hrg-G0-HM6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2471.1999999999998" y="1647.5262368815593"/>
+            <point key="canvasLocation" x="3410.4000000000001" y="1647.5262368815593"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -1151,12 +1151,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DB6-tS-0rH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3271.1999999999998" y="1657.4212893553224"/>
+            <point key="canvasLocation" x="4210.3999999999996" y="1657.4212893553224"/>
         </scene>
         <!--Order HistoryVC-->
         <scene sceneID="iyv-ao-MxL">
             <objects>
-                <viewController storyboardIdentifier="OrderHistoryVC" id="bdK-wX-HdW" customClass="OrderHistoryVC" customModule="Pharmacy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="bdK-wX-HdW" customClass="OrderHistoryVC" customModule="Pharmacy" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Nuc-c8-nNW"/>
                         <viewControllerLayoutGuide type="bottom" id="TxP-R7-gnA"/>
@@ -1192,7 +1192,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fcR-ku-ZbE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3818.4000000000001" y="841.52923538230891"/>
+            <point key="canvasLocation" x="4757.6000000000004" y="841.52923538230891"/>
         </scene>
         <!--Order DrugVC-->
         <scene sceneID="YtF-yA-dCo">
@@ -1250,7 +1250,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Szn-aE-EsF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4645.6000000000004" y="841.52923538230891"/>
+            <point key="canvasLocation" x="5584.8000000000002" y="841.52923538230891"/>
         </scene>
         <!--Check OutVC-->
         <scene sceneID="QIx-cn-p7O">
@@ -1299,12 +1299,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oXg-uf-QvN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5375.1999999999998" y="841.52923538230891"/>
+            <point key="canvasLocation" x="6314.3999999999996" y="841.52923538230891"/>
         </scene>
         <!--Change InfoVC-->
         <scene sceneID="dhs-Tk-3ZO">
             <objects>
-                <viewController storyboardIdentifier="changeInfoVC" id="6bd-c0-gg9" customClass="ChangeInfoVC" customModule="Pharmacy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChangeInfoVC" id="6bd-c0-gg9" customClass="ChangeInfoVC" customModule="Pharmacy" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Gpj-fB-8li"/>
                         <viewControllerLayoutGuide type="bottom" id="0Bt-5V-xK7"/>
@@ -1422,7 +1422,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ush-YH-uco" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2180" y="853.22338830584715"/>
+            <point key="canvasLocation" x="3024.8000000000002" y="841.52923538230891"/>
         </scene>
         <!--Change PwVC-->
         <scene sceneID="Paa-is-NPJ">
@@ -1539,7 +1539,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Y3-vy-aDl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1828" y="-1242.7286356821589"/>
+            <point key="canvasLocation" x="-263" y="3097"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="kWn-uF-cft">
@@ -1575,7 +1575,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DXg-ds-mSZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2996" y="841.52923538230891"/>
+            <point key="canvasLocation" x="3935.1999999999998" y="841.52923538230891"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="6sD-Y2-tTW">
@@ -1588,13 +1588,14 @@
                     </tabBar>
                     <connections>
                         <segue destination="owo-WD-acK" kind="relationship" relationship="viewControllers" id="tzQ-5w-jS7"/>
+                        <segue destination="cZ3-5K-fsu" kind="relationship" relationship="viewControllers" id="7oQ-96-idZ"/>
                         <segue destination="TbC-ZZ-3ao" kind="relationship" relationship="viewControllers" id="RuC-HC-bSu"/>
                         <segue destination="Hvp-Hn-oh1" kind="relationship" relationship="viewControllers" id="n7F-V6-zHN"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="efB-fa-UPu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-263.19999999999999" y="841.52923538230891"/>
+            <point key="canvasLocation" x="676" y="841.52923538230891"/>
         </scene>
         <!--Profile-->
         <scene sceneID="Q51-Bc-rEK">
@@ -1613,7 +1614,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qal-9d-Tz3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="535" y="842"/>
+            <point key="canvasLocation" x="1472.8" y="841.52923538230891"/>
         </scene>
         <!--Prescription-->
         <scene sceneID="2SH-mV-2Gj">
@@ -1632,7 +1633,68 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1OB-WY-6p5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="924" y="1647.5262368815593"/>
+            <point key="canvasLocation" x="1863.2" y="1647.5262368815593"/>
+        </scene>
+        <!--Order HistoryVC-->
+        <scene sceneID="zv4-qG-Rjc">
+            <objects>
+                <viewController storyboardIdentifier="OrderHistoryVC" id="ytf-53-ztp" customClass="OrderHistoryVC" customModule="Pharmacy" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dmV-ig-LQQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="soP-B8-FOU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qiS-V4-pN5" userLabel="rootView">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZwI-lq-Pk5" userLabel="headView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Base" translatesAutoresizingMaskIntoConstraints="NO" id="O0c-NA-ZiB">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Orders History" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cs5-Pd-fLw">
+                                        <rect key="frame" x="128" y="25" width="118" height="22"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="2H4-NW-drG"/>
+                                    <constraint firstItem="O0c-NA-ZiB" firstAttribute="leading" secondItem="ZwI-lq-Pk5" secondAttribute="leading" id="3bU-Lv-aIL"/>
+                                    <constraint firstAttribute="trailing" secondItem="O0c-NA-ZiB" secondAttribute="trailing" id="CF5-85-O55"/>
+                                    <constraint firstItem="O0c-NA-ZiB" firstAttribute="top" secondItem="ZwI-lq-Pk5" secondAttribute="top" id="Xjc-zh-G7L"/>
+                                    <constraint firstItem="cs5-Pd-fLw" firstAttribute="top" secondItem="ZwI-lq-Pk5" secondAttribute="top" constant="25" id="mkg-Re-YyY"/>
+                                    <constraint firstAttribute="bottom" secondItem="O0c-NA-ZiB" secondAttribute="bottom" id="wQ0-yR-Mhv"/>
+                                    <constraint firstItem="cs5-Pd-fLw" firstAttribute="centerX" secondItem="O0c-NA-ZiB" secondAttribute="centerX" id="yoH-Tj-6zC"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DuI-pr-wgU">
+                                <rect key="frame" x="0.0" y="70" width="375" height="548"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ZwI-lq-Pk5" secondAttribute="trailing" id="0OB-Ip-s2j"/>
+                            <constraint firstItem="DuI-pr-wgU" firstAttribute="leading" secondItem="qiS-V4-pN5" secondAttribute="leading" id="Civ-ch-pTK"/>
+                            <constraint firstItem="DuI-pr-wgU" firstAttribute="top" secondItem="ZwI-lq-Pk5" secondAttribute="bottom" id="GWc-aN-6Pq"/>
+                            <constraint firstItem="ZwI-lq-Pk5" firstAttribute="leading" secondItem="qiS-V4-pN5" secondAttribute="leading" id="NSj-1v-x7y"/>
+                            <constraint firstItem="ZwI-lq-Pk5" firstAttribute="top" secondItem="qiS-V4-pN5" secondAttribute="top" id="RFW-lM-bOJ"/>
+                            <constraint firstAttribute="trailing" secondItem="DuI-pr-wgU" secondAttribute="trailing" id="eWJ-so-UNn"/>
+                            <constraint firstItem="soP-B8-FOU" firstAttribute="top" secondItem="DuI-pr-wgU" secondAttribute="bottom" id="qGN-2R-bEF"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="VBh-JR-y0O"/>
+                    <connections>
+                        <outlet property="tblOrderHistory" destination="DuI-pr-wgU" id="Ptw-HI-QjH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mDk-ZO-TEZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-962.39999999999998" y="1647.5262368815593"/>
         </scene>
         <!--Settings-->
         <scene sceneID="r5T-5V-13F">
@@ -1651,13 +1713,33 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XC9-EA-vuA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-263" y="1648"/>
+            <point key="canvasLocation" x="676" y="1647.5262368815593"/>
+        </scene>
+        <!--Orders-->
+        <scene sceneID="yi6-LZ-94Z">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="cZ3-5K-fsu" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Orders" image="history" id="HPY-DV-J2t"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xee-eZ-lQG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ytf-53-ztp" kind="relationship" relationship="rootViewController" id="Ck4-eL-RrX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ift-Wb-Wjo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-228" y="1648"/>
         </scene>
     </scenes>
     <resources>
         <image name="Base" width="750" height="128"/>
         <image name="Profile" width="35" height="35"/>
         <image name="email" width="50" height="50"/>
+        <image name="history" width="25" height="25"/>
         <image name="imgUserDefault" width="694" height="417"/>
         <image name="location" width="50" height="50"/>
         <image name="password" width="50" height="50"/>

@@ -51,7 +51,17 @@ class GetInformationsVC: UIViewController {
             }
         }
     }
-
+    
+    //ACTION
+    @IBAction func showUpdateInfo(_ sender: Any) {
+        if let sb = storyboard?.instantiateViewController(withIdentifier: "ChangeInfoVC") as? ChangeInfoVC  {
+            navigationController?.pushViewController(sb, animated: true)
+        }
+    }
+    
+    
+    // - MARK: NAV BAR FUNCTIONS
+    
     @IBAction func btnUpdateClicked(_ sender: Any) {
         guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "changeInfoVC") as? ChangeInfoVC else {
             return
