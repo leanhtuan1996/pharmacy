@@ -12,7 +12,6 @@ class DrugOfNewPresciptionCell: UITableViewCell {
     
     var drug: DrugObject?
     @IBOutlet weak var txtName: UILabel!
-    @IBOutlet weak var txtPrice: UILabel!
     @IBOutlet weak var switchSelected: UISwitch!
     
     var delegate: ActionWhenChooseDrug?

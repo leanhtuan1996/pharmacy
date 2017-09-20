@@ -25,8 +25,16 @@ class UserManager: NSObject {
     }
     
     //set token to NSUserDefaults
-    func setToken(_ token: String) {
-        userDefault.set(token, forKey: "token")
+    func setToken(_ token: String?) {
+        //if token is null => set
+        //token is not nul => delete
+        if let token = token {
+            userDefault.set(token, forKey: "token")
+        } else {
+            if userDefault.object(forKey: "token") != nil {
+                userDefault.removeObject(forKey: "token")
+            }
+        }
     }
     
     //Get token in NSUserDefaults
@@ -35,13 +43,6 @@ class UserManager: NSObject {
             return token
         }
         return nil
-    }
-    
-    //Sign out (Delete token in NSUserDefaults)
-    func delToken() {
-        if let _ = userDefault.object(forKey: "token") as? String {
-            userDefault.removeObject(forKey: "token")
-        }
     }
     
     func verifyToken(_ completionHandler: @escaping(_ role: userRole?, _ error: String?) -> Void) {

@@ -12,7 +12,6 @@ class DrugsOfOrderPrescriptionCell: UITableViewCell {
 
     var drug: DrugObject?
     @IBOutlet weak var lblName: UILabel!
-    @IBOutlet weak var lblPrice: UILabel!
     @IBOutlet weak var lblQuantity: UILabel!
     
     var delegate: ChooseDrugOrder?

@@ -13,7 +13,6 @@ class OrderPrescriptionVC: UIViewController {
     var prescription: PrescriptionObject?
     var drugsSelected: [DrugObject] = []
     @IBOutlet weak var lblName: UILabel!
-    @IBOutlet weak var lblTotalPrice: UILabel!
     @IBOutlet weak var tblDrugs: UITableView!
     @IBOutlet weak var lblTotalDrug: UILabel!
     override func viewDidLoad() {
