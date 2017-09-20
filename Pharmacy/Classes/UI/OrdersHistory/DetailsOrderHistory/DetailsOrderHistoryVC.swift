@@ -12,58 +12,50 @@ class DetailsOrderHistoryVC: UIViewController {
 
     @IBOutlet weak var lblId: UILabel!
     @IBOutlet weak var lblDate: UILabel!
-    @IBOutlet weak var lblTotalPrice: UILabel!
+    @IBOutlet weak var lblTotalDrugs: UILabel!
     @IBOutlet weak var tblDetailsOrder: UITableView!
     
-    var id: Int?
-    var date: String?
-    var totalPrice: Int?
     var orderHistory: OrderObject?
-    var drugOfOrder: [DrugObject] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tblDetailsOrder.delegate = self
         tblDetailsOrder.dataSource = self
-        tblDetailsOrder.register(UINib(nibName: "DetailOrderHistoryCells", bundle: nil), forCellReuseIdentifier: "DetailOrderHistoryCells")        
-        getDetailOrderHistory(withId: id)
+        tblDetailsOrder.register(UINib(nibName: "DetailOrderHistoryCells", bundle: nil), forCellReuseIdentifier: "DetailOrderHistoryCells")
+        navigationController?.setNavigationBarHidden(false, animated: true)
         
-        if let date = date, let id = id, let totalPrice = totalPrice {
-            lblId.text = String(id)
-            lblDate.text = date
-            lblTotalPrice.text = String(totalPrice)
+        if let orderDetail = orderHistory {
+            lblId.text = String(orderDetail.id ?? 0)
+            lblDate.text = orderDetail.date
+            lblTotalDrugs.text = String(orderDetail.drugs?.count ?? 0)
+            
+            getDetailOrderHistory(withId: orderDetail.id ?? 0)
         }
     }
     
-    func getDetailOrderHistory(withId id: Int?) {
-        guard let idDrug = id else {
-            print("ID CAN NOT EMPTY")
-            return
-        }
+    func getDetailOrderHistory(withId id: Int) {
         
-//        OrderService.shared.getDetailOrder(idDrug) { (orderHistory, error) in
-//            
-//            if let error = error {
-//                print(error)
-//                return
-//            }
-//            
-//            if let orderObject = orderHistory {
-//                self.orderHistory = orderObject
-//                self.drugOfOrder = orderObject.drugs
-//                DispatchQueue.main.async {
-//                    self.tblDetailsOrder.reloadData()
-//                }
-//            } else {
-//                print("GET DETAIL ORDER HISTORY ERROR")
-//            }
-//        }
+        OrderService.shared.getDetailOrder(id) { (orderHistory, error) in
+            
+            if let error = error {
+                print(error)
+                return
+            }
+            
+            if let orderObject = orderHistory {
+                self.orderHistory = orderObject
+                self.lblTotalDrugs.text = String(orderObject.drugs?.count ?? 0)
+                self.tblDetailsOrder.reloadData()
+            } else {
+                print("GET DETAIL ORDER HISTORY ERROR")
+            }
+        }
     }
 }
 
 extension DetailsOrderHistoryVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return drugOfOrder.count
+        return orderHistory?.drugs?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -71,14 +63,15 @@ extension DetailsOrderHistoryVC: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.lblId.text = String(drugOfOrder[indexPath.row].id ?? 0)
-        cell.lblName.text = drugOfOrder[indexPath.row].name ?? ""
-        cell.lblTotalQuantity.text = String(drugOfOrder[indexPath.row].quantity ?? 0)
+        if let drugs = orderHistory?.drugs {
+            cell.lblName.text = drugs[indexPath.row].name
+            cell.lblTotalQuantity.text = String(drugs[indexPath.row].quantity ?? 0)
+        }
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 105
+        return 50
     }
 }

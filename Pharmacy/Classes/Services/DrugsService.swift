@@ -8,7 +8,7 @@
 
 import UIKit
 import Alamofire
-
+import Gloss
 
 class DrugsService: NSObject {
     static let shared = DrugsService()
@@ -85,28 +85,29 @@ class DrugsService: NSObject {
                     }
                     
                     //convert to array
-                    guard let listOfDrugArray = json["listOfDrug"] as? [AnyObject] else {
+                    guard let listOfDrugJSON = json["listOfDrug"] as? [JSON], let drugs = [DrugObject].from(jsonArray: listOfDrugJSON) else {
                         return completionHandler(nil, "Invalid data format")
                     }
                     
-                    //print(listOfDrugArray)
-                    
-                    var drugs: [DrugObject] = []
-                    
-                    for drugData in listOfDrugArray {
-                        if let drugObject = Utilities.convertObjectToJson(object: drugData) {
-                            
-                            guard let drug = DrugObject(json: drugObject) else {
-                                return completionHandler(nil, "Invalid data format")
-                            }
-                            
-                            drugs.append(drug)
-                            
-                        } else {
-                            return completionHandler(nil, "Invalid data format")
-                        }
-                    }
                     return completionHandler(drugs, nil)
+                    
+                    
+//                    var drugs: [DrugObject] = []
+//                    
+//                    for drugData in listOfDrugArray {
+//                        if let drugObject = Utilities.convertObjectToJson(object: drugData) {
+//                            
+//                            guard let drug = DrugObject(json: drugObject) else {
+//                                return completionHandler(nil, "Invalid data format")
+//                            }
+//                            
+//                            drugs.append(drug)
+//                            
+//                        } else {
+//                            return completionHandler(nil, "Invalid data format")
+//                        }
+//                    }
+//                    return completionHandler(drugs, nil)
                 } else {
                     return completionHandler(nil, "Invalid data format")
                     

@@ -9,28 +9,40 @@
 import UIKit
 import Gloss
 
-class OrderObject: NSObject {
+class OrderObject: NSObject, Decodable {
     
-    var id: Int
+    var id: Int?
     var date: String?
     var drugs: [DrugObject]?
     var idPrescription: Int?
     
-    init(id: Int) {
-        self.id = id
-    }
+    override init() { }
     
     required init?(json: JSON) {
-        guard let id:Int = "id" <~~ json else {
-            return nil
+        
+        if let id:Int = "id" <~~ json {
+            self.id = id
+        }
+        
+        if let id: Int = "orderNumber" <~~ json {
+            self.id = id
         }
         
         if let date:String = "date" <~~ json {
             self.date = date.jsonDateToDate()
         }
         
-        self.id = id
-        self.drugs = "drugs" <~~ json
+        if let drugsJSON: [JSON] = "drugs" <~~ json {
+            if let drugs = [DrugObject].from(jsonArray: drugsJSON) {
+                self.drugs = drugs
+            }
+        }
+        
+//        if let drugs =  [OrderObject].from(jsonArray: "drugs" <~~ json)  {
+//            print(drugs.count)
+//            self.drugs = drugs
+//        }
+        
         self.idPrescription = "prescription_id" <~~ json
     }
 }

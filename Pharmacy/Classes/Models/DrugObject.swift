@@ -9,7 +9,7 @@
 import UIKit
 import Gloss
 
-class DrugObject: NSObject, NSCoding {
+class DrugObject: NSObject, NSCoding, Decodable {
     var id: Int?
     var quantity: Int?
     var name: String?
@@ -25,6 +25,11 @@ class DrugObject: NSObject, NSCoding {
     
     required init?(json: JSON) {
         self.id = "id" <~~ json
+        
+        if let idDrug:Int = "id_drug" <~~ json {
+            self.id = idDrug
+        }
+        
         self.quantity = "quantity" <~~ json
         self.name = "name" <~~ json
     }

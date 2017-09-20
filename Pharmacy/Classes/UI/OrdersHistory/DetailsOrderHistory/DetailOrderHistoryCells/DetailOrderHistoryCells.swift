@@ -10,9 +10,7 @@ import UIKit
 
 class DetailOrderHistoryCells: UITableViewCell {
 
-    @IBOutlet weak var lblId: UILabel!
     @IBOutlet weak var lblName: UILabel!
-    @IBOutlet weak var lblPrice: UILabel!
     @IBOutlet weak var lblTotalQuantity: UILabel!
     
     override func awakeFromNib() {

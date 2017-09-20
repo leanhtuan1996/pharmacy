@@ -14,7 +14,7 @@ enum userRole: String {
     case admin = "admin"
 }
 
-class UserObject: NSObject {
+class UserObject: NSObject, Decodable {
     var email: String
     var password: String?
     var fullName: String?
@@ -29,7 +29,10 @@ class UserObject: NSObject {
     }
     
     required init?(json: JSON) {
-        self.email = "email" <~~ json ?? "N/A"
+        guard let email:String = "email" <~~ json else {
+            return nil
+        }
+        self.email = email
         self.password = "password" <~~ json
         self.fullName = "fullname" <~~ json
         self.address = "address" <~~ json

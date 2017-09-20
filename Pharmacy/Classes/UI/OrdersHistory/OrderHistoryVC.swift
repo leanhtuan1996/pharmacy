@@ -18,12 +18,30 @@ class OrderHistoryVC: UIViewController {
         tblOrderHistory.dataSource = self
         tblOrderHistory.delegate = self
         tblOrderHistory.register(UINib(nibName: "OrderHistoryCells", bundle: nil) , forCellReuseIdentifier: "OrderHistoryCells")
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        if let nav = self.navigationController {
+            nav.navigationBar.setBackgroundImage(UIImage(), for: .default)
+            nav.navigationBar.shadowImage = UIImage()
+            nav.navigationBar.isTranslucent = true
+            nav.view.backgroundColor = .clear
+            nav.navigationBar.tintColor = UIColor.white
+            nav.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+            
+            if !nav.isNavigationBarHidden {
+                nav.setNavigationBarHidden(true, animated: true)
+            }
+        }
+        
         getOrdersHistory()
     }
     
     func getOrdersHistory() {
         OrderService.shared.getOrdersHistory { (orderObject, error) in
-            
+            self.ordersHistory = []
             if let error = error {
                 print(error)
                 return
@@ -31,13 +49,11 @@ class OrderHistoryVC: UIViewController {
             
             if let orderArray = orderObject {
                 self.ordersHistory = orderArray
-                //print(orderArray.count)
-                DispatchQueue.main.async {
-                    self.tblOrderHistory.reloadData()
-                }
             } else {
                 print("GET ORDERS HISTORY NOT SUCCESSFULLY")
             }
+            
+            self.tblOrderHistory.reloadData()
         }
     }
 
@@ -53,7 +69,7 @@ extension OrderHistoryVC: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "OrderHistoryCells", for: indexPath) as? OrderHistoryCells else {
             return UITableViewCell()
         }
-        cell.lblId.text = String(ordersHistory[indexPath.row].id)
+        cell.lblId.text = String(ordersHistory[indexPath.row].id ?? 0)
         cell.lblDate.text = ordersHistory[indexPath.row].date
         
         return cell
@@ -63,11 +79,10 @@ extension OrderHistoryVC: UITableViewDelegate, UITableViewDataSource {
         return 75
     }
     
-    // method to run when table view cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        // Segue to the second view controller
-//        self.performSegue(withIdentifier: "DetailsOrderHistoryVC", sender: tableView.cellForRow(at: indexPath))
+        if let sb = storyboard?.instantiateViewController(withIdentifier: "DetailsOrderHistoryVC") as? DetailsOrderHistoryVC {
+            sb.orderHistory = ordersHistory[indexPath.row]
+            self.navigationController?.pushViewController(sb, animated: true)
+        }
     }
-    
 }

@@ -28,25 +28,13 @@ class PrescriptionService: NSObject {
                             }
                         }
                         //if success
-                        if let prescriptions = json["prescriptions"] as? [AnyObject] {
-                            var prescriptionArray: [PrescriptionObject] = []
-                            for preObject in prescriptions {
-                                
-                                //convert preObject to Dictionary
-                                if let prescriptionJSON = Utilities.convertObjectToJson(object: preObject) {
-                                    print(prescriptionJSON)
-                                    if let prescription = PrescriptionObject(json: prescriptionJSON) {
-                                        prescriptionArray.append(prescription)
-                                    }
-                                }
-                            }
-                            
-                            return completionHandler(prescriptionArray, nil)
-                            
-                        } else {
-                            print("1")
+                        guard let prescriptionsJSON = json["prescriptions"] as? [[String : Any]], let prescriptions = [PrescriptionObject].from(jsonArray: prescriptionsJSON) else {
                             return completionHandler(nil, "Invalid data format")
                         }
+                        
+                        return completionHandler(prescriptions, nil)
+                            
+                    
                     } else {
                         print("2")
                         return completionHandler(nil, "Invalid data format")
@@ -194,24 +182,10 @@ class PrescriptionService: NSObject {
                             }
                         }
                         //if success
-                        if let prescriptions = json["prescriptions"] as? [AnyObject] {
-                            var prescriptionArray: [PrescriptionObject] = []
-                            for preObject in prescriptions {
-                                
-                                //convert preObject to Dictionary
-                                if let prescriptionJSON = Utilities.convertObjectToJson(object: preObject) {
-                                    if let prescription = PrescriptionObject(json: prescriptionJSON) {
-                                        prescriptionArray.append(prescription)
-                                    }
-                                }
-                            }
-                            
-                            return completionHandler(prescriptionArray, nil)
-                            
-                        } else {
-                            print("1")
+                        guard let prescriptionsJSON = json["prescriptions"] as? [[String: Any]], let prescriptions = [PrescriptionObject].from(jsonArray: prescriptionsJSON) else {
                             return completionHandler(nil, "Invalid data format")
                         }
+                        return completionHandler(prescriptions, nil)
                     } else {
                         print("2")
                         return completionHandler(nil, "Invalid data format")

@@ -16,7 +16,7 @@ enum Status: Int {
     case approved = 1
 }
 
-class PrescriptionObject: NSObject, NSCoding {
+class PrescriptionObject: NSObject, NSCoding, Decodable {
     
     var id: Int?
     var name: String?

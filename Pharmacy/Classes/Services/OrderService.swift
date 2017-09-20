@@ -116,33 +116,11 @@ class OrderService: NSObject {
                         }
                     }
                     
-                    guard let allOrderJson = json["allOrder"] as? [AnyObject] else {
+                    guard let allOrderJson = json["allOrder"] as? [[String: Any]], let ordersHistory = [OrderObject].from(jsonArray: allOrderJson) else {
                         print("1")
                         return completionHandler(nil, "Invalid data format")
                     }
-                    
-                    var ordersHistory: [OrderObject] = []
-                    
-                    for orderData in allOrderJson {
-                        if let order = Utilities.convertObjectToJson(object: orderData) {
-//                            guard let id = order["id"] as? Int else {
-//                                print("2")
-//                                return completionHandler(nil, "Invalid data format")
-//                            }
-//                            
-//                            let orderObject = OrderObject(id: id, drugs: [])
-//                            
-//                            if let date = order["date"] as? String {
-//                                orderObject.date = date.jsonDateToDate()
-//                            }
-                            if let orderObject = OrderObject(json: order) {
-                                ordersHistory.append(orderObject)
-                            }
-                        } else {
-                            print("3")
-                            return completionHandler(nil, "Invalid data format")
-                        }
-                    }
+                  
                     return completionHandler(ordersHistory, nil)
                 } else {
                     print("4")
@@ -188,7 +166,7 @@ class OrderService: NSObject {
 //                    if let date = json["date"] as? String {
 //                        orderObject.date = date.jsonDateToDate()
 //                    }
-                    
+                    //print(json)
                     guard let order = OrderObject(json: json) else {
                         return completionHandler(nil, "Invalid data format")
                     }
