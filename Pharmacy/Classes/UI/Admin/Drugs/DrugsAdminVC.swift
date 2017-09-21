@@ -62,14 +62,13 @@ class DrugsAdminVC: UIViewController {
     
     @IBAction func btnAddDrugClicked(_ sender: Any) {
         
-        if let sb = storyboard?.instantiateViewController(withIdentifier: "AddEditDrugAdminVC") as? AddEditDrugAdminVC {
+        if let sb = storyboard?.instantiateViewController(withIdentifier: "AddDrugAdminVC") as? AddDrugAdminVC {
             self.addChildViewController(sb)
             self.view.addSubview(sb.view)
             sb.didMove(toParentViewController: self)
             sb.view.frame = self.view.frame
             sb.delegate = self
             sb.view.tag = 100
-            sb.titleAction = "New Drug"
         }
         
     }
@@ -98,13 +97,19 @@ extension DrugsAdminVC: UITableViewDelegate, UITableViewDataSource, UISearchBarD
 //        return UITableViewAutomaticDimension
 //    }
     
+    //show dialog to edit drug
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let sb = storyboard?.instantiateViewController(withIdentifier: "AddEditDrugAdminVC") as? AddEditDrugAdminVC else {
+        guard let sb = storyboard?.instantiateViewController(withIdentifier: "EditDrugAdminVC") as? EditDrugAdminVC else {
             self.showAlert("View Controller Not Found", title: "error", buttons: nil)
             return
         }
         sb.currentDrug = drugs[indexPath.row]
-        self.navigationController?.pushViewController(sb, animated: true)
+        self.addChildViewController(sb)
+        self.view.addSubview(sb.view)
+        sb.didMove(toParentViewController: self)
+        sb.view.frame = self.view.frame
+        sb.delegate = self
+        sb.view.tag = 101
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -158,9 +163,30 @@ extension DrugsAdminVC: UITableViewDelegate, UITableViewDataSource, UISearchBarD
         
     }
     
+    func edit(with drug: DrugObject) {
+        let activityIndicatorView = UIActivityIndicatorView()
+        activityIndicatorView.showLoadingDialog(self)
+        DrugsService.shared.editDrug(drug) { (error) in
+            activityIndicatorView.stopAnimating()
+            if let error = error {
+                self.showAlert(error, title: "Edit drug incompleted", buttons: nil)
+                return
+            }
+            let alertAction = UIAlertAction(title: "Back to main", style: UIAlertActionStyle.default, handler: { (btn) in
+                self.getDrugs()
+                if let viewWithTag = self.view.viewWithTag(101) {
+                    viewWithTag.removeFromSuperview()
+                }
+            })
+            
+            self.showAlert("Edit drug successfully", title: "Success", buttons: [alertAction])
+        }
+    }
+    
 }
 
 protocol DrugDelegate {
     func delete(with id: Int) -> Void
     func add(with drug: DrugObject) -> Void
+    func edit(with drug: DrugObject) -> Void
 }

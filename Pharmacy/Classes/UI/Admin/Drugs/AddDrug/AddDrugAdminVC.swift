@@ -8,19 +8,17 @@
 
 import UIKit
 
-class AddEditDrugAdminVC: UIViewController {
+class AddDrugAdminVC: UIViewController {
 
     var currentDrug: DrugObject?
-    @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var dialogView: UIView!
     @IBOutlet weak var txtName: UITextField!
     var titleAction: String?
     var delegate: DrugDelegate?
     override func viewDidLoad() {
         super.viewDidLoad()
-        lblTitle.text = titleAction
         self.view.backgroundColor = UIColor.clear.withAlphaComponent(0.3)
-        dialogView.layer.cornerRadius = 5
+        dialogView.layer.cornerRadius = 10
     }
     
 
