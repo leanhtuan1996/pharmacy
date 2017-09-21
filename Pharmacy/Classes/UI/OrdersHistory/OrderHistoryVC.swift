@@ -12,12 +12,20 @@ class OrderHistoryVC: UIViewController {
     @IBOutlet weak var tblOrderHistory: UITableView!
     
     var ordersHistory: [OrderObject] = []
+    var refreshControl: UIRefreshControl!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tblOrderHistory.dataSource = self
         tblOrderHistory.delegate = self
         tblOrderHistory.register(UINib(nibName: "OrderHistoryCells", bundle: nil) , forCellReuseIdentifier: "OrderHistoryCells")
+        
+        //pull to refresh
+        refreshControl = UIRefreshControl()
+        //refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(getOrdersHistory), for: .valueChanged)
+        //tblPrescriptions.addSubview(refreshControl)
+        tblOrderHistory.refreshControl = refreshControl
         
     }
     
@@ -54,6 +62,10 @@ class OrderHistoryVC: UIViewController {
             }
             
             self.tblOrderHistory.reloadData()
+            
+            if self.refreshControl.isRefreshing {
+                self.refreshControl.endRefreshing()
+            }
         }
     }
 

@@ -12,6 +12,7 @@ class PrescriptionAdminVC: UIViewController {
 
     var prescriptions: [PrescriptionObject] = []
     @IBOutlet weak var tblPrescriptions: UITableView!
+    var refreshControl: UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +20,17 @@ class PrescriptionAdminVC: UIViewController {
         tblPrescriptions.register(UINib(nibName: "PrescriptionsAdminCell", bundle: nil), forCellReuseIdentifier: "PrescriptionsAdminCell")
         tblPrescriptions.delegate = self
         tblPrescriptions.dataSource = self
+        
+        //pull to refresh
+        refreshControl = UIRefreshControl()
+        //refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(getAllPrescriptionsFromService), for: .valueChanged)
+        //tblPrescriptions.addSubview(refreshControl)
+        tblPrescriptions.refreshControl = refreshControl
+    }
+    
+    func refresh(sender:AnyObject) {
+        getAllPrescriptionsFromService()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -29,8 +41,6 @@ class PrescriptionAdminVC: UIViewController {
         
         //Get all prescriptions of user from Service
         PrescriptionService.shared.getListPrescriptions { (prescriptions, error) in
-            
-            
             
             if let error = error {
                 print("GET ALL PRESCRIPTION FROM SERVICE NOT COMPLETE WITH ERROR: \(error)")
@@ -56,6 +66,10 @@ class PrescriptionAdminVC: UIViewController {
                 }
                 
                 self.tblPrescriptions.reloadData()
+            }
+            
+            if self.refreshControl.isRefreshing {
+                self.refreshControl.endRefreshing()
             }
         }
     }

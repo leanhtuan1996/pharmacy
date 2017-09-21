@@ -14,7 +14,7 @@ class DetailsOrderHistoryVC: UIViewController {
     @IBOutlet weak var lblDate: UILabel!
     @IBOutlet weak var lblTotalDrugs: UILabel!
     @IBOutlet weak var tblDetailsOrder: UITableView!
-    
+    var refreshControl: UIRefreshControl!
     var orderHistory: OrderObject?
     
     override func viewDidLoad() {
@@ -30,13 +30,31 @@ class DetailsOrderHistoryVC: UIViewController {
             lblDate.text = orderDetail.date
             lblTotalDrugs.text = String(orderDetail.drugs?.count ?? 0)
             getDetailOrderHistory(withId: orderDetail.id ?? 0)
+            
+            //pull to refresh
+            refreshControl = UIRefreshControl()
+            //refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+            refreshControl.addTarget(self, action: #selector(refreshHandler), for: .valueChanged)
+            //tblPrescriptions.addSubview(refreshControl)
+            tblDetailsOrder.refreshControl = refreshControl
         }
         
+    }
+    
+    func refreshHandler() {
+        if let orderDetail = orderHistory {
+            getDetailOrderHistory(withId: orderDetail.id ?? 0)
+        }
+
     }
     
     func getDetailOrderHistory(withId id: Int) {
         
         OrderService.shared.getDetailOrder(id) { (orderHistory, error) in
+            
+            if self.refreshControl.isRefreshing {
+                self.refreshControl.endRefreshing()
+            }
             
             if let error = error {
                 print(error)
@@ -50,6 +68,8 @@ class DetailsOrderHistoryVC: UIViewController {
             } else {
                 print("GET DETAIL ORDER HISTORY ERROR")
             }
+            
+            
         }
     }
 }

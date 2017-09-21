@@ -19,11 +19,12 @@ class PrescriptionVC: UIViewController {
     @IBOutlet weak var btnOrderedPre: UIButton!
     
     var selectionType: Status = .creating
-    
+    var refreshControl: UIRefreshControl!
     var prescriptionsCreated: [PrescriptionObject] = []
     var prescriptionsPending: [PrescriptionObject] = []
     var prescriptionsRejected: [PrescriptionObject] = []
     var prescriptionsOrder: [PrescriptionObject] = []
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +38,14 @@ class PrescriptionVC: UIViewController {
         tblPrescriptions.register(UINib(nibName: "SubmitPrescriptionCell", bundle: nil), forCellReuseIdentifier: "SubmitPrescriptionCell")
         tblPrescriptions.register(UINib(nibName: "RejectedPrescriptionCell", bundle: nil), forCellReuseIdentifier: "RejectedPrescriptionCell")
         tblPrescriptions.register(UINib(nibName: "ApprovedPrescriptionCell", bundle: nil), forCellReuseIdentifier: "ApprovedPrescriptionCell")
+        
+        //pull to refresh
+        refreshControl = UIRefreshControl()
+        //refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(getAllPrescriptionsFromService), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(getAllPrescriptionsFromUserDefault), for: .valueChanged)
+        //tblPrescriptions.addSubview(refreshControl)
+        tblPrescriptions.refreshControl = refreshControl
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -63,6 +72,11 @@ class PrescriptionVC: UIViewController {
         if let prescriptions = PrescriptionManager.shared.getAllPrescription() {
             self.prescriptionsCreated = prescriptions
             self.tblPrescriptions.reloadData()
+            
+            if self.refreshControl.isRefreshing {
+                self.refreshControl.endRefreshing()
+            }
+            
         } else {
             print("Get all prescriptions from UserDefaults Failed or nil")
             return
@@ -110,6 +124,11 @@ class PrescriptionVC: UIViewController {
                 
                 self.tblPrescriptions.reloadData()
             }
+            
+            if self.refreshControl.isRefreshing {
+                self.refreshControl.endRefreshing()
+            }
+            
         }
     }
     

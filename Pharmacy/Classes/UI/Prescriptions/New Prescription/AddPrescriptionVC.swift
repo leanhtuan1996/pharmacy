@@ -19,6 +19,7 @@ class AddPrescriptionVC: UIViewController {
     var drugs: [DrugObject] = []
     var drugsFilter: [DrugObject] = []
     var drugsSelected: [DrugObject] = []
+    var refreshControl: UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +45,13 @@ class AddPrescriptionVC: UIViewController {
             }
         }
         
+        //pull to refresh
+        refreshControl = UIRefreshControl()
+        //refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(getDrugs), for: .valueChanged)
+        //tblPrescriptions.addSubview(refreshControl)
+        tblListDrugs.refreshControl = refreshControl
+        
     }
     
     // - MARK: FUNCTIONS
@@ -62,6 +70,10 @@ class AddPrescriptionVC: UIViewController {
                     self.tblListDrugs.reloadData()
                 }
                 return
+            }
+            
+            if self.refreshControl.isRefreshing {
+                self.refreshControl.endRefreshing()
             }
         }
     }

@@ -14,7 +14,7 @@ class DrugsAdminVC: UIViewController {
     @IBOutlet weak var tblDrugs: UITableView!
     var drugs: [DrugObject] = []
     var drugsFilter: [DrugObject] = []
-    
+    var refreshControl: UIRefreshControl!
     override func viewDidLoad() {
         super.viewDidLoad()
         tblDrugs.register(UINib(nibName: "DrugAdminCell", bundle: nil), forCellReuseIdentifier: "DrugAdminCell")
@@ -22,6 +22,13 @@ class DrugsAdminVC: UIViewController {
         tblDrugs.delegate = self
         tblDrugs.estimatedRowHeight = 80
         uiSearchBar.delegate = self
+        
+        //pull to refresh
+        refreshControl = UIRefreshControl()
+        //refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(getDrugs), for: .valueChanged)
+        //tblPrescriptions.addSubview(refreshControl)
+        tblDrugs.refreshControl = refreshControl
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,9 +60,11 @@ class DrugsAdminVC: UIViewController {
                 
                 self.drugs = data
                 self.drugsFilter = data
-                DispatchQueue.main.async {
-                    self.tblDrugs.reloadData()
-                }
+                self.tblDrugs.reloadData()
+            }
+            
+            if self.refreshControl.isRefreshing {
+                self.refreshControl.endRefreshing()
             }
         }
     }
