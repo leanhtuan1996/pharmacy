@@ -24,11 +24,14 @@ class DrugObject: NSObject, NSCoding, Decodable {
     }
     
     required init?(json: JSON) {
-        self.id = "id" <~~ json
-        
-        if let idDrug:Int = "id_drug" <~~ json {
-            self.id = idDrug
+        guard let id: Int = "id" <~~ json else {
+            return nil
         }
+        self.id = id
+        
+//        if let idDrug:Int = "id_drug" <~~ json {
+//            self.id = idDrug
+//        }
         
         self.quantity = "quantity" <~~ json
         self.name = "name" <~~ json
