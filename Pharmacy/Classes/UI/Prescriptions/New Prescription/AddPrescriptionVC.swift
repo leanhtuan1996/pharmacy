@@ -106,7 +106,7 @@ class AddPrescriptionVC: UIViewController {
     @IBAction func btnDoneClicked(_ sender: Any) {
         guard let name = txtNameOfPre.text, let totalDrugs = lblTotalDrugs.text, let totalDrugsInt = Int(totalDrugs) else {
             let alert = UIAlertController(title: "Add prescription incomplete", message: "Fields are required", preferredStyle: .alert)
-            alert.addAction(.init(title: "Re try", style: .default, handler: nil))
+            alert.addAction(.init(title: "Retry", style: .default, handler: nil))
             self.showStoryBoard(alert)
             return
         }
@@ -163,9 +163,9 @@ extension AddPrescriptionVC: UITableViewDelegate, UITableViewDataSource, UISearc
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return UITableViewAutomaticDimension
+//    }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         

@@ -103,7 +103,8 @@ class PrescriptionService: NSObject {
         
         let parameter: [String: Any] = [
             "drugs" : drugs,
-            "date" : Date.getDate()
+            "date" : Date.getDate(),
+            "name" : prescription.name ?? "Lỗi tên"
         ]
         
         Alamofire.request(PrescriptionRouter.newPrescription(parameter)).validate().response { (res) in

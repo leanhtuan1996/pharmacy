@@ -36,7 +36,7 @@ class PrescriptionObject: NSObject, NSCoding, Decodable {
     }
     
     required init?(json: JSON) {
-        self.name = "Tên thuốc"
+       
         
         guard let id: Int =  "id" <~~ json else {
             return nil
@@ -48,6 +48,11 @@ class PrescriptionObject: NSObject, NSCoding, Decodable {
             self.status = status
         }
         
+        if let name: String = "name" <~~ json {
+            self.name = name
+        } else {
+            self.name = "N/A"
+        }
         
         if let date: String = "date" <~~ json {
             self.dateCreate = date.jsonDateToDate()

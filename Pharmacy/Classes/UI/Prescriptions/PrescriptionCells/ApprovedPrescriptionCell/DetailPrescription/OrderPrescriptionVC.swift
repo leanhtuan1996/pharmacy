@@ -130,9 +130,9 @@ extension OrderPrescriptionVC: UITableViewDelegate, UITableViewDataSource, Choos
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return UITableViewAutomaticDimension
+//    }
     
     func choose(with drug: DrugObject) {
         //print(drug.quantity)
