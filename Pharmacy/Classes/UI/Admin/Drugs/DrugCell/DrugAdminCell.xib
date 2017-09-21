@@ -28,20 +28,17 @@
                                     <constraint firstAttribute="height" constant="30" id="lCs-KY-xLC"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phanadol" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Urx-UD-Egv">
-                                <rect key="frame" x="45" y="12" width="64" height="25"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="Cja-fh-94A"/>
-                                </constraints>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phanadol" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Urx-UD-Egv">
+                                <rect key="frame" x="45" y="5" width="391" height="37"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Jl-9a-2FN">
-                                <rect key="frame" x="441" y="11" width="25" height="25"/>
+                                <rect key="frame" x="446" y="14" width="20" height="20"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="Q0z-Xh-wca"/>
-                                    <constraint firstAttribute="width" constant="25" id="yXE-9X-IeX"/>
+                                    <constraint firstAttribute="height" constant="20" id="Q0z-Xh-wca"/>
+                                    <constraint firstAttribute="width" constant="20" id="yXE-9X-IeX"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="delete"/>
                                 <connections>
@@ -50,12 +47,14 @@
                             </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="Urx-UD-Egv" firstAttribute="centerY" secondItem="w2v-Wc-ouQ" secondAttribute="centerY" id="47n-K4-6H0"/>
-                            <constraint firstItem="Urx-UD-Egv" firstAttribute="leading" secondItem="w2v-Wc-ouQ" secondAttribute="trailing" constant="10" id="5b8-UI-4hx"/>
+                            <constraint firstItem="Urx-UD-Egv" firstAttribute="leading" secondItem="w2v-Wc-ouQ" secondAttribute="trailing" constant="10" id="Czb-Qx-x9D"/>
                             <constraint firstAttribute="trailing" secondItem="5Jl-9a-2FN" secondAttribute="trailing" constant="10" id="DWt-f3-aI0"/>
                             <constraint firstItem="5Jl-9a-2FN" firstAttribute="centerY" secondItem="w2v-Wc-ouQ" secondAttribute="centerY" id="EHM-84-Kjc"/>
                             <constraint firstItem="w2v-Wc-ouQ" firstAttribute="leading" secondItem="QhD-pA-r6n" secondAttribute="leading" constant="5" id="Kbn-Rj-LIu"/>
+                            <constraint firstItem="Urx-UD-Egv" firstAttribute="top" secondItem="QhD-pA-r6n" secondAttribute="top" constant="5" id="MsB-5g-ro2"/>
                             <constraint firstItem="w2v-Wc-ouQ" firstAttribute="centerY" secondItem="QhD-pA-r6n" secondAttribute="centerY" id="bwM-q2-PkH"/>
+                            <constraint firstItem="5Jl-9a-2FN" firstAttribute="leading" secondItem="Urx-UD-Egv" secondAttribute="trailing" constant="10" id="cXs-Zu-soU"/>
+                            <constraint firstAttribute="bottom" secondItem="Urx-UD-Egv" secondAttribute="bottom" constant="5" id="zWo-WE-QCJ"/>
                         </constraints>
                     </view>
                 </subviews>

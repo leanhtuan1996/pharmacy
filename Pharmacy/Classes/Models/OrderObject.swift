@@ -38,11 +38,6 @@ class OrderObject: NSObject, Decodable {
             }
         }
         
-//        if let drugs =  [OrderObject].from(jsonArray: "drugs" <~~ json)  {
-//            print(drugs.count)
-//            self.drugs = drugs
-//        }
-        
         self.idPrescription = "prescription_id" <~~ json
     }
 }

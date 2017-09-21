@@ -52,6 +52,12 @@ class PrescriptionObject: NSObject, NSCoding, Decodable {
         if let date: String = "date" <~~ json {
             self.dateCreate = date.jsonDateToDate()
         }
+        
+        if let drugJSON: [JSON] = "drugs" <~~ json {
+            if let drugs = [DrugObject].from(jsonArray: drugJSON) {
+                self.drugs = drugs
+            }
+        }
     }
     
     func encode(with aCoder: NSCoder) {

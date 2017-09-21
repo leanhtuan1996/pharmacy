@@ -87,16 +87,16 @@ extension OrderDrugVC: UITableViewDelegate, UITableViewDataSource {
         //print("ID: \(drugs[indexPath.row].id)"  )
         
         
-        if let sb = UIStoryboard(name: "DrugDetailDialog", bundle: nil).instantiateInitialViewController() as? DrugDialogVC {
-            self.addChildViewController(sb)
-            self.view.addSubview(sb.view)
-            sb.view.frame = view.bounds
-            sb.didMove(toParentViewController: self)
-            
-            sb.lblName.text = drugs[indexPath.row].name
-            sb.idDrug = drugs[indexPath.row].id
-            
-        }
+//        if let sb = UIStoryboard(name: "DrugDetailDialog", bundle: nil).instantiateInitialViewController() as? DrugDialogVC {
+//            self.addChildViewController(sb)
+//            self.view.addSubview(sb.view)
+//            sb.view.frame = view.bounds
+//            sb.didMove(toParentViewController: self)
+//            
+//            sb.lblName.text = drugs[indexPath.row].name
+//            sb.idDrug = drugs[indexPath.row].id
+//            
+//        }
         
         
         

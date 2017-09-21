@@ -13,17 +13,20 @@ class AddPrescriptionVC: UIViewController {
     @IBOutlet weak var txtNameOfPre: UITextField!
     @IBOutlet weak var txtSearch: UITextField!
     @IBOutlet weak var lblTotalDrugs: UILabel!
+    @IBOutlet weak var uiSearchBar: UISearchBar!
     
     //show all drugs to add
     var drugs: [DrugObject] = []
+    var drugsFilter: [DrugObject] = []
     var drugsSelected: [DrugObject] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tblListDrugs.delegate = self
         tblListDrugs.dataSource = self
+        uiSearchBar.delegate = self
         tblListDrugs.register(UINib(nibName: "DrugOfNewPresciptionCell", bundle: nil), forCellReuseIdentifier: "DrugOfNewPresciptionCell")
-        
+        tblListDrugs.estimatedRowHeight = 80
         getDrugs()
         
         if let nav = self.navigationController {
@@ -40,6 +43,7 @@ class AddPrescriptionVC: UIViewController {
                 nav.setNavigationBarHidden(true, animated: true)
             }
         }
+        
     }
     
     // - MARK: FUNCTIONS
@@ -53,6 +57,7 @@ class AddPrescriptionVC: UIViewController {
             if let data = drugs {
                 
                 self.drugs = data
+                self.drugsFilter = data
                 DispatchQueue.main.async {
                     self.tblListDrugs.reloadData()
                 }
@@ -131,27 +136,47 @@ class AddPrescriptionVC: UIViewController {
     
 }
 
-extension AddPrescriptionVC: UITableViewDelegate, UITableViewDataSource, ActionWhenChooseDrug {
+extension AddPrescriptionVC: UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate ,ActionWhenChooseDrugDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return drugs.count
+       // return drugs.count
+        return drugsFilter.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "DrugOfNewPresciptionCell", for: indexPath) as? DrugOfNewPresciptionCell else {
             return UITableViewCell()
         }
+        
         cell.delegate = self
-        cell.txtName.text = drugs[indexPath.row].name
-        cell.drug = drugs[indexPath.row]
+        cell.txtName.text = drugsFilter[indexPath.row].name
+        cell.drug = drugsFilter[indexPath.row]
+        
+        
+        if drugsSelected.contains(where: { (drug) -> Bool in
+            return drugsFilter[indexPath.row].id == drug.id
+        }) {
+            cell.switchSelected.isOn = true
+        } else {
+            cell.switchSelected.isOn = false
+        }
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return UITableViewAutomaticDimension
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        drugsFilter = searchText.isEmpty ? drugs : drugs.filter({ (drug) -> Bool in
+            return drug.name?.range(of: searchText.lowercased()) != nil
+        })
+        tblListDrugs.reloadData()
     }
 }
 
-protocol ActionWhenChooseDrug {
+protocol ActionWhenChooseDrugDelegate {
     func addDrug(with drug: DrugObject) -> Void
     func delDrug(with drug: DrugObject) -> Void
 }

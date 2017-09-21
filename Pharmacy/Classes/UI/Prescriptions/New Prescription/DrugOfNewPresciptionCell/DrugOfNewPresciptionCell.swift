@@ -14,7 +14,7 @@ class DrugOfNewPresciptionCell: UITableViewCell {
     @IBOutlet weak var txtName: UILabel!
     @IBOutlet weak var switchSelected: UISwitch!
     
-    var delegate: ActionWhenChooseDrug?
+    var delegate: ActionWhenChooseDrugDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,5 +33,6 @@ class DrugOfNewPresciptionCell: UITableViewCell {
             delegate?.delDrug(with: drug)
         }
     }
+    
 }
 

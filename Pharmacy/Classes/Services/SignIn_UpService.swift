@@ -54,31 +54,6 @@ class SignIn_UpService: NSObject {
                 if let userInfo = Utilities.convertObjectToJson(object: userInfoObject) {
                     print(userInfo)
                     
-//                    guard let email = userInfo["email"] as? String else {
-//                        return completionHandler(nil, "Invalid data format")
-//                    }
-//                    
-//                    let user = UserObject(email: email)
-//
-//                    
-//                    if let fullName = userInfo["fullname"] as? String {
-//                        user.fullName = fullName
-//                    }
-//                    
-//                    if let address = userInfo["address"] as? String {
-//                        user.address = address
-//                    }
-//                    
-//                    if let phoneNumber = userInfo["phonenumber"] as? String {
-//                        user.phoneNumber = phoneNumber
-//                    }
-//                    
-//                    if let ruleString = userInfo["role"] as? String {
-//                        if let role = userRole(rawValue: ruleString) {
-//                            user.role = role
-//                        }
-//                    }
-                    
                     guard let user = UserObject(json: userInfo) else {
                         return completionHandler(nil, "Invalid data format")
                     }

@@ -738,26 +738,24 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m4l-LM-GRQ" userLabel="searchView">
-                                <rect key="frame" x="0.0" y="140" width="375" height="60"/>
+                                <rect key="frame" x="0.0" y="140" width="375" height="40"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search Drugs" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i8K-4u-0ee">
-                                        <rect key="frame" x="8" y="8" width="359" height="44"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <searchBar contentMode="redraw" placeholder="Search Drugs" translatesAutoresizingMaskIntoConstraints="NO" id="2XG-Fp-BZK">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
                                         <textInputTraits key="textInputTraits"/>
-                                    </textField>
+                                    </searchBar>
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="i8K-4u-0ee" firstAttribute="leading" secondItem="m4l-LM-GRQ" secondAttribute="leading" constant="8" id="27l-WB-DVV"/>
-                                    <constraint firstAttribute="bottom" secondItem="i8K-4u-0ee" secondAttribute="bottom" constant="8" id="DQa-P9-CMA"/>
-                                    <constraint firstAttribute="trailing" secondItem="i8K-4u-0ee" secondAttribute="trailing" constant="8" id="Wcu-eS-41x"/>
-                                    <constraint firstAttribute="height" constant="60" id="dj6-Yb-E6F"/>
-                                    <constraint firstItem="i8K-4u-0ee" firstAttribute="top" secondItem="m4l-LM-GRQ" secondAttribute="top" constant="8" id="unN-Xh-pbd"/>
+                                    <constraint firstAttribute="trailing" secondItem="2XG-Fp-BZK" secondAttribute="trailing" id="2wZ-do-KGf"/>
+                                    <constraint firstAttribute="bottom" secondItem="2XG-Fp-BZK" secondAttribute="bottom" id="YqA-tE-3UQ"/>
+                                    <constraint firstAttribute="height" constant="40" id="dj6-Yb-E6F"/>
+                                    <constraint firstItem="2XG-Fp-BZK" firstAttribute="leading" secondItem="m4l-LM-GRQ" secondAttribute="leading" id="qmH-pk-twn"/>
+                                    <constraint firstItem="2XG-Fp-BZK" firstAttribute="top" secondItem="m4l-LM-GRQ" secondAttribute="top" id="rvp-JQ-MBS"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="da9-e5-rtZ">
-                                <rect key="frame" x="0.0" y="200" width="375" height="467"/>
+                                <rect key="frame" x="0.0" y="180" width="375" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
@@ -791,7 +789,7 @@
                         <outlet property="lblTotalDrugs" destination="gCM-5i-zsE" id="Zfu-WE-ymr"/>
                         <outlet property="tblListDrugs" destination="da9-e5-rtZ" id="hYL-ra-bM4"/>
                         <outlet property="txtNameOfPre" destination="mOM-Rd-9vx" id="Cxl-13-NP4"/>
-                        <outlet property="txtSearch" destination="i8K-4u-0ee" id="ZWF-GI-LRa"/>
+                        <outlet property="uiSearchBar" destination="2XG-Fp-BZK" id="f8f-rU-MVB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hrg-G0-HM6" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -54,12 +54,12 @@ class PrescriptionVC: UIViewController {
         }
        
         getAllPrescriptionsFromUserDefault()
-        //getAllPrescriptionsFromService()
+        getAllPrescriptionsFromService()
     }
     //Get all prescriptions in NSUSERDEFAULTS
     func getAllPrescriptionsFromUserDefault() {
         //Get all presciptions from prescription manager
-        
+        tblPrescriptions.reloadData()
         if let prescriptions = PrescriptionManager.shared.getAllPrescription() {
             self.prescriptionsCreated = prescriptions
             self.tblPrescriptions.reloadData()

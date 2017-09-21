@@ -66,39 +66,9 @@ class PrescriptionService: NSObject {
                                 return completionHandler(nil, error[0])
                             }
                         }
-                        //if success
-                        guard let idPre = json["id"] as? Int, let drugs = json["drugs"] as? [AnyObject] else {
-                            print("1")
-                            return completionHandler(nil, "Invalid data format")
-                        }
                         
-                        var drugsArray: [DrugObject] = []
-                        var flag = 0
-                        for drug in drugs {
-                            if let drugJson = Utilities.convertObjectToJson(object: drug) {
-                                //print(drugJson["DrugID"])
-                                if let id = drugJson["DrugID"] as? Int {
-                                    
-                                    //get detail drug
-                                    DrugsService.shared.getDrug(id, completionHandler: { (drug, error) in
-                                        flag += 1
-                                        if let error = error {
-                                            return completionHandler(nil, "Get detail drug error: \(error)")
-                                        }
-                                        
-                                        if let drug = drug {
-                                            drugsArray.append(drug)
-                                        }
-                                        
-                                        if flag == drugs.count {
-                                            let pre = PrescriptionObject()
-                                            pre.drugs = drugsArray
-                                            pre.id = idPre
-                                            return completionHandler(pre, nil)
-                                        }
-                                    })
-                                }
-                            }
+                        if let prescription = PrescriptionObject(json: json) {
+                            return completionHandler(prescription, nil)
                         }
                     } else {
                         print("2")
