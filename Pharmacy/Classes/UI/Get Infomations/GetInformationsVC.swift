@@ -31,7 +31,7 @@ class GetInformationsVC: UIViewController {
         }
         
         //get info user
-        GetInformationService.shared.getInformations { (user, error) in
+        UserService.shared.getInformations { (user, error) in
             
             if let error = error {
                 self.showAlert(error, title: "Get informations error", buttons: nil)

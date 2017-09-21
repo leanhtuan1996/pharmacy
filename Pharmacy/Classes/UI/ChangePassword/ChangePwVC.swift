@@ -44,7 +44,7 @@ class ChangePwVC: UIViewController {
             return
         }
         
-        UpdatePwService.shared.updatePw(oldPassword, newPassword: newPassword, confirmPw: confirmPassword) { (error) in
+        UserService.shared.updatePw(oldPassword, newPassword: newPassword, confirmPw: confirmPassword) { (error) in
             
             if let error = error {
                 self.showAlert(error, title: "Update password error", buttons: nil)

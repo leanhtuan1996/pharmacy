@@ -51,7 +51,7 @@ class ChangeInfoVC: UIViewController {
         userObject.fullName = fullName
         userObject.phoneNumber = phoneNumber
         
-        UpdateInfoService.shared.updateInfo(userObject) { (error) in
+        UserService.shared.updateInfo(userObject) { (error) in
             activityIndicatorView.stopAnimating()
             self.navigationController?.setNavigationBarHidden(false, animated: true)
             

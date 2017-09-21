@@ -85,7 +85,7 @@ class SignUpVC: UIViewController {
         userObject.fullName = fullName
         userObject.phoneNumber = phoneNumber
         
-        SignIn_UpService.shared.signUp(userObject) { (user, error) in
+        UserService.shared.signUp(userObject) { (user, error) in
             activityIndicatorView.stopAnimating()
             
             if let error = error {

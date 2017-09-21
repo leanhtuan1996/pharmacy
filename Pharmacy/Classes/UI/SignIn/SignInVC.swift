@@ -49,7 +49,7 @@ class SignInVC: UIViewController {
             return
         }
         
-        SignIn_UpService.shared.signIn(email, password: password) { (user, error) in
+        UserService.shared.signIn(email, password: password) { (user, error) in
             activityIndicatorView.stopAnimating()
             
             if let error = error {
