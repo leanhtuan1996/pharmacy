@@ -41,12 +41,12 @@ class OrderHistoryVC: UIViewController {
     
     func getOrdersHistory() {
         OrderService.shared.getOrdersHistory { (orderObject, error) in
-            self.ordersHistory = []
+           
             if let error = error {
                 print(error)
                 return
             }
-            
+            self.ordersHistory = []
             if let orderArray = orderObject {
                 self.ordersHistory = orderArray
             } else {

@@ -9,16 +9,12 @@
 /* Begin PBXBuildFile section */
 		360601B51F6E9FFC00D2E630 /* Extensions+UIActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360601B41F6E9FFC00D2E630 /* Extensions+UIActivityIndicatorView.swift */; };
 		3606209D1F6A610100741546 /* AddPrescriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3606209C1F6A610100741546 /* AddPrescriptionVC.swift */; };
-		3606573B1F590DB500B6C2D6 /* OrderDrugVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3606573A1F590DB500B6C2D6 /* OrderDrugVC.swift */; };
 		3606573D1F590E7700B6C2D6 /* DrugNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3606573C1F590E7700B6C2D6 /* DrugNetworking.swift */; };
 		3606573F1F59103B00B6C2D6 /* OrderNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3606573E1F59103B00B6C2D6 /* OrderNetworking.swift */; };
 		360657521F59391500B6C2D6 /* DrugObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360657511F59391500B6C2D6 /* DrugObject.swift */; };
 		360657541F593AC300B6C2D6 /* DrugsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360657531F593AC300B6C2D6 /* DrugsService.swift */; };
 		360657561F593B8300B6C2D6 /* OrderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360657551F593B8300B6C2D6 /* OrderService.swift */; };
 		360657581F5A742400B6C2D6 /* OrderObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360657571F5A742400B6C2D6 /* OrderObject.swift */; };
-		360AFCF71F616D7E001CBB57 /* CheckOutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360AFCF61F616D7E001CBB57 /* CheckOutVC.swift */; };
-		360AFCFF1F616E7F001CBB57 /* OrderDrugsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360AFCFD1F616E7F001CBB57 /* OrderDrugsCell.swift */; };
-		360AFD001F616E7F001CBB57 /* OrderDrugsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 360AFCFE1F616E7F001CBB57 /* OrderDrugsCell.xib */; };
 		360FDCA11F6F688700E902D1 /* Extensions+NSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360FDCA01F6F688700E902D1 /* Extensions+NSError.swift */; };
 		360FDCA31F6F68AB00E902D1 /* Extensions+HTTPURLResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360FDCA21F6F68AB00E902D1 /* Extensions+HTTPURLResponse.swift */; };
 		361304B51F6F5147008F0364 /* Extensions+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361304B41F6F5147008F0364 /* Extensions+Data.swift */; };
@@ -74,14 +70,12 @@
 		36E48DCB1F49D3BF0085A097 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36E48DC51F49D3BF0085A097 /* LaunchScreen.storyboard */; };
 		36E48DCC1F49D3BF0085A097 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36E48DC61F49D3BF0085A097 /* Main.storyboard */; };
 		36E48DCF1F49D46C0085A097 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E48DCE1F49D46C0085A097 /* Alamofire.framework */; };
-		36E48DD81F49D5B00085A097 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E48DD71F49D5B00085A097 /* ViewController.swift */; };
 		36E48DDA1F49DC1F0085A097 /* SignInUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36E48DD91F49DC1F0085A097 /* SignInUp.storyboard */; };
 		36E48DDC1F49DC420085A097 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E48DDB1F49DC420085A097 /* SignInVC.swift */; };
 		36E48DDE1F49DC5B0085A097 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E48DDD1F49DC5B0085A097 /* SignUpVC.swift */; };
 		36E48DE11F49EC310085A097 /* UserObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E48DE01F49EC310085A097 /* UserObject.swift */; };
 		36E48DE51F49EF170085A097 /* LauchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E48DE41F49EF170085A097 /* LauchVC.swift */; };
 		36E48DE91F49F2960085A097 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E48DE81F49F2960085A097 /* UserManager.swift */; };
-		36E5F2111F6108B700BDCC9D /* DrugDetailDialog.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36E5F2101F6108B700BDCC9D /* DrugDetailDialog.storyboard */; };
 		36E5F2161F6124DA00BDCC9D /* OrderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E5F2151F6124DA00BDCC9D /* OrderManager.swift */; };
 		5C34706F55A0C88B21ED4CB2 /* Pods_Pharmacy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9654EF3342A90AF53F0981E7 /* Pods_Pharmacy.framework */; };
 /* End PBXBuildFile section */
@@ -91,16 +85,12 @@
 		1E7969091787900FA307D817 /* Pods-Pharmacy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pharmacy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pharmacy/Pods-Pharmacy.release.xcconfig"; sourceTree = "<group>"; };
 		360601B41F6E9FFC00D2E630 /* Extensions+UIActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+UIActivityIndicatorView.swift"; sourceTree = "<group>"; };
 		3606209C1F6A610100741546 /* AddPrescriptionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPrescriptionVC.swift; sourceTree = "<group>"; };
-		3606573A1F590DB500B6C2D6 /* OrderDrugVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderDrugVC.swift; sourceTree = "<group>"; };
 		3606573C1F590E7700B6C2D6 /* DrugNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrugNetworking.swift; sourceTree = "<group>"; };
 		3606573E1F59103B00B6C2D6 /* OrderNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderNetworking.swift; sourceTree = "<group>"; };
 		360657511F59391500B6C2D6 /* DrugObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrugObject.swift; sourceTree = "<group>"; };
 		360657531F593AC300B6C2D6 /* DrugsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrugsService.swift; sourceTree = "<group>"; };
 		360657551F593B8300B6C2D6 /* OrderService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderService.swift; sourceTree = "<group>"; };
 		360657571F5A742400B6C2D6 /* OrderObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderObject.swift; sourceTree = "<group>"; };
-		360AFCF61F616D7E001CBB57 /* CheckOutVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckOutVC.swift; sourceTree = "<group>"; };
-		360AFCFD1F616E7F001CBB57 /* OrderDrugsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderDrugsCell.swift; sourceTree = "<group>"; };
-		360AFCFE1F616E7F001CBB57 /* OrderDrugsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderDrugsCell.xib; sourceTree = "<group>"; };
 		360FDCA01F6F688700E902D1 /* Extensions+NSError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+NSError.swift"; sourceTree = "<group>"; };
 		360FDCA21F6F68AB00E902D1 /* Extensions+HTTPURLResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+HTTPURLResponse.swift"; sourceTree = "<group>"; };
 		361304B41F6F5147008F0364 /* Extensions+Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+Data.swift"; sourceTree = "<group>"; };
@@ -158,14 +148,12 @@
 		36E48DC61F49D3BF0085A097 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		36E48DC81F49D3BF0085A097 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		36E48DCE1F49D46C0085A097 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../Library/Developer/Xcode/DerivedData/Pharmacy-dzuhvatzdfrzkhfcbyqyqrsllicm/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
-		36E48DD71F49D5B00085A097 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		36E48DD91F49DC1F0085A097 /* SignInUp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignInUp.storyboard; sourceTree = "<group>"; };
 		36E48DDB1F49DC420085A097 /* SignInVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		36E48DDD1F49DC5B0085A097 /* SignUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		36E48DE01F49EC310085A097 /* UserObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserObject.swift; sourceTree = "<group>"; };
 		36E48DE41F49EF170085A097 /* LauchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LauchVC.swift; sourceTree = "<group>"; };
 		36E48DE81F49F2960085A097 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
-		36E5F2101F6108B700BDCC9D /* DrugDetailDialog.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DrugDetailDialog.storyboard; sourceTree = "<group>"; };
 		36E5F2151F6124DA00BDCC9D /* OrderManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderManager.swift; sourceTree = "<group>"; };
 		9654EF3342A90AF53F0981E7 /* Pods_Pharmacy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pharmacy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -199,25 +187,6 @@
 				3606209C1F6A610100741546 /* AddPrescriptionVC.swift */,
 			);
 			path = "New Prescription";
-			sourceTree = "<group>";
-		};
-		360657391F590D9B00B6C2D6 /* Order drugs */ = {
-			isa = PBXGroup;
-			children = (
-				360AFCF81F616E0F001CBB57 /* OrderDrugsCells */,
-				3606573A1F590DB500B6C2D6 /* OrderDrugVC.swift */,
-				360AFCF61F616D7E001CBB57 /* CheckOutVC.swift */,
-			);
-			path = "Order drugs";
-			sourceTree = "<group>";
-		};
-		360AFCF81F616E0F001CBB57 /* OrderDrugsCells */ = {
-			isa = PBXGroup;
-			children = (
-				360AFCFD1F616E7F001CBB57 /* OrderDrugsCell.swift */,
-				360AFCFE1F616E7F001CBB57 /* OrderDrugsCell.xib */,
-			);
-			path = OrderDrugsCells;
 			sourceTree = "<group>";
 		};
 		3614F15E1F6555D900861CBC /* OrdersHistory */ = {
@@ -524,7 +493,6 @@
 				36E48DC51F49D3BF0085A097 /* LaunchScreen.storyboard */,
 				36E48DC61F49D3BF0085A097 /* Main.storyboard */,
 				36E48DD91F49DC1F0085A097 /* SignInUp.storyboard */,
-				36E5F2101F6108B700BDCC9D /* DrugDetailDialog.storyboard */,
 				36B2ECA31F717F790075F33F /* Admin.storyboard */,
 			);
 			path = Storyboards;
@@ -545,23 +513,13 @@
 				363EC31B1F6F97E700159A9C /* Admin */,
 				36802D851F695AAC00E00ACB /* Prescriptions */,
 				3614F15E1F6555D900861CBC /* OrdersHistory */,
-				360657391F590D9B00B6C2D6 /* Order drugs */,
 				36AE948C1F4FCDA500DA6AAA /* Get Infomations */,
 				36AE94831F4D52A300DA6AAA /* ChangeInfo */,
 				36AE94801F4D4D2500DA6AAA /* ChangePassword */,
-				36E48DD41F49D59B0085A097 /* Main */,
 				36E48DD51F49D59B0085A097 /* SignIn */,
 				36E48DD61F49D59B0085A097 /* SignUp */,
 			);
 			path = UI;
-			sourceTree = "<group>";
-		};
-		36E48DD41F49D59B0085A097 /* Main */ = {
-			isa = PBXGroup;
-			children = (
-				36E48DD71F49D5B00085A097 /* ViewController.swift */,
-			);
-			path = Main;
 			sourceTree = "<group>";
 		};
 		36E48DD51F49D59B0085A097 /* SignIn */ = {
@@ -716,10 +674,8 @@
 				3687D1FE1F718A100012BA5E /* DrugsOfOrderPrescriptionCell.xib in Resources */,
 				36E48DDA1F49DC1F0085A097 /* SignInUp.storyboard in Resources */,
 				3614F1651F65594F00861CBC /* OrderHistoryCells.xib in Resources */,
-				360AFD001F616E7F001CBB57 /* OrderDrugsCell.xib in Resources */,
 				3678D8A01F662CCE00825990 /* DetailOrderHistoryCells.xib in Resources */,
 				3687D1F61F7186430012BA5E /* SubmitPrescriptionCell.xib in Resources */,
-				36E5F2111F6108B700BDCC9D /* DrugDetailDialog.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -793,8 +749,6 @@
 				368303CA1F6D0C0A00F7DB70 /* ApprovedPrescriptionCell.swift in Sources */,
 				368303C61F6D0BF700F7DB70 /* RejectedPrescriptionCell.swift in Sources */,
 				3678D89B1F6627E900825990 /* DetailsOrderHistoryVC.swift in Sources */,
-				360AFCF71F616D7E001CBB57 /* CheckOutVC.swift in Sources */,
-				36E48DD81F49D5B00085A097 /* ViewController.swift in Sources */,
 				360601B51F6E9FFC00D2E630 /* Extensions+UIActivityIndicatorView.swift in Sources */,
 				361304B71F6F5313008F0364 /* Extensions+UIViewController.swift in Sources */,
 				3615B5501F6E504700311059 /* DrugsOfOrderPrescriptionCell.swift in Sources */,
@@ -821,9 +775,7 @@
 				363030801F70EB08007CD711 /* SettingObject.swift in Sources */,
 				36E48DE11F49EC310085A097 /* UserObject.swift in Sources */,
 				360657521F59391500B6C2D6 /* DrugObject.swift in Sources */,
-				360AFCFF1F616E7F001CBB57 /* OrderDrugsCell.swift in Sources */,
 				369849B01F700875007CE5CC /* PrescriptionsAdminCell.swift in Sources */,
-				3606573B1F590DB500B6C2D6 /* OrderDrugVC.swift in Sources */,
 				36E48DE51F49EF170085A097 /* LauchVC.swift in Sources */,
 				3606209D1F6A610100741546 /* AddPrescriptionVC.swift in Sources */,
 				3606573F1F59103B00B6C2D6 /* OrderNetworking.swift in Sources */,

@@ -74,10 +74,7 @@ class PrescriptionVC: UIViewController {
         //Get all prescriptions of user from Service
         PrescriptionService.shared.getPrescriptions { (prescriptions, error) in
             
-            self.prescriptionsPending = []
-            self.prescriptionsOrder = []
-            self.prescriptionsRejected = []
-            self.tblPrescriptions.reloadData()
+            
             
             if let error = error {
                 print("GET ALL PRESCRIPTION FROM SERVICE NOT COMPLETE WITH ERROR: \(error)")
@@ -88,6 +85,11 @@ class PrescriptionVC: UIViewController {
                 print("GET ALL PRESCRIPTION FROM SERVICE NOT COMPLETE WITH ERROR")
                 return
             }
+            
+            self.prescriptionsPending = []
+            self.prescriptionsOrder = []
+            self.prescriptionsRejected = []
+            self.tblPrescriptions.reloadData()
             
             for prescription in prescriptions {
                 if let status = prescription.status {

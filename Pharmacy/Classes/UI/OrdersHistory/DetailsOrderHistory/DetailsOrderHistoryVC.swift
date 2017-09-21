@@ -22,15 +22,16 @@ class DetailsOrderHistoryVC: UIViewController {
         tblDetailsOrder.delegate = self
         tblDetailsOrder.dataSource = self
         tblDetailsOrder.register(UINib(nibName: "DetailOrderHistoryCells", bundle: nil), forCellReuseIdentifier: "DetailOrderHistoryCells")
+        tblDetailsOrder.estimatedRowHeight = 120
         navigationController?.setNavigationBarHidden(false, animated: true)
         
         if let orderDetail = orderHistory {
             lblId.text = String(orderDetail.id ?? 0)
             lblDate.text = orderDetail.date
             lblTotalDrugs.text = String(orderDetail.drugs?.count ?? 0)
-            
             getDetailOrderHistory(withId: orderDetail.id ?? 0)
         }
+        
     }
     
     func getDetailOrderHistory(withId id: Int) {
@@ -72,6 +73,6 @@ extension DetailsOrderHistoryVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return UITableViewAutomaticDimension
     }
 }

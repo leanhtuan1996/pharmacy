@@ -21,6 +21,7 @@ class OrderPrescriptionVC: UIViewController {
         tblDrugs.register(UINib(nibName: "DrugsOfOrderPrescriptionCell", bundle: nil), forCellReuseIdentifier: "DrugsOfOrderPrescriptionCell")
         tblDrugs.dataSource = self
         tblDrugs.delegate = self
+        tblDrugs.estimatedRowHeight = 70
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -130,7 +131,7 @@ extension OrderPrescriptionVC: UITableViewDelegate, UITableViewDataSource, Choos
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return UITableViewAutomaticDimension
     }
     
     func choose(with drug: DrugObject) {
