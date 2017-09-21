@@ -49,11 +49,11 @@ enum UserRouter: URLRequestConvertible {
         case .signUp:
             return "/signup"
         case .updatePw:
-            return "/change-password"
+            return "/changePassword"
         case . updateInfo:
-            return "/update-peronal-info"
+            return "/updatePeronalInfo"
         case .getInfo:
-            return "/get-information"
+            return "/getInformation"
         }
     }
     

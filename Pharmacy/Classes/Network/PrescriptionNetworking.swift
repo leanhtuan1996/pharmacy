@@ -44,17 +44,17 @@ enum PrescriptionRouter: URLRequestConvertible {
     var path: String {
         switch self {
         case .getAllPrescription:
-            return "/get-list-prescriptions"
+            return "/getListPrescriptions"
         case .newPrescription:
-            return "/new-prescription"
+            return "/newPrescription"
         case .getDetailPrescription:
-            return "/get-prescription-detail"
+            return "/getPrescriptionDetail"
         case .getListPrescription:
-            return "/admin/get-all-prescriptions"
+            return "/admin/getAllPrescriptions"
         case .appceptPrescription:
-            return "/admin/accept-prescription"
+            return "/admin/acceptPrescription"
         case .rejectPrescription:
-            return "/admin/reject-prescription"
+            return "/admin/rejectPrescription"
         }
     }
     

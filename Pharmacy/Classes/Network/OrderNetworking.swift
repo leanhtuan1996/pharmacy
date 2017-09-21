@@ -42,15 +42,15 @@ enum OrderRouter: URLRequestConvertible {
     var path: String {
         switch self {
         case .getOrder:
-            return "/admin/get-order"
+            return "/admin/getOrder"
         case .getAllOrders:
-            return "/admin/get-all-orders"
+            return "/admin/getAllOrders"
         case .newOrder:
-            return "/new-order"
+            return "/newOrder"
         case .getOrderHistory:
-            return "/get-order-history"
+            return "/getOrderHistory"
         case .getDetailOrder:
-            return "/get-detail-order"
+            return "/getDetailOrder"
         }
     }
     

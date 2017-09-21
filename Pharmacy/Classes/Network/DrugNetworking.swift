@@ -42,15 +42,15 @@ enum DrugRouter: URLRequestConvertible {
     var path: String {
         switch self {
         case .getDrug:
-            return "/get-drug"
+            return "/getDrug"
         case .listOfDrug:
-            return "/list-of-drug"
+            return "/listOfDrug"
         case .addNewDrug:
-            return "/admin/add-new-drug"
+            return "/admin/addNewDrug"
         case . updateDrug:
-            return "/admin/update-drug"
+            return "/admin/updateDrug"
         case .deleteDrug:
-            return "/admin/delete-drug"
+            return "/admin/deleteDrug"
         }
     }
     
