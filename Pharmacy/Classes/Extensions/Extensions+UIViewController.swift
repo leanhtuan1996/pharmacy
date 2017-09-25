@@ -31,4 +31,14 @@ extension UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+    func addBlurEffect()
+    {
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.regular)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = self.view.bounds
+        blurEffectView.layer.zPosition = 1
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight] // for supporting device rotation
+        self.view.addSubview(blurEffectView)
+    }
+    
 }

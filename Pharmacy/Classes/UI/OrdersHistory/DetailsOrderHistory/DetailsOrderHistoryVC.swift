@@ -38,7 +38,6 @@ class DetailsOrderHistoryVC: UIViewController {
             //tblPrescriptions.addSubview(refreshControl)
             tblDetailsOrder.refreshControl = refreshControl
         }
-        
     }
     
     func refreshHandler() {

@@ -69,13 +69,14 @@ class PrescriptionVC: UIViewController {
     func getAllPrescriptionsFromUserDefault() {
         //Get all presciptions from prescription manager
         tblPrescriptions.reloadData()
+        if self.refreshControl.isRefreshing {
+            self.refreshControl.endRefreshing()
+        }
         if let prescriptions = PrescriptionManager.shared.getAllPrescription() {
             self.prescriptionsCreated = prescriptions
             self.tblPrescriptions.reloadData()
             
-            if self.refreshControl.isRefreshing {
-                self.refreshControl.endRefreshing()
-            }
+           
             
         } else {
             print("Get all prescriptions from UserDefaults Failed or nil")

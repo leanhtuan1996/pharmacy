@@ -58,6 +58,10 @@ class AddPrescriptionVC: UIViewController {
     func getDrugs() {
         DrugsService.shared.getDrugs { (drugs, error) in
             
+            if self.refreshControl.isRefreshing {
+                self.refreshControl.endRefreshing()
+            }
+            
             if let error = error {
                 print("ERROR " + error)
                 return
@@ -72,9 +76,7 @@ class AddPrescriptionVC: UIViewController {
                 return
             }
             
-            if self.refreshControl.isRefreshing {
-                self.refreshControl.endRefreshing()
-            }
+            
         }
     }
     

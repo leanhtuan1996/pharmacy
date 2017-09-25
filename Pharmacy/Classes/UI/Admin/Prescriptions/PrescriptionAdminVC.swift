@@ -42,6 +42,10 @@ class PrescriptionAdminVC: UIViewController {
         //Get all prescriptions of user from Service
         PrescriptionService.shared.getListPrescriptions { (prescriptions, error) in
             
+            if self.refreshControl.isRefreshing {
+                self.refreshControl.endRefreshing()
+            }
+            
             if let error = error {
                 print("GET ALL PRESCRIPTION FROM SERVICE NOT COMPLETE WITH ERROR: \(error)")
                 return
@@ -68,9 +72,7 @@ class PrescriptionAdminVC: UIViewController {
                 self.tblPrescriptions.reloadData()
             }
             
-            if self.refreshControl.isRefreshing {
-                self.refreshControl.endRefreshing()
-            }
+            
         }
     }
    

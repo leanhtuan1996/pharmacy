@@ -52,6 +52,10 @@ class DrugsAdminVC: UIViewController {
     func getDrugs() {
         DrugsService.shared.getDrugs { (drugs, error) in
             
+            if self.refreshControl.isRefreshing {
+                self.refreshControl.endRefreshing()
+            }
+            
             if let error = error {
                 print("ERROR " + error)
                 return
@@ -63,9 +67,7 @@ class DrugsAdminVC: UIViewController {
                 self.tblDrugs.reloadData()
             }
             
-            if self.refreshControl.isRefreshing {
-                self.refreshControl.endRefreshing()
-            }
+            
         }
     }
     

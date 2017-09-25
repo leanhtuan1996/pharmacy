@@ -50,6 +50,10 @@ class OrderHistoryVC: UIViewController {
     func getOrdersHistory() {
         OrderService.shared.getOrdersHistory { (orderObject, error) in
            
+            if self.refreshControl.isRefreshing {
+                self.refreshControl.endRefreshing()
+            }
+            
             if let error = error {
                 print(error)
                 return
@@ -63,9 +67,7 @@ class OrderHistoryVC: UIViewController {
             
             self.tblOrderHistory.reloadData()
             
-            if self.refreshControl.isRefreshing {
-                self.refreshControl.endRefreshing()
-            }
+            
         }
     }
 
