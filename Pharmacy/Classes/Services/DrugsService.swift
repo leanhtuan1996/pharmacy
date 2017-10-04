@@ -226,4 +226,25 @@ class DrugsService: NSObject {
         }
     }
     
+    func search(with name: String, completionHandler: @escaping (_ drugs: [DrugObject]?, _ error: String?) -> Void) {
+        let parameter: [String: Any] = [
+            "nameDrug" : name
+        ]
+        
+        Alamofire.request(DrugRouter.search(parameter))
+        .validate()
+        .response { (res) in
+            if let err = res.error {
+                return completionHandler(nil, Utilities.handleError(res.response, error: err as NSError))
+                
+            }
+            
+            guard let data = res.data, let drugs = [DrugObject].from(data: data) else {
+                return completionHandler(nil, "Invalid data format")
+            }
+            
+            completionHandler(drugs, nil)
+        }
+    }
+    
 }

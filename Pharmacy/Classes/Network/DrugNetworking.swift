@@ -15,7 +15,7 @@ enum DrugRouter: URLRequestConvertible {
     //Action
     case getDrug([String: Any])
     case listOfDrug()
-    
+    case search([String: Any])
     
     //Admin for admin
     case addNewDrug([String : String])
@@ -35,6 +35,8 @@ enum DrugRouter: URLRequestConvertible {
             return .post
         case .deleteDrug:
             return .post
+        case .search:
+            return .post
         }
     }
     
@@ -51,6 +53,8 @@ enum DrugRouter: URLRequestConvertible {
             return "/admin/updateDrug"
         case .deleteDrug:
             return "/admin/deleteDrug"
+        case .search:
+            return "/searching"
         }
     }
     
@@ -76,6 +80,8 @@ enum DrugRouter: URLRequestConvertible {
         case .updateDrug(let parameters):
             return try Alamofire.URLEncoding.default.encode(urlRequest, with: parameters)
         case .deleteDrug(let parameters):
+            return try Alamofire.URLEncoding.default.encode(urlRequest, with: parameters)
+        case .search(let parameters):
             return try Alamofire.URLEncoding.default.encode(urlRequest, with: parameters)
         }
         

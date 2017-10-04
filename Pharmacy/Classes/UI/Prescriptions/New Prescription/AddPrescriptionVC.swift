@@ -150,7 +150,7 @@ class AddPrescriptionVC: UIViewController {
     
 }
 
-extension AddPrescriptionVC: UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate ,ActionWhenChooseDrugDelegate {
+extension AddPrescriptionVC: UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate,ActionWhenChooseDrugDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        // return drugs.count
         return drugsFilter.count
@@ -183,10 +183,30 @@ extension AddPrescriptionVC: UITableViewDelegate, UITableViewDataSource, UISearc
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        drugsFilter = searchText.isEmpty ? drugs : drugs.filter({ (drug) -> Bool in
-            return drug.name?.range(of: searchText.lowercased()) != nil
-        })
-        tblListDrugs.reloadData()
+        if searchText.isEmpty {
+            print("empty")
+            drugsFilter = drugs
+            self.tblListDrugs.reloadData()
+            return
+        }
+        
+        DrugsService.shared.search(with: searchText.lowercased()) { (drugs, error) in
+            if let error = error {
+                print(error)
+                self.drugsFilter = self.drugs
+                self.tblListDrugs.reloadData()
+            }
+            
+            if let drugs = drugs {
+                self.drugsFilter = drugs
+                self.tblListDrugs.reloadData()
+            }
+        }
+        
+//        drugsFilter = searchText.isEmpty ? drugs : drugs.filter({ (drug) -> Bool in
+//            return drug.name?.range(of: searchText.lowercased()) != nil
+//        })
+//        tblListDrugs.reloadData()
     }
 }
 
